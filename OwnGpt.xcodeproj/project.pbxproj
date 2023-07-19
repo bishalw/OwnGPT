@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */; };
-		58102EEF2A44FC1F00C52BD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EEE2A44FC1F00C52BD4 /* ContentView.swift */; };
+		58102EEF2A44FC1F00C52BD4 /* ContentViewTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EEE2A44FC1F00C52BD4 /* ContentViewTesting.swift */; };
 		58102EF12A44FC2000C52BD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58102EF02A44FC2000C52BD4 /* Assets.xcassets */; };
 		58102EF42A44FC2000C52BD4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58102EF32A44FC2000C52BD4 /* Preview Assets.xcassets */; };
 		58102EFE2A44FC2000C52BD4 /* OwnGptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EFD2A44FC2000C52BD4 /* OwnGptTests.swift */; };
 		58102F082A44FC2000C52BD4 /* OwnGptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F072A44FC2000C52BD4 /* OwnGptUITests.swift */; };
 		58102F0A2A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */; };
+		58102F172A44FC7500C52BD4 /* ChatGPTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */; };
+		58450A952A67CF11005BD1E4 /* ChatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58450A942A67CF11005BD1E4 /* ChatRowView.swift */; };
+		58450A972A687562005BD1E4 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */; };
+		5884DDE72A6756D4009115D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDE62A6756D4009115D4 /* Constants.swift */; };
+		5884DDE92A676C29009115D4 /* OwnGPTAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */; };
+		5884DDEB2A679BC7009115D4 /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */; };
+		5884DDED2A67A151009115D4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDEC2A67A151009115D4 /* ChatViewModel.swift */; };
+		5884DDF12A67A258009115D4 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF02A67A258009115D4 /* ChatRow.swift */; };
+		5884DDF32A67AB73009115D4 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF22A67AB73009115D4 /* DotView.swift */; };
+		5884DDF52A67ACBF009115D4 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +46,7 @@
 /* Begin PBXFileReference section */
 		58102EE92A44FC1F00C52BD4 /* OwnGpt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwnGpt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptApp.swift; sourceTree = "<group>"; };
-		58102EEE2A44FC1F00C52BD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		58102EEE2A44FC1F00C52BD4 /* ContentViewTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTesting.swift; sourceTree = "<group>"; };
 		58102EF02A44FC2000C52BD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58102EF32A44FC2000C52BD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		58102EF92A44FC2000C52BD4 /* OwnGptTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OwnGptTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +54,16 @@
 		58102F032A44FC2000C52BD4 /* OwnGptUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OwnGptUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58102F072A44FC2000C52BD4 /* OwnGptUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptUITests.swift; sourceTree = "<group>"; };
 		58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPI.swift; sourceTree = "<group>"; };
+		58450A942A67CF11005BD1E4 /* ChatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowView.swift; sourceTree = "<group>"; };
+		58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
+		5884DDE62A6756D4009115D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGPTAPIModels.swift; sourceTree = "<group>"; };
+		5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenView.swift; sourceTree = "<group>"; };
+		5884DDEC2A67A151009115D4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		5884DDF02A67A258009115D4 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		5884DDF22A67AB73009115D4 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +94,7 @@
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
+				58450A932A67CED9005BD1E4 /* Helpers */,
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
 				58102EFC2A44FC2000C52BD4 /* OwnGptTests */,
 				58102F062A44FC2000C52BD4 /* OwnGptUITests */,
@@ -95,8 +116,14 @@
 			isa = PBXGroup;
 			children = (
 				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
-				58102EEE2A44FC1F00C52BD4 /* ContentView.swift */,
+				58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */,
+				5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */,
+				5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */,
+				5884DDEC2A67A151009115D4 /* ChatViewModel.swift */,
+				5884DDF02A67A258009115D4 /* ChatRow.swift */,
+				58450A942A67CF11005BD1E4 /* ChatRowView.swift */,
 				58102EF02A44FC2000C52BD4 /* Assets.xcassets */,
+				58102EEE2A44FC1F00C52BD4 /* ContentViewTesting.swift */,
 				58102EF22A44FC2000C52BD4 /* Preview Content */,
 			);
 			path = OwnGpt;
@@ -125,6 +152,17 @@
 				58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */,
 			);
 			path = OwnGptUITests;
+			sourceTree = "<group>";
+		};
+		58450A932A67CED9005BD1E4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5884DDF22A67AB73009115D4 /* DotView.swift */,
+				5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */,
+				5884DDE62A6756D4009115D4 /* Constants.swift */,
+				58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +295,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58102EEF2A44FC1F00C52BD4 /* ContentView.swift in Sources */,
+				5884DDF32A67AB73009115D4 /* DotView.swift in Sources */,
+				5884DDF12A67A258009115D4 /* ChatRow.swift in Sources */,
+				58102F172A44FC7500C52BD4 /* ChatGPTAPI.swift in Sources */,
+				5884DDF52A67ACBF009115D4 /* DotLoadingView.swift in Sources */,
+				5884DDED2A67A151009115D4 /* ChatViewModel.swift in Sources */,
+				58102EEF2A44FC1F00C52BD4 /* ContentViewTesting.swift in Sources */,
+				5884DDEB2A679BC7009115D4 /* ChatScreenView.swift in Sources */,
+				58450A952A67CF11005BD1E4 /* ChatRowView.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
+				5884DDE92A676C29009115D4 /* OwnGPTAPIModels.swift in Sources */,
+				5884DDE72A6756D4009115D4 /* Constants.swift in Sources */,
+				58450A972A687562005BD1E4 /* OvalTextFieldStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

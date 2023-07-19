@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentViewTesting: View {
     @State var text = ""
     var body: some View {
         VStack {
@@ -16,7 +16,6 @@ struct ContentView: View {
                     Image(systemName: "brain")
                     Text("OwnGpt: ")
                     TextField("Talk to me ", text: $text).onSubmit {
-                        
                         
                     }
                 }
@@ -27,24 +26,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentViewTesting()
 }
 
-
-
-    
-/**
- 
- Task  {
-     let api = ChatGPTAPI(apiKey: Constants.apiKey)
-     do {
-         let stream = try await  api.sendMessageStream(text: text)
-         for try await line in stream {
-             print(line)
-         }
-         print(stream)
-     } catch {
-         print(error.localizedDescription)
-     }
- }
- */

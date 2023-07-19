@@ -5,4 +5,18 @@
 //  Created by Bishalw on 7/18/23.
 //
 
-import Foundation
+import SwiftUI
+
+struct ChatRow: Identifiable {
+    
+    let id = UUID()
+    var isInteractingWithOwnGPT: Bool
+    
+    let UserIcon: String
+    let sendText: String
+    
+    let responseGPTIcon: String
+    var responseText: String?
+    var responseError: String?
+    
+}
