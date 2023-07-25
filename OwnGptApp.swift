@@ -9,13 +9,15 @@ import SwiftUI
 
 @main
 struct OwnGptApp: App {
-    @StateObject var vm =  ChatViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey))
+    @StateObject var chatScreenViewModel = ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), retryCallback: { _ in })
+
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ChatScreenView().environmentObject(vm)
+                ChatScreenView()
+                    .environmentObject(chatScreenViewModel)
             }
-           
         }
     }
 }
+

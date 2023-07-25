@@ -7,22 +7,26 @@
 
 import Foundation
 
-class ChatViewModel: ObservableObject  {
+class ChatScreenViewModel: ObservableObject  {
     
     @Published var isInteractingWithOwnGPT: Bool = false
     @Published var messages: [ChatRow] = []
     @Published var inputMessage: String = ""
+    var retryCallback: (ChatRow) -> ()
     
     private let api: ChatGPTAPI
     
-    init(api: ChatGPTAPI) {
+    init(api: ChatGPTAPI, retryCallback: @escaping (ChatRow) -> ()) {
+        self.retryCallback = retryCallback
         self.api = api
     }
+    
     @MainActor
     func sendTapped() async {
-        let text = inputMessage
-        inputMessage = ""
-        await send(text: text)
+        let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !text.isEmpty else { return }
+            inputMessage = ""
+            await send(text: text)
     }
     
     @MainActor
@@ -45,7 +49,7 @@ class ChatViewModel: ObservableObject  {
                               responseGPTIcon: "brain",
                               responseText: streamText,
                               responseError: nil)
-        self.messages.append(chatRow)
+        messages.append(chatRow)
         
         do {
             let stream = try await api.sendMessageStream(text: text)
@@ -58,10 +62,10 @@ class ChatViewModel: ObservableObject  {
             chatRow.responseError = error.localizedDescription
         }
         chatRow.isInteractingWithOwnGPT = false
-        self.messages[self.messages.count - 1] = chatRow
+        messages[self.messages.count - 1] = chatRow
         isInteractingWithOwnGPT = false
     }
 }
-extension ChatViewModel  {
+extension ChatScreenViewModel  {
    
 }

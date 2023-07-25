@@ -42,6 +42,9 @@ struct ErrorResponse: Decodable {
     let message: String
     let type: String?
 }
+
+// Stream Model
+
 struct StreamCompletionResponse: Decodable {
     let choices: [StreamChoice]
 }
@@ -51,7 +54,6 @@ struct StreamChoice: Decodable {
 }
 struct StreamMessage: Decodable {
     let content: String?
-    let role: String?
 }
 extension Array where Element == Message {
     

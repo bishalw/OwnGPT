@@ -6,40 +6,41 @@
 //
 
 import SwiftUI
+import UIKit
+
 
 struct DotLoadingView: View {
     
-    @State var scale0: CGFloat = 0.0
-    @State var scale1: CGFloat = 0.0
-    @State var scale2: CGFloat = 0.0
-    
-    @State var opacity0: CGFloat = 0.5
-    @State var opacity1: CGFloat = 0.5
-    @State var opacity2: CGFloat = 0.5
-    
-    let animation = Animation.easeInOut.speed(0.5).repeatForever(autoreverses: true)
-    
+    @State private var scale1: CGFloat = 1.0
+    @State private var scale2: CGFloat = 1.0
+    @State private var scale3: CGFloat = 1.0
+
     var body: some View {
-        HStack {
-            DotView(scale: $scale0, opacity: $opacity0)
-            DotView(scale: $scale1, opacity: $opacity1)
-            DotView(scale: $scale2, opacity: $opacity2)
+        Group {
+            HStack {
+                
+                DotView(scale: $scale1)
+                
+                DotView(scale: $scale2)
+                
+                DotView(scale: $scale3)
+                
+            }
         }
-        .onAppear{
-                    scheduleAnimation(scale: $scale0, opacity: $opacity0, delay: 0.0)
-                    scheduleAnimation(scale: $scale1, opacity: $opacity1, delay: 0.2)
-                    scheduleAnimation(scale: $scale2, opacity: $opacity2, delay: 0.4)
-                }
+        .onAppear {
+            withAnimation(Animation.easeOut(duration: 0.5).repeatForever(autoreverses: true)) {
+                scale1 = 0.5
+            }
+            
+            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true).delay(0.2)) {
+                scale2 = 0.5
+            }
+            
+            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true).delay(0.4)) {
+                scale3 = 0.5
+            }
+        }
     }
-    func scheduleAnimation(scale: Binding<CGFloat>, opacity: Binding<CGFloat>,delay: TimeInterval) {
-         let timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: true) { _ in
-             withAnimation(self.animation) {
-                 scale.wrappedValue = 1
-                 opacity.wrappedValue = 1
-             }
-         }
-         timer.tolerance = 1
-     }
 }
 
 #Preview {

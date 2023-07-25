@@ -8,67 +8,83 @@
 import SwiftUI
 
 struct ChatRowView: View {
-    
     @Environment(\.colorScheme) private var colorScheme
     let message: ChatRow
     let retryCallback: (ChatRow) -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             Divider()
-            chatRow(text: message.sendText, image: message.UserIcon, bgColor: colorScheme == .light ? .white : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 0.5))
-            
+            ChatRowItem(text: message.sendText, image: message.UserIcon, bgColor: colorScheme == .light ? .white : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 0.5))
             if let text = message.responseText {
                 Divider()
-                chatRow(text: text, image: message.responseGPTIcon, bgColor: colorScheme == .light ? .gray.opacity(0.1) : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 1), responseError: message.responseError, showDotLoading: message.isInteractingWithOwnGPT)
+                VStack {
+                    ChatRowItem(text: text, image: message.responseGPTIcon, bgColor: colorScheme == .light ? .gray.opacity(0.1) : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 1))
+                    if let error = message.responseError {
+                        ErrorView(error: error, retryCallback: { retryCallback(message) })
+                    }
+                    if message.isInteractingWithOwnGPT {
+                        DotLoadingView()
+                    }
+                }
             }
         }
     }
-    func chatRow(text: String, image: String, bgColor: Color, responseError: String? = nil, showDotLoading: Bool = false) -> some View {
-        HStack(alignment: .top, spacing: 24, content: {
-            if image.hasPrefix("http"), let url = URL(string: image) {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                } placeholder: {
-                    ProgressView()
-                }
-            } else {
-                Image(systemName: image)
-                    .resizable()
-                    .frame(width: 25, height: 25)
-            }
-            VStack(alignment: .leading, content: {
+}
+
+struct ChatRowItem: View {
+    let text: String
+    let image: String
+    let bgColor: Color
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 24) {
+            iconImage(name: image)
+            VStack(alignment: .leading) {
                 if !text.isEmpty {
                     Text(text)
                         .multilineTextAlignment(.leading)
                         .textSelection(.enabled)
                 }
-                
-                if let error = responseError {
-                    Text("Error: \(error)")
-                        .foregroundColor(.red)
-                        .multilineTextAlignment(.leading)
-                    
-                    
-                    Button("Retry") {
-                        retryCallback(message)
-                    }
-                    
-                }
-                if showDotLoading {
-                    DotLoadingView().frame(width: 10, height: 10)
-                        
-                }
-            })
-           
-            
-        })
+            }
+        }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .backgroundStyle(bgColor)
-        
+        .background(bgColor)
+    }
+    
+    @ViewBuilder
+    func iconImage(name: String) -> some View {
+        if name.hasPrefix("http"), let url = URL(string: name) {
+            AsyncImage(url: url) { image in
+                image
+                    .resizable()
+                    .frame(width: 25, height: 25)
+            } placeholder: {
+                ProgressView()
+            }
+        } else {
+            Image(systemName: name)
+                .resizable()
+                .frame(width: 25, height: 25)
+        }
+    }
+}
+
+struct ErrorView: View {
+    let error: String
+    let retryCallback: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Error: \(error)")
+                .foregroundColor(.red)
+                .multilineTextAlignment(.leading)
+            
+            Button("Retry") {
+                retryCallback()
+            }
+        }
     }
 }
 
