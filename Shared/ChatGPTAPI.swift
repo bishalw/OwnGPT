@@ -129,6 +129,10 @@ class ChatGPTAPI {
         }
     }
     
+    func deleteHistoryList(){
+        self.historyList.removeAll()
+    }
+    
     
 }
 extension String: Error {}

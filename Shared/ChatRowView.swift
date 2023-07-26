@@ -44,7 +44,9 @@ struct ChatRowItem: View {
                 if !text.isEmpty {
                     Text(text)
                         .multilineTextAlignment(.leading)
+                    #if os(iOS)
                         .textSelection(.enabled)
+                    #endif
                 }
             }
         }

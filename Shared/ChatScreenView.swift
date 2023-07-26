@@ -34,9 +34,11 @@ struct ChatScreenView: View {
                         isTextFieldFocused = false
                     }
                 }
+                #if os(iOS)
                 Divider()
                 bottomView(proxy: proxy)
                 Spacer()
+                #endif
             }
            
             .onChange(of: chatScreenViewModel.messages.last?.responseText, { _, _ in

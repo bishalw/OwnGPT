@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChatRow: Identifiable {
+struct ChatRow: Identifiable, Hashable {
     
     let id = UUID()
     var isInteractingWithOwnGPT: Bool

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ChatScreenViewModel: ObservableObject  {
     
@@ -38,6 +39,13 @@ class ChatScreenViewModel: ObservableObject  {
         await send(text: message.sendText)
     }
     
+    @MainActor
+    func clearMessages() {
+        api.deleteHistoryList()
+        withAnimation { [weak self] in
+             self?.messages = []
+        }
+    }
     
     @MainActor
     private func send(text: String) async {

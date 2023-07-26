@@ -23,7 +23,23 @@
 		5884DDF12A67A258009115D4 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF02A67A258009115D4 /* ChatRow.swift */; };
 		5884DDF32A67AB73009115D4 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF22A67AB73009115D4 /* DotView.swift */; };
 		5884DDF52A67ACBF009115D4 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */; };
-		58AA1EA32A6E18C1008D5985 /* OwnGptWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 58AA1EA22A6E18C1008D5985 /* OwnGptWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		588F1FF72A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */; };
+		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
+		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
+		588F200D2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F200C2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift */; };
+		588F20172A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20162A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITests.swift */; };
+		588F20192A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */; };
+		588F20282A6F4E7E002FEC2B /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */; };
+		588F20292A6F4E7E002FEC2B /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */; };
+		588F202A2A6F4E7E002FEC2B /* ChatGPTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */; };
+		588F202B2A6F4E7E002FEC2B /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF22A67AB73009115D4 /* DotView.swift */; };
+		588F202C2A6F4E7E002FEC2B /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */; };
+		588F202D2A6F4E7E002FEC2B /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDF02A67A258009115D4 /* ChatRow.swift */; };
+		588F202E2A6F4E7E002FEC2B /* OwnGPTAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */; };
+		588F202F2A6F4E7E002FEC2B /* ChatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58450A942A67CF11005BD1E4 /* ChatRowView.swift */; };
+		588F20302A6F4E7E002FEC2B /* ChatScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDEC2A67A151009115D4 /* ChatScreenViewModel.swift */; };
+		588F20312A6F4E7E002FEC2B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884DDE62A6756D4009115D4 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,37 +57,37 @@
 			remoteGlobalIDString = 58102EE82A44FC1F00C52BD4;
 			remoteInfo = OwnGpt;
 		};
-		58AA1EA42A6E18C1008D5985 /* PBXContainerItemProxy */ = {
+		588F1FF82A6F4D7C002FEC2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 58102EE12A44FC1F00C52BD4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 58AA1EA12A6E18C1008D5985;
-			remoteInfo = "OwnGptWatch Watch App";
+			remoteGlobalIDString = 588F1FF52A6F4D7C002FEC2B;
+			remoteInfo = "OwnGptWatchApp Watch App";
 		};
-		58AA1EB52A6E18C4008D5985 /* PBXContainerItemProxy */ = {
+		588F20092A6F4D7F002FEC2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 58102EE12A44FC1F00C52BD4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 58AA1EA12A6E18C1008D5985;
-			remoteInfo = "OwnGptWatch Watch App";
+			remoteGlobalIDString = 588F1FF52A6F4D7C002FEC2B;
+			remoteInfo = "OwnGptWatchApp Watch App";
 		};
-		58AA1EBF2A6E18C4008D5985 /* PBXContainerItemProxy */ = {
+		588F20132A6F4D7F002FEC2B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 58102EE12A44FC1F00C52BD4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 58AA1EA12A6E18C1008D5985;
-			remoteInfo = "OwnGptWatch Watch App";
+			remoteGlobalIDString = 588F1FF52A6F4D7C002FEC2B;
+			remoteInfo = "OwnGptWatchApp Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		58AA1EC82A6E18C4008D5985 /* Embed Watch Content */ = {
+		588F201D2A6F4D7F002FEC2B /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				58AA1EA32A6E18C1008D5985 /* OwnGptWatch Watch App.app in Embed Watch Content */,
+				588F1FF72A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,10 +114,16 @@
 		5884DDF02A67A258009115D4 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		5884DDF22A67AB73009115D4 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		5884DDF42A67ACBF009115D4 /* DotLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
-		58AA1E9D2A6E18C0008D5985 /* OwnGptWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwnGptWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		58AA1EA22A6E18C1008D5985 /* OwnGptWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		58AA1EB42A6E18C4008D5985 /* OwnGptWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OwnGptWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		58AA1EBE2A6E18C4008D5985 /* OwnGptWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OwnGptWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		588F1FF12A6F4D7C002FEC2B /* OwnGptWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OwnGptWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchAppApp.swift; sourceTree = "<group>"; };
+		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		588F20082A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OwnGptWatchApp Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		588F200C2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppTests.swift; sourceTree = "<group>"; };
+		588F20122A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OwnGptWatchApp Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		588F20162A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,21 +148,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1E9F2A6E18C1008D5985 /* Frameworks */ = {
+		588F1FF32A6F4D7C002FEC2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EB12A6E18C4008D5985 /* Frameworks */ = {
+		588F20052A6F4D7F002FEC2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EBB2A6E18C4008D5985 /* Frameworks */ = {
+		588F200F2A6F4D7F002FEC2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -153,11 +175,13 @@
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
-				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
-				58450A932A67CED9005BD1E4 /* Helpers */,
+				588F20272A6F4DF4002FEC2B /* Shared */,
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
 				58102EFC2A44FC2000C52BD4 /* OwnGptTests */,
 				58102F062A44FC2000C52BD4 /* OwnGptUITests */,
+				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */,
+				588F200B2A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */,
+				588F20152A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */,
 				58102EEA2A44FC1F00C52BD4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -168,10 +192,10 @@
 				58102EE92A44FC1F00C52BD4 /* OwnGpt.app */,
 				58102EF92A44FC2000C52BD4 /* OwnGptTests.xctest */,
 				58102F032A44FC2000C52BD4 /* OwnGptUITests.xctest */,
-				58AA1E9D2A6E18C0008D5985 /* OwnGptWatch.app */,
-				58AA1EA22A6E18C1008D5985 /* OwnGptWatch Watch App.app */,
-				58AA1EB42A6E18C4008D5985 /* OwnGptWatch Watch AppTests.xctest */,
-				58AA1EBE2A6E18C4008D5985 /* OwnGptWatch Watch AppUITests.xctest */,
+				588F1FF12A6F4D7C002FEC2B /* OwnGptWatchApp.app */,
+				588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */,
+				588F20082A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests.xctest */,
+				588F20122A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,12 +203,7 @@
 		58102EEB2A44FC1F00C52BD4 /* OwnGpt */ = {
 			isa = PBXGroup;
 			children = (
-				58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */,
-				5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */,
-				5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */,
-				5884DDEC2A67A151009115D4 /* ChatScreenViewModel.swift */,
-				5884DDF02A67A258009115D4 /* ChatRow.swift */,
-				58450A942A67CF11005BD1E4 /* ChatRowView.swift */,
+				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
 				58102EF02A44FC2000C52BD4 /* Assets.xcassets */,
 				58102EF22A44FC2000C52BD4 /* Preview Content */,
 			);
@@ -225,6 +244,55 @@
 				58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */,
+				588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */,
+				588F20012A6F4D7F002FEC2B /* Preview Content */,
+			);
+			path = "OwnGptWatchApp Watch App";
+			sourceTree = "<group>";
+		};
+		588F20012A6F4D7F002FEC2B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		588F200B2A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				588F200C2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift */,
+			);
+			path = "OwnGptWatchApp Watch AppTests";
+			sourceTree = "<group>";
+		};
+		588F20152A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				588F20162A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITests.swift */,
+				588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "OwnGptWatchApp Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		588F20272A6F4DF4002FEC2B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				58450A932A67CED9005BD1E4 /* Helpers */,
+				58102F162A44FC7500C52BD4 /* ChatGPTAPI.swift */,
+				5884DDE82A676C29009115D4 /* OwnGPTAPIModels.swift */,
+				5884DDEA2A679BC7009115D4 /* ChatScreenView.swift */,
+				5884DDEC2A67A151009115D4 /* ChatScreenViewModel.swift */,
+				5884DDF02A67A258009115D4 /* ChatRow.swift */,
+				58450A942A67CF11005BD1E4 /* ChatRowView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,74 +351,74 @@
 			productReference = 58102F032A44FC2000C52BD4 /* OwnGptUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		58AA1E9C2A6E18C0008D5985 /* OwnGptWatch */ = {
+		588F1FF02A6F4D7C002FEC2B /* OwnGptWatchApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58AA1ED02A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch" */;
+			buildConfigurationList = 588F201E2A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp" */;
 			buildPhases = (
-				58AA1E9B2A6E18C0008D5985 /* Resources */,
-				58AA1EC82A6E18C4008D5985 /* Embed Watch Content */,
+				588F1FEF2A6F4D7C002FEC2B /* Resources */,
+				588F201D2A6F4D7F002FEC2B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				58AA1EA52A6E18C1008D5985 /* PBXTargetDependency */,
+				588F1FF92A6F4D7C002FEC2B /* PBXTargetDependency */,
 			);
-			name = OwnGptWatch;
-			productName = OwnGptWatch;
-			productReference = 58AA1E9D2A6E18C0008D5985 /* OwnGptWatch.app */;
+			name = OwnGptWatchApp;
+			productName = OwnGptWatchApp;
+			productReference = 588F1FF12A6F4D7C002FEC2B /* OwnGptWatchApp.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
-		58AA1EA12A6E18C1008D5985 /* OwnGptWatch Watch App */ = {
+		588F1FF52A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58AA1ECF2A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch App" */;
+			buildConfigurationList = 588F201A2A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch App" */;
 			buildPhases = (
-				58AA1E9E2A6E18C1008D5985 /* Sources */,
-				58AA1E9F2A6E18C1008D5985 /* Frameworks */,
-				58AA1EA02A6E18C1008D5985 /* Resources */,
+				588F1FF22A6F4D7C002FEC2B /* Sources */,
+				588F1FF32A6F4D7C002FEC2B /* Frameworks */,
+				588F1FF42A6F4D7C002FEC2B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "OwnGptWatch Watch App";
-			productName = "OwnGptWatch Watch App";
-			productReference = 58AA1EA22A6E18C1008D5985 /* OwnGptWatch Watch App.app */;
+			name = "OwnGptWatchApp Watch App";
+			productName = "OwnGptWatchApp Watch App";
+			productReference = 588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		58AA1EB32A6E18C4008D5985 /* OwnGptWatch Watch AppTests */ = {
+		588F20072A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58AA1ED12A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch AppTests" */;
+			buildConfigurationList = 588F20212A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch AppTests" */;
 			buildPhases = (
-				58AA1EB02A6E18C4008D5985 /* Sources */,
-				58AA1EB12A6E18C4008D5985 /* Frameworks */,
-				58AA1EB22A6E18C4008D5985 /* Resources */,
+				588F20042A6F4D7F002FEC2B /* Sources */,
+				588F20052A6F4D7F002FEC2B /* Frameworks */,
+				588F20062A6F4D7F002FEC2B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				58AA1EB62A6E18C4008D5985 /* PBXTargetDependency */,
+				588F200A2A6F4D7F002FEC2B /* PBXTargetDependency */,
 			);
-			name = "OwnGptWatch Watch AppTests";
-			productName = "OwnGptWatch Watch AppTests";
-			productReference = 58AA1EB42A6E18C4008D5985 /* OwnGptWatch Watch AppTests.xctest */;
+			name = "OwnGptWatchApp Watch AppTests";
+			productName = "OwnGptWatchApp Watch AppTests";
+			productReference = 588F20082A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		58AA1EBD2A6E18C4008D5985 /* OwnGptWatch Watch AppUITests */ = {
+		588F20112A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58AA1ED22A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch AppUITests" */;
+			buildConfigurationList = 588F20242A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch AppUITests" */;
 			buildPhases = (
-				58AA1EBA2A6E18C4008D5985 /* Sources */,
-				58AA1EBB2A6E18C4008D5985 /* Frameworks */,
-				58AA1EBC2A6E18C4008D5985 /* Resources */,
+				588F200E2A6F4D7F002FEC2B /* Sources */,
+				588F200F2A6F4D7F002FEC2B /* Frameworks */,
+				588F20102A6F4D7F002FEC2B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				58AA1EC02A6E18C4008D5985 /* PBXTargetDependency */,
+				588F20142A6F4D7F002FEC2B /* PBXTargetDependency */,
 			);
-			name = "OwnGptWatch Watch AppUITests";
-			productName = "OwnGptWatch Watch AppUITests";
-			productReference = 58AA1EBE2A6E18C4008D5985 /* OwnGptWatch Watch AppUITests.xctest */;
+			name = "OwnGptWatchApp Watch AppUITests";
+			productName = "OwnGptWatchApp Watch AppUITests";
+			productReference = 588F20122A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -374,19 +442,19 @@
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = 58102EE82A44FC1F00C52BD4;
 					};
-					58AA1E9C2A6E18C0008D5985 = {
+					588F1FF02A6F4D7C002FEC2B = {
 						CreatedOnToolsVersion = 15.0;
 					};
-					58AA1EA12A6E18C1008D5985 = {
+					588F1FF52A6F4D7C002FEC2B = {
 						CreatedOnToolsVersion = 15.0;
 					};
-					58AA1EB32A6E18C4008D5985 = {
+					588F20072A6F4D7F002FEC2B = {
 						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 58AA1EA12A6E18C1008D5985;
+						TestTargetID = 588F1FF52A6F4D7C002FEC2B;
 					};
-					58AA1EBD2A6E18C4008D5985 = {
+					588F20112A6F4D7F002FEC2B = {
 						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 58AA1EA12A6E18C1008D5985;
+						TestTargetID = 588F1FF52A6F4D7C002FEC2B;
 					};
 				};
 			};
@@ -406,10 +474,10 @@
 				58102EE82A44FC1F00C52BD4 /* OwnGpt */,
 				58102EF82A44FC2000C52BD4 /* OwnGptTests */,
 				58102F022A44FC2000C52BD4 /* OwnGptUITests */,
-				58AA1E9C2A6E18C0008D5985 /* OwnGptWatch */,
-				58AA1EA12A6E18C1008D5985 /* OwnGptWatch Watch App */,
-				58AA1EB32A6E18C4008D5985 /* OwnGptWatch Watch AppTests */,
-				58AA1EBD2A6E18C4008D5985 /* OwnGptWatch Watch AppUITests */,
+				588F1FF02A6F4D7C002FEC2B /* OwnGptWatchApp */,
+				588F1FF52A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */,
+				588F20072A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */,
+				588F20112A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -438,28 +506,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1E9B2A6E18C0008D5985 /* Resources */ = {
+		588F1FEF2A6F4D7C002FEC2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EA02A6E18C1008D5985 /* Resources */ = {
+		588F1FF42A6F4D7C002FEC2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */,
+				588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		588F20062A6F4D7F002FEC2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EB22A6E18C4008D5985 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		58AA1EBC2A6E18C4008D5985 /* Resources */ = {
+		588F20102A6F4D7F002FEC2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -504,24 +574,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1E9E2A6E18C1008D5985 /* Sources */ = {
+		588F1FF22A6F4D7C002FEC2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				588F202A2A6F4E7E002FEC2B /* ChatGPTAPI.swift in Sources */,
+				588F20312A6F4E7E002FEC2B /* Constants.swift in Sources */,
+				588F20292A6F4E7E002FEC2B /* ChatScreenView.swift in Sources */,
+				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */,
+				588F20282A6F4E7E002FEC2B /* DotLoadingView.swift in Sources */,
+				588F20302A6F4E7E002FEC2B /* ChatScreenViewModel.swift in Sources */,
+				588F202B2A6F4E7E002FEC2B /* DotView.swift in Sources */,
+				588F202E2A6F4E7E002FEC2B /* OwnGPTAPIModels.swift in Sources */,
+				588F202F2A6F4E7E002FEC2B /* ChatRowView.swift in Sources */,
+				588F202D2A6F4E7E002FEC2B /* ChatRow.swift in Sources */,
+				588F202C2A6F4E7E002FEC2B /* OvalTextFieldStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EB02A6E18C4008D5985 /* Sources */ = {
+		588F20042A6F4D7F002FEC2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				588F200D2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AA1EBA2A6E18C4008D5985 /* Sources */ = {
+		588F200E2A6F4D7F002FEC2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				588F20172A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITests.swift in Sources */,
+				588F20192A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,20 +622,20 @@
 			target = 58102EE82A44FC1F00C52BD4 /* OwnGpt */;
 			targetProxy = 58102F042A44FC2000C52BD4 /* PBXContainerItemProxy */;
 		};
-		58AA1EA52A6E18C1008D5985 /* PBXTargetDependency */ = {
+		588F1FF92A6F4D7C002FEC2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 58AA1EA12A6E18C1008D5985 /* OwnGptWatch Watch App */;
-			targetProxy = 58AA1EA42A6E18C1008D5985 /* PBXContainerItemProxy */;
+			target = 588F1FF52A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */;
+			targetProxy = 588F1FF82A6F4D7C002FEC2B /* PBXContainerItemProxy */;
 		};
-		58AA1EB62A6E18C4008D5985 /* PBXTargetDependency */ = {
+		588F200A2A6F4D7F002FEC2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 58AA1EA12A6E18C1008D5985 /* OwnGptWatch Watch App */;
-			targetProxy = 58AA1EB52A6E18C4008D5985 /* PBXContainerItemProxy */;
+			target = 588F1FF52A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */;
+			targetProxy = 588F20092A6F4D7F002FEC2B /* PBXContainerItemProxy */;
 		};
-		58AA1EC02A6E18C4008D5985 /* PBXTargetDependency */ = {
+		588F20142A6F4D7F002FEC2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 58AA1EA12A6E18C1008D5985 /* OwnGptWatch Watch App */;
-			targetProxy = 58AA1EBF2A6E18C4008D5985 /* PBXContainerItemProxy */;
+			target = 588F1FF52A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */;
+			targetProxy = 588F20132A6F4D7F002FEC2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -809,46 +893,18 @@
 			};
 			name = Release;
 		};
-		58AA1EC62A6E18C4008D5985 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = EGCAKP6VK4;
-				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatch;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		58AA1EC72A6E18C4008D5985 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = EGCAKP6VK4;
-				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatch;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		58AA1EC92A6E18C4008D5985 /* Debug */ = {
+		588F201B2A6F4D7F002FEC2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OwnGptWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"OwnGptWatchApp Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatchApp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -856,7 +912,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatchApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -867,18 +923,18 @@
 			};
 			name = Debug;
 		};
-		58AA1ECA2A6E18C4008D5985 /* Release */ = {
+		588F201C2A6F4D7F002FEC2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"OwnGptWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"OwnGptWatchApp Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatchApp;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -886,7 +942,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatchApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -897,80 +953,114 @@
 			};
 			name = Release;
 		};
-		58AA1ECB2A6E18C4008D5985 /* Debug */ = {
+		588F201F2A6F4D7F002FEC2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EGCAKP6VK4;
+				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatchApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatchApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		588F20202A6F4D7F002FEC2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EGCAKP6VK4;
+				INFOPLIST_KEY_CFBundleDisplayName = OwnGptWatchApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGptWatchApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		588F20222A6F4D7F002FEC2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatch-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatchApp-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OwnGptWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OwnGptWatch Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OwnGptWatchApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OwnGptWatchApp Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
-		58AA1ECC2A6E18C4008D5985 /* Release */ = {
+		588F20232A6F4D7F002FEC2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatch-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatchApp-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OwnGptWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OwnGptWatch Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OwnGptWatchApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OwnGptWatchApp Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
-		58AA1ECD2A6E18C4008D5985 /* Debug */ = {
+		588F20252A6F4D7F002FEC2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatch-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatchApp-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "OwnGptWatch Watch App";
+				TEST_TARGET_NAME = "OwnGptWatchApp Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
-		58AA1ECE2A6E18C4008D5985 /* Release */ = {
+		588F20262A6F4D7F002FEC2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatch-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "bishalw.OwnGptWatchApp-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "OwnGptWatch Watch App";
+				TEST_TARGET_NAME = "OwnGptWatchApp Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
@@ -1014,38 +1104,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58AA1ECF2A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch App" */ = {
+		588F201A2A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58AA1EC92A6E18C4008D5985 /* Debug */,
-				58AA1ECA2A6E18C4008D5985 /* Release */,
+				588F201B2A6F4D7F002FEC2B /* Debug */,
+				588F201C2A6F4D7F002FEC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58AA1ED02A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch" */ = {
+		588F201E2A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58AA1EC62A6E18C4008D5985 /* Debug */,
-				58AA1EC72A6E18C4008D5985 /* Release */,
+				588F201F2A6F4D7F002FEC2B /* Debug */,
+				588F20202A6F4D7F002FEC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58AA1ED12A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch AppTests" */ = {
+		588F20212A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58AA1ECB2A6E18C4008D5985 /* Debug */,
-				58AA1ECC2A6E18C4008D5985 /* Release */,
+				588F20222A6F4D7F002FEC2B /* Debug */,
+				588F20232A6F4D7F002FEC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58AA1ED22A6E18C4008D5985 /* Build configuration list for PBXNativeTarget "OwnGptWatch Watch AppUITests" */ = {
+		588F20242A6F4D7F002FEC2B /* Build configuration list for PBXNativeTarget "OwnGptWatchApp Watch AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58AA1ECD2A6E18C4008D5985 /* Debug */,
-				58AA1ECE2A6E18C4008D5985 /* Release */,
+				588F20252A6F4D7F002FEC2B /* Debug */,
+				588F20262A6F4D7F002FEC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
