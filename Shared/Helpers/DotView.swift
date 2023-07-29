@@ -11,7 +11,7 @@ struct DotView: View {
     @Binding var scale: CGFloat
     var body: some View {
         Circle()
-            .frame(width: 50, height: 50)
+            .frame(width: 8, height: 8)
             .scaleEffect(scale)
             .opacity(0.5)
         }

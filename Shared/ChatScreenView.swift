@@ -8,81 +8,67 @@
 import SwiftUI
 
 struct ChatScreenView: View {
-    
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var chatScreenViewModel: ChatScreenViewModel
-    @FocusState var isTextFieldFocused: Bool
-    
+    @StateObject var chatScreenViewModel: ChatScreenViewModel
+    @FocusState private var isTextFieldFocused: Bool
     var body: some View {
-        chatListView.navigationTitle("Own GPT")
-    }
-    var chatListView: some View {
-        
         ScrollViewReader { proxy in
-            VStack(spacing: 0) {
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(chatScreenViewModel.messages) { message in
-                            ChatRowView(message: message) { message in
+            NavigationView {
+                VStack {
+                        ScrollView {
+                            
+                            ChatListView(messages: chatScreenViewModel.messages, retryCallback: { chat in
                                 Task { @MainActor in
-                                    await chatScreenViewModel.retry(message: message)
+                                    await chatScreenViewModel.retry(message: chat)
                                 }
+                            })
+                                .onChange(of: chatScreenViewModel.messages.last?.responseText, { _, _ in
+                                    scrollToBottom(proxy)})
+                               
+                                .onChange(of: isTextFieldFocused) {
+                                    chatScreenViewModel.isTextFieldFocused = isTextFieldFocused
+                                }
+                            
+                            Spacer()
+                            Divider()
+                            
+                            BottomView(inputMessage: $chatScreenViewModel.inputMessage,                                       isTextFieldFocused: $isTextFieldFocused,
+                                       isInteractingWithOwnGpt: chatScreenViewModel.isInteractingWithOwnGPT,
+                                       isSendButtonDisabled: chatScreenViewModel.isSendButtonDisabled) {
+                                Task { @MainActor in
+                                    await chatScreenViewModel.sendTapped()
+                                }
+                              
                             }
+                            
                         }
-                    }
-                    .onTapGesture {
-                        isTextFieldFocused = false
-                    }
+                        .navigationBarTitle("Own GPT")
                 }
-                #if os(iOS)
-                Divider()
-                bottomView(proxy: proxy)
-                Spacer()
-                #endif
             }
-           
-            .onChange(of: chatScreenViewModel.messages.last?.responseText, { _, _ in
-              scrollToBottom(proxy: proxy)
-            })
             
         }
-        
     }
     
-    func bottomView(proxy: ScrollViewProxy) -> some View {
-        
-            HStack(alignment: .center, spacing: 8, content: {
-                TextField("Send a message...", text: $chatScreenViewModel.inputMessage, axis: .vertical)
-                    .textFieldStyle(OvalTextFieldStyle())
-                    .focused($isTextFieldFocused)
-                    .disabled(chatScreenViewModel.isInteractingWithOwnGPT)
-                
-                if chatScreenViewModel.isInteractingWithOwnGPT {
-                    DotLoadingView()
-                } else {
-                    Button(action: {
-                        Task { @MainActor in
-                            isTextFieldFocused = false
-                            scrollToBottom(proxy: proxy)
-                            await chatScreenViewModel.sendTapped()
-                        }
-                    }, label: {
-                        Image(systemName: "arrow.up.circle.fill")
-                            .font(.system(size: 30))
-                         
-                    }).disabled(chatScreenViewModel.inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                }
-            })
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-    }
-    private func scrollToBottom(proxy: ScrollViewProxy) {
-        guard let id = chatScreenViewModel.messages.last?.id  else { return }
-        proxy.scrollTo(id, anchor: .bottomTrailing)
+    private func scrollToBottom(_ proxy: ScrollViewProxy) {
+        guard let id = chatScreenViewModel.messages.last?.id else { return }
+              proxy.scrollTo(id, anchor: .bottomTrailing)
     }
 }
+
 
 #Preview {
-        ChatScreenView()
+    ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: .init(apiKey: Constants.apiKey), retryCallback: { ChatRow in
+        
+    }
+    ))
 }
 
+//    #if os(watchOS)
+//        Button("Clear", role: .destructive) {
+//            chatScreenViewModel.clearMessages()
+//            print("Button Tapped")
+//        }
+//        .buttonBorderShape(.roundedRectangle)
+//        .frame(width: 75, height: 50)
+//        .fixedSize(horizontal: true, vertical: true)
+//        #endif

@@ -12,7 +12,16 @@ class ChatScreenViewModel: ObservableObject  {
     
     @Published var isInteractingWithOwnGPT: Bool = false
     @Published var messages: [ChatRow] = []
-    @Published var inputMessage: String = ""
+    @Published var isSendButtonDisabled: Bool = false
+    @Published var textFieldUUID: UUID = UUID()
+    @Published var isTextFieldFocused = false
+    
+    @Published var inputMessage: String = "" {
+        didSet {
+            isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+    }
+    
     var retryCallback: (ChatRow) -> ()
     
     private let api: ChatGPTAPI
@@ -24,9 +33,12 @@ class ChatScreenViewModel: ObservableObject  {
     
     @MainActor
     func sendTapped() async {
+        isTextFieldFocused = true
+        isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { return }
             inputMessage = ""
+            isSendButtonDisabled = false
             await send(text: text)
     }
     
