@@ -11,7 +11,7 @@ struct BottomView: View {
     
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
-    var isInteractingWithOwnGpt: Bool
+    var isButtonViewDisabled: Bool
     var isSendButtonDisabled: Bool
     var sendTapped : () -> Void
    
@@ -22,7 +22,7 @@ struct BottomView: View {
             TextField("Send a message...", text: $inputMessage, axis: .vertical)
                 .textFieldStyle(OvalTextFieldStyle())
                 .focused($isTextFieldFocused)
-                .disabled(isInteractingWithOwnGpt)
+                .disabled(isButtonViewDisabled)
                 
             #endif
             #if os(watchOS)
@@ -35,14 +35,14 @@ struct BottomView: View {
                 }
             #endif
                 
-            if isInteractingWithOwnGpt {
+            if isButtonViewDisabled {
                 DotLoadingView()
             } else {
                 SendButtonView(sendTapped: {
                     sendTapped()
                 })
                 .disabled(isSendButtonDisabled)
-
+                // TODO: ask bipul to move the disable logic to the parent
             }
         }.padding()
     }

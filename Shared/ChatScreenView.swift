@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ChatScreenView: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var chatScreenViewModel: ChatScreenViewModel
@@ -22,8 +23,12 @@ struct ChatScreenView: View {
                                     await chatScreenViewModel.retry(message: chat)
                                 }
                             })
-                                .onChange(of: chatScreenViewModel.messages.last?.responseText, { _, _ in
-                                    scrollToBottom(proxy)})
+                            .onChange(of: chatScreenViewModel.messages.count) { _, _ in
+                                guard let lastMessage = chatScreenViewModel.messages.last,
+                                      case .message(string: _) = lastMessage.content else { return }
+                                scrollToBottom(proxy)
+                            }
+
                                
                                 .onChange(of: isTextFieldFocused) {
                                     chatScreenViewModel.isTextFieldFocused = isTextFieldFocused
@@ -32,8 +37,10 @@ struct ChatScreenView: View {
                             Spacer()
                             Divider()
                             
-                            BottomView(inputMessage: $chatScreenViewModel.inputMessage,                                       isTextFieldFocused: $isTextFieldFocused,
-                                       isInteractingWithOwnGpt: chatScreenViewModel.isInteractingWithOwnGPT,
+                           
+                            BottomView(inputMessage: $chatScreenViewModel.inputMessage,
+                                       isTextFieldFocused: $isTextFieldFocused,
+                                       isButtonViewDisabled: chatScreenViewModel.isStreaming,
                                        isSendButtonDisabled: chatScreenViewModel.isSendButtonDisabled) {
                                 Task { @MainActor in
                                     await chatScreenViewModel.sendTapped()
@@ -56,12 +63,12 @@ struct ChatScreenView: View {
 }
 
 
-#Preview {
-    ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: .init(apiKey: Constants.apiKey), retryCallback: { ChatRow in
-        
-    }
-    ))
-}
+//#Preview {
+//    ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: .init(apiKey: Constants.apiKey), retryCallback: { ChatRow in
+//        
+//    }
+//    ))
+//}
 
 //    #if os(watchOS)
 //        Button("Clear", role: .destructive) {

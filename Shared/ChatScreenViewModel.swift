@@ -3,18 +3,22 @@
 //  OwnGpt
 //
 //  Created by Bishalw on 7/18/23.
-//
 
 import Foundation
 import SwiftUI
 
 class ChatScreenViewModel: ObservableObject  {
     
-    @Published var isInteractingWithOwnGPT: Bool = false
-    @Published var messages: [ChatRow] = []
-    @Published var isSendButtonDisabled: Bool = false
-    @Published var textFieldUUID: UUID = UUID()
+    @Published var isStreaming: Bool = false
+    @Published private var conversation: Conversation
+    @Published var isSendButtonDisabled: Bool = true
     @Published var isTextFieldFocused = false
+    
+    var messages: [Message] {
+        return conversation.messages
+    }
+    
+    var updateConversation: (Conversation) -> ()
     
     @Published var inputMessage: String = "" {
         didSet {
@@ -22,70 +26,95 @@ class ChatScreenViewModel: ObservableObject  {
         }
     }
     
-    var retryCallback: (ChatRow) -> ()
+    var retryCallback: (Message) -> ()
     
     private let api: ChatGPTAPI
     
-    init(api: ChatGPTAPI, retryCallback: @escaping (ChatRow) -> ()) {
+    init(api: ChatGPTAPI,history: [OpenAiModels.Message]? = nil,conversation: Conversation, retryCallback: @escaping (Message) -> (), updateConversation: @escaping (Conversation) -> ()) {
         self.retryCallback = retryCallback
         self.api = api
+        self.conversation = conversation
+        self.updateConversation = updateConversation
+        
+        if let unwrappedHistory = history  {
+            api.historyList = unwrappedHistory
+        }
     }
+    
     
     @MainActor
     func sendTapped() async {
         isTextFieldFocused = true
         isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !text.isEmpty else { return }
-            inputMessage = ""
-            isSendButtonDisabled = false
-            await send(text: text)
+        guard !text.isEmpty else { return }
+        inputMessage = ""
+        await send(text: text)
+        updateConversation(conversation)
     }
-    
+
     @MainActor
-    func retry(message: ChatRow) async {
+    func retry(message: Message) async {
         guard let index = messages.firstIndex(where: { $0.id == message.id}) else {
             return
         }
-        self.messages.remove(at: index)
-        await send(text: message.sendText)
+        removeMessage(at: index)
+        if case let .message(string: text) = message.content {
+            await send(text: text)
+        }
     }
-    
+    private func removeMessage(at index: Int) {
+        conversation.messages.remove(at: index)
+    }
     @MainActor
     func clearMessages() {
         api.deleteHistoryList()
-        withAnimation { [weak self] in
-             self?.messages = []
+        withAnimation {
+            conversation.messages.removeAll()
         }
+        updateConversation(conversation)
     }
+    
     
     @MainActor
     private func send(text: String) async {
-        isInteractingWithOwnGPT = true
-        var streamText = ""
-        var chatRow = ChatRow(isInteractingWithOwnGPT: true,
-                              UserIcon: "person.crop.circle",
-                              sendText: text,
-                              responseGPTIcon: "brain",
-                              responseText: streamText,
-                              responseError: nil)
-        messages.append(chatRow)
+        let userMessage = Message(id: UUID(), type: .user, content: .message(string: text), isStreaming: true)
+        Task {
+            conversation.messages.append(userMessage)
+        }
         
+
+        var responseText = ""
         do {
             let stream = try await api.sendMessageStream(text: text)
-            for try await text in stream {
-                streamText += text
-                chatRow.responseText = streamText.trimmingCharacters(in: .whitespacesAndNewlines)
-                self.messages[self.messages.count-1] = chatRow
+            var responseMessage: Message? = nil
+            for try await part in stream {
+                responseText += part
+                if let currentResponseMessage = responseMessage {
+                    // If there is already a system message, we update it
+                    if let index = messages.firstIndex(where: { $0.id == currentResponseMessage.id }) {
+                        let updatedMessage = Message(id: currentResponseMessage.id, type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: true)
+                        conversation.messages[index] = updatedMessage
+                    }
+                } else {
+                    // If there is no system message yet, we create one
+                    responseMessage = Message(id: UUID(), type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: true)
+                    if let responseMessage = responseMessage {
+                        conversation.messages.append(responseMessage)
+                    }
+                }
             }
-        } catch  {
-            chatRow.responseError = error.localizedDescription
-        }
-        chatRow.isInteractingWithOwnGPT = false
-        messages[self.messages.count - 1] = chatRow
-        isInteractingWithOwnGPT = false
+
+            // When the stream is finished, update the system message to set isStreaming to false
+            if let currentResponseMessage = responseMessage, let index = messages.firstIndex(where: { $0.id == currentResponseMessage.id }) {
+                let finishedMessage = Message(id: currentResponseMessage.id, type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: false)
+                conversation.messages[index] = finishedMessage
+            }
+        } catch {
+            let errorRow = Message(id: UUID(), type: .system, content: .error(error: error), isStreaming: false)
+               conversation.messages.append(errorRow)
+               // Update the conversation in the ChatsViewModel
+               updateConversation(conversation)
+               return        }
     }
-}
-extension ChatScreenViewModel  {
-   
 }

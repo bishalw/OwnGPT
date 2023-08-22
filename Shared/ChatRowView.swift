@@ -6,27 +6,28 @@
 //
 
 import SwiftUI
+import Combine
+
 
 struct ChatRowView: View {
     @Environment(\.colorScheme) private var colorScheme
-    let message: ChatRow
-    let retryCallback: (ChatRow) -> Void
+    let message: Message
+    let retryCallback: (Message) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
             Divider()
-            ChatRowItem(text: message.sendText, image: message.UserIcon, bgColor: colorScheme == .light ? .white : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 0.5))
-            if let text = message.responseText {
-                Divider()
-                VStack {
-                    ChatRowItem(text: text, image: message.responseGPTIcon, bgColor: colorScheme == .light ? .gray.opacity(0.1) : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 1))
-                    if let error = message.responseError {
-                        ErrorView(error: error, retryCallback: { retryCallback(message) })
-                    }
-                    if message.isInteractingWithOwnGPT {
-                        DotLoadingView()
-                    }
-                }
+            switch message.type {
+            case .user:
+                    ChatRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .white : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 0.5))
+            case .system: // Add case for system messages
+                            if case let .error(error) = message.content {
+                                ErrorView(error: error.localizedDescription, retryCallback: { retryCallback(message) })
+                            } else {
+                                ChatRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : Color(red: 55/255, green: 53/255, blue: 65/255, opacity: 1))
+                            }            }
+            if case.system = message.type, message.isStreaming {
+                DotLoadingView()
             }
         }
     }
@@ -90,30 +91,30 @@ struct ErrorView: View {
     }
 }
 
-struct ChatRowView_Previews: PreviewProvider {
-    
-    static let message = ChatRow (isInteractingWithOwnGPT: true, UserIcon: "person.crop.circle", sendText: "What is swiftui", responseGPTIcon: "brain", responseText: "swiftui allows user to blah blah blah after they blooh blah hoelk and they ios macos dom doom applications")
-    
-    static let message2 = ChatRow (isInteractingWithOwnGPT: false, UserIcon: "person.crop.circle", sendText: "What is swiftui", responseGPTIcon: "brain", responseText: "", responseError: "ChatGPT is currently not available")
-    
-    static var previews: some View {
-        NavigationStack {
-            ScrollView {
-                ChatRowView(message: message, retryCallback: { messageRow in
-                    
-                })
-                ChatRowView(message: message2, retryCallback: { messageRow in
-                    
-                })
-                    
-                .frame(width: 400)
-                .previewLayout(.sizeThatFits)
-                    
-                }
-            }
-        }
-    }
-
-
-
-  
+//struct ChatRowView_Previews: PreviewProvider {
+//    
+//    static let message = Message (isInteractingWithOwnGPT: true, UserIcon: "person.crop.circle", sendText: "What is swiftui", responseGPTIcon: "brain", responseText: "swiftui allows user to blah blah blah after they blooh blah hoelk and they ios macos dom doom applications")
+//    
+//    static let message2 = Message (isInteractingWithOwnGPT: false, UserIcon: "person.crop.circle", sendText: "What is swiftui", responseGPTIcon: "brain", responseText: "", responseError: "ChatGPT is currently not available")
+//    
+//    static var previews: some View {
+//        NavigationStack {
+//            ScrollView {
+//                ChatRowView(message: message, retryCallback: { messageRow in
+//                    
+//                })
+//                ChatRowView(message: message2, retryCallback: { messageRow in
+//                    
+//                })
+//                    
+//                .frame(width: 400)
+//                .previewLayout(.sizeThatFits)
+//                    
+//                }
+//            }
+//        }
+//    }
+//
+//
+//
+//  

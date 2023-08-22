@@ -9,13 +9,12 @@ import Foundation
 
 class ChatGPTAPI {
     
-    private let systemMessage: Message
+    private let systemMessage: OpenAiModels.Message
     private let temperature: Double
     private let model: String
-    
-    
     private let apiKey: String
-    private var historyList = [Message]()
+    
+    var historyList = [OpenAiModels.Message]()
     
     private let urlSession = URLSession.shared
     
@@ -47,27 +46,9 @@ class ChatGPTAPI {
         self.temperature = temperature
     }
     
-    private func appendToHistoryList(userText: String, responseText: String) {
-        self.historyList.append(.init(role:"user", content: userText))
-        self.historyList.append(.init(role: "assistant", content: responseText))
+    func getHistoryList() -> [OpenAiModels.Message] {
+        return self.historyList
     }
-    
-    private func generateMessages(from text: String) -> [Message] {
-        var messages = [systemMessage] + historyList + [Message(role: "user", content: text)]
-        
-        if messages.contentCount > (4000 * 4) {
-            _ = historyList.dropFirst()
-            messages = generateMessages(from: text)
-        }
-        return messages
-    }
-    
-    private func jsonBody(text: String, stream: Bool = true) throws -> Data {
-        let request = Request(model: model, messages: generateMessages(from: text),
-                              temperature: temperature, stream: stream)
-        return try JSONEncoder().encode(request)
-    }
-    
     
     func sendMessageStream(text: String) async throws -> AsyncThrowingStream<String, Error> {
         var urlRequest = self.urlRequest
@@ -90,7 +71,7 @@ class ChatGPTAPI {
                     for try await line in result.lines {
                         if line.hasPrefix("data: "),
                            let data = line.dropFirst(6).data(using: .utf8),
-                           let response = try? self.jsonDecoder.decode(StreamCompletionResponse.self, from: data),
+                           let response = try? self.jsonDecoder.decode(OpenAiModels.StreamCompletionResponse.self, from: data),
                            let text = response.choices.first?.delta.content {
                             responseText += text
                             continuation.yield(text)
@@ -120,13 +101,33 @@ class ChatGPTAPI {
         }
         
         do {
-            let completionResponse = try self.jsonDecoder.decode(CompletionResponse.self, from: data)
+            let completionResponse = try self.jsonDecoder.decode(OpenAiModels.CompletionResponse.self, from: data)
             let responseText = completionResponse.choices.first?.message.content ?? ""
             self.appendToHistoryList(userText: text, responseText: responseText)
             return responseText
         } catch {
             throw error
         }
+    }
+    private func appendToHistoryList(userText: String, responseText: String) {
+        self.historyList.append(.init(role:"user", content: userText))
+        self.historyList.append(.init(role: "assistant", content: responseText))
+    }
+    
+    private func generateMessages(from text: String) -> [OpenAiModels.Message] {
+        var messages = [systemMessage] + historyList + [OpenAiModels.Message(role: "user", content: text)]
+        
+        if messages.contentCount > (4000 * 4) {
+            _ = historyList.dropFirst()
+            messages = generateMessages(from: text)
+        }
+        return messages
+    }
+    
+    private func jsonBody(text: String, stream: Bool = true) throws -> Data {
+        let request = OpenAiModels.Request(model: model, messages: generateMessages(from: text),
+                              temperature: temperature, stream: stream)
+        return try JSONEncoder().encode(request)
     }
     
     func deleteHistoryList(){
