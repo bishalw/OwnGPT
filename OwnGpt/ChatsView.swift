@@ -64,15 +64,6 @@ struct ChatListRow: View {
     }
   }
 }
-struct Conversation: Identifiable {
-    var id = UUID()
-    var messages: [Message]
-
-    init(id: UUID, messages: [Message]) {
-           self.id = id
-           self.messages = messages
-       }
-}
 
 extension Conversation {
     var lastMessageContent: String? {

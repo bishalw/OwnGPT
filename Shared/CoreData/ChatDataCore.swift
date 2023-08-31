@@ -11,8 +11,8 @@ import CoreData
 class ChatDataCore {
     
     private let container: NSPersistentContainer
-    private let containerName: String = "ChatDataContainer"
-    private let entityName: String = "ChatData"
+    private let containerName: String = "ConversationModel"
+    private let entityName: String = "ConversationModel"
     
     init() {
         container = NSPersistentContainer(name: containerName)
@@ -40,5 +40,4 @@ class ChatDataCore {
                 }
             }
         }
-    
 }

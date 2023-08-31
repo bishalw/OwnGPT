@@ -18,6 +18,7 @@
 		5811FDFE2A72780C003AB0C0 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDF52A72743C003AB0C0 /* DotView.swift */; };
 		5811FDFF2A727840003AB0C0 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* BottomView.swift */; };
 		5817C0942A90474B005EEDC9 /* ChatDataCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817C0932A90474B005EEDC9 /* ChatDataCore.swift */; };
+		581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */; };
 		58366E1F2A723A0F00052735 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* ChatListView.swift */; };
 		58366E202A723AAF00052735 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* ChatListView.swift */; };
 		58450A972A687562005BD1E4 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */; };
@@ -47,6 +48,16 @@
 		58CFE5042A7233C300A43822 /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F32A7233C300A43822 /* ChatScreenView.swift */; };
 		58CFE5062A7233EC00A43822 /* OwnGPTAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */; };
 		58CFE5072A7233EC00A43822 /* OwnGPTAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */; };
+		58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
+		58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
+		58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */; };
+		58FE3CC42A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */; };
+		58FE3CC52A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */; };
+		58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */; };
+		58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC72A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift */; };
+		58FE3CCA2A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC72A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift */; };
+		58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC82A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift */; };
+		58FE3CCC2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC82A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +104,7 @@
 		5811FDF52A72743C003AB0C0 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DotView.swift; path = ../../../../../.Trash/DotView.swift; sourceTree = "<group>"; };
 		5811FDFC2A72779D003AB0C0 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		5817C0932A90474B005EEDC9 /* ChatDataCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataCore.swift; sourceTree = "<group>"; };
+		581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConversationModel.xcdatamodel; sourceTree = "<group>"; };
 		58366E1E2A723A0F00052735 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatListView.swift; path = Shared/ChatListView.swift; sourceTree = SOURCE_ROOT; };
 		58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5884DDE62A6756D4009115D4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -115,6 +127,11 @@
 		58CFE4F52A7233C300A43822 /* ChatScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewModel.swift; sourceTree = "<group>"; };
 		58CFE4F62A7233C300A43822 /* ChatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowView.swift; sourceTree = "<group>"; };
 		58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGPTAPIModels.swift; sourceTree = "<group>"; };
+		58FE3CB22A9D6DE800CAE55E /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		58FE3CC72A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		58FE3CC82A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +244,25 @@
 			path = OwnGptUITests;
 			sourceTree = "<group>";
 		};
-		58450A932A67CED9005BD1E4 /* Helpers */ = {
+		5817C0972A9445DC005EEDC9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5817C0932A90474B005EEDC9 /* ChatDataCore.swift */,
+				5817C0982A9445EF005EEDC9 /* Entities */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		5817C0982A9445EF005EEDC9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				58FE3CCD2A9EB0FF00CAE55E /* CoreDataProperties */,
+				581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		58450A932A67CED9005BD1E4 /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
 				5811FDF52A72743C003AB0C0 /* DotView.swift */,
@@ -235,7 +270,7 @@
 				5884DDE62A6756D4009115D4 /* Constants.swift */,
 				58450A962A687562005BD1E4 /* OvalTextFieldStyle.swift */,
 			);
-			path = Helpers;
+			path = "Helper Views";
 			sourceTree = "<group>";
 		};
 		588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */ = {
@@ -277,6 +312,7 @@
 		588F20272A6F4DF4002FEC2B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5817C0972A9445DC005EEDC9 /* CoreData */,
 				58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */,
 				58CFE4F42A7233C300A43822 /* Message.swift */,
 				58CFE4F62A7233C300A43822 /* ChatRowView.swift */,
@@ -285,10 +321,21 @@
 				58366E1E2A723A0F00052735 /* ChatListView.swift */,
 				5811FDFC2A72779D003AB0C0 /* BottomView.swift */,
 				58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */,
-				58450A932A67CED9005BD1E4 /* Helpers */,
-				5817C0932A90474B005EEDC9 /* ChatDataCore.swift */,
+				58FE3CB22A9D6DE800CAE55E /* Conversation.swift */,
+				58450A932A67CED9005BD1E4 /* Helper Views */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		58FE3CCD2A9EB0FF00CAE55E /* CoreDataProperties */ = {
+			isa = PBXGroup;
+			children = (
+				58FE3CC72A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift */,
+				58FE3CC82A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift */,
+				58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */,
+				58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */,
+			);
+			path = CoreDataProperties;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,14 +561,20 @@
 				5817C0942A90474B005EEDC9 /* ChatDataCore.swift in Sources */,
 				58B9A5E12A8F04BE008BCF7C /* ChatsViewModel.swift in Sources */,
 				58B6A20A2A74F7DD00F5D309 /* ChatsView.swift in Sources */,
+				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				5811FDFF2A727840003AB0C0 /* BottomView.swift in Sources */,
+				58FE3CC52A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPI.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
+				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				5811FDF62A72743C003AB0C0 /* DotView.swift in Sources */,
+				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
+				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
 				5884DDF52A67ACBF009115D4 /* DotLoadingView.swift in Sources */,
 				58366E1F2A723A0F00052735 /* ChatListView.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ChatScreenViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OwnGPTAPIModels.swift in Sources */,
+				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
 				5884DDE72A6756D4009115D4 /* Constants.swift in Sources */,
 				58450A972A687562005BD1E4 /* OvalTextFieldStyle.swift in Sources */,
@@ -553,8 +606,11 @@
 			files = (
 				5811FDFE2A72780C003AB0C0 /* DotView.swift in Sources */,
 				5811FDFD2A72779D003AB0C0 /* BottomView.swift in Sources */,
+				58FE3CCC2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				58CFE5012A7233C300A43822 /* ChatGPTAPI.swift in Sources */,
+				58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				588F20312A6F4E7E002FEC2B /* Constants.swift in Sources */,
+				58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
 				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */,
 				58CFE4FD2A7233C300A43822 /* ChatScreenViewModel.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
@@ -563,6 +619,8 @@
 				588F20282A6F4E7E002FEC2B /* DotLoadingView.swift in Sources */,
 				588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */,
 				58CFE5032A7233C300A43822 /* ChatScreenView.swift in Sources */,
+				58FE3CCA2A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
+				58FE3CC42A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				588F202C2A6F4E7E002FEC2B /* OvalTextFieldStyle.swift in Sources */,
 				58366E202A723AAF00052735 /* ChatListView.swift in Sources */,
 			);
@@ -1075,6 +1133,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */,
+			);
+			currentVersion = 581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */;
+			path = ConversationModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 58102EE12A44FC1F00C52BD4 /* Project object */;
 }

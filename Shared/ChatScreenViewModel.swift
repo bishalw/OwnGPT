@@ -13,8 +13,10 @@ class ChatScreenViewModel: ObservableObject  {
     @Published private var conversation: Conversation
     @Published var isSendButtonDisabled: Bool = true
     @Published var isTextFieldFocused = false
+    @Environment(\.managedObjectContext) var context
     
     var messages: [Message] {
+        // fetchMessagesFromCoreData()
         return conversation.messages
     }
     
@@ -33,12 +35,20 @@ class ChatScreenViewModel: ObservableObject  {
     init(api: ChatGPTAPI,history: [OpenAiModels.Message]? = nil,conversation: Conversation, retryCallback: @escaping (Message) -> (), updateConversation: @escaping (Conversation) -> ()) {
         self.retryCallback = retryCallback
         self.api = api
-        self.conversation = conversation
+        self.conversation = /*self.fetchConversationFromCoreData() ?? conversation*/ conversation
         self.updateConversation = updateConversation
         
         if let unwrappedHistory = history  {
             api.historyList = unwrappedHistory
         }
+    }
+    
+    func fetchConversationFromCoreData() /*-> Conversation?*/ {
+        
+    }
+    
+    func saveConversationToCoreData() {
+        
     }
     
     
@@ -51,6 +61,8 @@ class ChatScreenViewModel: ObservableObject  {
         inputMessage = ""
         await send(text: text)
         updateConversation(conversation)
+        // updateConversationInCoreData(conversation) 
+        saveConversationToCoreData()
     }
 
     @MainActor
@@ -79,9 +91,9 @@ class ChatScreenViewModel: ObservableObject  {
     @MainActor
     private func send(text: String) async {
         let userMessage = Message(id: UUID(), type: .user, content: .message(string: text), isStreaming: true)
-        Task {
-            conversation.messages.append(userMessage)
-        }
+//        Task {
+//            conversation.messages.append(userMessage)
+//        }
         
 
         var responseText = ""
@@ -112,9 +124,10 @@ class ChatScreenViewModel: ObservableObject  {
             }
         } catch {
             let errorRow = Message(id: UUID(), type: .system, content: .error(error: error), isStreaming: false)
-               conversation.messages.append(errorRow)
-               // Update the conversation in the ChatsViewModel
-               updateConversation(conversation)
-               return        }
+            conversation.messages.append(errorRow)
+            // Update the conversation in the ChatsViewModel
+            updateConversation(conversation)
+            return
+        }
     }
 }
