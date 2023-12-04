@@ -14,7 +14,7 @@ class ChatGPTAPI {
     private let model: String
     private let apiKey: String
     
-    var historyList = [OpenAiModels.Message]()
+//    var historyList = [OpenAiModels.Message]()
     
     private let urlSession = URLSession.shared
     
@@ -46,9 +46,9 @@ class ChatGPTAPI {
         self.temperature = temperature
     }
     
-    func getHistoryList() -> [OpenAiModels.Message] {
-        return self.historyList
-    }
+//    func getHistoryList() -> [OpenAiModels.Message] {
+//        return self.historyList
+//    }
     
     func sendMessageStream(text: String) async throws -> AsyncThrowingStream<String, Error> {
         var urlRequest = self.urlRequest
@@ -77,7 +77,6 @@ class ChatGPTAPI {
                             continuation.yield(text)
                         }
                     }
-                    self.appendToHistoryList(userText: text, responseText: responseText)
                     continuation.finish()
                 } catch {
                     continuation.finish(throwing: error)
@@ -133,7 +132,5 @@ class ChatGPTAPI {
     func deleteHistoryList(){
         self.historyList.removeAll()
     }
-    
-    
 }
 extension String: Error {}

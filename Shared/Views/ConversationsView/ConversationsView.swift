@@ -7,29 +7,28 @@
 
 import SwiftUI
 
-struct ChatsView: View {
-    @StateObject var chatsViewModel : ChatsViewModel
-    
+struct ConversationsView: View {
+    @StateObject var conversationsViewModel : ConversationsViewModel
     var body: some View {
         
         NavigationStack {
-            List(chatsViewModel.chats, id: \.id) { chat in
+            List(conversationsViewModel.conversations, id: \.id) { chat in
                 
                 NavigationLink(destination: chatDetailView(for: chat)) {
-                    ChatListRow(conversation: chat)
+                    ConversationRow(conversation: chat)
                 }
             }
         }
         .navigationTitle("Chat History")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: chatsViewModel.startNewChat) {
-                                   Label("New Chat", systemImage: "square.and.pencil")
-                               }
+                Button(action: conversationsViewModel.startNewConversation) {
+                    Label("New Chat", systemImage: "square.and.pencil")
+                }
             }
         }
-        .navigationDestination(isPresented: $chatsViewModel.isNewChatActive) {
-            if let lastChat = chatsViewModel.chats.last {
+        .navigationDestination(isPresented: $conversationsViewModel.isNewChatActive) {
+            if let lastChat = conversationsViewModel.conversations.last {
                           chatDetailView(for: lastChat)
                       } else {
                           Text("Failed to create new chat.")
@@ -47,13 +46,15 @@ struct ChatsView: View {
         
         let transformedHistory = conversation.messages.map { $0.toOpenAiMessage }
         
-        return ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), history: transformedHistory, conversation: conversation, retryCallback: { _ in }, updateConversation: chatsViewModel.updateConversation(_:)))
+//        return ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), history: transformedHistory, conversation: conversation, retryCallback: { _ in }, updateConversation: chatsViewModel.updateConversation(_:)))
+        
+        return ConversationView(conversationViewModel: ConversationViewModel(store: ))
         }
     
 }
 
 
-struct ChatListRow: View {
+struct ConversationRow: View {
   let conversation: Conversation
   
   var body: some View {
@@ -72,5 +73,5 @@ extension Conversation {
 }
 
 #Preview {
-    ChatsView(chatsViewModel: .init())
+    ConversationsView(conversationsViewModel: .init())
 }

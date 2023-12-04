@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ChatListView: View {
+struct MesssageList: View {
     @Environment(\.colorScheme) var colorScheme
     var messages: [Message]
     var retryCallback: (Message) -> ()
     var body: some View {
         LazyVStack(spacing: 0) {
             ForEach(messages) { message in
-                ChatRowView(message: message) { message in
+                MessageRow(message: message) { message in
                     retryCallback(message)
                 }
             }

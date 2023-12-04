@@ -12,12 +12,14 @@ struct OwnGptApp: App {
 //    var chatScreenViewModel = ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey),  retryCallback: { _ in })
 //    @StateObject var chatsViewModel = ChatsViewModel()
 
-    let persistenceController = ChatDataCore()
+    let persistenceController = PersistenceController()
+    
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
 //                ChatScreenView(chatScreenViewModel: chatScreenViewModel)
-                ChatsView(chatsViewModel: ChatsViewModel())
+                ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsCoreDataService: .init(manager: persistenceController)))
                     .environment(\.managedObjectContext, persistenceController.context)
             }
 

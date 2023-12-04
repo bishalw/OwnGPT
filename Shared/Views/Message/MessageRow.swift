@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 
-struct ChatRowView: View {
+struct MessageRow: View {
     @Environment(\.colorScheme) private var colorScheme
     let message: Message
     let retryCallback: (Message) -> Void
@@ -19,28 +19,22 @@ struct ChatRowView: View {
             Divider()
             switch message.type {
             case .user:
-                    ChatRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .white : Color(red: 52/255, green: 53/255, blue: 65/255, opacity: 0.5))
-            case .system: // Add case for system messages
+                MessageRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .notLight)
+            case .system:
                             if case let .error(error) = message.content {
                                 ErrorView(error: error.localizedDescription, retryCallback: { retryCallback(message) })
                             } else {
-                                ChatRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : Color(red: 55/255, green: 53/255, blue: 65/255, opacity: 1))
+                                MessageRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .notLight)
                             }            }
             if case.system = message.type, message.isStreaming {
                 DotLoadingView()
             }
         }
     }
-}
-
-struct ChatRowItem: View {
-    let text: String
-    let image: String
-    let bgColor: Color
-
-    var body: some View {
+    @ViewBuilder
+    func MessageRowItem(text: String, image: String, bgColor: Color) -> some View {
         HStack(alignment: .top, spacing: 24) {
-            iconImage(name: image)
+            IconImage(name: image)
             VStack(alignment: .leading) {
                 if !text.isEmpty {
                     Text(text)
@@ -57,7 +51,7 @@ struct ChatRowItem: View {
     }
     
     @ViewBuilder
-    func iconImage(name: String) -> some View {
+    func IconImage(name: String) -> some View {
         if name.hasPrefix("http"), let url = URL(string: name) {
             AsyncImage(url: url) { image in
                 image
@@ -114,7 +108,4 @@ struct ErrorView: View {
 //            }
 //        }
 //    }
-//
-//
-//
-//  
+

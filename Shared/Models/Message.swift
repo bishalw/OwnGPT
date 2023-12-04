@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-
+// MARK: Swift Type
 struct Message: Identifiable {
     var id: UUID
     var type: MessageType
@@ -21,7 +21,6 @@ struct Message: Identifiable {
     enum ContentType {
         case message(string: String)
         case error(error: Error)
-        
     }
 }
 
@@ -52,7 +51,6 @@ extension Message {
         )
     }
 }
-
 extension Message.ContentType: Equatable {
     var text: String {
         switch self {

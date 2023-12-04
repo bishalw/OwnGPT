@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BottomView: View {
+struct MessageInput: View {
     
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool

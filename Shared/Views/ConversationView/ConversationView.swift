@@ -8,9 +8,9 @@
 import SwiftUI
 
 
-struct ChatScreenView: View {
+struct ConversationView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject var chatScreenViewModel: ChatScreenViewModel
+    @StateObject var conversationViewModel: ConversationViewModel
     @FocusState private var isTextFieldFocused: Bool
     var body: some View {
         ScrollViewReader { proxy in
@@ -18,32 +18,33 @@ struct ChatScreenView: View {
                 VStack {
                         ScrollView {
                             
-                            ChatListView(messages: chatScreenViewModel.messages, retryCallback: { chat in
+                            MesssageList(messages: conversationViewModel.messages, retryCallback: { chat in
                                 Task { @MainActor in
-                                    await chatScreenViewModel.retry(message: chat)
+//                                    await chatScreenViewModel.retry(message: chat)
                                 }
                             })
-                            .onChange(of: chatScreenViewModel.messages.count) { _, _ in
-                                guard let lastMessage = chatScreenViewModel.messages.last,
+
+                            .onChange(of: conversationViewModel.messages.count) { _, _ in
+                                guard let lastMessage = conversationViewModel.messages.last,
                                       case .message(string: _) = lastMessage.content else { return }
                                 scrollToBottom(proxy)
                             }
 
                                
                                 .onChange(of: isTextFieldFocused) {
-                                    chatScreenViewModel.isTextFieldFocused = isTextFieldFocused
+                                    conversationViewModel.isTextFieldFocused = isTextFieldFocused
                                 }
                             
                             Spacer()
                             Divider()
                             
                            
-                            BottomView(inputMessage: $chatScreenViewModel.inputMessage,
+                            MessageInput(inputMessage: $conversationViewModel.inputMessage,
                                        isTextFieldFocused: $isTextFieldFocused,
-                                       isButtonViewDisabled: chatScreenViewModel.isStreaming,
-                                       isSendButtonDisabled: chatScreenViewModel.isSendButtonDisabled) {
+                                       isButtonViewDisabled: conversationViewModel.isStreaming,
+                                       isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
                                 Task { @MainActor in
-                                    await chatScreenViewModel.sendTapped()
+//                                    await chatScreenViewModel.sendTapped()
                                 }
                               
                             }
@@ -57,7 +58,7 @@ struct ChatScreenView: View {
     }
     
     private func scrollToBottom(_ proxy: ScrollViewProxy) {
-        guard let id = chatScreenViewModel.messages.last?.id else { return }
+        guard let id = conversationViewModel.messages.last?.id else { return }
               proxy.scrollTo(id, anchor: .bottomTrailing)
     }
 }
