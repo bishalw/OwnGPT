@@ -8,63 +8,79 @@
 import Foundation
 
 class ConversationStore: ObservableObject {
-    
     @Published var conversation: Conversation
     
-    var messages: [Message] {
-        return conversation.messages
+    var chatGPTAPI: ChatGPTAPI
+    var repo: ConversationRepository
+    
+    init(chatGPTAPI: ChatGPTAPI,
+         conversation: Conversation?,
+         repo: ConversationRepository) {
+        self.chatGPTAPI = chatGPTAPI
+        self.repo = repo
+        self.conversation = conversation ?? .init(id: UUID(), messages: [])
     }
     
-    private let conversationRepository: ConversationsRepository
-    
-    init(conversationRepository: ConversationsRepository,initialConversation: Conversation? = nil){
-        self.conversationRepository = conversationRepository
-        self.conversation = initialConversation ?? Conversation(id: UUID(), messages: [])
-        addSubscriber()
-    }
-    private func addSubscriber() {
-        Task {
-            for await value in conversationRepository.$historyList.values {
-                await MainActor.run {
-                    self.conversation.messages =  value.map{ Message(from: $0) }
-                }
-            }
-        }
-    }
-    func send(_ text: String) async {
+    func sendMessage(string: String) async throws {
+        addConversation(message: .init(id: .init(),
+                                       type: .user,
+                                       content: .message(string: string),
+        
+                                       isStreaming: false))
+        
+        repo.save(conversation: conversation)
+        
+        addConversation(message: .init(id: .init(),
+                                       type: .system,
+                                       content: .message(string: ""),
+                                       isStreaming: true))
+        
+        
+        
         do {
-            let userMessage = Message(id: UUID(), type: .user, content: .message(string: text), isStreaming: true)
+            let responseStream = try await chatGPTAPI.sendMessageStream(text: string, history: conversation.getOpenApiHistory())
             
-            Task { @MainActor in
-                self.conversation.messages.append(userMessage)
+            
+            var fullResponse = ""
+            for try await messageContent in responseStream {
+                fullResponse += messageContent
+                
+                updateConversationLastMessage(message: .init(id: .init(),
+                                                             type: .system,
+                                                             content: .message(string: fullResponse),
+                                                             isStreaming: true))
+                print("Received and added response to historyList: \(fullResponse)")
             }
             
-            let responseText = try await conversationRepository.sendMessage(text)
-            
-            Task { @MainActor in
-                if var lastMessage = self.conversation.messages.last, lastMessage.isStreaming {
-                    // Append to existing message if it's part of the stream
-                    switch lastMessage.content {
-                    case .message(let existingText):
-                        lastMessage.content = .message(string: existingText + responseText)
-                    default:
-                        break
-                    }
-                    self.conversation.messages[self.conversation.messages.count - 1] = lastMessage
-                } else {
-                    // Create a new message if not part of the stream
-                    let responseMessage = Message(id: UUID(), type: .system, content: .message(string: responseText), isStreaming: false)
-                    self.conversation.messages.append(responseMessage)
-                }
-            }
-            
+            updateConversationLastMessage(message: .init(id: UUID(),
+                                                type: .system,
+                                                content: .message(string: fullResponse),
+                                                isStreaming: false))
+            repo.save(conversation: conversation)
         } catch {
             print("Error in sendMessage: \(error)")
+            throw error
         }
     }
     
-    func deleteHistoryList() {
-        self.conversation.messages = []
+    private func addConversation(message: Message) {
+        var currentMessage = conversation.messages
+        currentMessage.append(message)
+        self.conversation = Conversation(id: conversation.id,
+                                        messages: currentMessage)
     }
     
+    private func updateConversationLastMessage(message: Message) {
+        var currentMessage = conversation.messages
+        currentMessage.removeLast()
+        currentMessage.append(message)
+        self.conversation = Conversation(id: conversation.id,
+                                        messages: currentMessage)
+    }
+}
+
+fileprivate extension Conversation {
+    func getOpenApiHistory() -> [OpenAiModels.Message] {
+        self.messages.map { $0.toOpenAiMessage }
+    }
 }

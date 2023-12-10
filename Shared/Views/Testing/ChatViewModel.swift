@@ -18,6 +18,7 @@ class ChatViewModel: ObservableObject {
         self.store = store
         store.$conversation
             .map {$0.messages}
+            .receive(on: RunLoop.main)
             .assign(to: \.messages, on: self)
             .store(in: &cancellables)
     }
@@ -25,7 +26,7 @@ class ChatViewModel: ObservableObject {
     func sendMessage() async  {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmedText.isEmpty {
-            await store.send(trimmedText) // Send the trimmed text
+            try? await store.sendMessage(string: trimmedText)
             inputMessage = "" // Clear inputMessage after sending
         }
     }

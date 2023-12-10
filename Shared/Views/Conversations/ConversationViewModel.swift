@@ -36,26 +36,26 @@ final class ConversationViewModel: ObservableObject  {
     }
         
         @MainActor
-        func sendTapped() async  {
+        func sendTapped() async throws {
             isTextFieldFocused = true
             isSendButtonDisabled = true
             let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { return }
             inputMessage = ""
-            await store.send(text)
+            try await store.sendMessage(string:text)
             // updateConversation(conversation)
             // updateConversationInCoreData(conversation)
             //saveConversationToCoreData()
         }
         
         @MainActor
-        func retry(message: Message) async {
-            guard let index = store.messages.firstIndex(where: { $0.id == message.id}) else {
-                return
-            }
-            removeMessage(at: index)
+        func retry(message: Message) async throws {
+//            guard let index = store.messages.firstIndex(where: { $0.id == message.id}) else {
+//                return
+//            }
+//            removeMessage(at: index)
             if case let .message(string: text) = message.content {
-                await send(text: text)
+                try await store.sendMessage(string: text)
             }
         }
         func removeMessage(at index: Int) {
@@ -63,7 +63,7 @@ final class ConversationViewModel: ObservableObject  {
         }
         @MainActor
         func clearMessages() {
-            store.deleteHistoryList()
+//            store.deleteHistoryList()
             withAnimation {
                 store.conversation.messages.removeAll()
             }
@@ -72,8 +72,8 @@ final class ConversationViewModel: ObservableObject  {
         
         
         @MainActor
-        func send(text: String) async {
-            await store.send(text)
+        func send(text: String) async throws {
+            try await store.sendMessage(string: text)
         }
     
 }

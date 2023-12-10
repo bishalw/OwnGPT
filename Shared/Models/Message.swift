@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+
 // MARK: Swift Type
 struct Message: Identifiable {
     var id: UUID
@@ -24,6 +25,7 @@ struct Message: Identifiable {
     }
 }
 
+
 extension Message {
     var defaultIconName: String {
         switch self.type {
@@ -31,13 +33,14 @@ extension Message {
         case .user: return "person.fill"
         }
     }
-    
+    // MARK: - Message to OpenAIModels(Message)
     var toOpenAiMessage: OpenAiModels.Message {
         return OpenAiModels.Message(role: self.type.rawValue, content: self.content.text)
     }
 }
 
 extension Message {
+    // MARK: - CoreData Entity to Domain Model
     static func from(entity: MessageEntity) -> Message? {
         guard let id = entity.id,
               let typeString = entity.type,
@@ -52,6 +55,7 @@ extension Message {
     }
 }
 extension Message.ContentType: Equatable {
+    
     var text: String {
         switch self {
         case .message(let string):
@@ -75,13 +79,15 @@ extension Message.ContentType: Equatable {
         return .message(string: message)
     }
 }
+
 extension Message {
+    
     init(from openAiMessage: OpenAiModels.Message) {
         self.id = UUID()
         switch openAiMessage.role {
         case "user":
             self.type = .user
-        case "system", "assistant": // Assuming 'system' or 'assistant' role indicates a system message
+        case "system", "assistant": // Assuming 'system' 
             self.type = .system
         default:
             self.type = .system // Or handle default case appropriately
