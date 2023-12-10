@@ -1,8 +1,8 @@
 //
-//  Extensions+Color.swift
+//  Extension+Color.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 11/30/23.
+//  Created by Bishalw on 12/9/23.
 //
 
 import Foundation

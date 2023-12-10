@@ -22,13 +22,23 @@
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
 		5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
-		584231422B197981009F1C46 /* Extensions+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231412B197981009F1C46 /* Extensions+Color.swift */; };
-		584231432B197981009F1C46 /* Extensions+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231412B197981009F1C46 /* Extensions+Color.swift */; };
 		584231452B1A8B03009F1C46 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231442B1A8B03009F1C46 /* CoreDataService.swift */; };
 		584231462B1A8B03009F1C46 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231442B1A8B03009F1C46 /* CoreDataService.swift */; };
 		584231472B1ABC4B009F1C46 /* MesssageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* MesssageList.swift */; };
 		584231532B1AD4D0009F1C46 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231522B1AD4D0009F1C46 /* DotView.swift */; };
 		584231542B1AD4D0009F1C46 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231522B1AD4D0009F1C46 /* DotView.swift */; };
+		58464FF82B2343B200C1BA7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FF72B2343B200C1BA7F /* Constants.swift */; };
+		58464FF92B2343B200C1BA7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FF72B2343B200C1BA7F /* Constants.swift */; };
+		58464FFC2B23463C00C1BA7F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFB2B23463C00C1BA7F /* ChatView.swift */; };
+		58464FFD2B23463C00C1BA7F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFB2B23463C00C1BA7F /* ChatView.swift */; };
+		58464FFF2B23464800C1BA7F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFE2B23464800C1BA7F /* ChatViewModel.swift */; };
+		584650002B23464800C1BA7F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFE2B23464800C1BA7F /* ChatViewModel.swift */; };
+		5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584650092B24A0BB00C1BA7F /* Extension+Color.swift */; };
+		5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584650092B24A0BB00C1BA7F /* Extension+Color.swift */; };
+		5846500D2B24A0E100C1BA7F /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846500C2B24A0E100C1BA7F /* Extension+String.swift */; };
+		5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846500C2B24A0E100C1BA7F /* Extension+String.swift */; };
+		585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
+		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */; };
 		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
 		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
@@ -111,9 +121,14 @@
 		58366E1E2A723A0F00052735 /* MesssageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MesssageList.swift; path = Shared/Views/Message/MesssageList.swift; sourceTree = SOURCE_ROOT; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
-		584231412B197981009F1C46 /* Extensions+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Color.swift"; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		584231522B1AD4D0009F1C46 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		58464FF72B2343B200C1BA7F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		58464FFB2B23463C00C1BA7F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		58464FFE2B23464800C1BA7F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		584650092B24A0BB00C1BA7F /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
+		5846500C2B24A0E100C1BA7F /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
 		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchAppApp.swift; sourceTree = "<group>"; };
 		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -252,8 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				5817C0932A90474B005EEDC9 /* PersistenceController.swift */,
-				5817C0982A9445EF005EEDC9 /* Entities */,
 				584231442B1A8B03009F1C46 /* CoreDataService.swift */,
+				5817C0982A9445EF005EEDC9 /* Entities */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -270,7 +285,9 @@
 		584231402B197971009F1C46 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				584231412B197981009F1C46 /* Extensions+Color.swift */,
+				58464FF72B2343B200C1BA7F /* Constants.swift */,
+				584650092B24A0BB00C1BA7F /* Extension+Color.swift */,
+				5846500C2B24A0E100C1BA7F /* Extension+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -278,21 +295,22 @@
 		584231482B1AC8E4009F1C46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58464FFA2B23462500C1BA7F /* Testing */,
 				58450A932A67CED9005BD1E4 /* Helper Views */,
 				5842314B2B1AC92B009F1C46 /* Message */,
-				584231512B1AD3F6009F1C46 /* ConversationsView */,
-				584231492B1AC8EF009F1C46 /* ConversationView */,
+				584231512B1AD3F6009F1C46 /* Conversation */,
+				584231492B1AC8EF009F1C46 /* Conversations */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		584231492B1AC8EF009F1C46 /* ConversationView */ = {
+		584231492B1AC8EF009F1C46 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
 				58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */,
 				58CFE4F32A7233C300A43822 /* ConversationView.swift */,
 			);
-			path = ConversationView;
+			path = Conversations;
 			sourceTree = "<group>";
 		};
 		5842314B2B1AC92B009F1C46 /* Message */ = {
@@ -327,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */,
-				58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */,
+				585A047F2B2558F2003A1392 /* DTO  */,
 			);
 			path = ChatGPTService;
 			sourceTree = "<group>";
@@ -340,13 +358,13 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
-		584231512B1AD3F6009F1C46 /* ConversationsView */ = {
+		584231512B1AD3F6009F1C46 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
 				58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */,
 				58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */,
 			);
-			path = ConversationsView;
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 		58450A932A67CED9005BD1E4 /* Helper Views */ = {
@@ -357,6 +375,31 @@
 				584231522B1AD4D0009F1C46 /* DotView.swift */,
 			);
 			path = "Helper Views";
+			sourceTree = "<group>";
+		};
+		58464FFA2B23462500C1BA7F /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				58464FFB2B23463C00C1BA7F /* ChatView.swift */,
+				58464FFE2B23464800C1BA7F /* ChatViewModel.swift */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
+		585A047F2B2558F2003A1392 /* DTO  */ = {
+			isa = PBXGroup;
+			children = (
+				58CFE5052A7233EC00A43822 /* OwnGPTAPIModels.swift */,
+			);
+			path = "DTO ";
+			sourceTree = "<group>";
+		};
+		585A04802B255A11003A1392 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				585A04812B255A2B003A1392 /* ConversationRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */ = {
@@ -398,6 +441,7 @@
 		588F20272A6F4DF4002FEC2B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				585A04802B255A11003A1392 /* Repository */,
 				5842314F2B1ACA06009F1C46 /* Store */,
 				5842314D2B1AC9D5009F1C46 /* Services */,
 				5842314C2B1AC97C009F1C46 /* Models */,
@@ -638,12 +682,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584231422B197981009F1C46 /* Extensions+Color.swift in Sources */,
+				58464FF82B2343B200C1BA7F /* Constants.swift in Sources */,
 				58FE3CCF2AA11E4900CAE55E /* ConversationStore.swift in Sources */,
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
+				585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */,
 				584231452B1A8B03009F1C46 /* CoreDataService.swift in Sources */,
+				58464FFC2B23463C00C1BA7F /* ChatView.swift in Sources */,
+				58464FFF2B23464800C1BA7F /* ChatViewModel.swift in Sources */,
 				58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */,
+				5846500D2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
 				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */,
@@ -658,6 +706,7 @@
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OwnGPTAPIModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
+				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageRow.swift in Sources */,
@@ -687,19 +736,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				5811FDFD2A72779D003AB0C0 /* MessageInput.swift in Sources */,
+				58464FF92B2343B200C1BA7F /* Constants.swift in Sources */,
+				5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
+				58464FFD2B23463C00C1BA7F /* ChatView.swift in Sources */,
 				58FE3CCC2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				58CFE5012A7233C300A43822 /* ChatGPTAPI.swift in Sources */,
-				584231432B197981009F1C46 /* Extensions+Color.swift in Sources */,
 				58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
 				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */,
 				584231462B1A8B03009F1C46 /* CoreDataService.swift in Sources */,
+				5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
+				584650002B23464800C1BA7F /* ChatViewModel.swift in Sources */,
 				58CFE4FD2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				584231472B1ABC4B009F1C46 /* MesssageList.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
 				58CFE5062A7233EC00A43822 /* OwnGPTAPIModels.swift in Sources */,
 				58CFE4F92A7233C300A43822 /* MessageRow.swift in Sources */,
 				5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
+				585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584231542B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */,

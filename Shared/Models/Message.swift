@@ -75,6 +75,21 @@ extension Message.ContentType: Equatable {
         return .message(string: message)
     }
 }
+extension Message {
+    init(from openAiMessage: OpenAiModels.Message) {
+        self.id = UUID()
+        switch openAiMessage.role {
+        case "user":
+            self.type = .user
+        case "system", "assistant": // Assuming 'system' or 'assistant' role indicates a system message
+            self.type = .system
+        default:
+            self.type = .system // Or handle default case appropriately
+        }
+        self.content = .message(string: openAiMessage.content)
+        self.isStreaming = true // Set to true if applicable
+    }
+}
 
 
 

@@ -33,40 +33,19 @@ final class ConversationViewModel: ObservableObject  {
             .map {$0.messages}
             .assign(to: \.messages, on: self)
             .store(in: &cancellables)
-        //    var retryCallback: (Message) -> ()
-        //
-        //    private let api: ChatGPTAPI
-        //
-        //    init(api: ChatGPTAPI,history: [OpenAiModels.Message]? = nil,conversation: Conversation, retryCallback: @escaping (Message) -> (), updateConversation: @escaping (Conversation) -> ()) {
-        //        self.retryCallback = retryCallback
-        //        self.api = api
-        //        self.conversation = /*self.fetchConversationFromCoreData() ?? conversation*/ conversation
-        //        self.updateConversation = updateConversation
-        //
-        //        if let unwrappedHistory = history  {
-        //            api.historyList = unwrappedHistory
-        //        }
-        // }
-        func fetchConversationFromCoreData() /*-> Conversation?*/ {
-            
-        }
-        
-        func saveConversationToCoreData() {
-            
-        }
-        
+    }
         
         @MainActor
-        func sendTapped() async {
+        func sendTapped() async  {
             isTextFieldFocused = true
             isSendButtonDisabled = true
             let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { return }
             inputMessage = ""
-            await send(text: text)
+            await store.send(text)
             // updateConversation(conversation)
             // updateConversationInCoreData(conversation)
-            saveConversationToCoreData()
+            //saveConversationToCoreData()
         }
         
         @MainActor
@@ -84,7 +63,7 @@ final class ConversationViewModel: ObservableObject  {
         }
         @MainActor
         func clearMessages() {
-            store.api.deleteHistoryList()
+            store.deleteHistoryList()
             withAnimation {
                 store.conversation.messages.removeAll()
             }
@@ -94,7 +73,7 @@ final class ConversationViewModel: ObservableObject  {
         
         @MainActor
         func send(text: String) async {
-            await store.send(text: text)
+            await store.send(text)
         }
-    }
+    
 }

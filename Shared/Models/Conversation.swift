@@ -8,13 +8,13 @@
 import Foundation
 
 struct Conversation: Identifiable {
-    var id = UUID()
+    var id: UUID
     var messages: [Message]
 
     init(id: UUID, messages: [Message]) {
-           self.id = id
-           self.messages = messages
-       }
+       self.id = id
+       self.messages = messages
+    }
 }
 
 extension Conversation {

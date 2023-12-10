@@ -43,40 +43,13 @@ class ConversationCoreDataService: PersistenceService {
     }
     
     func update(_ item: Conversation) {
-        <#code#>
+        
     }
     
     func save() {
-        <#code#>
+        
     }
 }
 
-class ConversationsCoreDataService: PersistenceService {
- 
-    typealias T = [Conversation]
-    
-    private let manager: PersistenceController
-    private let sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
 
-    
-    init(manager: PersistenceController) {
-        self.manager = manager
-    }
-    func get() async -> [Conversation] {
-        <#code#>
-    }
-    
-    func add(_ item: [Conversation]) {
-        <#code#>
-    }
-    
-    func update(_ item: [Conversation]) {
-        <#code#>
-    }
-    
-    func save() {
-        <#code#>
-    }
-    
-}
 

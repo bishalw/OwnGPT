@@ -10,18 +10,20 @@ import SwiftUI
 @main
 struct OwnGptWatchApp_Watch_AppApp: App {
     
-    var conversationViewModel = MessageViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), retryCallback: { _ in })
+    //    var conversationViewModel = MessageViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), retryCallback: { _ in })
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                WatchOSView( messageViewModel: messageViewModel)
-                    }
-                    
-                }
+                //                WatchOSView( messageViewModel: messageViewModel)
+                //                    }
+                //
+                //                }
             }
+        }
+    }
 }
 
-extension App {
-   
-}
+//extension App {
+//   
+//}

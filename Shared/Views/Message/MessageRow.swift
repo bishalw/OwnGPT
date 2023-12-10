@@ -12,7 +12,6 @@ import Combine
 struct MessageRow: View {
     @Environment(\.colorScheme) private var colorScheme
     let message: Message
-    let retryCallback: (Message) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +21,7 @@ struct MessageRow: View {
                 MessageRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .notLight)
             case .system:
                             if case let .error(error) = message.content {
-                                ErrorView(error: error.localizedDescription, retryCallback: { retryCallback(message) })
+                                ErrorView(error: error.localizedDescription)
                             } else {
                                 MessageRowItem(text: message.content.text, image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .notLight)
                             }            }
@@ -70,17 +69,12 @@ struct MessageRow: View {
 
 struct ErrorView: View {
     let error: String
-    let retryCallback: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Error: \(error)")
                 .foregroundColor(.red)
                 .multilineTextAlignment(.leading)
-            
-            Button("Retry") {
-                retryCallback()
-            }
         }
     }
 }

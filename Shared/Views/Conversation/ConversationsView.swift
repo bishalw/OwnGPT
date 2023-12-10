@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConversationsView: View {
     @StateObject var conversationsViewModel : ConversationsViewModel
+    @EnvironmentObject var store: ConversationStore
     var body: some View {
         
         NavigationStack {
@@ -48,7 +49,7 @@ struct ConversationsView: View {
         
 //        return ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), history: transformedHistory, conversation: conversation, retryCallback: { _ in }, updateConversation: chatsViewModel.updateConversation(_:)))
         
-        return ConversationView(conversationViewModel: ConversationViewModel(store: ))
+        return ConversationView(conversationViewModel: ConversationViewModel(store: store))
         }
     
 }

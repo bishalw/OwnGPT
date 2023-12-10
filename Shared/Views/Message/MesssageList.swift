@@ -10,13 +10,10 @@ import SwiftUI
 struct MesssageList: View {
     @Environment(\.colorScheme) var colorScheme
     var messages: [Message]
-    var retryCallback: (Message) -> ()
     var body: some View {
         LazyVStack(spacing: 0) {
             ForEach(messages) { message in
-                MessageRow(message: message) { message in
-                    retryCallback(message)
-                }
+                MessageRow(message: message)
             }
         }
     }

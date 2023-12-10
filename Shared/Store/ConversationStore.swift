@@ -7,19 +7,6 @@
 
 import Foundation
 
-class ConversationsRepository {
-    
-    let api: ChatGPTAPI
-    let coreDataService: ConversationCoreDataService
-    
-    init(api: ChatGPTAPI, coreDataService: ConversationCoreDataService) {
-        self.api = api
-        self.coreDataService = coreDataService
-    }
-    
-
-}
-
 class ConversationStore: ObservableObject {
     
     @Published var conversation: Conversation
@@ -27,67 +14,57 @@ class ConversationStore: ObservableObject {
     var messages: [Message] {
         return conversation.messages
     }
-    var historyList = [OpenAiModels.Message]()
     
-    let api: ChatGPTAPI
-    let coreDataService: ConversationCoreDataService
+    private let conversationRepository: ConversationsRepository
     
-    init(conversation: Conversation, api: ChatGPTAPI, coreDataService: ConversationCoreDataService) {
-        self.conversation = conversation
-        self.api = api
-        self.coreDataService = coreDataService
+    init(conversationRepository: ConversationsRepository,initialConversation: Conversation? = nil){
+        self.conversationRepository = conversationRepository
+        self.conversation = initialConversation ?? Conversation(id: UUID(), messages: [])
+        addSubscriber()
     }
-    func loadConversations() {
+    private func addSubscriber() {
         Task {
-            let conversations = await coreDataService.get()
-            if let first = conversations.first {
-                DispatchQueue.main.async {
-                    self.conversation = first
+            for await value in conversationRepository.$historyList.values {
+                await MainActor.run {
+                    self.conversation.messages =  value.map{ Message(from: $0) }
                 }
             }
         }
     }
-    
-     func send(text: String) async {
-        let userMessage = Message(id: UUID(), type: .user, content: .message(string: text), isStreaming: true)
-//        Task {
-//            conversation.messages.append(userMessage)
-//        }
-        
-
-        var responseText = ""
+    func send(_ text: String) async {
         do {
-            let stream = try await api.sendMessageStream(text: text)
-            var responseMessage: Message? = nil
-            for try await part in stream {
-                responseText += part
-                if let currentResponseMessage = responseMessage {
-                    // If there is already a system message, we update it
-                    if let index = messages.firstIndex(where: { $0.id == currentResponseMessage.id }) {
-                        let updatedMessage = Message(id: currentResponseMessage.id, type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: true)
-                        conversation.messages[index] = updatedMessage
+            let userMessage = Message(id: UUID(), type: .user, content: .message(string: text), isStreaming: true)
+            
+            Task { @MainActor in
+                self.conversation.messages.append(userMessage)
+            }
+            
+            let responseText = try await conversationRepository.sendMessage(text)
+            
+            Task { @MainActor in
+                if var lastMessage = self.conversation.messages.last, lastMessage.isStreaming {
+                    // Append to existing message if it's part of the stream
+                    switch lastMessage.content {
+                    case .message(let existingText):
+                        lastMessage.content = .message(string: existingText + responseText)
+                    default:
+                        break
                     }
+                    self.conversation.messages[self.conversation.messages.count - 1] = lastMessage
                 } else {
-                    // If there is no system message yet, we create one
-                    responseMessage = Message(id: UUID(), type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: true)
-                    if let responseMessage = responseMessage {
-                        conversation.messages.append(responseMessage)
-                    }
+                    // Create a new message if not part of the stream
+                    let responseMessage = Message(id: UUID(), type: .system, content: .message(string: responseText), isStreaming: false)
+                    self.conversation.messages.append(responseMessage)
                 }
             }
-
-            // When the stream is finished, update the system message to set isStreaming to false
-            if let currentResponseMessage = responseMessage, let index = messages.firstIndex(where: { $0.id == currentResponseMessage.id }) {
-                let finishedMessage = Message(id: currentResponseMessage.id, type: .system, content: .message(string: responseText.trimmingCharacters(in: .whitespacesAndNewlines)), isStreaming: false)
-                conversation.messages[index] = finishedMessage
-            }
+            
         } catch {
-            let errorRow = Message(id: UUID(), type: .system, content: .error(error: error), isStreaming: false)
-            conversation.messages.append(errorRow)
-            // Update the conversation in the ChatsViewModel
-//            updateConversation(conversation)
-            return
+            print("Error in sendMessage: \(error)")
         }
+    }
+    
+    func deleteHistoryList() {
+        self.conversation.messages = []
     }
     
 }

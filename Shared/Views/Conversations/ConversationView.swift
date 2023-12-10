@@ -18,11 +18,7 @@ struct ConversationView: View {
                 VStack {
                         ScrollView {
                             
-                            MesssageList(messages: conversationViewModel.messages, retryCallback: { chat in
-                                Task { @MainActor in
-//                                    await chatScreenViewModel.retry(message: chat)
-                                }
-                            })
+                            MesssageList(messages: conversationViewModel.messages)
 
                             .onChange(of: conversationViewModel.messages.count) { _, _ in
                                 guard let lastMessage = conversationViewModel.messages.last,
