@@ -32,8 +32,7 @@ struct PersistenceController {
     var context: NSManagedObjectContext {
         return container.viewContext
     }
-
-    //to create a background context
+    // background context
     var backgroundContext: NSManagedObjectContext {
         let backgroundContext = container.newBackgroundContext()
         backgroundContext.automaticallyMergesChangesFromParent = true
@@ -41,14 +40,17 @@ struct PersistenceController {
     }
     
     func saveContext() {
-        if context.hasChanges {
+        guard context.hasChanges else { return }
+
+        context.perform {
             do {
-                try context.save()
+                try self.context.save()
+                print("Context saved successfully.")
             } catch {
-                fatalError("Error saving context: \(error)")
+                print("Error saving context: \(error)")
+                self.context.rollback() // Rollback changes on error
             }
         }
     }
 }
-
 

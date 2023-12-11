@@ -41,6 +41,8 @@
 		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
+		5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
+		5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
 		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */; };
 		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
 		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
@@ -132,6 +134,7 @@
 		5846500C2B24A0E100C1BA7F /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
+		5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSManagedObjectContext.swift"; sourceTree = "<group>"; };
 		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchAppApp.swift; sourceTree = "<group>"; };
 		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -288,9 +291,10 @@
 		584231402B197971009F1C46 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				58464FF72B2343B200C1BA7F /* Constants.swift */,
-				584650092B24A0BB00C1BA7F /* Extension+Color.swift */,
+				5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */,
 				5846500C2B24A0E100C1BA7F /* Extension+String.swift */,
+				584650092B24A0BB00C1BA7F /* Extension+Color.swift */,
+				58464FF72B2343B200C1BA7F /* Constants.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -707,6 +711,7 @@
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
+				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58366E1F2A723A0F00052735 /* MesssageList.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
@@ -755,6 +760,7 @@
 				58CFE4FD2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				584231472B1ABC4B009F1C46 /* MesssageList.swift in Sources */,
 				5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */,
+				5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58CFE4F92A7233C300A43822 /* MessageRow.swift in Sources */,

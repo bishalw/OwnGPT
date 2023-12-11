@@ -10,9 +10,8 @@ import CoreData
 
 protocol PersistenceService {
     associatedtype T
-    func get () async -> T
+    func get () async throws -> T
     func add (_ item:T )
-    func update (_ item: T)
     func save()
 }
 
@@ -23,31 +22,34 @@ class ConversationCoreDataService: PersistenceService {
     init(manager: PersistenceController) {
         self.manager = manager
     }
-    func get() async -> Conversation {
-        
-        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
-        request.sortDescriptors = sortDescriptors
-        
-        do {
-                let result = try manager.context.fetch(request)
-                return result.compactMap { Conversation.from(entity: $0) }.first ?? Conversation(id: UUID(), messages: [])
-            } catch {
-                return Conversation(id: UUID(), messages: [])
-            }
+    
 
+    func get() async throws -> Conversation {
+        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+        request.sortDescriptors = self.sortDescriptors
+
+        let result = try await manager.context.performFetch(request)
+        return result.first?.from() ?? Conversation(id: UUID(), messages: [])
     }
+    
     
     func add(_ item: Conversation) {
-        let entity = ConversationEntity(context: manager.context)
+        let context = self.manager.context // Replace with your context retrieval logic
         
-    }
-    
-    func update(_ item: Conversation) {
+        // Convert the Conversation to ConversationEntity (creates or updates)
+        let conversationEntity =  item.toConversationEntity(context: context)
+        do {
+            // Save the context to persist changes
+            try context.save()
+        } catch {
+            // Handle the error, such as logging or notifying the user
+            print("Error saving context: \(error)")
+        }
         
     }
     
     func save() {
-        
+        manager.saveContext()
     }
 }
 

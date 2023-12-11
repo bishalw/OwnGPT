@@ -39,21 +39,6 @@ extension Message {
     }
 }
 
-extension Message {
-    // MARK: - CoreData Entity to Domain Model
-    static func from(entity: MessageEntity) -> Message? {
-        guard let id = entity.id,
-              let typeString = entity.type,
-              let type = MessageType(rawValue: typeString),
-              let content = entity.contentString else { return nil }
-        return Message(
-            id: id,
-            type: type,
-            content: .message(string: content),
-            isStreaming: false
-        )
-    }
-}
 extension Message.ContentType: Equatable {
     
     var text: String {
@@ -74,10 +59,7 @@ extension Message.ContentType: Equatable {
             return false
         }
     }
-    static func from(entity: MessageEntity) -> Message.ContentType? {
-        guard let message = entity.contentString else { return nil }
-        return .message(string: message)
-    }
+   
 }
 
 extension Message {
@@ -95,6 +77,15 @@ extension Message {
         self.content = .message(string: openAiMessage.content)
         self.isStreaming = true // Set to true if applicable
     }
+    
+    
+    func toMessageEntity(context: NSManagedObjectContext) -> MessageEntity {
+            let messageEntity = MessageEntity(context: context)
+            messageEntity.id = self.id
+            messageEntity.type = self.type.rawValue
+            return messageEntity
+        }
+    
 }
 
 

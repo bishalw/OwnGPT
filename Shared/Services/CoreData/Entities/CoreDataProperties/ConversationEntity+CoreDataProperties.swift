@@ -45,5 +45,9 @@ extension ConversationEntity {
 }
 
 extension ConversationEntity : Identifiable {
-
+    func from() -> Conversation {
+        let messageEntities = messages?.allObjects as? [MessageEntity] ?? []
+        let messages = messageEntities.compactMap { $0.toDomainModel() } // Call toDomainModel as a function
+        return Conversation(id: wrappedId, messages: messages)
+    }
 }

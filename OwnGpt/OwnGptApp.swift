@@ -12,7 +12,7 @@ struct OwnGptApp: App {
 //    var chatScreenViewModel = ChatScreenViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey),  retryCallback: { _ in })
 //    @StateObject var chatsViewModel = ChatsViewModel()
 
-//    let persistenceController = PersistenceController()
+//    let persistenceController = PersistenceController() // intialize
 //    var store = ConversationStore(conversationRepository: ConversationsRepository(api: ChatGPTAPI(apiKey: Constants.apiKey)))
 //    @StateObject var store = ConversationStore(conversationRepository: ConversationsRepository(api: ChatGPTAPI(apiKey: Constants.apiKey)))
    
@@ -25,6 +25,8 @@ struct OwnGptApp: App {
                 ChatView(vm: ChatViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPI(apiKey: Constants.apiKey), conversation: nil, repo: ConversationRepositoryImpl())))
 //                    .environmentObject(store)
 //                    .environment(\.managedObjectContext, persistenceController.context)
+                
+                // ideally .envionmentObject(coreDataService)
             }
 
             
