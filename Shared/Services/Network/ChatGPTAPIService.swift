@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ChatGPTAPI {
+class ChatGPTAPIService {
     
     private let temperature: Double
     private let model: String

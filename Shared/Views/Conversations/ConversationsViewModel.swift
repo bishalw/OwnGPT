@@ -12,10 +12,9 @@ import Combine
 class ConversationsViewModel: ObservableObject {
     @Published var conversations: [Conversation] = []
     @Published var isNewChatActive: Bool = false
-    
-    
-    init() {
-        
+    private var store: ConversationsStore
+    init(store: ConversationsStore) {
+        self.store = store
     }
     func updateConversation(_ conversation: Conversation) {
             if let index = conversations.firstIndex(where: { $0.id == conversation.id }) {

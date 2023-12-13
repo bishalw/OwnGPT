@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MesssageList: View {
+struct ConversationList: View {
     @Environment(\.colorScheme) var colorScheme
     var messages: [Message]
     var body: some View {

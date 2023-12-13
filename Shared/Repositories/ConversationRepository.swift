@@ -17,33 +17,46 @@ protocol ConversationRepository {
     var didUpdateRepo: AnyPublisher<ConversationRepoUpdate, Never> { get }
     func save(conversations: [Conversation])
     func save(conversation: Conversation)
-    func get() -> [Conversation]
-    func get(converstaionId: String) -> Conversation
+    func get() async throws -> [Conversation]
+    func get(converstaionId: String) async throws -> Conversation
 }
 
 // TODO: - 
 class ConversationRepositoryImpl: ConversationRepository {
+    
+    private let conversationStore: ConversationStore
+    private let conversationsStore: ConversationsStore
+    private let conversationPersistenceService: ConversationPersistenceService
+    
     private let _didUpdatePassthrough = PassthroughSubject<ConversationRepoUpdate, Never>()
+    
+    init (conversationPersistenceService: ConversationPersistenceService) {
+        self.conversationPersistenceService = conversationPersistenceService
+    }
     
     var didUpdateRepo: AnyPublisher<ConversationRepoUpdate, Never> {
         return _didUpdatePassthrough.eraseToAnyPublisher()
     }
     
     func save(conversations: [Conversation]) {
-        // Implement
+        for conversation in conversations {
+            conversationPersistenceService.add(conversation)
+        }
         _didUpdatePassthrough.send(.updatedConvsersations)
     }
     
     func save(conversation: Conversation) {
-        // Implement
+        conversationPersistenceService.add(conversation)
         _didUpdatePassthrough.send(.updatedConversation(conversation: conversation))
     }
     
-    func get() -> [Conversation] {
-        return []
+    func get() async throws -> [Conversation] {
+        let conversations =  try await conversationPersistenceService.getConversations()
+        return conversations
     }
     
-    func get(converstaionId: String) -> Conversation {
-        return .init(id: .init(), messages: [])
+    func get(converstaionId: String) async throws -> Conversation {
+        let conversation = try await conversationPersistenceService.get()
+        return conversation
     }
 }

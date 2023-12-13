@@ -13,37 +13,33 @@
 		58102EFE2A44FC2000C52BD4 /* OwnGptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EFD2A44FC2000C52BD4 /* OwnGptTests.swift */; };
 		58102F082A44FC2000C52BD4 /* OwnGptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F072A44FC2000C52BD4 /* OwnGptUITests.swift */; };
 		58102F0A2A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */; };
-		5811FDFD2A72779D003AB0C0 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* MessageInput.swift */; };
 		5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* MessageInput.swift */; };
 		5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817C0932A90474B005EEDC9 /* PersistenceController.swift */; };
 		581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */; };
-		58366E1F2A723A0F00052735 /* MesssageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* MesssageList.swift */; };
+		58366E1F2A723A0F00052735 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* ConversationList.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
 		5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
-		584231452B1A8B03009F1C46 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231442B1A8B03009F1C46 /* CoreDataService.swift */; };
-		584231462B1A8B03009F1C46 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231442B1A8B03009F1C46 /* CoreDataService.swift */; };
-		584231472B1ABC4B009F1C46 /* MesssageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* MesssageList.swift */; };
+		584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */; };
 		584231532B1AD4D0009F1C46 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231522B1AD4D0009F1C46 /* DotView.swift */; };
 		584231542B1AD4D0009F1C46 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584231522B1AD4D0009F1C46 /* DotView.swift */; };
 		58464FF82B2343B200C1BA7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FF72B2343B200C1BA7F /* Constants.swift */; };
 		58464FF92B2343B200C1BA7F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FF72B2343B200C1BA7F /* Constants.swift */; };
 		58464FFC2B23463C00C1BA7F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFB2B23463C00C1BA7F /* ChatView.swift */; };
-		58464FFD2B23463C00C1BA7F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFB2B23463C00C1BA7F /* ChatView.swift */; };
 		58464FFF2B23464800C1BA7F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFE2B23464800C1BA7F /* ChatViewModel.swift */; };
-		584650002B23464800C1BA7F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58464FFE2B23464800C1BA7F /* ChatViewModel.swift */; };
 		5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584650092B24A0BB00C1BA7F /* Extension+Color.swift */; };
 		5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584650092B24A0BB00C1BA7F /* Extension+Color.swift */; };
 		5846500D2B24A0E100C1BA7F /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846500C2B24A0E100C1BA7F /* Extension+String.swift */; };
 		5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5846500C2B24A0E100C1BA7F /* Extension+String.swift */; };
 		585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
+		5879312B2B294D89002E8DB9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5879312A2B294D89002E8DB9 /* Core.swift */; };
 		5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
 		5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
-		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */; };
+		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */; };
 		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
 		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
 		588F200D2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F200C2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift */; };
@@ -52,15 +48,12 @@
 		588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20322A70AADE002FEC2B /* WatchOSView.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
-		58CFE4F92A7233C300A43822 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F62A7233C300A43822 /* MessageRow.swift */; };
 		58CFE4FA2A7233C300A43822 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F62A7233C300A43822 /* MessageRow.swift */; };
-		58CFE4FD2A7233C300A43822 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */; };
 		58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */; };
 		58CFE4FF2A7233C300A43822 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F42A7233C300A43822 /* Message.swift */; };
 		58CFE5002A7233C300A43822 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F42A7233C300A43822 /* Message.swift */; };
-		58CFE5012A7233C300A43822 /* ChatGPTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */; };
-		58CFE5022A7233C300A43822 /* ChatGPTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */; };
-		58CFE5032A7233C300A43822 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F32A7233C300A43822 /* ConversationView.swift */; };
+		58CFE5012A7233C300A43822 /* ChatGPTAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F02A7233C300A43822 /* ChatGPTAPIService.swift */; };
+		58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F02A7233C300A43822 /* ChatGPTAPIService.swift */; };
 		58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE4F32A7233C300A43822 /* ConversationView.swift */; };
 		58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE5052A7233EC00A43822 /* OpenAiModels.swift */; };
 		58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFE5052A7233EC00A43822 /* OpenAiModels.swift */; };
@@ -122,10 +115,10 @@
 		5811FDFC2A72779D003AB0C0 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
 		5817C0932A90474B005EEDC9 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConversationModel.xcdatamodel; sourceTree = "<group>"; };
-		58366E1E2A723A0F00052735 /* MesssageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MesssageList.swift; path = Shared/Views/Message/MesssageList.swift; sourceTree = SOURCE_ROOT; };
+		58366E1E2A723A0F00052735 /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationList.swift; path = Shared/Views/Conversation/ConversationList.swift; sourceTree = SOURCE_ROOT; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
-		584231442B1A8B03009F1C46 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
 		584231522B1AD4D0009F1C46 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		58464FF72B2343B200C1BA7F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58464FFB2B23463C00C1BA7F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -133,10 +126,11 @@
 		584650092B24A0BB00C1BA7F /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		5846500C2B24A0E100C1BA7F /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
+		5879312A2B294D89002E8DB9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
 		5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSManagedObjectContext.swift"; sourceTree = "<group>"; };
 		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchAppApp.swift; sourceTree = "<group>"; };
+		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp.swift; sourceTree = "<group>"; };
 		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		588F20082A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OwnGptWatchApp Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +141,7 @@
 		588F20322A70AADE002FEC2B /* WatchOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSView.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
-		58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPI.swift; sourceTree = "<group>"; };
+		58CFE4F02A7233C300A43822 /* ChatGPTAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTAPIService.swift; sourceTree = "<group>"; };
 		58CFE4F32A7233C300A43822 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		58CFE4F42A7233C300A43822 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
@@ -207,16 +201,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		580F36472B289683005E337F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				588F20322A70AADE002FEC2B /* WatchOSView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		580F36482B289776005E337F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				58102EF02A44FC2000C52BD4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		580F36492B2897CE005E337F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		580F364B2B289850005E337F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				58102EFC2A44FC2000C52BD4 /* iOS */,
+				580F364C2B289891005E337F /* WatchOS */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		580F364C2B289891005E337F /* WatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				588F200B2A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */,
+			);
+			path = WatchOS;
+			sourceTree = "<group>";
+		};
+		580F364D2B289925005E337F /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				5879312C2B2965E5002E8DB9 /* ConversationView */,
+				58366E1E2A723A0F00052735 /* ConversationList.swift */,
+				58CFE4F62A7233C300A43822 /* MessageRow.swift */,
+				5811FDFC2A72779D003AB0C0 /* MessageInput.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		580F364E2B28993E005E337F /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */,
+				58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
 				588F20272A6F4DF4002FEC2B /* Shared */,
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
-				58102EFC2A44FC2000C52BD4 /* OwnGptTests */,
-				58102F062A44FC2000C52BD4 /* OwnGptUITests */,
-				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */,
-				588F200B2A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */,
-				588F20152A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */,
+				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */,
+				580F364B2B289850005E337F /* Tests */,
 				58102EEA2A44FC1F00C52BD4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -238,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
-				58102EF02A44FC2000C52BD4 /* Assets.xcassets */,
+				5879312A2B294D89002E8DB9 /* Core.swift */,
 				58102EF22A44FC2000C52BD4 /* Preview Content */,
 			);
 			path = OwnGpt;
@@ -252,12 +304,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		58102EFC2A44FC2000C52BD4 /* OwnGptTests */ = {
+		58102EFC2A44FC2000C52BD4 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				58102F062A44FC2000C52BD4 /* OwnGptUITests */,
 				58102EFD2A44FC2000C52BD4 /* OwnGptTests.swift */,
 			);
-			path = OwnGptTests;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		58102F062A44FC2000C52BD4 /* OwnGptUITests */ = {
@@ -272,8 +325,8 @@
 		5817C0972A9445DC005EEDC9 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */,
 				5817C0932A90474B005EEDC9 /* PersistenceController.swift */,
-				584231442B1A8B03009F1C46 /* CoreDataService.swift */,
 				5817C0982A9445EF005EEDC9 /* Entities */,
 			);
 			path = CoreData;
@@ -302,32 +355,13 @@
 		584231482B1AC8E4009F1C46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				58464FFA2B23462500C1BA7F /* Testing */,
-				58450A932A67CED9005BD1E4 /* Helper Views */,
-				5842314B2B1AC92B009F1C46 /* Message */,
-				584231512B1AD3F6009F1C46 /* Conversation */,
-				584231492B1AC8EF009F1C46 /* Conversations */,
+				58464FFB2B23463C00C1BA7F /* ChatView.swift */,
+				58464FFE2B23464800C1BA7F /* ChatViewModel.swift */,
+				580F364D2B289925005E337F /* Conversation */,
+				580F364E2B28993E005E337F /* Conversations */,
+				58450A932A67CED9005BD1E4 /* Helpers */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		584231492B1AC8EF009F1C46 /* Conversations */ = {
-			isa = PBXGroup;
-			children = (
-				58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */,
-				58CFE4F32A7233C300A43822 /* ConversationView.swift */,
-			);
-			path = Conversations;
-			sourceTree = "<group>";
-		};
-		5842314B2B1AC92B009F1C46 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				58CFE4F62A7233C300A43822 /* MessageRow.swift */,
-				58366E1E2A723A0F00052735 /* MesssageList.swift */,
-				5811FDFC2A72779D003AB0C0 /* MessageInput.swift */,
-			);
-			path = Message;
 			sourceTree = "<group>";
 		};
 		5842314C2B1AC97C009F1C46 /* Models */ = {
@@ -342,19 +376,19 @@
 		5842314D2B1AC9D5009F1C46 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5842314E2B1AC9E2009F1C46 /* Network */,
 				5817C0972A9445DC005EEDC9 /* CoreData */,
-				5842314E2B1AC9E2009F1C46 /* ChatGPTService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		5842314E2B1AC9E2009F1C46 /* ChatGPTService */ = {
+		5842314E2B1AC9E2009F1C46 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				58CFE4F02A7233C300A43822 /* ChatGPTAPI.swift */,
-				585A047F2B2558F2003A1392 /* DTO  */,
+				58CFE4F02A7233C300A43822 /* ChatGPTAPIService.swift */,
+				585A047F2B2558F2003A1392 /* Models */,
 			);
-			path = ChatGPTService;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		5842314F2B1ACA06009F1C46 /* Store */ = {
@@ -366,59 +400,50 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
-		584231512B1AD3F6009F1C46 /* Conversation */ = {
-			isa = PBXGroup;
-			children = (
-				58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */,
-				58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */,
-			);
-			path = Conversation;
-			sourceTree = "<group>";
-		};
-		58450A932A67CED9005BD1E4 /* Helper Views */ = {
+		58450A932A67CED9005BD1E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */,
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
 				584231522B1AD4D0009F1C46 /* DotView.swift */,
 			);
-			path = "Helper Views";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
-		58464FFA2B23462500C1BA7F /* Testing */ = {
-			isa = PBXGroup;
-			children = (
-				58464FFB2B23463C00C1BA7F /* ChatView.swift */,
-				58464FFE2B23464800C1BA7F /* ChatViewModel.swift */,
-			);
-			path = Testing;
-			sourceTree = "<group>";
-		};
-		585A047F2B2558F2003A1392 /* DTO  */ = {
+		585A047F2B2558F2003A1392 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				58CFE5052A7233EC00A43822 /* OpenAiModels.swift */,
 			);
-			path = "DTO ";
+			path = Models;
 			sourceTree = "<group>";
 		};
-		585A04802B255A11003A1392 /* Repository */ = {
+		585A04802B255A11003A1392 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				585A04812B255A2B003A1392 /* ConversationRepository.swift */,
 			);
-			path = Repository;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
-		588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp Watch App */ = {
+		5879312C2B2965E5002E8DB9 /* ConversationView */ = {
 			isa = PBXGroup;
 			children = (
-				588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift */,
-				588F20322A70AADE002FEC2B /* WatchOSView.swift */,
-				588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */,
+				58CFE4F32A7233C300A43822 /* ConversationView.swift */,
+				58CFE4F52A7233C300A43822 /* ConversationViewModel.swift */,
+			);
+			path = ConversationView;
+			sourceTree = "<group>";
+		};
+		588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */ = {
+			isa = PBXGroup;
+			children = (
+				588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */,
+				580F36472B289683005E337F /* Views */,
+				580F36492B2897CE005E337F /* Resources */,
 				588F20012A6F4D7F002FEC2B /* Preview Content */,
 			);
-			path = "OwnGptWatchApp Watch App";
+			path = OwnGptWatchApp;
 			sourceTree = "<group>";
 		};
 		588F20012A6F4D7F002FEC2B /* Preview Content */ = {
@@ -432,6 +457,7 @@
 		588F200B2A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				588F20152A6F4D7F002FEC2B /* OwnGptWatchApp Watch AppUITests */,
 				588F200C2A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppTests.swift */,
 			);
 			path = "OwnGptWatchApp Watch AppTests";
@@ -449,12 +475,13 @@
 		588F20272A6F4DF4002FEC2B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				585A04802B255A11003A1392 /* Repository */,
-				5842314F2B1ACA06009F1C46 /* Store */,
-				5842314D2B1AC9D5009F1C46 /* Services */,
 				5842314C2B1AC97C009F1C46 /* Models */,
 				584231482B1AC8E4009F1C46 /* Views */,
+				5842314F2B1ACA06009F1C46 /* Store */,
+				585A04802B255A11003A1392 /* Repositories */,
+				5842314D2B1AC9D5009F1C46 /* Services */,
 				584231402B197971009F1C46 /* Extension */,
+				580F36482B289776005E337F /* Resources */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -695,7 +722,7 @@
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
 				585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */,
-				584231452B1A8B03009F1C46 /* CoreDataService.swift in Sources */,
+				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
 				58464FFC2B23463C00C1BA7F /* ChatView.swift in Sources */,
 				58464FFF2B23464800C1BA7F /* ChatViewModel.swift in Sources */,
 				5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */,
@@ -704,15 +731,16 @@
 				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */,
+				5879312B2B294D89002E8DB9 /* Core.swift in Sources */,
 				584231532B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				58FE3CC52A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
-				58CFE5022A7233C300A43822 /* ChatGPTAPI.swift in Sources */,
+				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
 				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
-				58366E1F2A723A0F00052735 /* MesssageList.swift in Sources */,
+				58366E1F2A723A0F00052735 /* ConversationList.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
@@ -745,31 +773,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5811FDFD2A72779D003AB0C0 /* MessageInput.swift in Sources */,
 				58464FF92B2343B200C1BA7F /* Constants.swift in Sources */,
 				5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
-				58464FFD2B23463C00C1BA7F /* ChatView.swift in Sources */,
 				58FE3CCC2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
-				58CFE5012A7233C300A43822 /* ChatGPTAPI.swift in Sources */,
+				58CFE5012A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
-				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchAppApp.swift in Sources */,
-				584231462B1A8B03009F1C46 /* CoreDataService.swift in Sources */,
+				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */,
 				5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
-				584650002B23464800C1BA7F /* ChatViewModel.swift in Sources */,
-				58CFE4FD2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
-				584231472B1ABC4B009F1C46 /* MesssageList.swift in Sources */,
 				5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */,
 				5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,
-				58CFE4F92A7233C300A43822 /* MessageRow.swift in Sources */,
 				5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
 				585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584231542B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */,
-				58CFE5032A7233C300A43822 /* ConversationView.swift in Sources */,
 				58FE3CCA2A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				58FE3CC42A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				58FE3CD02AA11E4900CAE55E /* ConversationStore.swift in Sources */,

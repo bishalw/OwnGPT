@@ -27,7 +27,6 @@ struct PersistenceController {
             }
         }
     }
-    
     //main queue context
     var context: NSManagedObjectContext {
         return container.viewContext

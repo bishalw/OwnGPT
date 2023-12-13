@@ -21,12 +21,7 @@ struct MessageView: View {
 }
 
 struct ChatView: View {
-   
-    
     @StateObject var vm: ChatViewModel
-    
-
-    
     var body: some View {
         VStack {
             ScrollView {

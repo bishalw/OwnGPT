@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OwnGptWatchApp_Watch_AppApp: App {
+struct OwnGptWatchApp: App {
     
     //    var conversationViewModel = MessageViewModel(api: ChatGPTAPI(apiKey: Constants.apiKey), retryCallback: { _ in })
     

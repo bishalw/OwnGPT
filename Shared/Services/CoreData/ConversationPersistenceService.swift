@@ -11,11 +11,16 @@ import CoreData
 protocol PersistenceService {
     associatedtype T
     func get () async throws -> T
+//    func get (id: String) async throws -> T 
     func add (_ item:T )
     func save()
 }
 
-class ConversationCoreDataService: PersistenceService {
+class ConversationPersistenceService: PersistenceService {
+//    func get(id: String) async throws -> Conversation {
+//
+//    }
+    
     private let manager: PersistenceController
     private let sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
     
@@ -28,24 +33,33 @@ class ConversationCoreDataService: PersistenceService {
         let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
         request.sortDescriptors = self.sortDescriptors
 
-        let result = try await manager.context.performFetch(request)
+        let result = try await manager.backgroundContext.performFetch(request)
         return result.first?.from() ?? Conversation(id: UUID(), messages: [])
     }
     
-    
     func add(_ item: Conversation) {
-        let context = self.manager.context // Replace with your context retrieval logic
-        
-        // Convert the Conversation to ConversationEntity (creates or updates)
-        let conversationEntity =  item.toConversationEntity(context: context)
+        let context = self.manager.context
+        // Convert the Conversation to ConversationEntity
+        _ =  item.toConversationEntity(context: context)
         do {
-            // Save the context to persist changes
             try context.save()
         } catch {
-            // Handle the error, such as logging or notifying the user
             print("Error saving context: \(error)")
         }
-        
+    }
+    
+    func getConversations() async throws -> [Conversation] {
+        do {
+            let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+            request.sortDescriptors = self.sortDescriptors
+
+            let result = try await manager.backgroundContext.performFetch(request)
+            // Convert the result from [ConversationEntity] to [Conversation]
+            return result.map { $0.from() }
+        } catch  {
+            print("Error fetching conversation")
+            throw error
+        }
     }
     
     func save() {

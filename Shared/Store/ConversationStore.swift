@@ -10,10 +10,10 @@ import Foundation
 class ConversationStore: ObservableObject {
     @Published var conversation: Conversation
     
-    var chatGPTAPI: ChatGPTAPI
+    var chatGPTAPI: ChatGPTAPIService
     var repo: ConversationRepository
     
-    init(chatGPTAPI: ChatGPTAPI,
+    init(chatGPTAPI: ChatGPTAPIService,
          conversation: Conversation?,
          repo: ConversationRepository) {
         self.chatGPTAPI = chatGPTAPI
@@ -39,7 +39,6 @@ class ConversationStore: ObservableObject {
         
         do {
             let responseStream = try await chatGPTAPI.sendMessageStream(text: string, history: conversation.getOpenApiHistory())
-            
             
             var fullResponse = ""
             for try await messageContent in responseStream {
