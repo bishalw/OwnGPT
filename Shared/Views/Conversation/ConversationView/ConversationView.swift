@@ -19,7 +19,6 @@ struct ConversationView: View {
                     ScrollView {
                         ConversationList(messages: conversationViewModel.messages)
                             .onChange(of: conversationViewModel.messages.count) { _, _ in
-                                // Scroll to bottom when messages changes
                                 scrollToBottom(proxy)
                             }
                             .onChange(of: isTextFieldFocused) {
@@ -29,10 +28,9 @@ struct ConversationView: View {
                         Divider()
                         MessageInput(inputMessage: $conversationViewModel.inputMessage,
                                      isTextFieldFocused: $isTextFieldFocused,
-                                     isButtonViewDisabled: conversationViewModel.isStreaming,
                                      isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
-                            Task { @MainActor in
-                                //  await chatScreenViewModel.sendTapped()
+                            Task {
+                                conversationViewModel.sendTapped
                             }
                         }
                     }

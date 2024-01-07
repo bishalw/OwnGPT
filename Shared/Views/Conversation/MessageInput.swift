@@ -11,7 +11,6 @@ struct MessageInput: View {
     
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
-    var isButtonViewDisabled: Bool
     var isSendButtonDisabled: Bool
     var sendTapped : () -> Void
    
@@ -22,7 +21,7 @@ struct MessageInput: View {
             TextField("Send a message...", text: $inputMessage, axis: .vertical)
                 .textFieldStyle(OvalTextFieldStyle())
                 .focused($isTextFieldFocused)
-                .disabled(isButtonViewDisabled)
+                .disabled(isSendButtonDisabled)
                 
             #endif
             #if os(watchOS)
@@ -35,7 +34,7 @@ struct MessageInput: View {
                 }
             #endif
                 
-            if isButtonViewDisabled {
+            if isSendButtonDisabled {
                 DotLoadingView()
             } else {
                 SendButtonView(sendTapped: {

@@ -9,18 +9,31 @@ import Foundation
 import Combine
 
 class ConversationsStore {
-    private var subscription = Set<AnyCancellable>()
-    @Published var conversations: [Conversation]
-    
+    private var subscriptions = Set<AnyCancellable>()
+    @Published var conversations: [Conversation] = []
+    private let repo: ConversationRepository
+
     init(repo: ConversationRepository) {
-        self.conversations = repo.get()
-        
-        repo.didUpdateRepo.sink { someCase in
-            switch someCase {
-            case .updatedConvsersations, .updatedConversation:
-                self.conversations = repo.get()
+        self.repo = repo
+
+        // Subscribe to repository updates
+        repo.didUpdateRepo.sink { [weak self] update in
+            self?.loadConversations()
+        }
+        .store(in: &subscriptions)
+
+        // Load initial conversations
+        loadConversations()
+    }
+
+    private func loadConversations() {
+            Task { [weak self] in
+                do {
+                    let loadedConversations = try await self?.repo.get()
+                    self?.conversations = loadedConversations ?? []
+                } catch {
+                    print("Failed to load conversations: \(error)")
+                }
             }
         }
-        .store(in: &subscription)
-    }
 }

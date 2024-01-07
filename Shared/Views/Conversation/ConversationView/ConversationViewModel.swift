@@ -17,6 +17,7 @@ final class ConversationViewModel: ObservableObject  {
     
     @Published var inputMessage: String = "" {
         didSet {
+            
             isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }

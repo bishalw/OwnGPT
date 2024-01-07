@@ -10,7 +10,7 @@ import Combine
 
 enum ConversationRepoUpdate {
     case updatedConversation(conversation: Conversation)
-    case updatedConvsersations
+    case updatedConversations
 }
 
 protocol ConversationRepository {
@@ -18,14 +18,11 @@ protocol ConversationRepository {
     func save(conversations: [Conversation])
     func save(conversation: Conversation)
     func get() async throws -> [Conversation]
-    func get(converstaionId: String) async throws -> Conversation
+    func get(conversationId: UUID) async throws -> Conversation
 }
 
-// TODO: - 
 class ConversationRepositoryImpl: ConversationRepository {
     
-    private let conversationStore: ConversationStore
-    private let conversationsStore: ConversationsStore
     private let conversationPersistenceService: ConversationPersistenceService
     
     private let _didUpdatePassthrough = PassthroughSubject<ConversationRepoUpdate, Never>()
@@ -42,7 +39,7 @@ class ConversationRepositoryImpl: ConversationRepository {
         for conversation in conversations {
             conversationPersistenceService.add(conversation)
         }
-        _didUpdatePassthrough.send(.updatedConvsersations)
+        _didUpdatePassthrough.send(.updatedConversations)
     }
     
     func save(conversation: Conversation) {
@@ -51,12 +48,12 @@ class ConversationRepositoryImpl: ConversationRepository {
     }
     
     func get() async throws -> [Conversation] {
-        let conversations =  try await conversationPersistenceService.getConversations()
+        let conversations =  try await conversationPersistenceService.get()
         return conversations
     }
     
-    func get(converstaionId: String) async throws -> Conversation {
-        let conversation = try await conversationPersistenceService.get()
+    func get(conversationId: UUID) async throws -> Conversation {
+        let conversation = try await conversationPersistenceService.get(id: conversationId)
         return conversation
     }
 }

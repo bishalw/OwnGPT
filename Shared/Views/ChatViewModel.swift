@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+
 @MainActor
 class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
@@ -27,7 +28,7 @@ class ChatViewModel: ObservableObject {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmedText.isEmpty {
             try? await store.sendMessage(string: trimmedText)
-            inputMessage = "" // Clear inputMessage after sending
+            inputMessage = ""
         }
     }
 }

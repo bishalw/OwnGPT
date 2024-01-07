@@ -8,6 +8,7 @@
 import Foundation
 
 class Core: ObservableObject {
+    private var router = Router()
     private lazy var persistanceController = PersistenceController()
     private lazy var conversationPersistenceService = ConversationPersistenceService(manager: persistanceController)
     lazy var conversationRepository = ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))

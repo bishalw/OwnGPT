@@ -10,48 +10,40 @@ import CoreData
 
 protocol PersistenceService {
     associatedtype T
-    func get () async throws -> T
-//    func get (id: String) async throws -> T 
+    func get () async throws -> [T]
+    func get (id: UUID) async throws -> T
     func add (_ item:T )
     func save()
 }
 
+
 class ConversationPersistenceService: PersistenceService {
-//    func get(id: String) async throws -> Conversation {
-//
-//    }
     
     private let manager: PersistenceController
     private let sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-    
+    private let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
     init(manager: PersistenceController) {
         self.manager = manager
     }
     
 
-    func get() async throws -> Conversation {
-        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+    func get(id: UUID) async throws -> Conversation {
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         request.sortDescriptors = self.sortDescriptors
-
+        
         let result = try await manager.backgroundContext.performFetch(request)
         return result.first?.from() ?? Conversation(id: UUID(), messages: [])
     }
     
     func add(_ item: Conversation) {
         let context = self.manager.context
-        // Convert the Conversation to ConversationEntity
+       
         _ =  item.toConversationEntity(context: context)
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context: \(error)")
-        }
+        self.manager.saveContext()
     }
     
-    func getConversations() async throws -> [Conversation] {
+    func get() async throws -> [Conversation] {
         do {
-            let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
-            request.sortDescriptors = self.sortDescriptors
 
             let result = try await manager.backgroundContext.performFetch(request)
             // Convert the result from [ConversationEntity] to [Conversation]

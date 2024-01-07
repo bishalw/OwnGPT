@@ -43,3 +43,16 @@ extension MessageEntity : Identifiable {
     }
  
 }
+
+
+        <----
+   <--
+  json
+swift type <- json
+coredata type -> swift type
+swift type -> so view can show
+
+
+coredata type <- json
+coredata type -> swift type
+swift type -> so view can show

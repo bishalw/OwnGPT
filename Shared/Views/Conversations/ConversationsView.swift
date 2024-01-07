@@ -9,15 +9,19 @@ import SwiftUI
 
 struct ConversationsView: View {
     @StateObject var conversationsViewModel : ConversationsViewModel
-    @EnvironmentObject var store: ConversationStore
+    @EnvironmentObject var core: Core
     var body: some View {
         
         NavigationStack {
-            List(conversationsViewModel.conversations, id: \.id) { chat in
-                // -MARK: - Navigate to Conversation
-//                NavigationLink(destination: chatDetailView(for: chat)) {
-//                    ConversationRow(conversation: chat)
-//                }
+            List {
+                ForEach(conversationsViewModel.conversations, id: \.id) { chat in
+                    // -MARK: - Navigate to Conversation
+                    // NavigationLink(destination: chatDetailView(for: chat)) {
+                    Conversation(conversation: chat)
+                    //                }
+                }.onDelete(perform: { indexSet in
+        
+                })
             }
         }
         .navigationTitle("Conversations")
@@ -34,7 +38,7 @@ struct ConversationsView: View {
     }
     @ViewBuilder func Conversation(conversation: Conversation) -> some View {
         if let lastMessage = conversation.messages.last {
-          Text(lastMessage.content.text)
+            Text(lastMessage.content.text)
         } else {
           Text("No messages")
         }
@@ -46,6 +50,6 @@ extension Conversation {
     }
 }
 
-#Preview {
-    ConversationsView(conversationsViewModel: .init())
-}
+//#Preview {
+//    ConversationsView(conversationsViewModel: .init(store: ConversationsStore(repo: ))
+//}
