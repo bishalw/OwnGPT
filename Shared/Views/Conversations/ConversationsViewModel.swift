@@ -14,11 +14,11 @@ final class ConversationsViewModel: ObservableObject {
     private var store: ConversationsStore
     init(store: ConversationsStore) {
         self.store = store
-        store.conversations.publisher.sink {  in
-            <#code#>
-        } receiveValue: { <#Self.Output#> in
-            <#code#>
-        }
+//        store.conversations.publisher.sink {  in
+//            <#code#>
+//        } receiveValue: { <#Self.Output#> in
+//            <#code#>
+//        }
 
     }
 }

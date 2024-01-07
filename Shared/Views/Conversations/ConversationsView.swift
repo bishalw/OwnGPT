@@ -26,16 +26,16 @@ struct ConversationsView: View {
         }
         .navigationTitle("Conversations")
         .toolbar {
-            HeaderView()
+//            HeaderView()
         }
     }
-    @ToolbarContentBuilder func HeaderView() -> some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: conversationsViewModel.startNewConversation) {
-                Label("New Chat", systemImage: "square.and.pencil")
-            }
-        }
-    }
+//    @ToolbarContentBuilder func HeaderView() -> some ToolbarContent {
+//        ToolbarItem(placement: .topBarTrailing) {
+//            Button(action: conversationsViewModel.startNewConversation) {
+//                Label("New Chat", systemImage: "square.and.pencil")
+//            }
+//        }
+//    }
     @ViewBuilder func Conversation(conversation: Conversation) -> some View {
         if let lastMessage = conversation.messages.last {
             Text(lastMessage.content.text)

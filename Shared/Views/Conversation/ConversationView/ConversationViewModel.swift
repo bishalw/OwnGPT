@@ -36,18 +36,18 @@ final class ConversationViewModel: ObservableObject  {
             .store(in: &cancellables)
     }
     
-    func sendTapped() async throws {
+    func sendTapped() async  {
         isTextFieldFocused = true
         isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         inputMessage = ""
-        try await store.sendMessage(string:text)
+        await store.sendMessage(string:text)
     }
     
-    func retry(message: Message) async throws {
+    func retry(message: Message) async  {
         if case let .message(string: text) = message.content {
-            try await store.sendMessage(string: text)
+        await store.sendMessage(string: text)
         }
     }
     func removeMessage(at index: Int) {
@@ -58,7 +58,7 @@ final class ConversationViewModel: ObservableObject  {
         
     }
     
-    func send(text: String) async throws {
-        try await store.sendMessage(string: text)
+    func send(text: String) async {
+         await store.sendMessage(string: text)
     }
 }

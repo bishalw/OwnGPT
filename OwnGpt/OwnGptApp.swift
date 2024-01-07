@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct OwnGptApp: App {
-    @StateObject var core = Core()
+//    @StateObject var core = Core()
+    
+    let vm = ChatViewModel(store: ConversationStore(chatGPTAPI:ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: Constants.apiKey), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))))
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ConversationsView(conversationsViewModel: ConversationsViewModel(store: ConversationsStore(repo: core.conversationRepository)))
+//                ConversationsView(conversationsViewModel: ConversationsViewModel(store: ConversationsStore(repo: core.conversationRepository)))
+                ChatView(vm: vm)
             }
         }
     }

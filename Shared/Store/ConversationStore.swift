@@ -16,7 +16,7 @@ class ConversationStore: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     
     init(chatGPTAPI: ChatGPTAPIService,
-         conversation: Conversation?,
+         conversation: Conversation? = nil,
          repo: ConversationRepository) {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
@@ -45,7 +45,7 @@ class ConversationStore: ObservableObject {
                 }
             }
         }
-    func sendMessage(string: String) async throws {
+    func sendMessage(string: String) async  {
         addConversation(message: .init(id: .init(),
                                        type: .user,
                                        content: .message(string: string),
@@ -80,7 +80,6 @@ class ConversationStore: ObservableObject {
             repo.save(conversation: conversation)
         } catch {
             print("Error in sendMessage: \(error)")
-            throw error
         }
     }
     
