@@ -6,33 +6,7 @@
 
 import Foundation
 
-struct ChatGPTServiceRequest: HTTPRequest {
-    
-    var scheme: String {
-        return "https"
-    }
-    
-    var host: String = "api.openai.com"
-    
-    var path: String = "/v1/chat/completions"
-    
-    var headers: [String : String]?
-    
-    var body: Data?
-    
-    var method: HTTPRequestMethod = .post
-    
-    var parameters: [String : String]?
-    
-    init(apiKey: String) {
-        self.headers = 
-        [
-            "Content-Type": "application/json",
-            "Authorization": "Bearer \(apiKey)"
-        ]
-    }
-    
-}
+
 protocol ChatGPTAPIService {
     func sendMessageStream(text: String, history: [OpenAiModels.Message]) async throws -> AsyncThrowingStream<String, Error> 
 }
@@ -42,7 +16,7 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
     private let model: String
     private let systemMessage: OpenAiModels.Message
     private let urlSession = URLSession.shared
-    private let networkService: NetworkService
+    private let networkService: NetworkStreamingService
     private let jsonDecoder: JSONDecoder
     private let apiKey: String
     
@@ -50,12 +24,11 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
     
     init(
         model: String = "gpt-3.5-turbo",
-        temperature: Double = 0.5,
+        temperature: Double = 0.7,
         systemPrompt: String = "You are a helpful assistant",
-        networkService: NetworkService,
+        networkService: NetworkStreamingService,
         jsonDecoder: JSONDecoder = JSONDecoder(),
         apiKey: String
-    
         
     ) {
         self.apiKey = apiKey
@@ -100,8 +73,10 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
                 Task {
                     do {
                         for try await completionResponse in responseStream {
+                            print("Debug - Completion Response: \(completionResponse)")
                             for choice in completionResponse.choices {
                                 if let content = choice.delta.content {
+                                    print("Debug - Content Received: \(content)")
                                     continuation.yield(content)
                                 }
                             }
@@ -113,23 +88,27 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
                 }
             }
     }
-//    private func jsonBody(text: String, history: [OpenAiModels.Message], stream: Bool = true) throws -> Data {
-//        var messages = history
-//        let newUserMessage = OpenAiModels.Message(role: "user", content: text)
-//        messages.append(newUserMessage)
-//        let request = OpenAiModels.Request(model: model, messages: messages, temperature: temperature, stream: stream)
-//        let requestBody = try JSONEncoder().encode(request)
-//        print("Request Body: \(String(data: requestBody, encoding: .utf8) ?? "")")
-//        return requestBody
-//    }
     private func jsonBody(text: String, history: [OpenAiModels.Message], stream: Bool = true) throws -> Data {
-            var messages = history
-            messages.append(systemMessage) // Add the system message for context
-            messages.append(OpenAiModels.Message(role: "user", content: text)) // Add the user message
-            
-            let request = OpenAiModels.Request(model: model, messages: messages, temperature: temperature, stream: stream)
-            return try JSONEncoder().encode(request)
-        }
+        var messages = history
+        let newUserMessage = OpenAiModels.Message(role: "user", content: text)
+        messages.append(newUserMessage)
+        let request = OpenAiModels.Request(model: model, messages: messages, temperature: temperature, stream: stream)
+        let requestBody = try JSONEncoder().encode(request)
+        print("Request Body: \(String(data: requestBody, encoding: .utf8) ?? "")")
+        return requestBody
+    }
+//    private func jsonBody(text: String, history: [OpenAiModels.Message], stream: Bool = true) throws -> Data {
+//            var messages = history
+//            messages.append(Message) // Add the system message for context
+//            messages.append(OpenAiModels.Message(role: "user", content: text)) // Add the user message
+//            
+//            let request = OpenAiModels.Request(model: model, messages: messages, temperature: temperature, stream: stream)
+//        let jsonData = try JSONEncoder().encode(request)
+//        if let jsonString = String(data: jsonData, encoding: .utf8) {
+//               print("JSON Payload: \(jsonString)")  // For debugging purposes
+//           }
+//            return try JSONEncoder().encode(request)
+//        }
   
 }
 extension String: Error {}

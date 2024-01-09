@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum HTTPRequestMethod {
+public enum HTTPRequestType {
     case get
     case post
     case put

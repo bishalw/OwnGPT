@@ -8,23 +8,28 @@
 import Foundation
 
 
-public protocol NetworkService {
+public protocol NetworkStreamingService {
     func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String?) async throws -> AsyncThrowingStream<T,Error>
 }
 
-public class NetworkServiceImpl: NetworkService {
+public class NetworkServiceImpl: NetworkStreamingService {
     private let urlSession: URLSession
     
     public init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
-    
+
     public func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String? = nil) async throws -> AsyncThrowingStream<T, Error> {
        
         let url = try createURL(from: request)
-        let urlRequest = createURLRequest(url: url, method: request.method)
-        
-        let (bytes, response) = try await URLSession.shared.bytes(for: urlRequest)
+        let urlRequest = createURLRequest(url: url, method: request.method, headers: request.headers, body: request.body)
+
+        // Debugging: Log the final request body
+        if let bodyData = urlRequest.httpBody, let bodyString = String(data: bodyData, encoding: .utf8) {
+            print("Request Body: \(bodyString)")
+        }
+
+        let (bytes, response) = try await self.urlSession.bytes(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse(url: urlRequest)
@@ -41,7 +46,7 @@ public class NetworkServiceImpl: NetworkService {
             }
             throw NetworkError.badResponse(url: url, statusCode: httpResponse.statusCode, body: responseBody)
         }
-        let requestURL = urlRequest.url
+
         return AsyncThrowingStream<T, Error> { continuation in
             Task(priority: .userInitiated) {
                 do {
@@ -50,30 +55,27 @@ public class NetworkServiceImpl: NetworkService {
                            let data = line.dropFirst(dataPrefix?.count ?? 0).data(using: .utf8) {
                             let decodedObject = try JSONDecoder().decode(T.self, from: data)
                             continuation.yield(decodedObject)
-                        } else {
-                            if let data = line.data(using: .utf8) {
-                                let decodeObject = try JSONDecoder().decode(T.self, from: data)
-                                continuation.yield(decodeObject)
-                            }
                         }
                     }
                     continuation.finish()
                 } catch {
-                    if let urlError = error as? URLError {
-                        continuation.finish(throwing: NetworkError.other(url: requestURL, underlyingError: urlError))
-                    } else {
-                        continuation.finish(throwing: error)
-                    }
+                    continuation.finish(throwing: error)
                 }
             }
         }
     }
-    private  func createURLRequest(url: URL, method: HTTPRequestMethod) -> URLRequest {
+
+    private func createURLRequest(url: URL, method: HTTPRequestType, headers: [String: String]?, body: Data?) -> URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
+        headers?.forEach { key, value in
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+        urlRequest.httpBody = body
         return urlRequest
     }
-    private  func createURL(from request: HTTPRequest) throws -> URL {
+
+    private func createURL(from request: HTTPRequest) throws -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = request.scheme
         urlComponents.host = request.host
@@ -84,7 +86,6 @@ public class NetworkServiceImpl: NetworkService {
         }
         return url
     }
-
 }
 
 public enum NetworkError: Error {

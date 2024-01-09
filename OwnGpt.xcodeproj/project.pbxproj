@@ -48,12 +48,14 @@
 		588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20322A70AADE002FEC2B /* WatchOSView.swift */; };
 		589077BF2B4A25A5009C9AEB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077BE2B4A25A5009C9AEB /* NetworkService.swift */; };
 		589077C02B4A25A5009C9AEB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077BE2B4A25A5009C9AEB /* NetworkService.swift */; };
-		589077C22B4A36E9009C9AEB /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C12B4A36E9009C9AEB /* HTTPRequestMethod.swift */; };
-		589077C32B4A36E9009C9AEB /* HTTPRequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C12B4A36E9009C9AEB /* HTTPRequestMethod.swift */; };
+		589077C22B4A36E9009C9AEB /* HTTPRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C12B4A36E9009C9AEB /* HTTPRequestType.swift */; };
+		589077C32B4A36E9009C9AEB /* HTTPRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C12B4A36E9009C9AEB /* HTTPRequestType.swift */; };
 		589077C52B4A3729009C9AEB /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C42B4A3729009C9AEB /* HTTPRequest.swift */; };
 		589077C62B4A3729009C9AEB /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C42B4A3729009C9AEB /* HTTPRequest.swift */; };
 		589077C82B4A3BB8009C9AEB /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C72B4A3BB8009C9AEB /* DataParser.swift */; };
 		589077C92B4A3BB8009C9AEB /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589077C72B4A3BB8009C9AEB /* DataParser.swift */; };
+		5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
+		5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -149,9 +151,10 @@
 		588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		588F20322A70AADE002FEC2B /* WatchOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSView.swift; sourceTree = "<group>"; };
 		589077BE2B4A25A5009C9AEB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		589077C12B4A36E9009C9AEB /* HTTPRequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethod.swift; sourceTree = "<group>"; };
+		589077C12B4A36E9009C9AEB /* HTTPRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestType.swift; sourceTree = "<group>"; };
 		589077C42B4A3729009C9AEB /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		589077C72B4A3BB8009C9AEB /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTServiceRequest.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -402,7 +405,7 @@
 			children = (
 				589077BE2B4A25A5009C9AEB /* NetworkService.swift */,
 				589077CA2B4A3FF9009C9AEB /* APIService */,
-				589077C12B4A36E9009C9AEB /* HTTPRequestMethod.swift */,
+				589077C12B4A36E9009C9AEB /* HTTPRequestType.swift */,
 				589077C72B4A3BB8009C9AEB /* DataParser.swift */,
 				589077C42B4A3729009C9AEB /* HTTPRequest.swift */,
 				585A047F2B2558F2003A1392 /* Models */,
@@ -509,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				58CFE4F02A7233C300A43822 /* ChatGPTAPIService.swift */,
+				5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -767,8 +771,9 @@
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
+				5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */,
 				589077BF2B4A25A5009C9AEB /* NetworkService.swift in Sources */,
-				589077C22B4A36E9009C9AEB /* HTTPRequestMethod.swift in Sources */,
+				589077C22B4A36E9009C9AEB /* HTTPRequestType.swift in Sources */,
 				58C61FAD2B2A907D003DF413 /* Router.swift in Sources */,
 				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58366E1F2A723A0F00052735 /* ConversationList.swift in Sources */,
@@ -805,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */,
 				58464FF92B2343B200C1BA7F /* Constants.swift in Sources */,
 				5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				589077C92B4A3BB8009C9AEB /* DataParser.swift in Sources */,
@@ -821,7 +827,7 @@
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
 				589077C02B4A25A5009C9AEB /* NetworkService.swift in Sources */,
-				589077C32B4A36E9009C9AEB /* HTTPRequestMethod.swift in Sources */,
+				589077C32B4A36E9009C9AEB /* HTTPRequestType.swift in Sources */,
 				585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584231542B1AD4D0009F1C46 /* DotView.swift in Sources */,

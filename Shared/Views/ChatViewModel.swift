@@ -17,17 +17,22 @@ class ChatViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = .init()
     init(store: ConversationStore) {
         self.store = store
+        addSubscribers()
+       
+    }
+    
+    func addSubscribers() {
         store.$conversation
             .map {$0.messages}
             .receive(on: RunLoop.main)
             .assign(to: \.messages, on: self)
             .store(in: &cancellables)
     }
-    
-    func sendMessage() async  {
+    @MainActor
+    func sendMessage()    {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmedText.isEmpty {
-             await store.sendMessage(string: trimmedText)
+            store.sendMessage(string: trimmedText)
             inputMessage = ""
         }
     }
