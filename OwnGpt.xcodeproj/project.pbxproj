@@ -303,6 +303,7 @@
 		58102EEB2A44FC1F00C52BD4 /* OwnGpt */ = {
 			isa = PBXGroup;
 			children = (
+				58102EF22A44FC2000C52BD4 /* Preview Content */,
 				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
 				5879312A2B294D89002E8DB9 /* Core.swift */,
 				58C61FAC2B2A907D003DF413 /* Router.swift */,
@@ -500,7 +501,6 @@
 				585A04802B255A11003A1392 /* Repositories */,
 				5842314D2B1AC9D5009F1C46 /* Services */,
 				584231402B197971009F1C46 /* Extension */,
-				58102EF22A44FC2000C52BD4 /* Preview Content */,
 				580F36482B289776005E337F /* Resources */,
 			);
 			path = Shared;

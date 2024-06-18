@@ -18,7 +18,6 @@ class ChatViewModel: ObservableObject {
     init(store: ConversationStore) {
         self.store = store
         addSubscribers()
-        fetchInitialConversation(store: store)
     }
     
     func addSubscribers() {
@@ -31,14 +30,11 @@ class ChatViewModel: ObservableObject {
     }
 
     @MainActor
-    func sendMessage()    {
+    func sendMessage() {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         if !trimmedText.isEmpty {
             store.sendMessage(string: trimmedText)
             inputMessage = ""
         }
-    }
-    func fetchInitialConversation(store: ConversationStore) {
-        store.fetchConversation(conversationId: store.conversation.id)
     }
 }

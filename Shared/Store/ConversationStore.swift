@@ -17,17 +17,20 @@ class ConversationStore: ObservableObject {
     
     init(chatGPTAPI: ChatGPTAPIService,
          conversation: Conversation? = nil,
-         repo: ConversationRepository) 
+         repo: ConversationRepository)
     {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
         self.conversation = conversation ?? .init(id: UUID(), messages: [])
+        setupConversationSubscription()
+        fetchInitialConversation()
+    }
+    private func setupConversationSubscription() {
         repo.didUpdateRepo
             .sink { [weak self] update in
                 switch update {
                 case .updatedConversation(let updatedConversation):
                     if updatedConversation.id == self?.conversation.id {
-                        self?.fetchConversation(conversationId: updatedConversation.id)
                     }
                 default:
                     break
@@ -35,19 +38,23 @@ class ConversationStore: ObservableObject {
             }
             .store(in: &subscriptions)
     }
-    func fetchConversation(conversationId: UUID) {
+
+    private func fetchInitialConversation() {
         Task {
             do {
-                print("trying to fetch")
-                self.conversation = try await repo.get(conversationId: conversationId)
-                print(conversation)
-                print("fetching done")
+                let fetchedConversation = try await repo.get(conversationId: conversation.id)
+                await MainActor.run {
+                    self.conversation = fetchedConversation
+                }
             } catch {
-                print("Error fetching conversation: \(error)")
+                print("Error fetching initial conversation: \(error)")
+                // Handle the error appropriately (e.g., create a new conversation)
             }
         }
     }
-    
+
+
+
     func sendMessage(string: String) {
         // Add user message to conversation on the main thread
         Task {
@@ -56,14 +63,13 @@ class ConversationStore: ObservableObject {
                                            content: .message(string: string),
                                            isStreaming: false))
             
-//            repo.save(conversation: conversation)h  c
-            
-            
-        
-            addConversation(message: .init(id: .init(),
-                                           type: .system,
-                                           content: .message(string: ""),
-                                           isStreaming: true))
+//            repo.save(conversation: conversation)
+
+                
+                addConversation(message: .init(id: .init(),
+                                               type: .system,
+                                               content: .message(string: ""),
+                                               isStreaming: true))
             
             
             do {

@@ -3,4 +3,148 @@
    uuid = "48D0B882-0760-40F6-A094-4FA26BAC067A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F810340D-EECE-43B9-93AC-BE9971D7E4AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Views/Conversation/ConversationView/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "sendTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C3C81AB-4FB1-4DC8-A931-EC28ACB9FE30"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Views/Conversation/ConversationView/ConversationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "sendTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57C4FE5B-2FC5-4F0A-A1AE-13F3D1EE4F33"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Store/ConversationStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "init(chatGPTAPI:conversation:repo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BB5666E-B808-4110-862B-8EC351606971"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Store/ConversationStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "init(chatGPTAPI:conversation:repo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "124E0FF1-D299-41ED-8097-2183EBA00DE0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Store/ConversationStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "fetchInitialConversation()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "124E0FF1-D299-41ED-8097-2183EBA00DE0 - 22fca55aecd52802"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in OwnGpt.ConversationStore.fetchInitialConversation() -&gt; ()"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Store/ConversationStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "124E0FF1-D299-41ED-8097-2183EBA00DE0 - ed9712592346014e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in OwnGpt.ConversationStore.fetchInitialConversation() -&gt; ()"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Store/ConversationStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "124E0FF1-D299-41ED-8097-2183EBA00DE0 - 5d37bac46f366a00"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in OwnGpt.ConversationStore.fetchInitialConversation() -&gt; ()"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Store/ConversationStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "124E0FF1-D299-41ED-8097-2183EBA00DE0 - 7cf6a002eea4705"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in OwnGpt.ConversationStore.fetchInitialConversation() -&gt; ()"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Store/ConversationStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

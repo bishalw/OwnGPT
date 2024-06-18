@@ -40,17 +40,7 @@ extension Conversation {
         return messages.last?.content.text
     }
 }
-struct HeaderView: ToolbarContent {
-    var body: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button(action: {
-                // Add your action here
-            }) {
-                Image(systemName: "square.and.pencil")
-            }
-        }
-    }
-}
+
 
 struct Test: View {
     var body: some View {

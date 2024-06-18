@@ -12,7 +12,6 @@ final class ConversationViewModel: ObservableObject {
     
     @Published var isStreaming: Bool = false
     @Published var isSendButtonDisabled: Bool = true
-    @Published var isTextFieldFocused: Bool = false
     @Published var messages: [Message] = []
     
     @Published var inputMessage: String = "" {
@@ -37,7 +36,7 @@ final class ConversationViewModel: ObservableObject {
     }
     
     func sendTapped()  {
-        isTextFieldFocused = true
+    
         isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }

@@ -11,6 +11,6 @@ class Core: ObservableObject {
     
     private lazy var persistanceController = PersistenceController()
     private lazy var conversationPersistenceService = ConversationPersistenceService(manager: persistanceController)
-    lazy var conversationRepository = ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))
+    private var conversationRepository = ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))
 //    lazy var chatGPTAPIService = ChatGPTAPIService(apiKey: Constants.apiKey)
 }

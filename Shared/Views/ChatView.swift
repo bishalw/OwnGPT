@@ -42,9 +42,7 @@ struct ChatView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
                 Button("Send") {
-                    Task {
                         vm.sendMessage()
-                    }
                 }
                 .buttonStyle(BorderlessButtonStyle())
             }

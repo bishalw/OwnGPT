@@ -11,51 +11,63 @@ struct BottomBarView: View {
     
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
+    @State private var isExpanded = false
+    
     var isSendButtonDisabled: Bool
     var sendTapped: () -> Void
-    @State private var isExpanded = false
-
+    
     var body: some View {
-        VStack {
-            HStack {
-                if !isExpanded {
-                    PlusButtonView(showExpandedView: $isExpanded, isTextFieldFocused: $isTextFieldFocused)
-                        .animation(.spring(), value: isExpanded)
-                }
-                if isExpanded && !isTextFieldFocused {
-                    ExpandedOptionsView()
-                        .transition(.scale)
-                } else {
-                    
-                }
-                MessageInput(
-                    inputMessage: $inputMessage,
-                    isTextFieldFocused: $isTextFieldFocused,
-                    isSendButtonDisabled: isSendButtonDisabled
-                )
-                SendButtonView(sendTapped: sendTapped)
-                
+        HStack {
+            if !isExpanded {
+                PlusButtonView(showExpandedView: $isExpanded, isTextFieldFocused: $isTextFieldFocused)
+                    .animation(.spring(), value: isExpanded)
             }
-            .padding()
+            if isExpanded {
+                ExpandedOptionsView()
+                    .transition(.scale)
+            }
+            
+            MessageInput(
+                inputMessage: $inputMessage,
+                isTextFieldFocused: $isTextFieldFocused,
+                isSendButtonDisabled: isSendButtonDisabled,
+                showExpandedView: $isExpanded
+            )
+            SendButtonView(sendTapped: sendTapped)
 
+        }
+        .padding()
+    
+        .onChange(of: inputMessage, initial: true) { _, newValue in
+            if !newValue.isEmpty { // Hide ExpandedOptionsView if typing // fix later
+                isExpanded = false
+            }
+        }
+        .onChange(of: isTextFieldFocused) { _, newValue in // Update onChange for isTextFieldFocused // fix later
+            if newValue && !isExpanded {
+                isExpanded.toggle()
+            }
         }
     }
 }
 
-
 struct PlusButtonView: View {
+    
     @Binding var showExpandedView: Bool
     @FocusState.Binding var isTextFieldFocused: Bool
 
     var body: some View {
-        Button(action: { showExpandedView.toggle() }) {
-            Image(systemName: "plus")
-                .font(.system(size: 15))
-                .foregroundColor(.white)
-                .frame(width: 30, height: 30)
-                .background(Circle().foregroundColor(.gray))
+        
+        Button(action: {
+                showExpandedView.toggle()
+        }) {
+        Image(systemName: "plus")
+            .font(.system(size: 15))
+            .foregroundColor(.white)
+            .frame(width: 30, height: 30)
+            .background(Circle().foregroundColor(.gray))
         }
-        .disabled(isTextFieldFocused) // Disable when text field is focused
+        
     }
 }
 struct ExpandedOptionsView: View {
@@ -73,30 +85,25 @@ struct ExpandedOptionsView: View {
         .padding(.top, 5)
     }
 }
+
 struct MessageInput: View {
-    
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
     var isSendButtonDisabled: Bool
+    @Binding var showExpandedView: Bool
     
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             #if os(iOS)
             TextField("Send a message...", text: $inputMessage, axis: .vertical)
                 .ovalTextFieldStyle()
-            #endif
-            
-            #if os(watchOS)
-            TextField("Send", text: $inputMessage, axis: .vertical)
-                .buttonBorderShape(.roundedRectangle)
-                .frame(width: 75, height: 45)
-                .fixedSize(horizontal: true, vertical: true)
-                .onSubmit {
-                    sendTapped()
+                .focused($isTextFieldFocused)
+                .onChange(of: isTextFieldFocused) { oldValue, newValue in
+                    showExpandedView = !newValue  // Toggle showExpandedView based on focus
                 }
             #endif
-                
-        }.padding()
+        }
+        .padding()
     }
 }
 
@@ -131,3 +138,12 @@ struct BottomBarViewPreview: PreviewProvider {
 
 
 
+//#if os(watchOS)
+//TextField("Send", text: $inputMessage, axis: .vertical)
+//    .buttonBorderShape(.roundedRectangle)
+//    .frame(width: 75, height: 45)
+//    .fixedSize(horizontal: true, vertical: true)
+//    .onSubmit {
+//        sendTapped()
+//    }
+//#endif

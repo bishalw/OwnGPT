@@ -21,14 +21,9 @@ struct ConversationView: View {
                             .onChange(of: conversationViewModel.messages.count) { _, _ in
                                 scrollToBottom(proxy)
                             }
-                            .onChange(of: isTextFieldFocused) {
-                                conversationViewModel.isTextFieldFocused = isTextFieldFocused
-                            }
                     }
                     BottomBarView(inputMessage: $conversationViewModel.inputMessage, isTextFieldFocused: $isTextFieldFocused, isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
-                        Task {
-                            conversationViewModel.sendTapped
-                        }
+                        conversationViewModel.sendTapped()
                     }
                     .navigationBarTitle("Own GPT", displayMode: .inline)
                     .toolbar(content: {
@@ -42,6 +37,18 @@ struct ConversationView: View {
     private func scrollToBottom(_ proxy: ScrollViewProxy) {
         guard let id = conversationViewModel.messages.last?.id else { return }
               proxy.scrollTo(id, anchor: .bottomTrailing)
+    }
+}
+
+struct HeaderView: ToolbarContent {
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: {
+                // Add your action here
+            }) {
+                Image(systemName: "square.and.pencil")
+            }
+        }
     }
 }
 
