@@ -13,7 +13,7 @@ struct ConversationList: View {
     var body: some View {
         LazyVStack(spacing: 0) {
             ForEach(messages) { message in
-                MessageRow(message: message)
+                MessageView(message: message)
             }
         }
     }

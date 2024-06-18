@@ -1,3 +1,5 @@
+
+
 //
 //  NetworkService.swift
 //  OwnGpt
@@ -6,7 +8,6 @@
 //
 
 import Foundation
-
 
 public protocol NetworkStreamingService {
     func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String?) async throws -> AsyncThrowingStream<T,Error>
@@ -23,11 +24,6 @@ public class NetworkServiceImpl: NetworkStreamingService {
        
         let url = try createURL(from: request)
         let urlRequest = createURLRequest(url: url, method: request.method, headers: request.headers, body: request.body)
-
-        // Debugging: Log the final request body
-        if let bodyData = urlRequest.httpBody, let bodyString = String(data: bodyData, encoding: .utf8) {
-            print("Request Body: \(bodyString)")
-        }
 
         let (bytes, response) = try await self.urlSession.bytes(for: urlRequest)
         

@@ -22,7 +22,6 @@ class ConversationStore: ObservableObject {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
         self.conversation = conversation ?? .init(id: UUID(), messages: [])
-        
         repo.didUpdateRepo
             .sink { [weak self] update in
                 switch update {
@@ -30,7 +29,7 @@ class ConversationStore: ObservableObject {
                     if updatedConversation.id == self?.conversation.id {
                         self?.fetchConversation(conversationId: updatedConversation.id)
                     }
-                case .updatedConversations:
+                default:
                     break
                 }
             }
@@ -39,9 +38,11 @@ class ConversationStore: ObservableObject {
     func fetchConversation(conversationId: UUID) {
         Task {
             do {
+                print("trying to fetch")
                 self.conversation = try await repo.get(conversationId: conversationId)
+                print(conversation)
+                print("fetching done")
             } catch {
-                
                 print("Error fetching conversation: \(error)")
             }
         }
@@ -49,18 +50,16 @@ class ConversationStore: ObservableObject {
     
     func sendMessage(string: String) {
         // Add user message to conversation on the main thread
-
         Task {
             addConversation(message: .init(id: .init(),
                                            type: .user,
                                            content: .message(string: string),
                                            isStreaming: false))
             
-            
-            repo.save(conversation: conversation)
-            
+//            repo.save(conversation: conversation)h  c
             
             
+        
             addConversation(message: .init(id: .init(),
                                            type: .system,
                                            content: .message(string: ""),
@@ -74,7 +73,7 @@ class ConversationStore: ObservableObject {
                 for try await messageContent in responseStream {
                     fullResponse += messageContent
                     
-                    // Update conversation with received content on the main thread
+                    
                     let systemMessage = Message(id: .init(), type: .system, content: .message(string: fullResponse), isStreaming: true)
 
                         updateConversationLastMessage(message: systemMessage)
@@ -86,8 +85,6 @@ class ConversationStore: ObservableObject {
                 let finalSystemMessage = Message(id: UUID(), type: .system, content: .message(string: fullResponse), isStreaming: false)
                 
                 updateConversationLastMessage(message: finalSystemMessage)
-                
-                
                 repo.save(conversation: conversation)
             } catch {
                 print("Error in sendMessage: \(error)")
@@ -95,12 +92,11 @@ class ConversationStore: ObservableObject {
         }
     }
 
-    
     private func addConversation(message: Message) {
         var currentMessage = conversation.messages
         currentMessage.append(message)
         self.conversation = Conversation(id: conversation.id,
-                                        messages: currentMessage)
+                                    messages: currentMessage)
     }
     
     private func updateConversationLastMessage(message: Message) {

@@ -15,7 +15,6 @@ class ConversationsStore {
 
     init(repo: ConversationRepository) {
         self.repo = repo
-
         // Subscribe to repository updates
         repo.didUpdateRepo.sink { [weak self] update in
             self?.loadConversations()

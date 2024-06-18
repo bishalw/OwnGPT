@@ -7,7 +7,8 @@
 
 import Foundation
 import SwiftUI
-struct MessageView: View {
+
+struct MessageViewTest: View {
     let message: Message
 
     var body: some View {
@@ -26,8 +27,8 @@ struct ChatView: View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    ForEach(vm.store.conversation.messages) { message in
-                            MessageView(message: message)
+                    ForEach(vm.messages) { message in
+                            MessageViewTest(message: message)
                             .padding()
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
@@ -42,7 +43,7 @@ struct ChatView: View {
 
                 Button("Send") {
                     Task {
-                        await vm.sendMessage()
+                        vm.sendMessage()
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())

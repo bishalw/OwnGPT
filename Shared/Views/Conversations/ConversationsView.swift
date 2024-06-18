@@ -17,7 +17,7 @@ struct ConversationsView: View {
                 ForEach(conversationsViewModel.conversations, id: \.id) { chat in
                     // -MARK: - Navigate to Conversation
                     // NavigationLink(destination: chatDetailView(for: chat)) {
-                    Conversation(conversation: chat)
+                    ConversationTitle(conversation: chat)
                     //                }
                 }.onDelete(perform: { indexSet in
         
@@ -25,18 +25,9 @@ struct ConversationsView: View {
             }
         }
         .navigationTitle("Conversations")
-        .toolbar {
-//            HeaderView()
-        }
     }
-//    @ToolbarContentBuilder func HeaderView() -> some ToolbarContent {
-//        ToolbarItem(placement: .topBarTrailing) {
-//            Button(action: conversationsViewModel.startNewConversation) {
-//                Label("New Chat", systemImage: "square.and.pencil")
-//            }
-//        }
-//    }
-    @ViewBuilder func Conversation(conversation: Conversation) -> some View {
+
+    @ViewBuilder func ConversationTitle(conversation: Conversation) -> some View {
         if let lastMessage = conversation.messages.last {
             Text(lastMessage.content.text)
         } else {
@@ -49,7 +40,31 @@ extension Conversation {
         return messages.last?.content.text
     }
 }
+struct HeaderView: ToolbarContent {
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: {
+                // Add your action here
+            }) {
+                Image(systemName: "square.and.pencil")
+            }
+        }
+    }
+}
 
-//#Preview {
-//    ConversationsView(conversationsViewModel: .init(store: ConversationsStore(repo: ))
-//}
+struct Test: View {
+    var body: some View {
+        NavigationView {
+            Text("Content View")
+                .toolbar {
+                    HeaderView()
+                }
+        }
+    }
+}
+
+struct Test_Views: PreviewProvider {
+    static var previews: some View {
+        Test()
+    }
+}

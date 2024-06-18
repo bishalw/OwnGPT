@@ -12,13 +12,13 @@ import Combine
 
 class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
-     let store: ConversationStore
+    var store: ConversationStore
     @Published var inputMessage: String = ""
     private var cancellables: Set<AnyCancellable> = .init()
     init(store: ConversationStore) {
         self.store = store
         addSubscribers()
-       
+        fetchInitialConversation(store: store)
     }
     
     func addSubscribers() {
@@ -27,7 +27,9 @@ class ChatViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.messages, on: self)
             .store(in: &cancellables)
+        
     }
+
     @MainActor
     func sendMessage()    {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -35,5 +37,8 @@ class ChatViewModel: ObservableObject {
             store.sendMessage(string: trimmedText)
             inputMessage = ""
         }
+    }
+    func fetchInitialConversation(store: ConversationStore) {
+        store.fetchConversation(conversationId: store.conversation.id)
     }
 }

@@ -24,17 +24,16 @@ struct ConversationView: View {
                             .onChange(of: isTextFieldFocused) {
                                 conversationViewModel.isTextFieldFocused = isTextFieldFocused
                             }
-                        Spacer()
-                        Divider()
-                        MessageInput(inputMessage: $conversationViewModel.inputMessage,
-                                     isTextFieldFocused: $isTextFieldFocused,
-                                     isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
-                            Task {
-                                conversationViewModel.sendTapped
-                            }
+                    }
+                    BottomBarView(inputMessage: $conversationViewModel.inputMessage, isTextFieldFocused: $isTextFieldFocused, isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
+                        Task {
+                            conversationViewModel.sendTapped
                         }
                     }
-                    .navigationBarTitle("Own GPT")
+                    .navigationBarTitle("Own GPT", displayMode: .inline)
+                    .toolbar(content: {
+                        HeaderView()
+                    })
                 }
             }
             
@@ -46,6 +45,10 @@ struct ConversationView: View {
     }
 }
 
+#Preview {
+    ConversationView (conversationViewModel: ConversationViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: "h"), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController(inMemory: true))))))
+    
+}
 
 //#Preview {
 //    ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: .init(apiKey: Constants.apiKey), retryCallback: { ChatRow in

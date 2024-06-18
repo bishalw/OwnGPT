@@ -16,11 +16,11 @@ protocol PersistenceService {
     func save()
 }
 
-
 class ConversationPersistenceService: PersistenceService {
     
     private let manager: PersistenceController
     private let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+    
     init(manager: PersistenceController) {
         self.manager = manager
     }
@@ -36,8 +36,8 @@ class ConversationPersistenceService: PersistenceService {
     func add(_ item: Conversation) {
         let context = self.manager.context
        
-        _ =  item.toConversationEntity(context: context)
-        self.manager.saveContext()
+        let _ =  item.toConversationEntity(context: context)
+        save()
     }
     
     func get() async throws -> [Conversation] {

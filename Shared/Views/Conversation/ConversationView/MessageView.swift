@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 
-struct MessageRow: View {
+struct MessageView: View {
     @Environment(\.colorScheme) private var colorScheme
     let message: Message
 
@@ -18,12 +18,12 @@ struct MessageRow: View {
             Divider()
             switch message.type {
             case .user:
-                MessageRowItem(text: message.content.text, name: "You", image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .notLight)
+                MessageContentView(text: message.content.text, name: "You", image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .notLight)
             case .system:
                 if case let .error(error) = message.content {
                     ErrorView(error: error.localizedDescription)
                 } else {
-                    MessageRowItem(text: message.content.text,name: "OwnGPT", image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .notLight)
+                    MessageContentView(text: message.content.text,name: "OwnGPT", image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .notLight)
                 }            }
             if case.system = message.type, message.isStreaming {
                 DotLoadingView()
@@ -31,7 +31,7 @@ struct MessageRow: View {
         }
     }
     @ViewBuilder
-    func MessageRowItem(text: String, name: String,  image: String, bgColor: Color) -> some View {
+    func MessageContentView(text: String, name: String,  image: String, bgColor: Color) -> some View {
         HStack(alignment: .top, spacing: 24) {
             IconImage(name: image)
             VStack(alignment: .leading) {

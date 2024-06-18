@@ -10,34 +10,30 @@ import UIKit
 
 
 struct DotLoadingView: View {
-    
-    @State private var scale1: CGFloat = 1.0
-    @State private var scale2: CGFloat = 1.0
-    @State private var scale3: CGFloat = 1.0
+    @State private var scales: [CGFloat] = [1, 1, 1]
 
     var body: some View {
-        Group {
-            HStack {
-                
-                DotView(scale: $scale1)
-                
-                DotView(scale: $scale2)
-                
-                DotView(scale: $scale3)
-                
+        HStack(spacing: 8) {
+            ForEach(0..<3) { index in
+                DotView()
+                    .scaleEffect(scales[index])
+                    .animation(
+                        .easeInOut(duration: 0.5)
+                            .repeatForever(autoreverses: true)
+                            .delay(0.2 * Double(index)),
+                        value: scales[index] // Animate based on individual scale
+                    )
             }
         }
         .onAppear {
-            withAnimation(Animation.easeOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                scale1 = 0.5
-            }
-            
-            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true).delay(0.2)) {
-                scale2 = 0.5
-            }
-            
-            withAnimation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true).delay(0.4)) {
-                scale3 = 0.5
+            for index in 0..<3 {
+                withAnimation(
+                    .easeInOut(duration: 0.5)
+                        .repeatForever(autoreverses: true)
+                        .delay(0.2 * Double(index))
+                ) {
+                    scales[index] = 0.5 //  target scale for each dot
+                }
             }
         }
     }

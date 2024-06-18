@@ -11,7 +11,6 @@ struct ChatGPTServiceRequest: HTTPRequest {
     var scheme: String {
         return "https"
     }
-    
     var host: String = "api.openai.com"
     
     var path: String = "/v1/chat/completions"

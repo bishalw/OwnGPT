@@ -5,29 +5,29 @@
 //  Created by Bishalw on 7/18/23.
 
 import Foundation
-import SwiftUI
 import Combine
+
 @MainActor
-final class ConversationViewModel: ObservableObject  {
+final class ConversationViewModel: ObservableObject {
     
     @Published var isStreaming: Bool = false
     @Published var isSendButtonDisabled: Bool = true
-    @Published var isTextFieldFocused = false
+    @Published var isTextFieldFocused: Bool = false
     @Published var messages: [Message] = []
     
     @Published var inputMessage: String = "" {
         didSet {
-            
             isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
+    
     private var cancellables = Set<AnyCancellable>()
     private var store: ConversationStore
+    
     init(store: ConversationStore) {
         self.store = store
         setupBindings()
     }
-    
     
     private func setupBindings(){
         store.$conversation
@@ -36,18 +36,18 @@ final class ConversationViewModel: ObservableObject  {
             .store(in: &cancellables)
     }
     
-    func sendTapped() async  {
+    func sendTapped()  {
         isTextFieldFocused = true
         isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         inputMessage = ""
-        await store.sendMessage(string:text)
+         store.sendMessage(string:text)
     }
     
-    func retry(message: Message) async  {
+    func retry(message: Message)   {
         if case let .message(string: text) = message.content {
-        await store.sendMessage(string: text)
+         store.sendMessage(string: text)
         }
     }
     func removeMessage(at index: Int) {
@@ -58,7 +58,7 @@ final class ConversationViewModel: ObservableObject  {
         
     }
     
-    func send(text: String) async {
-         await store.sendMessage(string: text)
+    func send(text: String)  {
+          store.sendMessage(string: text)
     }
 }

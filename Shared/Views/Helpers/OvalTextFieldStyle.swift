@@ -19,3 +19,10 @@ struct OvalTextFieldStyle: TextFieldStyle {
             .shadow(color: .gray, radius: 10)
         }
 }
+
+extension TextField {
+    func ovalTextFieldStyle() -> some View {
+        self.textFieldStyle(OvalTextFieldStyle())
+    }
+}
+

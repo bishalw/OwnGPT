@@ -6,7 +6,6 @@
 
 import Foundation
 
-
 protocol ChatGPTAPIService {
     func sendMessageStream(text: String, history: [OpenAiModels.Message]) async throws -> AsyncThrowingStream<String, Error> 
 }
@@ -97,19 +96,6 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
         print("Request Body: \(String(data: requestBody, encoding: .utf8) ?? "")")
         return requestBody
     }
-//    private func jsonBody(text: String, history: [OpenAiModels.Message], stream: Bool = true) throws -> Data {
-//            var messages = history
-//            messages.append(Message) // Add the system message for context
-//            messages.append(OpenAiModels.Message(role: "user", content: text)) // Add the user message
-//            
-//            let request = OpenAiModels.Request(model: model, messages: messages, temperature: temperature, stream: stream)
-//        let jsonData = try JSONEncoder().encode(request)
-//        if let jsonString = String(data: jsonData, encoding: .utf8) {
-//               print("JSON Payload: \(jsonString)")  // For debugging purposes
-//           }
-//            return try JSONEncoder().encode(request)
-//        }
-  
 }
 extension String: Error {}
 
