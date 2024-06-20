@@ -14,39 +14,61 @@ public protocol NetworkStreamingService {
 }
 
 public class NetworkServiceImpl: NetworkStreamingService {
+    
     private let urlSession: URLSession
     
     public init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
-
-    public func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String? = nil) async throws -> AsyncThrowingStream<T, Error> {
-       
+    
+    public func makeStreamingRequest<T: Decodable>(
+        request: any HTTPRequest,
+        responseModel: T.Type,
+        dataPrefix: String? = nil
+    ) async throws -> AsyncThrowingStream<T, Error> {
+        
         let url = try createURL(from: request)
         let urlRequest = createURLRequest(url: url, method: request.method, headers: request.headers, body: request.body)
-
-        let (bytes, response) = try await self.urlSession.bytes(for: urlRequest)
         
+        let (bytes, response) = try await self.urlSession.bytes(for: urlRequest)
+        try await validateHTTPResponse(response, urlRequest: urlRequest, bytes: bytes)
+        
+        return parseResponse(bytes: bytes, dataPrefix: dataPrefix, responseModel: responseModel)
+    }
+    
+    private func validateHTTPResponse(
+        _ response: URLResponse,
+        urlRequest: URLRequest,
+        bytes: URLSession.AsyncBytes
+    ) async throws {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidResponse(url: urlRequest)
         }
 
         if !(200...299).contains(httpResponse.statusCode) {
-            var responseBody = ""
-            do {
-                for try await line in bytes.lines {
-                    responseBody.append(line)
-                }
-            } catch {
-                throw error
-            }
-            throw NetworkError.badResponse(url: url, statusCode: httpResponse.statusCode, body: responseBody)
+            let responseBody = try await extractResponseBody(from: bytes)
+            throw NetworkError.badResponse(url: urlRequest.url!, statusCode: httpResponse.statusCode, body: responseBody)
         }
+    }
 
-        return AsyncThrowingStream<T, Error> { continuation in
+    private func extractResponseBody(from bytes: URLSession.AsyncBytes) async throws -> String {
+        var responseBody = ""
+        for try await line in bytes.lines {
+            responseBody.append(line)
+        }
+        return responseBody
+    }
+    private func parseResponse<T: Decodable>(
+        bytes: URLSession.AsyncBytes,
+        dataPrefix: String?,
+        responseModel: T.Type
+    ) -> AsyncThrowingStream<T, Error> {
+        
+        AsyncThrowingStream { continuation in
             Task(priority: .userInitiated) {
                 do {
                     for try await line in bytes.lines {
+                        print(line)
                         if line.hasPrefix(dataPrefix ?? ""),
                            let data = line.dropFirst(dataPrefix?.count ?? 0).data(using: .utf8) {
                             let decodedObject = try JSONDecoder().decode(T.self, from: data)
@@ -60,6 +82,7 @@ public class NetworkServiceImpl: NetworkStreamingService {
             }
         }
     }
+
 
     private func createURLRequest(url: URL, method: HTTPRequestType, headers: [String: String]?, body: Data?) -> URLRequest {
         var urlRequest = URLRequest(url: url)

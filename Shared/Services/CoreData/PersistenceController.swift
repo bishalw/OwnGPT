@@ -18,6 +18,9 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        print("Looading model name: \(containerName)")
+        let containerURL = container.persistentStoreDescriptions.first?.url
+        print(containerURL ?? "not found")
         loadPersistentStore()
     }
     private func loadPersistentStore() {
@@ -27,11 +30,11 @@ struct PersistenceController {
             }
         }
     }
-    //main queue context
+    
     var context: NSManagedObjectContext {
         return container.viewContext
     }
-    // background context
+    
     var backgroundContext: NSManagedObjectContext {
         let backgroundContext = container.newBackgroundContext()
         backgroundContext.automaticallyMergesChangesFromParent = true

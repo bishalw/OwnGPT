@@ -56,7 +56,7 @@ struct MessageView: View {
                 .frame(width: 25, height: 25)
     }
     @ViewBuilder
-    func ErrorView(error: Error) -> some View {
+    func ErrorView(error: String) -> some View {
         VStack(alignment: .leading) {
             Text("Error: \(String(describing: error))")
                 .foregroundColor(.red)

@@ -86,11 +86,69 @@ struct ExpandedOptionsView: View {
     }
 }
 
+struct DynamicTextField: UIViewRepresentable {
+    @Binding var text: String
+    var placeholder: String
+    var isMultiline: Bool
+    @Binding var height: CGFloat
+    var maxWidth: CGFloat
+    var maxCharacterCount: Int
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.text = text
+        textView.font = .systemFont(ofSize: 16)
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        textView.layer.cornerRadius = 8
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.isEditable = true
+        textView.isScrollEnabled = false
+        textView.textContainer.lineBreakMode = .byWordWrapping // Enable word wrapping
+        textView.textContainer.maximumNumberOfLines = isMultiline ? 0 : 1 // Limit to one line if not multiline
+        return textView
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        // ... (rest of your existing code) ...
+
+        if uiView.text.count > maxCharacterCount {
+            // Find the last space before exceeding the limit
+            if let lastSpaceIndex = uiView.text.prefix(maxCharacterCount).lastIndex(of: " ") {
+                let newText = uiView.text.replacingCharacters(
+                    in: lastSpaceIndex..<lastSpaceIndex, // Use ..< for an empty range
+                    with: "\n" // Insert a newline
+                )
+                uiView.text = newText
+            } else {
+                // If no space, insert newline at the limit
+                let newText = uiView.text.prefix(maxCharacterCount) + "\n" + uiView.text.dropFirst(maxCharacterCount)
+                uiView.text = String(newText)
+            }
+        }
+    }
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UITextViewDelegate {
+        var parent: DynamicTextField
+
+        init(_ parent: DynamicTextField) {
+            self.parent = parent
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            parent.text = textView.text
+        }
+    }
+}
 struct MessageInput: View {
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
     var isSendButtonDisabled: Bool
     @Binding var showExpandedView: Bool
+    @State private var height: CGFloat = 40
     
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
@@ -101,6 +159,11 @@ struct MessageInput: View {
                 .onChange(of: isTextFieldFocused) { oldValue, newValue in
                     showExpandedView = !newValue  // Toggle showExpandedView based on focus
                 }
+//            DynamicTextField(text: $inputMessage, placeholder: "Enter some multiline text", isMultiline: true, height: $height, maxWidth: 30, maxCharacterCount: <#Int#>)
+//                           .frame(width: 250, height: 40)
+                            
+                           
+        
             #endif
         }
         .padding()

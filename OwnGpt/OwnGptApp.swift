@@ -10,7 +10,8 @@ import SwiftUI
 @main
 struct OwnGptApp: App {
     
-    @StateObject var core: Core = Core()
+//    @StateObject var core: Core = Core()
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {

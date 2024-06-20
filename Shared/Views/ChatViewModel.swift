@@ -11,6 +11,7 @@ import Combine
 
 
 class ChatViewModel: ObservableObject {
+    
     @Published var messages: [Message] = []
     var store: ConversationStore
     @Published var inputMessage: String = ""
@@ -28,7 +29,6 @@ class ChatViewModel: ObservableObject {
             .store(in: &cancellables)
         
     }
-
     @MainActor
     func sendMessage() {
         let trimmedText = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)

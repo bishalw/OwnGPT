@@ -10,8 +10,7 @@ import Combine
 @MainActor
 final class ConversationViewModel: ObservableObject {
     
-    @Published var isStreaming: Bool = false
-    @Published var isSendButtonDisabled: Bool = true
+    @Published var isSendButtonDisabled: Bool = false
     @Published var messages: [Message] = []
     
     @Published var inputMessage: String = "" {
@@ -26,17 +25,22 @@ final class ConversationViewModel: ObservableObject {
     init(store: ConversationStore) {
         self.store = store
         setupBindings()
+        
     }
     
     private func setupBindings(){
         store.$conversation
             .map {$0.messages}
+//            .map { messages in
+//                print("Is streaming: \(messages.last?.isStreaming)")
+//                return messages
+//            }
+            .receive(on: RunLoop.main)
             .assign(to: \.messages, on: self)
             .store(in: &cancellables)
     }
     
     func sendTapped()  {
-    
         isSendButtonDisabled = true
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }

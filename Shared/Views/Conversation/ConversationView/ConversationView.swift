@@ -9,26 +9,34 @@ import SwiftUI
 
 
 struct ConversationView: View {
+    
     @Environment(\.colorScheme) var colorScheme
     @StateObject var conversationViewModel: ConversationViewModel
     @FocusState private var isTextFieldFocused: Bool
+    
     var body: some View {
         ScrollViewReader { proxy in
             NavigationView {
                 VStack {
                     ScrollView {
                         ConversationList(messages: conversationViewModel.messages)
-                            .onChange(of: conversationViewModel.messages.count) { _, _ in
+                            .onChange(of: conversationViewModel.messages.count) { 
+                                _, _ in
                                 scrollToBottom(proxy)
                             }
                     }
-                    BottomBarView(inputMessage: $conversationViewModel.inputMessage, isTextFieldFocused: $isTextFieldFocused, isSendButtonDisabled: conversationViewModel.isSendButtonDisabled) {
+                    BottomBarView(
+                        inputMessage: $conversationViewModel.inputMessage,
+                        isTextFieldFocused: $isTextFieldFocused,
+                        isSendButtonDisabled: conversationViewModel.isSendButtonDisabled
+                    ) {
                         conversationViewModel.sendTapped()
                     }
                     .navigationBarTitle("Own GPT", displayMode: .inline)
                     .toolbar(content: {
                         HeaderView()
                     })
+                    
                 }
             }
             
