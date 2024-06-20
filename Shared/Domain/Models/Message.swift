@@ -68,13 +68,13 @@ extension Message {
         switch openAiMessage.role {
         case "user":
             self.type = .user
-        case "system", "assistant": // Assuming 'system' 
+        case "system":
             self.type = .system
         default:
-            self.type = .system // Or handle default case appropriately
+            self.type = .system
         }
         self.content = .message(string: openAiMessage.content)
-        self.isStreaming = true // Set to true if applicable
+        self.isStreaming = true 
     }
     
     
