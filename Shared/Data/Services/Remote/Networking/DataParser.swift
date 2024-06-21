@@ -11,7 +11,6 @@ public protocol DataParser {
     func decode<T: Decodable>(_type: T.Type, from data: Data) throws -> T
 }
 
-
 public struct DataParserImpl: DataParser {
     let jsonDecoder: JSONDecoder
     

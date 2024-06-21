@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 public protocol HTTPRequest {
     var scheme: String { get }
     var host: String { get }

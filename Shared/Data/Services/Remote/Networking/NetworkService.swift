@@ -10,7 +10,7 @@
 import Foundation
 
 public protocol NetworkStreamingService {
-    func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String?) async throws -> AsyncThrowingStream<T,Error>
+    func makeStreamingRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type, dataPrefix: String?, doneIndicator: String?) async throws -> AsyncThrowingStream<T,Error>
 }
 
 public class NetworkServiceImpl: NetworkStreamingService {
@@ -24,7 +24,8 @@ public class NetworkServiceImpl: NetworkStreamingService {
     public func makeStreamingRequest<T: Decodable>(
         request: any HTTPRequest,
         responseModel: T.Type,
-        dataPrefix: String? = nil
+        dataPrefix: String? = nil,
+        doneIndicator: String? = nil
     ) async throws -> AsyncThrowingStream<T, Error> {
         
         let url = try createURL(from: request)
@@ -33,7 +34,7 @@ public class NetworkServiceImpl: NetworkStreamingService {
         let (bytes, response) = try await self.urlSession.bytes(for: urlRequest)
         try await validateHTTPResponse(response, urlRequest: urlRequest, bytes: bytes)
         
-        return parseResponse(bytes: bytes, dataPrefix: dataPrefix, responseModel: responseModel)
+        return parseResponse(bytes: bytes, dataPrefix: dataPrefix, responseModel: responseModel, doneIndicator: doneIndicator)
     }
     
     private func validateHTTPResponse(
@@ -61,7 +62,8 @@ public class NetworkServiceImpl: NetworkStreamingService {
     private func parseResponse<T: Decodable>(
         bytes: URLSession.AsyncBytes,
         dataPrefix: String?,
-        responseModel: T.Type
+        responseModel: T.Type,
+        doneIndicator: String?
     ) -> AsyncThrowingStream<T, Error> {
         
         AsyncThrowingStream { continuation in
@@ -69,10 +71,20 @@ public class NetworkServiceImpl: NetworkStreamingService {
                 do {
                     for try await line in bytes.lines {
                         print(line)
+                        
+                        if let doneIndicator = doneIndicator,
+                           line.trimmingCharacters(in: .whitespacesAndNewlines) == doneIndicator {
+                            continue
+                        }
+                    
                         if line.hasPrefix(dataPrefix ?? ""),
                            let data = line.dropFirst(dataPrefix?.count ?? 0).data(using: .utf8) {
-                            let decodedObject = try JSONDecoder().decode(T.self, from: data)
-                            continuation.yield(decodedObject)
+                            do {
+                                let decodedObject = try JSONDecoder().decode(T.self, from: data)
+                                continuation.yield(decodedObject)
+                            } catch {
+                                print("Skipping invalid JSON line: \(line)")
+                            }
                         }
                     }
                     continuation.finish()
@@ -113,3 +125,6 @@ public enum NetworkError: Error {
     case badResponse(url: URL?, statusCode: Int, body: String)
     case other(url: URL?, underlyingError: Error)
 }
+
+
+

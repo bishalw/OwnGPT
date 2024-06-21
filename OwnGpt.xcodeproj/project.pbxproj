@@ -16,7 +16,8 @@
 		5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* MessageInput.swift */; };
 		5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817C0932A90474B005EEDC9 /* PersistenceController.swift */; };
 		581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */; };
-		58366E1F2A723A0F00052735 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58366E1E2A723A0F00052735 /* ConversationList.swift */; };
+		581B65812C24C711008E76DD /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65802C24C711008E76DD /* ConversationList.swift */; };
+		581B65832C24C76A008E76DD /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65822C24C76A008E76DD /* SideBarView.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
@@ -126,7 +127,8 @@
 		5811FDFC2A72779D003AB0C0 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
 		5817C0932A90474B005EEDC9 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConversationModel.xcdatamodel; sourceTree = "<group>"; };
-		58366E1E2A723A0F00052735 /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConversationList.swift; path = Shared/Views/Conversation/ConversationView/ConversationList.swift; sourceTree = SOURCE_ROOT; };
+		581B65802C24C711008E76DD /* ConversationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
+		581B65822C24C76A008E76DD /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				584231482B1AC8E4009F1C46 /* Views */,
+				581B65822C24C76A008E76DD /* SideBarView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -550,7 +553,7 @@
 		5898F0212B4D126C00CA8467 /* Helper+Conversation */ = {
 			isa = PBXGroup;
 			children = (
-				58366E1E2A723A0F00052735 /* ConversationList.swift */,
+				581B65802C24C711008E76DD /* ConversationList.swift */,
 				58CFE4F62A7233C300A43822 /* MessageView.swift */,
 				5811FDFC2A72779D003AB0C0 /* MessageInput.swift */,
 			);
@@ -794,7 +797,9 @@
 				585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */,
 				589077C82B4A3BB8009C9AEB /* DataParser.swift in Sources */,
+				581B65832C24C76A008E76DD /* SideBarView.swift in Sources */,
 				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
+				581B65812C24C711008E76DD /* ConversationList.swift in Sources */,
 				58464FFC2B23463C00C1BA7F /* ChatView.swift in Sources */,
 				58464FFF2B23464800C1BA7F /* ChatViewModel.swift in Sources */,
 				5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */,
@@ -816,7 +821,6 @@
 				589077C22B4A36E9009C9AEB /* HTTPRequestType.swift in Sources */,
 				58C61FAD2B2A907D003DF413 /* Router.swift in Sources */,
 				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
-				58366E1F2A723A0F00052735 /* ConversationList.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,

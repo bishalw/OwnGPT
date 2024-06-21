@@ -40,7 +40,7 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
         var serviceRequest = ChatGPTServiceRequest(apiKey: self.apiKey)
         serviceRequest.body = try jsonBody(text: text, history: history)
 
-        let responseStream = try await networkService.makeStreamingRequest(request: serviceRequest, responseModel: OpenAiModels.StreamCompletionResponse.self, dataPrefix: "data: ")
+        let responseStream = try await networkService.makeStreamingRequest(request: serviceRequest, responseModel: OpenAiModels.StreamCompletionResponse.self, dataPrefix: "data: ", doneIndicator: "[DONE]")
         return parseStream(responseStream)
     }
 

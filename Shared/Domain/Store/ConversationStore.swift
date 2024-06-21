@@ -44,13 +44,14 @@ class ConversationStore: ObservableObject {
     //MARK: Private
     private func setupSubscriptions() {
         repo.didUpdateRepo
-            .sink { [weak self] update in
+            .compactMap {[weak self] update -> Conversation? in
                 guard case .updatedConversation(let updatedConversation) = update,
-                      updatedConversation.id == self?.conversation.id else { return }
-                // Update the conversation on the main thread
-                DispatchQueue.main.async {
-                    self?.conversation = updatedConversation
-                }
+                      updatedConversation.id == self?.conversation.id else { return nil }
+                return updatedConversation
+            }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] update in
+                self?.conversation = update
             }
             .store(in: &subscriptions)
     }
