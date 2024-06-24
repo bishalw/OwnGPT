@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct ChatGPTServiceRequest: HTTPRequest {
     
     var scheme: String {

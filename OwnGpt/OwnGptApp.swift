@@ -15,7 +15,7 @@ struct OwnGptApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ConversationView(conversationViewModel: ConversationViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: Constants.apiKey), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController())))))
+               MainView()
             }
         }
     }

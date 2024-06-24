@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol HTTPRequest {
+    
     var scheme: String { get }
     var host: String { get }
     var path: String { get }
@@ -15,4 +16,5 @@ public protocol HTTPRequest {
     var headers: [String: String]? { get }
     var body: Data? { get }
     var parameters: [String: String]? { get }
+    
 }
