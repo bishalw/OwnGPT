@@ -2,7 +2,6 @@
 //  NetworkServiceImpl.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 6/22/24.
 //
 
 import Foundation
@@ -59,8 +58,8 @@ public class NetworkServiceImpl: NetworkStreamingService, NetworkService {
                                     continuation.yield(transformedObject)
                                 }
                             } catch {
-                                print("Error decoding JSON: \(error)")
-                                print("Problematic JSON string: \(jsonString)")
+                                Log.shared.info("Error decoding JSON: \(error)")
+                                Log.shared.info("Problematic JSON string: \(jsonString)")
                             }
                         }
                     }

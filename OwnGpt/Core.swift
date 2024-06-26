@@ -2,15 +2,19 @@
 //  Core.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 12/12/23.
 //
 
 import Foundation
-
+import os
 class Core: ObservableObject {
     
-    private lazy var persistanceController = PersistenceController()
-    private lazy var conversationPersistenceService = ConversationPersistenceService(manager: persistanceController)
-    private var conversationRepository = ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))
-    
+    private (set) lazy var persistanceController = PersistenceController()
+    private (set) lazy var conversationPersistenceService = ConversationPersistenceService(manager: persistanceController)
+    private (set) lazy var networkService = NetworkServiceImpl()
+    private (set) lazy var chatgptApiService = ChatGPTAPIServiceImpl(networkService: networkService, apiKey: Constants.apiKey)
+    private (set) lazy var conversationRepository = ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: persistanceController))
+    private (set) lazy var conversationStore = ConversationStore(chatGPTAPI: chatgptApiService, repo: conversationRepository)
+    private (set) lazy var conversationsStore: ConversationsStore = {
+        return ConversationsStore(repo: conversationRepository)
+    }()
 }

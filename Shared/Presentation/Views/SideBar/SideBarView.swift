@@ -10,44 +10,35 @@ import SwiftUI
 struct SidebarView: View {
     @State private var searchText: String = ""
     @State private var isSearching: Bool = false
-    
+    @EnvironmentObject var core: Core
+
     let menuItems = [
-        MenuItem(icon: "house", text: "Home"),
         MenuItem(icon: "person", text: "Profile"),
         MenuItem(icon: "gear", text: "Settings"),
-        MenuItem(icon: "info.circle", text: "About")
+        MenuItem(icon: "info.circle", text: "About"),
+        MenuItem(icon: "message", text: "Conversations") // Added Conversations menu item
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            HStack{
-                SearchableView(searchText: $searchText, isSearching: $isSearching, placeholder: "Search")
-//                Button("Cancel") {
-//                    
-//                }
-            }
-            
+        NavigationView {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    SearchableView(searchText: $searchText, isSearching: $isSearching, placeholder: "Search")
+                }
                 .padding(.top, -10)
-                List {
-                    ForEach(filteredMenuItems) { item in
-                        MenuItemView(icon: item.icon, text: item.text)
+                Button("Delete All") {
+                    Task{
+                        try await core.conversationPersistenceService.deleteAll()
                     }
                 }
-                .listStyle(PlainListStyle())
-                .accessibilityLabel("Search results")
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.white)
-    }
-    
-    var filteredMenuItems: [MenuItem] {
-        if searchText.isEmpty {
-            return menuItems
-        } else {
-            return menuItems.filter { $0.text.localizedCaseInsensitiveContains(searchText) }
+                ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsStore: core.conversationsStore))
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
         }
     }
+
 }
 struct SearchableView: View {
     @Binding var searchText: String
@@ -105,6 +96,7 @@ struct MenuItemView: View {
         }
     }
 }
+
 struct HamburgerButton: View {
     @Binding var showMenu: Bool
     @Binding var offset: CGFloat
@@ -133,6 +125,7 @@ struct HamburgerButton: View {
         }
     }
 }
+
 //#Preview {
 //    SidebarView()
 //}

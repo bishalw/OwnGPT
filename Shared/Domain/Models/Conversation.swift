@@ -17,14 +17,25 @@ struct Conversation: Identifiable {
        self.messages = messages
     }
 }
-
+extension Conversation {
+    var lastMessagePreview: String {
+        guard let lastMessage = messages.last?.content.text else {
+            return "New Conversation"
+        }
+        if lastMessage.count <= 9 {
+            return lastMessage
+        } else {
+            return "..." + String(lastMessage.suffix(9))
+        }
+    }
+}
 extension Conversation {
     func toConversationEntity(context: NSManagedObjectContext) -> ConversationEntity {
         let conversationEntity: ConversationEntity
         do {
             conversationEntity = try fetchConversationEntity(context: context) ?? createConversationEntity(context: context)
         } catch {
-            print("Error fetching ConversationEntity: \(error)")
+            Log.shared.error("Error fetching ConversationEntity: \(error)")
             conversationEntity = createConversationEntity(context: context)
         }
         updateConversationEntity(conversationEntity, context: context)
@@ -44,15 +55,21 @@ extension Conversation {
     }
 
     private func updateConversationEntity(_ conversationEntity: ConversationEntity, context: NSManagedObjectContext) {
-        let messageEntities = self.messages.map { $0.toMessageEntity(context: context) }
-        if let oldMessages = conversationEntity.messages {
-            conversationEntity.removeFromMessages(oldMessages)
+        // Remove old messages
+        if let oldMessages = conversationEntity.messages as? Set<MessageEntity> {
+            oldMessages.forEach { oldMessage in
+                context.delete(oldMessage)
+            }
         }
-        let newMessageSet = NSSet(array: messageEntities)
-        conversationEntity.addToMessages(newMessageSet)
+        
+        // Create new message entities
+        let messageEntities = self.messages.map { message -> MessageEntity in
+            let entity = message.toMessageEntity(context: context)
+            entity.conversation = conversationEntity
+            return entity
+        }
+        
+        // Set new messages
+        conversationEntity.messages = NSSet(array: messageEntities)
     }
-
-
 }
-
-

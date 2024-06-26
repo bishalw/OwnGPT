@@ -31,7 +31,7 @@ class ConversationsStore {
                     let loadedConversations = try await self?.repo.get()
                     self?.conversations = loadedConversations ?? []
                 } catch {
-                    print("Failed to load conversations: \(error)")
+                    Log.shared.info("Failed to load conversations: \(error)")
                 }
             }
         }

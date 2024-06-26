@@ -2,7 +2,6 @@
 //  MessageEntity+CoreDataProperties.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 8/29/23.
 //
 //
 
@@ -22,26 +21,37 @@ extension MessageEntity {
     @NSManaged public var conversation: ConversationEntity?
     
 }
-extension MessageEntity : Identifiable {
+extension MessageEntity {
+    // ... existing code ...
+
     func toDomainModel() -> Message? {
-        guard let id = self.id,
-              let typeString = self.type,
-              let messageType = Message.MessageType(rawValue: typeString),
-              let contentType = self.toDomainContentType() else {
-            return nil // Handle the error appropriately
+        guard let id = self.id else {
+            Log.shared.error("MessageEntity conversion failed: missing id")
+            return nil
         }
-        // Use `toDomainContentType()` to get the content
-        let message = Message(id: id, type: messageType, content: contentType, isStreaming: true)
+        guard let typeString = self.type else {
+            Log.shared.error("MessageEntity conversion failed: missing type")
+            return nil
+        }
+        guard let messageType = Message.MessageType(rawValue: typeString) else {
+            Log.shared.error("MessageEntity conversion failed: invalid type \(typeString)")
+            return nil
+        }
+        guard let content = self.toDomainContent() else {
+            Log.shared.error("MessageEntity conversion failed: missing content")
+            return nil
+        }
+        
+        let message = Message(id: id, type: messageType, content: content, isStreaming: false)
         return message
     }
     
-    func toDomainContentType() -> Message.ContentType? {
-        if let messageString = self.contentString {
-            return .message(string: messageString)
+    private func toDomainContent() -> Message.ContentType? {
+        guard let contentString = self.contentString else {
+            Log.shared.error("MessageEntity conversion failed: missing contentString")
+            return nil
         }
-        return nil
+        
+        return .message(string: contentString)
     }
- 
 }
-
-

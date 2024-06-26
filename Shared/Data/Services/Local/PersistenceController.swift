@@ -2,11 +2,11 @@
 //  ChatDataCore.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 8/18/23.
 //
 
 import Foundation
 import CoreData
+
 
 struct PersistenceController {
     
@@ -18,41 +18,56 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        print("Looading model name: \(containerName)")
-        let containerURL = container.persistentStoreDescriptions.first?.url
-        print(containerURL ?? "not found")
         loadPersistentStore()
     }
+    
     private func loadPersistentStore() {
         container.loadPersistentStores { (_, error) in
             if let error = error {
-                print("Error Loading Core Data \(error)")
+                fatalError("Error Loading Core Data \(error)")
             }
         }
     }
     
-    var context: NSManagedObjectContext {
+    var viewContext: NSManagedObjectContext {
         return container.viewContext
     }
     
+    // Computed property for background context
     var backgroundContext: NSManagedObjectContext {
-        let backgroundContext = container.newBackgroundContext()
-        backgroundContext.automaticallyMergesChangesFromParent = true
-        return backgroundContext
+        let context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
+        return context
     }
     
-    func saveContext() {
-        guard context.hasChanges else { return }
+    func saveChanges() async {
+        guard viewContext.hasChanges else { return }
+        
+        let context = backgroundContext
 
-        context.perform {
+        do {
+            try await context.performAsync { context in
+                try context.save()
+                self.mergeChangesFromBackgroundContext(context)
+                Log.shared.info("BackgroundContext saved successfully.")
+            }
+        } catch {
+            Log.shared.error("Error saving BackgroundContext: \(error)")
+            context.rollback()
+        }
+    }
+    
+    private func mergeChangesFromBackgroundContext(_ context: NSManagedObjectContext) {
+        viewContext.perform {
             do {
-                try self.context.save()
-                print("Context saved successfully.")
+                if self.viewContext.hasChanges {
+                    try self.viewContext.save()
+                    Log.shared.info("ViewContext merged and saved successfully.")
+                }
             } catch {
-                print("Error saving context: \(error)")
-                self.context.rollback() // Rollback changes on error
+                Log.shared.info("Error merging changes to ViewContext: \(error)")
+                
             }
         }
     }
 }
-

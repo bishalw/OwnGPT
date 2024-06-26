@@ -10,51 +10,35 @@ import SwiftUI
 struct ConversationsView: View {
     @StateObject var conversationsViewModel : ConversationsViewModel
     @EnvironmentObject var core: Core
+    
     var body: some View {
         
         NavigationStack {
             List {
                 ForEach(conversationsViewModel.conversations, id: \.id) { chat in
-                    // -MARK: - Navigate to Conversation
-                    // NavigationLink(destination: chatDetailView(for: chat)) {
-                    ConversationTitle(conversation: chat)
-                    //                }
+//
+                    ConversationItemView(conversation: chat)
+                    
                 }.onDelete(perform: { indexSet in
-        
+                    
                 })
             }
-        }
-        .navigationTitle("Conversations")
-    }
-
-    @ViewBuilder func ConversationTitle(conversation: Conversation) -> some View {
-        if let lastMessage = conversation.messages.last {
-            Text(lastMessage.content.text)
-        } else {
-          Text("No messages")
+            .listStyle(PlainListStyle())
         }
     }
-}
-extension Conversation {
-    var lastMessageContent: String? {
-        return messages.last?.content.text
-    }
-}
+    
 
-
-struct Test: View {
+}
+struct ConversationItemView: View {
+    let conversation: Conversation
+    
     var body: some View {
-        NavigationView {
-            Text("Content View")
-                .toolbar {
-                    HeaderView()
-                }
+        HStack {
+            Image(systemName: "message")
+            Text(conversation.lastMessagePreview)
         }
     }
 }
 
-struct Test_Views: PreviewProvider {
-    static var previews: some View {
-        Test()
-    }
-}
+
+

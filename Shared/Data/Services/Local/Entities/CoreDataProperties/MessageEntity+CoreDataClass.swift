@@ -2,7 +2,6 @@
 //  MessageEntity+CoreDataClass.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 8/29/23.
 //
 //
 

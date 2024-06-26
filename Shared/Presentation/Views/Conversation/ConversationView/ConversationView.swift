@@ -14,15 +14,17 @@ struct MainView: View {
     @State private var showMenu: Bool = false
     @GestureState private var gestureOffset: CGFloat = 0
     @State private var isSearching: Bool = false
-    
+    @EnvironmentObject var core : Core
+
+
     private var sidebarWidth: CGFloat {
         UIScreen.main.bounds.width - 90
     }
-    
+  
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
-                ConversationView(conversationViewModel:ConversationViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: Constants.apiKey), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController()))))
+                ConversationView(conversationViewModel: ConversationViewModel(store: core.conversationStore, conversation: Conversation(id: UUID(), messages: []))
                 )
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .offset(x: offset)
@@ -59,9 +61,9 @@ struct MainView: View {
         // Calculate the new offset by adding the translation to the last stored offset
         let newOffset = translationX + lastStoredOffset
         
-        // Ensure the new offset is within bounds:
-        // - Not less than 0 (sidebar can't move past its starting position)
-        // - Not greater than sidebarWidth (sidebar can't open more than its width)
+        /* Makke sure  the new offset is within bounds:
+         - Not less than 0 (sidebar can't move past its starting position)
+         - Not greater than sidebarWidth (sidebar can't open more than its width)*/
         if newOffset <= sidebarWidth && newOffset >= 0 {
             offset = newOffset
         }
@@ -123,6 +125,12 @@ struct ConversationView: View {
                             }
                     }
                 }
+                Button("load first conversation") {
+                    conversationViewModel.loadFirstConversation()
+                            }
+                Button("Print Conversation Count") {
+                    conversationViewModel.printTotalConversations()
+                            }
                 BottomBarView(
                     inputMessage: $conversationViewModel.inputMessage,
                     isTextFieldFocused: $isTextFieldFocused,
@@ -133,7 +141,7 @@ struct ConversationView: View {
             }
             .navigationBarTitle("Own GPT", displayMode: .inline)
             .toolbar {
-                HeaderView()
+                HeaderView(viewModel: conversationViewModel)
             }
         }
     }
@@ -146,10 +154,12 @@ struct ConversationView: View {
 
 
 struct HeaderView: ToolbarContent {
+    @ObservedObject var viewModel: ConversationViewModel
+    
     var body: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Button(action: {
-                // Add your action here
+                viewModel.createNewConversation()
             }) {
                 Image(systemName: "square.and.pencil")
             }
@@ -157,10 +167,10 @@ struct HeaderView: ToolbarContent {
     }
 }
 
-#Preview {
-    ConversationView (conversationViewModel: ConversationViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: "h"), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController(inMemory: true))))))
-    
-}
+//#Preview {
+//    ConversationView (conversationViewModel: ConversationViewModel(store: ConversationStore(chatGPTAPI: ChatGPTAPIServiceImpl(networkService: NetworkServiceImpl(), apiKey: "h"), repo: ConversationRepositoryImpl(conversationPersistenceService: ConversationPersistenceService(manager: PersistenceController(inMemory: true))))))
+//    
+//}
 
 //#Preview {
 //    ChatScreenView(chatScreenViewModel: ChatScreenViewModel(api: .init(apiKey: Constants.apiKey), retryCallback: { ChatRow in

@@ -2,20 +2,22 @@
 //  OwnGptApp.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 6/22/23.
-//
+
 
 import SwiftUI
+import os
+
 
 @main
 struct OwnGptApp: App {
     
-//    @StateObject var core: Core = Core()
+    @StateObject var core: Core = Core()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-               MainView()
+                MainView().environmentObject(core)
+                    
             }
         }
     }

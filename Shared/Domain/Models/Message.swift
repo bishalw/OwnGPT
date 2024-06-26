@@ -78,15 +78,22 @@ extension Message {
     }
     
     
-    func toMessageEntity(context: NSManagedObjectContext) -> MessageEntity {
-            let messageEntity = MessageEntity(context: context)
-            messageEntity.id = self.id
-            messageEntity.type = self.type.rawValue
-            return messageEntity
-        }
-    
 }
 
+extension Message {
+    func toMessageEntity(context: NSManagedObjectContext) -> MessageEntity {
+        let messageEntity = MessageEntity(context: context)
+        messageEntity.id = self.id
+        messageEntity.type = self.type.rawValue
+        switch self.content {
+        case .message(let string):
+            messageEntity.contentString = string
+        case .error(let error):
+            messageEntity.contentString = error.localizedDescription
+        }
+        return messageEntity
+    }
+}
 
 
 

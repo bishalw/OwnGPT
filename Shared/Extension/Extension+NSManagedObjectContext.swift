@@ -21,4 +21,42 @@ extension NSManagedObjectContext {
             }
         }
     }
+    func performBatchDelete(_ request: NSBatchDeleteRequest) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.perform {
+                do {
+                    try self.execute(request)
+                    continuation.resume()
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    func performDelete(_ object: NSManagedObject) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.perform {
+                self.delete(object)
+                continuation.resume()
+            }
+        }
+    }
+    
+    func performAsync<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async throws -> T {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.perform {
+                do {
+                    let result = try block(self)
+                    if self.hasChanges {
+                        try self.save()
+                    }
+                    continuation.resume(returning: result)
+                } catch {
+                    self.rollback()
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
 }
+

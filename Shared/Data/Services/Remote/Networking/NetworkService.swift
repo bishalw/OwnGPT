@@ -4,11 +4,15 @@
 //  NetworkService.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 1/6/24.
+
 //
 
 import Foundation
 import os
+
+public protocol NetworkService {
+    func sendRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type) async throws -> T
+}
 
 public protocol NetworkStreamingService {
     
@@ -19,10 +23,6 @@ public protocol NetworkStreamingService {
         transform: @escaping (T) -> U?
     ) async throws -> AsyncThrowingStream<U, Error>
 }
-public protocol NetworkService {
-    func sendRequest<T: Decodable>(request: any HTTPRequest, responseModel: T.Type) async throws -> T
-}
-
 
 
 
