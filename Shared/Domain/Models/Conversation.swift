@@ -12,9 +12,9 @@ struct Conversation: Identifiable {
     var id: UUID
     var messages: [Message]
 
-    init(id: UUID, messages: [Message]) {
-       self.id = id
-       self.messages = messages
+    init(id: UUID = UUID(), messages: [Message] = []) {
+        self.id = id
+        self.messages = messages
     }
 }
 extension Conversation {
@@ -22,11 +22,10 @@ extension Conversation {
         guard let lastMessage = messages.last?.content.text else {
             return "New Conversation"
         }
-        if lastMessage.count <= 9 {
-            return lastMessage
-        } else {
-            return "..." + String(lastMessage.suffix(9))
+        if lastMessage.isEmpty {
+            return "Empty message"
         }
+        return String(lastMessage.prefix(26))
     }
 }
 extension Conversation {

@@ -18,12 +18,12 @@ struct MessageView: View {
             Divider()
             switch message.type {
             case .user:
-                MessageContentView(text: message.content.text, name: "You", image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .notLight)
+                MessageContentView(text: message.content.text, name: "You", image: message.defaultIconName, bgColor: colorScheme == .light ? .white : .black)
             case .system:
                 if case let .error(error) = message.content {
                     ErrorView(error: error.localizedDescription)
                 } else {
-                    MessageContentView(text: message.content.text,name: "OwnGPT", image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .notLight)
+                    MessageContentView(text: message.content.text,name: "OwnGPT", image: message.defaultIconName, bgColor: colorScheme == .light ? .gray.opacity(0.1) : .black)
                 }            }
             if case.system = message.type, message.isStreaming {
                 DotLoadingView()
@@ -53,7 +53,7 @@ struct MessageView: View {
     func IconImage(name: String) -> some View {
             Image(systemName: name)
                 .resizable()
-                .frame(width: 25, height: 25)
+                .frame(width: 20, height: 20)
     }
     @ViewBuilder
     func ErrorView(error: String) -> some View {

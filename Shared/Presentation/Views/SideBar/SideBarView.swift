@@ -9,122 +9,156 @@ import SwiftUI
 
 struct SidebarView: View {
     @State private var searchText: String = ""
-    @State private var isSearching: Bool = false
+    @Binding var isSearching: Bool
+    @FocusState private var isSearchFieldFocused: Bool
     @EnvironmentObject var core: Core
-
-    let menuItems = [
-        MenuItem(icon: "person", text: "Profile"),
-        MenuItem(icon: "gear", text: "Settings"),
-        MenuItem(icon: "info.circle", text: "About"),
-        MenuItem(icon: "message", text: "Conversations") // Added Conversations menu item
-    ]
+    @State var apiKey = Constants.apiKey
+    @State private var showModal: Bool = false
     
     var body: some View {
-        NavigationView {
+        GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    SearchableView(searchText: $searchText, isSearching: $isSearching, placeholder: "Search")
+                    SearchableView(searchText: $searchText, isSearching: $isSearching, placeholder: "Search", isSearchFieldFocused: $isSearchFieldFocused)
                 }
                 .padding(.top, -10)
-                Button("Delete All") {
-                    Task{
-                        try await core.conversationPersistenceService.deleteAll()
-                    }
-                }
+                
                 ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsStore: core.conversationsStore))
+                    
+
+                Spacer()
+                
+                HStack {
+                    SiderBarBottomView()
+                        .onTapGesture {
+                            showModal.toggle()
+                        }
+                        .sheet(isPresented: $showModal) {
+                            SettingsView(apiKey: $apiKey)
+                        }
+                }.padding(.bottom,16)
             }
+
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            
+            .frame(width: isSearching ? geometry.size.width : nil)
+        }
+        .onChange(of: isSearchFieldFocused) { _, newValue in
+            withAnimation(.easeInOut) {
+                isSearching = newValue
+            }
         }
     }
-
+    
 }
 struct SearchableView: View {
     @Binding var searchText: String
     @Binding var isSearching: Bool
     let placeholder: String
+    @FocusState.Binding var isSearchFieldFocused: Bool
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.gray)
+                .padding(.leading, 8)
                 .accessibility(hidden: true)
             
             TextField(placeholder, text: $searchText)
                 .textFieldStyle(PlainTextFieldStyle())
                 .accessibilityLabel("Search")
                 .accessibilityHint("Enter text to search menu items")
-                .onTapGesture {
-                    isSearching = true
-                }
-            
-            if !searchText.isEmpty {
-                Button(action: {
-                    searchText = ""
-                    isSearching = false
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
-                }
-                .accessibilityLabel("Clear search")
-            }
+                .focused($isSearchFieldFocused)
+           
         }
-        .padding(8)
+        .padding([.top, .bottom], 8)
         .background(Color(.systemGray6))
         .cornerRadius(10)
         .padding(.horizontal)
         .accessibilityElement(children: .contain)
         .accessibilityAddTraits(.isSearchField)
-    }
-}
-
-struct MenuItem: Identifiable {
-    let id = UUID()
-    let icon: String
-    let text: String
-}
-
-struct MenuItemView: View {
-    let icon: String
-    let text: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-            Text(text)
-        }
-    }
-}
-
-struct HamburgerButton: View {
-    @Binding var showMenu: Bool
-    @Binding var offset: CGFloat
-    let sidebarWidth: CGFloat
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button(action: {
-                    withAnimation(.easeOut(duration: 0.3)) {
-                        if offset == 0 {
-                            offset = sidebarWidth
-                            showMenu = true
-                        } else {
-                            offset = 0
-                            showMenu = false
-                        }
-                    }
-                }) {
-                    Image(systemName: "line.horizontal.3")
-                        .imageScale(.large)
-                }
-                Spacer()
+        if isSearchFieldFocused {
+            Button("Cancel") {
+                isSearchFieldFocused = false
+                searchText = ""
             }
-            Spacer()
         }
     }
 }
+
+struct SiderBarBottomView: View {
+    
+    
+    var body: some View {
+        Button(action: {
+            
+        }, label: {
+            Image(systemName: "person")
+        })
+        .font(.title)
+        Text("Bishal")
+        Spacer()
+        Button(action: {
+            
+        }, label: {
+            Image(systemName: "gear")
+        })
+        .font(.title)
+    }
+}
+
+struct SettingsView: View {
+    @EnvironmentObject var core: Core
+    @Binding var apiKey: String
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            ApiKey(apiKey: $apiKey)
+            DeleteButton()
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.4), radius: 10, x: 0, y: 5)
+        .padding()
+    }
+    
+    @ViewBuilder
+    func ApiKey(apiKey: Binding<String>) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("API KEY")
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding(.leading)
+            
+            SecureField("Enter API Key", text: apiKey)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+                .font(.body)
+                .padding(.horizontal)
+        }
+    }
+    
+    @ViewBuilder
+    func DeleteButton() -> some View {
+        Button(action: {
+            Task {
+                try await core.conversationPersistenceService.deleteAll()
+            }
+        }) {
+            Text("Delete All")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: 200)
+                .background(Color.red)
+                .cornerRadius(8)
+        }
+        .padding(.horizontal)
+    }
+}
+
 
 //#Preview {
 //    SidebarView()

@@ -14,7 +14,7 @@ struct OvalTextFieldStyle: TextFieldStyle {
         configuration
             .padding(10)
             .foregroundColor(colorScheme == .light ? .black : .white)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.gray, Color.gray]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background()
             .cornerRadius(20)
             .shadow(color: .gray, radius: 10)
         }

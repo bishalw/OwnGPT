@@ -13,7 +13,7 @@
 		58102EFE2A44FC2000C52BD4 /* OwnGptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102EFD2A44FC2000C52BD4 /* OwnGptTests.swift */; };
 		58102F082A44FC2000C52BD4 /* OwnGptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F072A44FC2000C52BD4 /* OwnGptUITests.swift */; };
 		58102F0A2A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */; };
-		5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* MessageInput.swift */; };
+		5811FDFF2A727840003AB0C0 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811FDFC2A72779D003AB0C0 /* BottomBarView.swift */; };
 		5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817C0932A90474B005EEDC9 /* PersistenceController.swift */; };
 		581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */; };
 		581B65812C24C711008E76DD /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65802C24C711008E76DD /* ConversationList.swift */; };
@@ -44,6 +44,9 @@
 		5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
 		5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
+		588170092C2BEE0E00D34BFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588170082C2BEE0E00D34BFF /* MainView.swift */; };
+		5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
+		5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */; };
 		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */; };
 		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
 		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
@@ -128,7 +131,7 @@
 		58102F032A44FC2000C52BD4 /* OwnGptUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OwnGptUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58102F072A44FC2000C52BD4 /* OwnGptUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptUITests.swift; sourceTree = "<group>"; };
 		58102F092A44FC2000C52BD4 /* OwnGptUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5811FDFC2A72779D003AB0C0 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
+		5811FDFC2A72779D003AB0C0 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		5817C0932A90474B005EEDC9 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConversationModel.xcdatamodel; sourceTree = "<group>"; };
 		581B65802C24C711008E76DD /* ConversationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
@@ -148,6 +151,9 @@
 		5879312A2B294D89002E8DB9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
 		5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSManagedObjectContext.swift"; sourceTree = "<group>"; };
+		588170082C2BEE0E00D34BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
+		5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderLogo.swift; sourceTree = "<group>"; };
 		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp.swift; sourceTree = "<group>"; };
 		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -372,6 +378,7 @@
 				5846500C2B24A0E100C1BA7F /* Extension+String.swift */,
 				584650092B24A0BB00C1BA7F /* Extension+Color.swift */,
 				58464FF72B2343B200C1BA7F /* Constants.swift */,
+				5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -438,6 +445,7 @@
 			children = (
 				581B65822C24C76A008E76DD /* SideBarView.swift */,
 				585609CD2C2A5569004A8791 /* SideBarViewModel.swift */,
+				5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -480,6 +488,7 @@
 		5872876F2C24322000667018 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				588170082C2BEE0E00D34BFF /* MainView.swift */,
 				584231482B1AC8E4009F1C46 /* Views */,
 			);
 			path = Presentation;
@@ -548,9 +557,9 @@
 		588F20272A6F4DF4002FEC2B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5872876D2C24320D00667018 /* Data */,
-				5872876E2C24321A00667018 /* Domain */,
 				5872876F2C24322000667018 /* Presentation */,
+				5872876E2C24321A00667018 /* Domain */,
+				5872876D2C24320D00667018 /* Data */,
 				584231402B197971009F1C46 /* Extension */,
 				580F36482B289776005E337F /* Resources */,
 			);
@@ -571,7 +580,7 @@
 			children = (
 				581B65802C24C711008E76DD /* ConversationList.swift */,
 				58CFE4F62A7233C300A43822 /* MessageView.swift */,
-				5811FDFC2A72779D003AB0C0 /* MessageInput.swift */,
+				5811FDFC2A72779D003AB0C0 /* BottomBarView.swift */,
 			);
 			name = "Helper+Conversation";
 			sourceTree = "<group>";
@@ -808,6 +817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58464FF82B2343B200C1BA7F /* Constants.swift in Sources */,
+				588170092C2BEE0E00D34BFF /* MainView.swift in Sources */,
 				58FE3CCF2AA11E4900CAE55E /* ConversationStore.swift in Sources */,
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
 				585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */,
@@ -824,10 +834,11 @@
 				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584E02772C27A0BC00156FFA /* NetworkError.swift in Sources */,
-				5811FDFF2A727840003AB0C0 /* MessageInput.swift in Sources */,
+				5811FDFF2A727840003AB0C0 /* BottomBarView.swift in Sources */,
 				5879312B2B294D89002E8DB9 /* Core.swift in Sources */,
 				584231532B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				58FE3CC52A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
+				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
@@ -843,6 +854,7 @@
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
+				5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				589077C52B4A3729009C9AEB /* HTTPRequest.swift in Sources */,

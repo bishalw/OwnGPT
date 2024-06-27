@@ -11,6 +11,7 @@ import Combine
 final class ConversationViewModel: ObservableObject {
     
     @Published var isSendButtonDisabled: Bool = false
+    @Published var showPlaceholder: Bool = true
     @Published var messages: [Message] = []
     var conversation: Conversation
     
@@ -19,7 +20,12 @@ final class ConversationViewModel: ObservableObject {
             isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
-    
+    var messageIsStreaming: Bool {
+            messages.contains(where: { $0.isStreaming })
+    }
+    private func updatePlaceholderVisibility() {
+            showPlaceholder = messages.isEmpty
+        }
     private var cancellables = Set<AnyCancellable>()
     private var store: ConversationStore
     
@@ -27,18 +33,23 @@ final class ConversationViewModel: ObservableObject {
         self.store = store
         self.conversation = conversation
         setupBindings()
+        updatePlaceholderVisibility()
     }
     
     private func setupBindings(){
         store.conversation
             .map { $0.messages }
             .receive(on: RunLoop.main)
-            .assign(to: \.messages, on: self)
+            .sink { [weak self] messages in
+                self?.messages = messages
+                self?.updatePlaceholderVisibility()
+            }
             .store(in: &cancellables)
     }
 
     func sendTapped()  {
-        isSendButtonDisabled = true
+        updatePlaceholderVisibility()
+        isSendButtonDisabled.toggle()
         let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         inputMessage = ""

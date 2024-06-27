@@ -28,7 +28,7 @@ struct Message: Identifiable {
 extension Message {
     var defaultIconName: String {
         switch self.type {
-        case .system: return "volleyball.circle.fill"
+        case .system: return "circle.hexagonpath"
         case .user: return "person.fill"
         }
     }

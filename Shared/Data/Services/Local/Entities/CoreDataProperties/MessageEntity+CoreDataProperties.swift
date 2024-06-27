@@ -21,34 +21,21 @@ extension MessageEntity {
     @NSManaged public var conversation: ConversationEntity?
     
 }
-extension MessageEntity {
-    // ... existing code ...
 
+extension MessageEntity {
     func toDomainModel() -> Message? {
-        guard let id = self.id else {
-            Log.shared.error("MessageEntity conversion failed: missing id")
-            return nil
-        }
-        guard let typeString = self.type else {
-            Log.shared.error("MessageEntity conversion failed: missing type")
-            return nil
-        }
-        guard let messageType = Message.MessageType(rawValue: typeString) else {
-            Log.shared.error("MessageEntity conversion failed: invalid type \(typeString)")
-            return nil
-        }
-        guard let content = self.toDomainContent() else {
-            Log.shared.error("MessageEntity conversion failed: missing content")
+        guard let id = self.id,
+              let typeString = self.type,
+              let messageType = Message.MessageType(rawValue: typeString),
+              let content = self.toDomainContent() else {
             return nil
         }
         
-        let message = Message(id: id, type: messageType, content: content, isStreaming: false)
-        return message
+        return Message(id: id, type: messageType, content: content, isStreaming: false)
     }
     
     private func toDomainContent() -> Message.ContentType? {
         guard let contentString = self.contentString else {
-            Log.shared.error("MessageEntity conversion failed: missing contentString")
             return nil
         }
         
