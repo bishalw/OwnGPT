@@ -18,6 +18,7 @@
 		581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */; };
 		581B65812C24C711008E76DD /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65802C24C711008E76DD /* ConversationList.swift */; };
 		581B65832C24C76A008E76DD /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65822C24C76A008E76DD /* SideBarView.swift */; };
+		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313D2B1971A1009F1C46 /* DotLoadingView.swift */; };
@@ -386,8 +387,8 @@
 		584231482B1AC8E4009F1C46 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				588170082C2BEE0E00D34BFF /* MainView.swift */,
 				580F364D2B289925005E337F /* Conversation */,
-				580F364E2B28993E005E337F /* Conversations */,
 				585609CF2C2A5604004A8791 /* SideBar */,
 				58450A932A67CED9005BD1E4 /* Helpers */,
 			);
@@ -433,6 +434,7 @@
 		58450A932A67CED9005BD1E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */,
 				5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */,
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
 				584231522B1AD4D0009F1C46 /* DotView.swift */,
@@ -443,9 +445,9 @@
 		585609CF2C2A5604004A8791 /* SideBar */ = {
 			isa = PBXGroup;
 			children = (
+				580F364E2B28993E005E337F /* Conversations */,
 				581B65822C24C76A008E76DD /* SideBarView.swift */,
 				585609CD2C2A5569004A8791 /* SideBarViewModel.swift */,
-				5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -488,7 +490,6 @@
 		5872876F2C24322000667018 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				588170082C2BEE0E00D34BFF /* MainView.swift */,
 				584231482B1AC8E4009F1C46 /* Views */,
 			);
 			path = Presentation;
@@ -897,6 +898,7 @@
 				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */,
 				5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
 				5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */,
+				583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */,
 				5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,

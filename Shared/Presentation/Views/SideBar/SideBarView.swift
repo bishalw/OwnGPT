@@ -8,37 +8,24 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @State private var searchText: String = ""
+    
+    @State private var searchText = ""
     @Binding var isSearching: Bool
     @FocusState private var isSearchFieldFocused: Bool
     @EnvironmentObject var core: Core
-    @State var apiKey = Constants.apiKey
-    @State private var showModal: Bool = false
+    @State private var isSettingsPresented = false
+    @State var apiKey: String = Constants.apiKey
+    
+//    @StateObject var vm: SideBarViewModel
     
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    SearchableView(searchText: $searchText, isSearching: $isSearching, placeholder: "Search", isSearchFieldFocused: $isSearchFieldFocused)
-                }
-                .padding(.top, -10)
-                
-                ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsStore: core.conversationsStore))
-                    
-
+                searchBar
+                conversationsView
                 Spacer()
-                
-                HStack {
-                    SiderBarBottomView()
-                        .onTapGesture {
-                            showModal.toggle()
-                        }
-                        .sheet(isPresented: $showModal) {
-                            SettingsView(apiKey: $apiKey)
-                        }
-                }.padding(.bottom,16)
+                settingsButton
             }
-
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(width: isSearching ? geometry.size.width : nil)
@@ -51,6 +38,35 @@ struct SidebarView: View {
     }
     
 }
+
+// MARK: Subviews
+extension SidebarView {
+    private var searchBar: some View {
+        SearchableView(
+            searchText: $searchText,
+            isSearching: $isSearching,
+            placeholder: "Search",
+            isSearchFieldFocused: $isSearchFieldFocused
+        )
+        .padding(.top, -10)
+    }
+    
+    private var conversationsView: some View {
+        ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsStore: core.conversationsStore))
+    }
+    
+    private var settingsButton: some View {
+        SiderBarBottomView()
+            .onTapGesture {
+                isSettingsPresented.toggle()
+            }
+            .sheet(isPresented: $isSettingsPresented) {
+                SettingsView(apiKey: $apiKey)
+            }
+    }
+
+}
+
 struct SearchableView: View {
     @Binding var searchText: String
     @Binding var isSearching: Bool
@@ -88,22 +104,23 @@ struct SearchableView: View {
 
 struct SiderBarBottomView: View {
     
-    
     var body: some View {
-        Button(action: {
-            
-        }, label: {
-            Image(systemName: "person")
-        })
-        .font(.title)
-        Text("Bishal")
-        Spacer()
-        Button(action: {
-            
-        }, label: {
-            Image(systemName: "gear")
-        })
-        .font(.title)
+        HStack {
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: "person")
+            })
+            .font(.title)
+            Text("Bishal")
+            Spacer()
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: "gear")
+            })
+            .font(.title)
+        }.padding(.bottom,16)
     }
 }
 
@@ -113,8 +130,8 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            ApiKey(apiKey: $apiKey)
-            DeleteButton()
+            apiKey(apiKey: $apiKey)
+            deleteButton()
         }
         .padding()
         .background(Color(.systemBackground))
@@ -124,7 +141,7 @@ struct SettingsView: View {
     }
     
     @ViewBuilder
-    func ApiKey(apiKey: Binding<String>) -> some View {
+    func apiKey(apiKey: Binding<String>) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("API KEY")
                 .font(.title3)
@@ -141,7 +158,7 @@ struct SettingsView: View {
     }
     
     @ViewBuilder
-    func DeleteButton() -> some View {
+    func deleteButton() -> some View {
         Button(action: {
             Task {
                 try await core.conversationPersistenceService.deleteAll()
@@ -160,6 +177,9 @@ struct SettingsView: View {
 }
 
 
-//#Preview {
-//    SidebarView()
-//}
+
+
+#Preview {
+//    SidebarView(isSearching: .constant(false))
+    EmptyView()
+}

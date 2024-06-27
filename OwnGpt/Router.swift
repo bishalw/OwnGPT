@@ -7,26 +7,25 @@
 import Foundation
 import SwiftUI
 
-
+// MARK: WIP (Work in progress)
 class Router: ObservableObject {
     
     enum Route: Hashable {
-        case viewA
-        case viewB(String)
-        case viewC
+        case MainView
+        case ConversationView(String)
+        case SettingsView
     }
     
     
     @Published var path: NavigationPath = NavigationPath()
-    
-    
+
     @ViewBuilder func view(for route: Route) -> some View {
         switch route {
-        case .viewA:
+        case .MainView:
             EmptyView()
-        case .viewB(let str):
+        case .ConversationView(_):
             EmptyView()
-        case .viewC:
+        case .SettingsView:
             EmptyView()
         }
     }

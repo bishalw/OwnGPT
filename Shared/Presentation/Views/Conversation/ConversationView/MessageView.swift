@@ -66,9 +66,3 @@ struct MessageView: View {
 }
 
 
-//struct ChatRowView_Previews: PreviewProvider {
-
-//    static var previews: some View {
-            
-//    }
-

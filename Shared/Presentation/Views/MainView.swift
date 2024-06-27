@@ -7,14 +7,24 @@
 
 import SwiftUI
 
+class MainViewSharedState: ObservableObject {
+    @Published var isSelected: Bool = false
+}
 struct MainView: View {
-    @State private var offset: CGFloat = 0
-    @State private var lastStoredOffset: CGFloat = 0
-    @State private var showMenu: Bool = false
-    @GestureState private var gestureOffset: CGFloat = 0
-    @State private var isSearching: Bool = false
+    
+    @StateObject var vm: MainViewSharedState
+    // MARK: - Environment
     @EnvironmentObject var core: Core
     @Environment(\.colorScheme) var colorScheme
+
+    // MARK: - Gesture Handling
+    @State private var offset: CGFloat = 0
+    @State private var lastStoredOffset: CGFloat = 0
+    @GestureState private var gestureOffset: CGFloat = 0
+    
+    // MARK: - UI State
+    @State private var showMenu: Bool = false
+    @State private var isSearching: Bool = false
     
     private let sidebarWidth: CGFloat = UIScreen.main.bounds.width - 90
     
@@ -33,8 +43,9 @@ struct MainView: View {
 
 // MARK: - Subviews
 extension MainView {
+    
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(conversationViewModel: ConversationViewModel(store: core.conversationStore, conversation: Conversation()))
+        ConversationView(viewModel: ConversationViewModel(store: core.conversationStore, conversation: Conversation()))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))
             .offset(x: isSearching ? geometry.size.width : offset)
@@ -154,5 +165,6 @@ extension MainView {
 }
 
 #Preview {
-    MainView()
+//    MainView()
+    EmptyView()
 }

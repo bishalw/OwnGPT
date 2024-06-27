@@ -6,28 +6,22 @@
 
 import Foundation
 import Combine
-
 @MainActor
 final class ConversationViewModel: ObservableObject {
-    
-    @Published var isSendButtonDisabled: Bool = false
-    @Published var showPlaceholder: Bool = true
-    @Published var messages: [Message] = []
-    var conversation: Conversation
-    
-    @Published var inputMessage: String = "" {
-        didSet {
-            isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        }
+    @Published  var isSendButtonDisabled = true
+    @Published private(set) var showPlaceholder = true
+    @Published private(set) var messages: [Message] = []
+    @Published var inputMessage = "" {
+        didSet { updateSendButtonState() }
     }
-    var messageIsStreaming: Bool {
-            messages.contains(where: { $0.isStreaming })
-    }
-    private func updatePlaceholderVisibility() {
-            showPlaceholder = messages.isEmpty
-        }
+    
+    private let store: ConversationStore
+    private var conversation: Conversation
     private var cancellables = Set<AnyCancellable>()
-    private var store: ConversationStore
+    
+    var messageIsStreaming: Bool {
+        messages.contains { $0.isStreaming }
+    }
     
     init(store: ConversationStore, conversation: Conversation) {
         self.store = store
@@ -36,35 +30,24 @@ final class ConversationViewModel: ObservableObject {
         updatePlaceholderVisibility()
     }
     
-    private func setupBindings(){
-        store.conversation
-            .map { $0.messages }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] messages in
-                self?.messages = messages
-                self?.updatePlaceholderVisibility()
-            }
-            .store(in: &cancellables)
-    }
-
-    func sendTapped()  {
-        updatePlaceholderVisibility()
+    func sendTapped() {
+        guard !inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
         isSendButtonDisabled.toggle()
-        let text = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !text.isEmpty else { return }
+        send(text: inputMessage)
         inputMessage = ""
-        store.sendMessage(string:text)
     }
+    
     func createNewConversation() {
         store.createNewConversation()
     }
-    func retry(message: Message)   {
+    
+    func retry(message: Message) {
         if case let .message(string: text) = message.content {
-            store.sendMessage(string: text)
+            send(text: text)
         }
     }
     
-    func send(text: String)  {
+    func send(text: String) {
         store.sendMessage(string: text)
     }
     
@@ -72,21 +55,35 @@ final class ConversationViewModel: ObservableObject {
         store.printConversationCount()
     }
     
-    func loadFirstConversation() {
-        Task {
-            do {
-                if let loadedConversation = try await store.loadFirstConversation() {
-                    await MainActor.run {
-                        self.conversation = loadedConversation
-                        self.messages = loadedConversation.messages
-                    }
-                } else {
-                    Log.shared.info("No conversations found")
-                }
-            } catch {
-                Log.shared.error("Error loading first conversation: \(error)")
-    
+    func loadFirstConversation() async {
+        do {
+            if let loadedConversation = try await store.loadFirstConversation() {
+                self.conversation = loadedConversation
+                self.messages = loadedConversation.messages
+            } else {
+                Log.shared.info("No conversations found")
             }
+        } catch {
+            Log.shared.error("Error loading first conversation: \(error)")
         }
+    }
+    
+    private func setupBindings() {
+        store.conversation
+            .map(\.messages)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] messages in
+                self?.messages = messages
+                self?.updatePlaceholderVisibility()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updatePlaceholderVisibility() {
+        showPlaceholder = messages.isEmpty
+    }
+    
+    private func updateSendButtonState() {
+        isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
