@@ -26,8 +26,8 @@ struct MainView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
-                conversationView(geometry: geometry)
                 sidebarView(geometry: geometry)
+                conversationView(geometry: geometry)
                 hamburgerButton(geometry: geometry)
             }
             .gesture(mainDragGesture)
@@ -40,7 +40,7 @@ struct MainView: View {
 extension MainView {
     
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(vm: ConversationViewModel(store: core.conversationStore, conversation: Conversation(), conversationViewModelSharedProvider: mainViewSharedStateManager))
+        ConversationView(vm: ConversationViewModel(store: core.conversationStore, conversationViewModelSharedProvider: mainViewSharedStateManager))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))
             .offset(x: isSearching ? geometry.size.width : offset)

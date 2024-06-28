@@ -22,19 +22,29 @@ struct ConversationView: View {
             }
             .navigationBarTitle("Own GPT", displayMode: .inline)
             .toolbar {
-                HeaderView(viewModel: vm)
+                ToolbarItem(placement: .topBarTrailing) {
+                    
+                    Button(action: {
+                        Task { @MainActor in
+                            vm.createNewConversation()
+                        }
+                    }) {
+                        Image(systemName: "square.and.pencil")
+                    }
+                }
+
             }
         }
     }
     
-    @ViewBuilder
-    func loadFirst() -> some View {
-        Button("load first conversation") {
-            Task {
-                await vm.loadFirstConversation()
-            }
-        }
-    }
+//    @ViewBuilder
+////    func loadFirst() -> some View {
+////        Button("load first conversation") {
+////            Task {
+////                await vm.loadFirstConversation()
+////            }
+////        }
+////    }
     @ViewBuilder
     func totalConverations() -> some View {
         Button("load first conversation") {
@@ -81,22 +91,7 @@ struct ConversationView: View {
 
 
 
-struct HeaderView: ToolbarContent {
-    @ObservedObject var viewModel: ConversationViewModel
-    
-    var body: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            
-            Button(action: {
-                Task { @MainActor in
-                    viewModel.createNewConversation()
-                }
-            }) {
-                Image(systemName: "square.and.pencil")
-            }
-        }
-    }
-}
+
 
 
 

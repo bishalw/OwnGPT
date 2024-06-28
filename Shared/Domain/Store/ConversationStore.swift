@@ -17,6 +17,7 @@ protocol ConversationStoreProtocol: AnyObject {
     func sendMessage(string: String)
     func printConversationCount()
     func loadFirstConversation() async throws -> Conversation?
+    func updateWithSelectedConversation(_ conversation: Conversation)
 }
 
 class ConversationStore: ObservableObject, ConversationStoreProtocol {
@@ -30,21 +31,23 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(chatGPTAPI: ChatGPTAPIService,
-         conversation: Conversation? = nil,
-         repo: ConversationRepository)
-    {
+    init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository) {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
-        self.conversationSubject = CurrentValueSubject(conversation ?? .init(id: UUID(), messages: []))
+        
+        let newConversation = Conversation(id: UUID(), messages: [])
+        Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
+        self.conversationSubject = CurrentValueSubject(newConversation)
+        
         setupSubscriptions()
         fetchInitialConversation()
     }
     
-    func createNewConversation() {
+    func createNewConversation() -> Conversation {
         let newConversation = Conversation(id: UUID(), messages: [])
+        Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
         conversationSubject.send(newConversation)
-//        Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
+        return newConversation
     }
     func loadFirstConversation() async throws -> Conversation? {
         if let firstConversation = try await repo.getFirstConversation() {
@@ -84,6 +87,10 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         }
     }
     
+    func updateWithSelectedConversation(_ conversation: Conversation) {
+        conversationSubject.send(conversation)
+    }
+    
     //MARK: Private
     private func setupSubscriptions() {
         repo.didUpdateRepo
@@ -108,9 +115,10 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
                     self.conversationSubject.send(fetchedConversation)
                 }
             } catch {
-//                Log.shared.info("Error fetching initial conversation: \(error)")
+                Log.shared.info("Error fetching initial conversation: \(error)")
                 DispatchQueue.main.async {
-                    self.createNewConversation()
+                    let newConversation = self.createNewConversation()
+                    self.conversationSubject.send(newConversation)
                 }
             }
         }

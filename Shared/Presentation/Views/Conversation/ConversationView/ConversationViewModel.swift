@@ -13,7 +13,7 @@ protocol ConversationViewModelSharedProvider {
 
 @MainActor
 final class ConversationViewModel: ObservableObject {
-    @Published  var isSendButtonDisabled = true
+    @Published var isSendButtonDisabled = true
     @Published private(set) var showPlaceholder = true
     @Published private(set) var messages: [Message] = []
     @Published var selectedConversation: Conversation?
@@ -22,16 +22,17 @@ final class ConversationViewModel: ObservableObject {
     }
     
     private let store: ConversationStore
-    private var conversation: Conversation
     private var cancellables = Set<AnyCancellable>()
     
     var messageIsStreaming: Bool {
         messages.contains { $0.isStreaming }
     }
     
-    init(store: ConversationStore, conversation: Conversation, conversationViewModelSharedProvider: ConversationViewModelSharedProvider) {
+    private(set) var conversation: Conversation
+    
+    init(store: ConversationStore, conversationViewModelSharedProvider: ConversationViewModelSharedProvider) {
         self.store = store
-        self.conversation = conversation
+        self.conversation = store.createNewConversation()
         self._selectedConversation = conversationViewModelSharedProvider.selectedConversationPublisher
         setupBindings()
         updatePlaceholderVisibility()
@@ -50,11 +51,16 @@ final class ConversationViewModel: ObservableObject {
         $selectedConversation
             .compactMap { $0 }
             .sink { [weak self] conversation in
-                self?.conversation = conversation
-                self?.messages = conversation.messages
-                self?.updatePlaceholderVisibility()
+                self?.updateSelectedConversation(conversation)
             }
             .store(in: &cancellables)
+    }
+
+    private func updateSelectedConversation(_ conversation: Conversation) {
+        self.conversation = conversation
+        self.messages = conversation.messages
+        self.updatePlaceholderVisibility()
+        self.store.updateWithSelectedConversation(conversation)
     }
     
     func sendTapped() {
@@ -65,7 +71,9 @@ final class ConversationViewModel: ObservableObject {
     }
     
     func createNewConversation() {
-        store.createNewConversation()
+        let newConversation = store.createNewConversation()
+        self.selectedConversation = newConversation
+        self.store.updateWithSelectedConversation(newConversation)
     }
     
     func retry(message: Message) {
