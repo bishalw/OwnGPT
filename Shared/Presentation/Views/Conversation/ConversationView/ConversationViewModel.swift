@@ -37,6 +37,26 @@ final class ConversationViewModel: ObservableObject {
         updatePlaceholderVisibility()
     }
     
+    private func setupBindings() {
+        store.conversation
+            .map(\.messages)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] messages in
+                self?.messages = messages
+                self?.updatePlaceholderVisibility()
+            }
+            .store(in: &cancellables)
+        
+        $selectedConversation
+            .compactMap { $0 }
+            .sink { [weak self] conversation in
+                self?.conversation = conversation
+                self?.messages = conversation.messages
+                self?.updatePlaceholderVisibility()
+            }
+            .store(in: &cancellables)
+    }
+    
     func sendTapped() {
         guard !inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
         isSendButtonDisabled.toggle()
@@ -75,25 +95,6 @@ final class ConversationViewModel: ObservableObject {
         }
     }
     
-    private func setupBindings() {
-        store.conversation
-            .map(\.messages)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] messages in
-                self?.messages = messages
-                self?.updatePlaceholderVisibility()
-            }
-            .store(in: &cancellables)
-        
-        $selectedConversation
-            .compactMap { $0 }
-            .sink { [weak self] conversation in
-                self?.conversation = conversation
-                self?.messages = conversation.messages
-                self?.updatePlaceholderVisibility()
-            }
-            .store(in: &cancellables)
-    }
     
     private func updatePlaceholderVisibility() {
         showPlaceholder = messages.isEmpty

@@ -6,11 +6,11 @@
 //
 
 import Foundation
-class MainViewSharedStateManager: ObservableObject, ConversationsViewModelSharedProvider,
+class MainViewSharedStateManager: ObservableObject,
+    ConversationsViewModelSharedProvider,
     SiderBarViewModelSharedProvider,
     ConversationViewModelSharedProvider
 {
-    
     @Published var selectedConversation: Conversation?
     
     var selectedConversationPublisher: Published<Conversation?> {

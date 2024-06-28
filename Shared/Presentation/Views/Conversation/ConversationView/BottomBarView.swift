@@ -3,7 +3,6 @@
 //  OwnGpt
 //
 //  Created by Bishalw on 7/27/23.
-//
 
 import SwiftUI
 
@@ -15,6 +14,7 @@ struct BottomBarView: View {
     let sendTapped: () -> Void
     
     var body: some View {
+        
         HStack {
             expandableView
             MessageInput(
@@ -39,6 +39,7 @@ struct BottomBarView: View {
     
     @ViewBuilder
     private var expandableView: some View {
+        
         if isExpanded {
             ExpandedOptionsView()
                 .transition(.scale)
@@ -98,6 +99,7 @@ struct MessageInput: View {
         #if os(iOS)
         TextField("Send a message...", text: $inputMessage, axis: .vertical)
             .ovalTextFieldStyle()
+            .lineLimit(1...25)
             .focused($isTextFieldFocused)
             .onChange(of: isTextFieldFocused) { _, newValue in
                 showExpandedView = !newValue

@@ -84,28 +84,30 @@ struct SearchableView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-                .padding(.leading, 8)
-                .accessibility(hidden: true)
-            
-            TextField(placeholder, text: $searchText)
-                .textFieldStyle(PlainTextFieldStyle())
-                .accessibilityLabel("Search")
-                .accessibilityHint("Enter text to search menu items")
-                .focused($isSearchFieldFocused)
-           
-        }
-        .padding([.top, .bottom], 8)
-        .background(Color(.systemGray6))
-        .cornerRadius(10)
-        .padding(.horizontal)
-        .accessibilityElement(children: .contain)
-        .accessibilityAddTraits(.isSearchField)
-        if isSearchFieldFocused {
-            Button("Cancel") {
-                isSearchFieldFocused = false
-                searchText = ""
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .padding(.leading, 8)
+                    .accessibility(hidden: true)
+                
+                TextField(placeholder, text: $searchText)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .accessibilityLabel("Search")
+                    .accessibilityHint("Enter text to search menu items")
+                    .focused($isSearchFieldFocused)
+                
+            }
+            .padding([.top, .bottom], 8)
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
+            .padding(.horizontal)
+            .accessibilityElement(children: .contain)
+            .accessibilityAddTraits(.isSearchField)
+            if isSearchFieldFocused {
+                Button("Cancel") {
+                    isSearchFieldFocused = false
+                    searchText = ""
+                }
             }
         }
     }
