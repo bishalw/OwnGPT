@@ -28,9 +28,9 @@ class Core: ObservableObject {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
     
-//    private(set) lazy var conversationStore: ConversationStore = {
-//        return ConversationStore(chatGPTAPI: self.chatgptApiService, repo: self.conversationRepository)
-//    }()
+    private(set) lazy var conversationStore: ConversationStore = {
+        return ConversationStore(chatGPTAPI: self.chatgptApiService, repo: self.conversationRepository)
+    }()
     
     private(set) lazy var conversationsStore: ConversationsStore = {
         return ConversationsStore(repo: self.conversationRepository)

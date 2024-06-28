@@ -9,14 +9,17 @@ import SwiftUI
 
 struct SidebarView: View {
     
+    //MARK: Envrionment
+    @StateObject var vm: SideBarViewModel
+    @EnvironmentObject var core: Core
+    
+    //MARK: UI State
     @State private var searchText = ""
     @Binding var isSearching: Bool
     @FocusState private var isSearchFieldFocused: Bool
-    @EnvironmentObject var core: Core
     @State private var isSettingsPresented = false
     @State var apiKey: String = Constants.apiKey
-    
-//    @StateObject var vm: SideBarViewModel
+    @State private var selectedConversationId: UUID?
     
     var body: some View {
         GeometryReader { geometry in
@@ -52,7 +55,13 @@ extension SidebarView {
     }
     
     private var conversationsView: some View {
-        ConversationsView(conversationsViewModel: ConversationsViewModel(conversationsStore: core.conversationsStore))
+        ConversationsView(
+            conversationsViewModel: ConversationsViewModel(
+                conversationsStore: core.conversationsStore,
+                conversationsViewModelSharedProvider: vm
+            ),
+            selectedConversationId: $selectedConversationId  // Add this line
+        )
     }
     
     private var settingsButton: some View {

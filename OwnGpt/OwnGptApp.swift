@@ -15,7 +15,7 @@ struct OwnGptApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView(vm: MainViewSharedState())
+            MainView()
                 .environmentObject(core)
                     
         }

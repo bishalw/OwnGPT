@@ -6,11 +6,17 @@
 
 import Foundation
 import Combine
+
+protocol ConversationViewModelSharedProvider {
+    var selectedConversationPublisher: Published<Conversation?> { get }
+}
+
 @MainActor
 final class ConversationViewModel: ObservableObject {
     @Published  var isSendButtonDisabled = true
     @Published private(set) var showPlaceholder = true
     @Published private(set) var messages: [Message] = []
+    @Published var selectedConversation: Conversation?
     @Published var inputMessage = "" {
         didSet { updateSendButtonState() }
     }
@@ -23,9 +29,10 @@ final class ConversationViewModel: ObservableObject {
         messages.contains { $0.isStreaming }
     }
     
-    init(store: ConversationStore, conversation: Conversation) {
+    init(store: ConversationStore, conversation: Conversation, conversationViewModelSharedProvider: ConversationViewModelSharedProvider) {
         self.store = store
         self.conversation = conversation
+        self._selectedConversation = conversationViewModelSharedProvider.selectedConversationPublisher
         setupBindings()
         updatePlaceholderVisibility()
     }
@@ -74,6 +81,15 @@ final class ConversationViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink { [weak self] messages in
                 self?.messages = messages
+                self?.updatePlaceholderVisibility()
+            }
+            .store(in: &cancellables)
+        
+        $selectedConversation
+            .compactMap { $0 }
+            .sink { [weak self] conversation in
+                self?.conversation = conversation
+                self?.messages = conversation.messages
                 self?.updatePlaceholderVisibility()
             }
             .store(in: &cancellables)

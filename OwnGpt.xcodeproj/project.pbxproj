@@ -41,6 +41,7 @@
 		585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		5879312B2B294D89002E8DB9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5879312A2B294D89002E8DB9 /* Core.swift */; };
+		587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */; };
 		5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3022B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
 		5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */; };
@@ -150,6 +151,7 @@
 		585609D02C2B5E58004A8791 /* OSLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLogger.swift; sourceTree = "<group>"; };
 		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
 		5879312A2B294D89002E8DB9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSharedStateManager.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
 		5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NSManagedObjectContext.swift"; sourceTree = "<group>"; };
 		588170082C2BEE0E00D34BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				588170082C2BEE0E00D34BFF /* MainView.swift */,
+				587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */,
 				580F364D2B289925005E337F /* Conversation */,
 				585609CF2C2A5604004A8791 /* SideBar */,
 				58450A932A67CED9005BD1E4 /* Helpers */,
@@ -828,6 +831,7 @@
 				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
 				585609D12C2B5E58004A8791 /* OSLogger.swift in Sources */,
 				584E02742C27A07600156FFA /* NetworkServiceImpl.swift in Sources */,
+				587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */,
 				581B65812C24C711008E76DD /* ConversationList.swift in Sources */,
 				5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */,
 				58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */,

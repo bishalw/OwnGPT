@@ -7,24 +7,21 @@
 
 import Foundation
 import Combine
-
-class SideBarViewModel: ObservableObject {
+protocol SiderBarViewModelSharedProvider {
+    var selectedConversationPublisher: Published<Conversation?> { get }
+}
+class SideBarViewModel: ObservableObject,ConversationsViewModelSharedProvider {
     
-    var mainViewSharedState: MainViewSharedState
+    @Published var selectedConversation: Conversation?
     
-    @Published var isSelected: Bool = false
-    private var cancellables = Set<AnyCancellable>()
-    
-    init(mainViewSharedState: MainViewSharedState) {
-        self.mainViewSharedState = mainViewSharedState
+    var selectedConversationPublisher: Published<Conversation?> {
+        self._selectedConversation
     }
     
-    func setupBindings() {
-        mainViewSharedState.$isSelected
-            .sink { [weak self] newValue in
-                self?.isSelected = newValue
-            }
-            .store(in: &cancellables)
+    
+    init(siderBarViewModelSharedProvider:SiderBarViewModelSharedProvider) {
+        self._selectedConversation = siderBarViewModelSharedProvider.selectedConversationPublisher
     }
+    
     
 }

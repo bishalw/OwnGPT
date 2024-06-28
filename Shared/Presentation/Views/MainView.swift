@@ -7,21 +7,16 @@
 
 import SwiftUI
 
-class MainViewSharedState: ObservableObject {
-    @Published var isSelected: Bool = false
-}
 struct MainView: View {
     
-    @StateObject var vm: MainViewSharedState
-    // MARK: - Environment
-    @EnvironmentObject var core: Core
     @Environment(\.colorScheme) var colorScheme
-
+    // MARK: - Dependency
+    @StateObject var mainViewSharedStateManager = MainViewSharedStateManager()
+    @EnvironmentObject var core: Core
     // MARK: - Gesture Handling
     @State private var offset: CGFloat = 0
     @State private var lastStoredOffset: CGFloat = 0
     @GestureState private var gestureOffset: CGFloat = 0
-    
     // MARK: - UI State
     @State private var showMenu: Bool = false
     @State private var isSearching: Bool = false
@@ -45,14 +40,15 @@ struct MainView: View {
 extension MainView {
     
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(viewModel: ConversationViewModel(store: core.conversationStore, conversation: Conversation()))
+        ConversationView(vm: ConversationViewModel(store: core.conversationStore, conversation: Conversation(), conversationViewModelSharedProvider: mainViewSharedStateManager))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))
             .offset(x: isSearching ? geometry.size.width : offset)
     }
     
     private func sidebarView(geometry: GeometryProxy) -> some View {
-        SidebarView(isSearching: $isSearching)
+        
+        SidebarView(vm: SideBarViewModel(siderBarViewModelSharedProvider: mainViewSharedStateManager), isSearching: $isSearching)
             .frame(width: isSearching ? geometry.size.width : sidebarWidth)
             .offset(x: isSearching ? 0 : -sidebarWidth + offset)
             .animation(.linear, value: isSearching)

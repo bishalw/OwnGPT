@@ -6,11 +6,12 @@
 //
 import SwiftUI
 
-
 struct ConversationView: View {
     
     @Environment(\.colorScheme) var colorScheme
-    @StateObject var viewModel: ConversationViewModel
+    //MARK: Dependency
+    @StateObject var vm: ConversationViewModel
+    //MARK: UI State
     @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
@@ -21,7 +22,7 @@ struct ConversationView: View {
             }
             .navigationBarTitle("Own GPT", displayMode: .inline)
             .toolbar {
-                HeaderView(viewModel: viewModel)
+                HeaderView(viewModel: vm)
             }
         }
     }
@@ -30,7 +31,7 @@ struct ConversationView: View {
     func loadFirst() -> some View {
         Button("load first conversation") {
             Task {
-                await viewModel.loadFirstConversation()
+                await vm.loadFirstConversation()
             }
         }
     }
@@ -38,13 +39,13 @@ struct ConversationView: View {
     func totalConverations() -> some View {
         Button("load first conversation") {
             Task {
-                 viewModel.printTotalConversations()
+                 vm.printTotalConversations()
             }
         }
     }
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.showPlaceholder {
+        if vm.showPlaceholder {
             PlaceHolderLogo()
         } else {
             messageList
@@ -54,8 +55,8 @@ struct ConversationView: View {
     private var messageList: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                ConversationList(messages: viewModel.messages)
-                    .onChange(of: viewModel.messages.count) { _, _ in
+                ConversationList(messages: vm.messages)
+                    .onChange(of: vm.messages.count) { _, _ in
                         scrollToBottom(proxy)
                     }
 
@@ -65,15 +66,15 @@ struct ConversationView: View {
     
     private var bottomBar: some View {
         BottomBarView(
-            isSendButtonDisabled: $viewModel.isSendButtonDisabled,
-            inputMessage: $viewModel.inputMessage,
+            isSendButtonDisabled: $vm.isSendButtonDisabled,
+            inputMessage: $vm.inputMessage,
             isTextFieldFocused: $isTextFieldFocused,
-            sendTapped: viewModel.sendTapped
+            sendTapped: vm.sendTapped
         )
     }
     
     private func scrollToBottom(_ proxy: ScrollViewProxy) {
-        guard let id = viewModel.messages.last?.id else { return }
+        guard let id = vm.messages.last?.id else { return }
         proxy.scrollTo(id, anchor: .bottomTrailing)
     }
 }
