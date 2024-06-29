@@ -8,20 +8,15 @@
 import Foundation
 import Combine
 
-
 protocol ConversationStoreProtocol: AnyObject {
     var conversation: AnyPublisher<Conversation, Never> { get }
     var chatGPTAPI: ChatGPTAPIService { get }
     var repo: ConversationRepository { get }
-    
     func sendMessage(string: String)
-    func printConversationCount()
-    func loadFirstConversation() async throws -> Conversation?
     func updateWithSelectedConversation(_ conversation: Conversation)
 }
 
 class ConversationStore: ObservableObject, ConversationStoreProtocol {
-    
     private let conversationSubject: CurrentValueSubject<Conversation, Never>
     var conversation: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
@@ -35,37 +30,43 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
         
-        let newConversation = Conversation(id: UUID(), messages: [])
-        Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
-        self.conversationSubject = CurrentValueSubject(newConversation)
+        // Initialize with an empty conversation, but don't create a new one yet
+        self.conversationSubject = CurrentValueSubject(Conversation(id: UUID(), messages: []))
         
         setupSubscriptions()
-        fetchInitialConversation()
+//        fetchInitialConversation()
+    }
+    
+    private func setupSubscriptions() {
+        repo.didUpdateRepo
+            .receive(on: RunLoop.main)
+            .sink { [weak self] update in
+                switch update {
+                case .updatedConversation(let conversation):
+                    Log.shared.debug("Received updated conversation from repo: \(conversation.id)")
+                    self?.conversationSubject.send(conversation)
+                case .updatedConversations:
+                    Log.shared.debug("Received update for multiple conversations")
+                    // Handle if needed
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     func createNewConversation() -> Conversation {
         let newConversation = Conversation(id: UUID(), messages: [])
         Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
         conversationSubject.send(newConversation)
+        // Optionally, save the new conversation to the repository
+        repo.save(conversation: newConversation)
         return newConversation
     }
-    func loadFirstConversation() async throws -> Conversation? {
-        if let firstConversation = try await repo.getFirstConversation() {
-            self.conversationSubject.send(firstConversation)
-            return firstConversation
-        } else {
-            Log.shared.info("No conversations found.")
-            return nil
-        }
-    }
-    
     func sendMessage(string: String) {
         Task {
             initializeConversation(with: string)
             do {
                 let history = conversationSubject.value.getOpenApiHistory()
                 
-                Log.shared.info("Sending request with text: \(string) and history: \(history)")
                 Log.shared.info("Sending request with text: \(string) and history: \(history)")
                 let responseStream = try await chatGPTAPI.sendMessageStream(text: string, history: history)
                 Log.shared.info("Response stream received")
@@ -76,49 +77,19 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         }
     }
     
-    func printConversationCount() {
-        Task {
-            do {
-                let count = try await repo.getConversationCount()
-                Log.shared.info("Total number of conversations: \(count)")
-            } catch {
-                Log.shared.info("Error fetching conversation count: \(error)")
-            }
-        }
-    }
-    
     func updateWithSelectedConversation(_ conversation: Conversation) {
-        conversationSubject.send(conversation)
-    }
-    
-    //MARK: Private
-    private func setupSubscriptions() {
-        repo.didUpdateRepo
-            .compactMap {[weak self] update -> Conversation? in
-                guard case .updatedConversation(let updatedConversation) = update,
-                      updatedConversation.id == self?.conversationSubject.value.id else { return nil }
-                return updatedConversation
-            }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] update in
-                self?.conversationSubject.send(update)
-            }
-            .store(in: &subscriptions)
-    }
-    
-    private func fetchInitialConversation() {
+        Log.shared.debug("Updating selected conversation: \(conversation.id)")
         Task {
             do {
-                let fetchedConversation = try await repo.get(conversationId: conversationSubject.value.id)
-                Log.shared.info("Fetching initial conversation: \(fetchedConversation)")
-                DispatchQueue.main.async {
+                let fetchedConversation = try await repo.get(conversationId: conversation.id)
+                await MainActor.run {
                     self.conversationSubject.send(fetchedConversation)
                 }
             } catch {
-                Log.shared.info("Error fetching initial conversation: \(error)")
-                DispatchQueue.main.async {
-                    let newConversation = self.createNewConversation()
-                    self.conversationSubject.send(newConversation)
+                Log.shared.error("Error fetching conversation: \(error)")
+            
+                await MainActor.run {
+                    self.conversationSubject.send(conversation)
                 }
             }
         }
@@ -155,8 +126,8 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         var currentMessages = conversationSubject.value.messages
         currentMessages.append(message)
         let updatedConversation = Conversation(id: conversationSubject.value.id, messages: currentMessages)
+        Log.shared.debug("Adding message to conversation: \(updatedConversation.id)")
         conversationSubject.send(updatedConversation)
-        
     }
     
     private func updateConversationLastMessage(message: Message) {
@@ -166,8 +137,8 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         }
         currentMessages.append(message)
         let updatedConversation = Conversation(id: conversationSubject.value.id, messages: currentMessages)
+        Log.shared.debug("Updating last message in conversation: \(updatedConversation.id)")
         conversationSubject.send(updatedConversation)
-        
     }
     
     private func finalizeConversation(with content: String) {

@@ -30,7 +30,7 @@ class Log: Logging {
         return """
         [ \(fileName)] | Line [\(line)]
         Function: \(function)
-        Message: \(message)
+        Log: \(message)
         """
     }
     

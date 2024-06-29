@@ -146,7 +146,6 @@ struct MessageInput: View {
     }
 }
 
-
 struct SendButtonView: View {
     @Environment(\.colorScheme) private var colorScheme
     let sendTapped: () -> Void

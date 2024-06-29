@@ -36,28 +36,38 @@ class ConversationRepositoryImpl: ConversationRepository {
     var didUpdateRepo: AnyPublisher<ConversationRepoUpdate, Never> {
         return _didUpdatePassthrough.eraseToAnyPublisher()
     }
+    
     func getFirstConversation() async throws -> Conversation? {
         return try await conversationPersistenceService.getFirst()
     }
+    
     func save(conversations: [Conversation]) {
         Task {
-            for conversation in conversations {
-                try await conversationPersistenceService.add(conversation)
+            do {
+                for conversation in conversations {
+                    try await conversationPersistenceService.add(conversation)
+                }
+                _didUpdatePassthrough.send(.updatedConversations)
+            } catch {
+                Log.shared.error("Error saving conversations: \(error)")
             }
-            _didUpdatePassthrough.send(.updatedConversations)
         }
     }
     
     func save(conversation: Conversation) {
         Task {
-            try await conversationPersistenceService.add(conversation)
-            _didUpdatePassthrough.send(.updatedConversation(conversation: conversation))
+            do {
+                try await conversationPersistenceService.add(conversation)
+                Log.shared.debug("Saved conversation: \(conversation.id)")
+                _didUpdatePassthrough.send(.updatedConversation(conversation: conversation))
+            } catch {
+                Log.shared.error("Error saving conversation: \(error)")
+            }
         }
     }
     
-    
     func get() async throws -> [Conversation] {
-        let conversations =  try await conversationPersistenceService.get()
+        let conversations = try await conversationPersistenceService.get()
         return conversations
     }
     
@@ -69,6 +79,4 @@ class ConversationRepositoryImpl: ConversationRepository {
     func getConversationCount() async throws -> Int {
         return try await conversationPersistenceService.getCount()
     }
-    
-
 }

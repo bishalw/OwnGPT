@@ -26,7 +26,6 @@ final class ConversationsViewModel: ObservableObject {
         self._selectedConversation = conversationsViewModelSharedProvider.selectedConversationPublisher
         setUpBindings()
     }
-    
     func setUpBindings() {
         conversationsStore.$conversations
             .receive(on: RunLoop.main)

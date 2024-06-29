@@ -32,7 +32,7 @@ final class ConversationViewModel: ObservableObject {
     
     init(store: ConversationStore, conversationViewModelSharedProvider: ConversationViewModelSharedProvider) {
         self.store = store
-        self.conversation = store.createNewConversation()
+        self.conversation = Conversation(id: UUID(), messages: []) // Initialize with an empty conversation
         self._selectedConversation = conversationViewModelSharedProvider.selectedConversationPublisher
         setupBindings()
         updatePlaceholderVisibility()
@@ -40,11 +40,12 @@ final class ConversationViewModel: ObservableObject {
     
     private func setupBindings() {
         store.conversation
-            .map(\.messages)
             .receive(on: RunLoop.main)
-            .sink { [weak self] messages in
-                self?.messages = messages
-                self?.updatePlaceholderVisibility()
+            .sink { [weak self] conversation in
+                guard let self = self else { return }
+                self.conversation = conversation
+                self.messages = conversation.messages
+                self.updatePlaceholderVisibility()
             }
             .store(in: &cancellables)
         
@@ -57,52 +58,33 @@ final class ConversationViewModel: ObservableObject {
     }
 
     private func updateSelectedConversation(_ conversation: Conversation) {
-        self.conversation = conversation
-        self.messages = conversation.messages
-        self.updatePlaceholderVisibility()
+        guard self.conversation.id != conversation.id else { return }
+        Log.shared.debug("Updating selected conversation in ViewModel: \(conversation.id)")
         self.store.updateWithSelectedConversation(conversation)
     }
     
     func sendTapped() {
         guard !inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
         isSendButtonDisabled.toggle()
+        if messages.isEmpty {
+            createNewConversation()
+        }
         send(text: inputMessage)
         inputMessage = ""
-    }
-    
-    func createNewConversation() {
-        let newConversation = store.createNewConversation()
-        self.selectedConversation = newConversation
-        self.store.updateWithSelectedConversation(newConversation)
-    }
-    
-    func retry(message: Message) {
-        if case let .message(string: text) = message.content {
-            send(text: text)
-        }
     }
     
     func send(text: String) {
         store.sendMessage(string: text)
     }
     
-    func printTotalConversations() {
-        store.printConversationCount()
+    func createNewConversation() {
+        let newConversation = store.createNewConversation()
+        self.conversation = newConversation
+        self.messages = newConversation.messages
+        inputMessage = ""
+        updateSendButtonState()
+        updatePlaceholderVisibility()
     }
-    
-    func loadFirstConversation() async {
-        do {
-            if let loadedConversation = try await store.loadFirstConversation() {
-                self.conversation = loadedConversation
-                self.messages = loadedConversation.messages
-            } else {
-                Log.shared.info("No conversations found")
-            }
-        } catch {
-            Log.shared.error("Error loading first conversation: \(error)")
-        }
-    }
-    
     
     private func updatePlaceholderVisibility() {
         showPlaceholder = messages.isEmpty

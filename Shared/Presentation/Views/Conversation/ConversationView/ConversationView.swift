@@ -25,28 +25,19 @@ struct ConversationView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     
                     Button(action: {
-                        Task { @MainActor in
-                            vm.createNewConversation()
-                        }
-                    }) {
+                        vm.createNewConversation()
+                    }
+                    ) {
                         Image(systemName: "square.and.pencil")
                             .font(.headline)
                             .foregroundColor(colorScheme == .dark ? .darkForeground : .lightForeground)
-                    }
+                    }.disabled(false)
                 }
 
             }
         }
     }
     
-    @ViewBuilder
-    func totalConverations() -> some View {
-        Button("load first conversation") {
-            Task {
-                 vm.printTotalConversations()
-            }
-        }
-    }
     @ViewBuilder
     private var contentView: some View {
         if vm.showPlaceholder {
