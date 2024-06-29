@@ -57,16 +57,22 @@ struct PlusButtonView: View {
 
     var body: some View {
         Button(action: { showExpandedView.toggle() }) {
-            Image(systemName: "plus")
-                .font(.system(size: 20))
-                .foregroundColor(colorScheme == .light ? .white : .black)
-                .frame(width: 30, height: 30)
-                .background(Circle().foregroundColor(.blue))
+            ZStack {
+                Circle()
+//                  .foregroundColor(colorScheme == .light ? .white : .black)
+                    .foregroundColor(colorScheme == .dark ? .plusButtonDark : .plusButtonLight)
+                    .frame(width: 30, height: 30)
+                
+                Image(systemName: "plus")
+                    .font(.system(size: 15, weight: .bold))  // Adjust size here
+                    .foregroundColor(colorScheme == .dark ? .gray : Color(.init(gray: 0.3, alpha: 1)))
+            }
         }
     }
 }
 
 struct ExpandedOptionsView: View {
+    @Environment(\.colorScheme) private var colorScheme
     private let options = ["camera", "photo", "video"]
     
     var body: some View {
@@ -74,7 +80,7 @@ struct ExpandedOptionsView: View {
             ForEach(options, id: \.self) { systemName in
                 Image(systemName: systemName)
                     .font(.system(size: 20))
-                    .foregroundColor(.blue)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
             }
         }
         .padding(.top, 5)
@@ -82,28 +88,54 @@ struct ExpandedOptionsView: View {
 }
 
 struct MessageInput: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Binding var inputMessage: String
     @FocusState.Binding var isTextFieldFocused: Bool
     @Binding var showExpandedView: Bool
     var sendTapped: () -> Void
-    
+
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
-            textField
-        }
-        .padding()
+        content
     }
-    
+
     @ViewBuilder
-    private var textField: some View {
+    private var content: some View {
         #if os(iOS)
-        TextField("Send a message...", text: $inputMessage, axis: .vertical)
-            .ovalTextFieldStyle()
-            .lineLimit(1...25)
-            .focused($isTextFieldFocused)
-            .onChange(of: isTextFieldFocused) { _, newValue in
-                showExpandedView = !newValue
+        ZStack(alignment: .trailing) {
+            ZStack(alignment: .leading) {
+                if inputMessage.isEmpty {
+                    Text("Message")
+                        .foregroundColor(Color(.systemGray))
+                        .padding(.horizontal, 8)
+                }
+
+                TextField("", text: $inputMessage)
+                    .padding(8)
+                    .padding(.trailing, inputMessage.isEmpty ? 30 : 8)
+                    .foregroundColor(colorScheme == .dark ?  .messageInputDark : .messageInputLight)
+                    .accentColor(Color(.systemGray))
+                    .focused($isTextFieldFocused)
+                    .onChange(of: isTextFieldFocused) { _, newValue in
+                        showExpandedView = !newValue
+                    }
             }
+
+            if inputMessage.isEmpty {
+                Button(action: {
+                    // Action for the microphone button
+                }) {
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.gray)
+                        .frame(width: 30, height: 30)
+                }
+                .padding(.trailing, 8)
+            }
+        }
+        .background(colorScheme == .dark ? .black : .white)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color(.systemGray), lineWidth: 1)
+        )
         #elseif os(watchOS)
         TextField("Send", text: $inputMessage, axis: .vertical)
             .buttonBorderShape(.roundedRectangle)
@@ -116,6 +148,7 @@ struct MessageInput: View {
 
 
 struct SendButtonView: View {
+    @Environment(\.colorScheme) private var colorScheme
     let sendTapped: () -> Void
     @Binding var isSendButtonDisabled: Bool
     
@@ -125,6 +158,8 @@ struct SendButtonView: View {
                 .resizable()
                 .frame(width: 30, height: 30)
                 .aspectRatio(contentMode: .fit)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
+              
         }
         .disabled(isSendButtonDisabled)
     }

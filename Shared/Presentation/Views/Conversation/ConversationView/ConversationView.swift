@@ -30,6 +30,8 @@ struct ConversationView: View {
                         }
                     }) {
                         Image(systemName: "square.and.pencil")
+                            .font(.headline)
+                            .foregroundColor(colorScheme == .dark ? .darkForeground : .lightForeground)
                     }
                 }
 
@@ -37,14 +39,6 @@ struct ConversationView: View {
         }
     }
     
-//    @ViewBuilder
-////    func loadFirst() -> some View {
-////        Button("load first conversation") {
-////            Task {
-////                await vm.loadFirstConversation()
-////            }
-////        }
-////    }
     @ViewBuilder
     func totalConverations() -> some View {
         Button("load first conversation") {
