@@ -8,8 +8,7 @@
 import Foundation
 class MainViewSharedStateManager: ObservableObject,
     ConversationsViewModelSharedProvider,
-    SiderBarViewModelSharedProvider,
-    ConversationViewModelSharedProvider
+    SiderBarViewModelSharedProvider
 {
     @Published var selectedConversation: Conversation?
     

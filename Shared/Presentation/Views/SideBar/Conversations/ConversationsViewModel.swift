@@ -31,7 +31,7 @@ final class ConversationsViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink { [weak self] conversations in
                 self?.conversations = conversations
-//                Log.shared.info("\(conversations)")
+
             }
             .store(in: &cancellables)
     }

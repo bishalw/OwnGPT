@@ -61,7 +61,9 @@ extension SidebarView {
                 conversationsViewModelSharedProvider: vm
             ),
             selectedConversationId: $selectedConversationId  // Add this line
-        )
+        ).onAppear(perform: {
+            Log.shared.info("Conversations View appearing")
+        })
     }
     
     private var settingsButton: some View {

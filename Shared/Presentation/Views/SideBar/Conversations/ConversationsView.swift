@@ -33,6 +33,9 @@ struct ConversationsView: View {
                         selectedConversationId = conversation.id
                     }
                     .padding(.horizontal, 8)
+                    .onAppear(perform: {
+                        Log.shared.info("Conversations ItemView appearing")
+                    })
                 }
             }
         }

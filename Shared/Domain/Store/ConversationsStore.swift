@@ -12,7 +12,7 @@ class ConversationsStore {
     private var subscriptions = Set<AnyCancellable>()
     @Published var conversations: [Conversation] = []
     private let repo: ConversationRepository
-
+    
     init(repo: ConversationRepository) {
         self.repo = repo
         // Subscribe to repository updates
@@ -20,19 +20,20 @@ class ConversationsStore {
             self?.loadConversations()
         }
         .store(in: &subscriptions)
-
+        
         // Load initial conversations
         loadConversations()
     }
-
+    
     private func loadConversations() {
-            Task { [weak self] in
-                do {
-                    let loadedConversations = try await self?.repo.get()
-                    self?.conversations = loadedConversations ?? []
-                } catch {
-                    Log.shared.info("Failed to load conversations: \(error)")
-                }
+        Log.shared.info("Loading Conversations")
+        Task { [weak self] in
+            do {
+                let loadedConversations = try await self?.repo.get()
+                self?.conversations = loadedConversations ?? []
+            } catch {
+                Log.shared.info("Failed to load conversations: \(error)")
             }
         }
+    }
 }

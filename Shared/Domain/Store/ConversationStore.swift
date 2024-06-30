@@ -9,32 +9,32 @@ import Foundation
 import Combine
 
 protocol ConversationStoreProtocol: AnyObject {
-    var conversation: AnyPublisher<Conversation, Never> { get }
+    var conversationPublisher: AnyPublisher<Conversation, Never> { get }
+    var conversation: Conversation { get }
     var chatGPTAPI: ChatGPTAPIService { get }
     var repo: ConversationRepository { get }
     func sendMessage(string: String)
-    func updateWithSelectedConversation(_ conversation: Conversation)
+//    func updateWithSelectedConversation(_ conversation: Conversation)
 }
 
 class ConversationStore: ObservableObject, ConversationStoreProtocol {
     private let conversationSubject: CurrentValueSubject<Conversation, Never>
-    var conversation: AnyPublisher<Conversation, Never> {
+    var conversationPublisher: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
+    }
+    var conversation: Conversation {
+        conversationSubject.value
     }
     var chatGPTAPI: ChatGPTAPIService
     var repo: ConversationRepository
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository) {
+    init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository, conversation: Conversation?) {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
-        
-        // Initialize with an empty conversation, but don't create a new one yet
-        self.conversationSubject = CurrentValueSubject(Conversation(id: UUID(), messages: []))
-        
+        self.conversationSubject = CurrentValueSubject(conversation ?? .init())
         setupSubscriptions()
-//        fetchInitialConversation()
     }
     
     private func setupSubscriptions() {
@@ -76,32 +76,14 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
             }
         }
     }
-    
-    func updateWithSelectedConversation(_ conversation: Conversation) {
-        Log.shared.debug("Updating selected conversation: \(conversation.id)")
-        Task {
-            do {
-                let fetchedConversation = try await repo.get(conversationId: conversation.id)
-                await MainActor.run {
-                    self.conversationSubject.send(fetchedConversation)
-                }
-            } catch {
-                Log.shared.error("Error fetching conversation: \(error)")
-            
-                await MainActor.run {
-                    self.conversationSubject.send(conversation)
-                }
-            }
-        }
-    }
-    
+        
     private func initializeConversation(with string: String) {
-        addConversation(message: Message(id: UUID(),
+        addToConversation(message: Message(id: UUID(),
                                          type: .user,
                                          content: .message(string: string),
                                          isStreaming: false))
         
-        addConversation(message: Message(id: UUID(),
+        addToConversation(message: Message(id: UUID(),
                                          type: .system,
                                          content: .message(string: ""),
                                          isStreaming: true))
@@ -122,7 +104,7 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         }
     }
     
-    private func addConversation(message: Message) {
+    private func addToConversation(message: Message) {
         var currentMessages = conversationSubject.value.messages
         currentMessages.append(message)
         let updatedConversation = Conversation(id: conversationSubject.value.id, messages: currentMessages)

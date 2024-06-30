@@ -40,10 +40,13 @@ struct MainView: View {
 extension MainView {
     
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(vm: ConversationViewModel(store: core.conversationStore, conversationViewModelSharedProvider: mainViewSharedStateManager))
+        ConversationView(vm: ConversationViewModel(store: ConversationStore(chatGPTAPI: core.chatgptApiService, repo: core.conversationRepository, conversation: mainViewSharedStateManager.selectedConversation ), createNewConversation: {
+            mainViewSharedStateManager.selectedConversation = nil
+        }))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))
             .offset(x: isSearching ? geometry.size.width : offset)
+            .id(mainViewSharedStateManager.selectedConversation?.id)
     }
     
     private func sidebarView(geometry: GeometryProxy) -> some View {
