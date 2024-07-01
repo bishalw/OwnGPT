@@ -40,8 +40,9 @@ struct MainView: View {
 extension MainView {
     
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(vm: ConversationViewModel(store: ConversationStore(chatGPTAPI: core.chatgptApiService, repo: core.conversationRepository, conversation: mainViewSharedStateManager.selectedConversation ), createNewConversation: {
-            mainViewSharedStateManager.selectedConversation = nil
+        ConversationView(vm: ConversationViewModel(store: ConversationStore(chatGPTAPI: core.chatgptApiService, repo: core.conversationRepository, conversation: mainViewSharedStateManager.selectedConversation), createNewConversation: {
+            let conversation = Conversation()
+            mainViewSharedStateManager.selectedConversation = conversation
         }))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))

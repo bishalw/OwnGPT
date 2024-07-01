@@ -45,7 +45,7 @@
 		588170092C2BEE0E00D34BFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588170082C2BEE0E00D34BFF /* MainView.swift */; };
 		5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */; };
-		588726782C32527000CAFA3E /* Bkit in Frameworks */ = {isa = PBXBuildFile; productRef = 588726772C32527000CAFA3E /* Bkit */; };
+		5887267C2C33699500CAFA3E /* Bkit in Frameworks */ = {isa = PBXBuildFile; productRef = 5887267B2C33699500CAFA3E /* Bkit */; };
 		588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */; };
 		588F20002A6F4D7F002FEC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */; };
 		588F20032A6F4D7F002FEC2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 588F20022A6F4D7F002FEC2B /* Preview Assets.xcassets */; };
@@ -144,7 +144,6 @@
 		588170082C2BEE0E00D34BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
 		5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderLogo.swift; sourceTree = "<group>"; };
-		588726752C32520D00CAFA3E /* Bkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Bkit; path = ../../Bkit; sourceTree = "<group>"; };
 		588F1FF62A6F4D7C002FEC2B /* OwnGptWatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OwnGptWatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		588F1FFB2A6F4D7C002FEC2B /* OwnGptWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp.swift; sourceTree = "<group>"; };
 		588F1FFF2A6F4D7F002FEC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				588726782C32527000CAFA3E /* Bkit in Frameworks */,
+				5887267C2C33699500CAFA3E /* Bkit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +280,6 @@
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
-				588726752C32520D00CAFA3E /* Bkit */,
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
 				588F20272A6F4DF4002FEC2B /* Shared */,
 				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */,
@@ -597,7 +595,7 @@
 			);
 			name = OwnGpt;
 			packageProductDependencies = (
-				588726772C32527000CAFA3E /* Bkit */,
+				5887267B2C33699500CAFA3E /* Bkit */,
 			);
 			productName = OwnGpt;
 			productReference = 58102EE92A44FC1F00C52BD4 /* OwnGpt.app */;
@@ -735,6 +733,9 @@
 				Base,
 			);
 			mainGroup = 58102EE02A44FC1F00C52BD4;
+			packageReferences = (
+				5887267A2C33697500CAFA3E /* XCRemoteSwiftPackageReference "Bkit" */,
+			);
 			productRefGroup = 58102EEA2A44FC1F00C52BD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1399,9 +1400,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		5887267A2C33697500CAFA3E /* XCRemoteSwiftPackageReference "Bkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bishalw/Bkit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		588726772C32527000CAFA3E /* Bkit */ = {
+		5887267B2C33699500CAFA3E /* Bkit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 5887267A2C33697500CAFA3E /* XCRemoteSwiftPackageReference "Bkit" */;
 			productName = Bkit;
 		};
 /* End XCSwiftPackageProductDependency section */
