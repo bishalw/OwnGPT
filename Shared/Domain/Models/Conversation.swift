@@ -34,7 +34,7 @@ extension Conversation {
         do {
             conversationEntity = try fetchConversationEntity(context: context) ?? createConversationEntity(context: context)
         } catch {
-            Log.shared.error("Error fetching ConversationEntity: \(error)")
+            Log.shared.logger.error("Error fetching ConversationEntity: \(error)")
             conversationEntity = createConversationEntity(context: context)
         }
         updateConversationEntity(conversationEntity, context: context)

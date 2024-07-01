@@ -34,7 +34,7 @@ struct ConversationsView: View {
                     }
                     .padding(.horizontal, 8)
                     .onAppear(perform: {
-                        Log.shared.info("Conversations ItemView appearing")
+                        Log.shared.logger.info("Conversations ItemView appearing")
                     })
                 }
             }

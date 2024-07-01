@@ -62,7 +62,7 @@ extension SidebarView {
             ),
             selectedConversationId: $selectedConversationId  // Add this line
         ).onAppear(perform: {
-            Log.shared.info("Conversations View appearing")
+            Log.shared.logger.info("Conversations View appearing")
         })
     }
     

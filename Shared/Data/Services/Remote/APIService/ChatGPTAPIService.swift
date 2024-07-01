@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import Bkit
 
 protocol ChatGPTAPIService {
     func sendMessageStream(text: String, history: [OpenAiModels.Message]) async throws -> AsyncThrowingStream<String, Error> 

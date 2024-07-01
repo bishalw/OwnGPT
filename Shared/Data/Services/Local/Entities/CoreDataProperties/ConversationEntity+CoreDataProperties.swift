@@ -33,7 +33,7 @@ extension ConversationEntity {
 //        Log.shared.info("Starting toConversation() conversion for ConversationEntity: \(self)")
         
         guard let id = self.id else {
-            Log.shared.error("ConversationEntity conversion failed: missing id")
+            Log.shared.logger.error("ConversationEntity conversion failed: missing id")
             return nil
         }
 //        Log.shared.info("ID: \(id)")
@@ -51,10 +51,10 @@ extension ConversationEntity {
                 return messageEntity.toDomainModel()
             }
             if messageList.count != messageSet.count {
-                Log.shared.warn("Some messages failed to convert: \(messageSet.count - messageList.count) failures")
+                Log.shared.logger.warn("Some messages failed to convert: \(messageSet.count - messageList.count) failures")
             }
         } else {
-            Log.shared.warn("Messages set is nil or not a Set<MessageEntity>")
+            Log.shared.logger.warn("Messages set is nil or not a Set<MessageEntity>")
             messageList = []
         }
         

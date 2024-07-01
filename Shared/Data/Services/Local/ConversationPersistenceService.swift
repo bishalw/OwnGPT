@@ -59,7 +59,7 @@ class ConversationPersistenceService: PersistenceService {
             }
             return count
         } catch {
-            Log.shared.error("Error fetching conversation count: \(error)")
+            Log.shared.logger.error("Error fetching conversation count: \(error)")
             throw error
         }
     }
@@ -71,7 +71,7 @@ class ConversationPersistenceService: PersistenceService {
             let result = try request.execute()
             let conversations = result.compactMap { $0.toConversation() }
             if conversations.count != result.count {
-                Log.shared.info("Some conversations failed to convert: \(result.count - conversations.count) failures")
+                Log.shared.logger.info("Some conversations failed to convert: \(result.count - conversations.count) failures")
             }
             return conversations
         }
@@ -92,7 +92,7 @@ class ConversationPersistenceService: PersistenceService {
                 await save()
             }
         } catch {
-            Log.shared.error("Error deleting conversation: \(error)")
+            Log.shared.logger.error("Error deleting conversation: \(error)")
             throw error
         }
     }
@@ -104,9 +104,9 @@ class ConversationPersistenceService: PersistenceService {
         do {
             try await manager.backgroundContext.performBatchDelete(deleteRequest)
             await save()
-            Log.shared.info("All conversations deleted successfully.")
+            Log.shared.logger.info("All conversations deleted successfully.")
         } catch {
-            Log.shared.error("Error deleting all conversations: \(error)")
+            Log.shared.logger.error("Error deleting all conversations: \(error)")
             throw error
         }
     }

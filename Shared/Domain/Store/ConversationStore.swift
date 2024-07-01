@@ -43,10 +43,10 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
             .sink { [weak self] update in
                 switch update {
                 case .updatedConversation(let conversation):
-                    Log.shared.debug("Received updated conversation from repo: \(conversation.id)")
+                    Log.shared.logger.debug("Received updated conversation from repo: \(conversation.id)")
                     self?.conversationSubject.send(conversation)
                 case .updatedConversations:
-                    Log.shared.debug("Received update for multiple conversations")
+                    Log.shared.logger.debug("Received update for multiple conversations")
                     // Handle if needed
                 }
             }
@@ -55,7 +55,7 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
     
     func createNewConversation() -> Conversation {
         let newConversation = Conversation(id: UUID(), messages: [])
-        Log.shared.debug("Created new conversation with ID: \(newConversation.id)")
+        Log.shared.logger.debug("Created new conversation with ID: \(newConversation.id)")
         conversationSubject.send(newConversation)
         // Optionally, save the new conversation to the repository
         repo.save(conversation: newConversation)
@@ -67,12 +67,12 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
             do {
                 let history = conversationSubject.value.getOpenApiHistory()
                 
-                Log.shared.info("Sending request with text: \(string) and history: \(history)")
+                Log.shared.logger.info("Sending request with text: \(string) and history: \(history)")
                 let responseStream = try await chatGPTAPI.sendMessageStream(text: string, history: history)
-                Log.shared.info("Response stream received")
+                Log.shared.logger.info("Response stream received")
                 try await processResponseStream(responseStream)
             } catch {
-                Log.shared.info("Error in sendMessage: \(error)")
+                Log.shared.logger.info("Error in sendMessage: \(error)")
             }
         }
     }
@@ -97,10 +97,10 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
                 let systemMessage = Message(id: UUID(), type: .system, content: .message(string: fullResponse), isStreaming: true)
                 updateConversationLastMessage(message: systemMessage)
             }
-            Log.shared.info("Final response: \(fullResponse)")
+            Log.shared.logger.info("Final response: \(fullResponse)")
             finalizeConversation(with: fullResponse)
         } catch {
-            Log.shared.error("Error processing response stream: \(error)")
+            Log.shared.logger.error("Error processing response stream: \(error)")
         }
     }
     
@@ -108,7 +108,7 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         var currentMessages = conversationSubject.value.messages
         currentMessages.append(message)
         let updatedConversation = Conversation(id: conversationSubject.value.id, messages: currentMessages)
-        Log.shared.debug("Adding message to conversation: \(updatedConversation.id)")
+        Log.shared.logger.debug("Adding message to conversation: \(updatedConversation.id)")
         conversationSubject.send(updatedConversation)
     }
     
@@ -119,7 +119,7 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         }
         currentMessages.append(message)
         let updatedConversation = Conversation(id: conversationSubject.value.id, messages: currentMessages)
-        Log.shared.debug("Updating last message in conversation: \(updatedConversation.id)")
+        Log.shared.logger.debug("Updating last message in conversation: \(updatedConversation.id)")
         conversationSubject.send(updatedConversation)
     }
     
@@ -129,7 +129,7 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
                                          content: .message(string: content),
                                          isStreaming: false)
         updateConversationLastMessage(message: finalSystemMessage)
-        Log.shared.info("Finalized Message: \(finalSystemMessage)")
+        Log.shared.logger.info("Finalized Message: \(finalSystemMessage)")
         repo.save(conversation: conversationSubject.value)
     }
 }

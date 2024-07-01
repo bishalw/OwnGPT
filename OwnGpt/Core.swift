@@ -6,6 +6,8 @@
 
 import Foundation
 import os
+import Bkit
+
 class Core: ObservableObject {
     
     private(set) lazy var persistenceController: PersistenceController = {
@@ -27,12 +29,10 @@ class Core: ObservableObject {
     private(set) lazy var conversationRepository: ConversationRepositoryImpl = {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
-    
-//    private(set) lazy var conversationStore: ConversationStore = {
-//        return ConversationStore(chatGPTAPI: self.chatgptApiService, repo: self.conversationRepository)
-//    }()
+
     
     private(set) lazy var conversationsStore: ConversationsStore = {
         return ConversationsStore(repo: self.conversationRepository)
     }()
+    
 }

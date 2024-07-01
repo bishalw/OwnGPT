@@ -49,10 +49,10 @@ struct PersistenceController {
             try await context.performAsync { context in
                 try context.save()
                 self.mergeChangesFromBackgroundContext(context)
-                Log.shared.info("BackgroundContext saved successfully.")
+                Log.shared.logger.info("BackgroundContext saved successfully.")
             }
         } catch {
-            Log.shared.error("Error saving BackgroundContext: \(error)")
+            Log.shared.logger.error("Error saving BackgroundContext: \(error)")
             context.rollback()
         }
     }
@@ -62,10 +62,10 @@ struct PersistenceController {
             do {
                 if self.viewContext.hasChanges {
                     try self.viewContext.save()
-                    Log.shared.info("ViewContext merged and saved successfully.")
+                    Log.shared.logger.info("ViewContext merged and saved successfully.")
                 }
             } catch {
-                Log.shared.info("Error merging changes to ViewContext: \(error)")
+                Log.shared.logger.info("Error merging changes to ViewContext: \(error)")
                 
             }
         }

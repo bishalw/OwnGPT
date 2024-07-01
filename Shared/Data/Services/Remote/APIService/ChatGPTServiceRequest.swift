@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Bkit
 
 struct ChatGPTServiceRequest: HTTPRequest {
     

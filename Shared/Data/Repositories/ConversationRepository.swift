@@ -49,7 +49,7 @@ class ConversationRepositoryImpl: ConversationRepository {
                 }
                 _didUpdatePassthrough.send(.updatedConversations)
             } catch {
-                Log.shared.error("Error saving conversations: \(error)")
+                Log.shared.logger.error("Error saving conversations: \(error)")
             }
         }
     }
@@ -58,10 +58,10 @@ class ConversationRepositoryImpl: ConversationRepository {
         Task {
             do {
                 try await conversationPersistenceService.add(conversation)
-                Log.shared.debug("Saved conversation: \(conversation.id)")
+                Log.shared.logger.debug("Saved conversation: \(conversation.id)")
                 _didUpdatePassthrough.send(.updatedConversation(conversation: conversation))
             } catch {
-                Log.shared.error("Error saving conversation: \(error)")
+                Log.shared.logger.error("Error saving conversation: \(error)")
             }
         }
     }

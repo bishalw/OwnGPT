@@ -26,13 +26,13 @@ class ConversationsStore {
     }
     
     private func loadConversations() {
-        Log.shared.info("Loading Conversations")
+        Log.shared.logger.info("Loading Conversations")
         Task { [weak self] in
             do {
                 let loadedConversations = try await self?.repo.get()
                 self?.conversations = loadedConversations ?? []
             } catch {
-                Log.shared.info("Failed to load conversations: \(error)")
+                Log.shared.logger.info("Failed to load conversations: \(error)")
             }
         }
     }
