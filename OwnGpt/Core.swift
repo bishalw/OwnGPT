@@ -18,7 +18,7 @@ class Core: ObservableObject {
         return ConversationPersistenceService(manager: self.persistenceController)
     }()
     
-    private(set) lazy var networkService: NetworkStreamingService = {
+    private(set) lazy var networkService: CombinedNetworkService = {
         return NetworkServiceImpl()
     }()
     

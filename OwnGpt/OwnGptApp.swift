@@ -6,7 +6,7 @@
 
 import SwiftUI
 import os
-
+import Bkit
 
 @main
 struct OwnGptApp: App {
