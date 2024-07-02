@@ -17,7 +17,9 @@ struct OwnGptApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(core)
-                    
+            MainView()
+            SignInView()
+            
         }
     }
 }
