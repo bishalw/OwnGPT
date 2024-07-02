@@ -13,7 +13,7 @@ struct ConversationsView: View {
     //MARK: Dependency
     @StateObject var conversationsViewModel: ConversationsViewModel
     //MARK: UI State
-    @Binding var selectedConversationId: UUID?
+    @Binding var selectedConversation: Conversation?
     
     var body: some View {
         ScrollView {
@@ -21,16 +21,16 @@ struct ConversationsView: View {
                 ForEach(conversationsViewModel.conversations, id: \.id) { conversation in
                     ConversationItemView(
                         conversation: conversation,
-                        isSelected: selectedConversationId == conversation.id
+                        isSelected: selectedConversation?.id == conversation.id
                     )
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(selectedConversationId == conversation.id ? selectionColor : Color.clear)
+                            .fill(selectedConversation?.id == conversation.id ? selectionColor : Color.clear)
                     )
                     .contentShape(Rectangle()) // This makes the entire area tappable
                     .onTapGesture {
                         conversationsViewModel.selectConversation(conversation)
-                        selectedConversationId = conversation.id
+                        selectedConversation = conversation
                     }
                     .padding(.horizontal, 8)
                     .onAppear(perform: {
@@ -47,6 +47,7 @@ struct ConversationsView: View {
 }
 
 struct ConversationItemView: View {
+    @Environment(\.colorScheme) var colorScheme
     let conversation: Conversation
     let isSelected: Bool
     
@@ -54,9 +55,9 @@ struct ConversationItemView: View {
         HStack(spacing: 12) {
             Image(systemName: "bubble.fill")
                 .frame(width: 30, height: 30)
-                .foregroundColor(.blue)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
             
-            Text(conversation.lastMessagePreview)
+            Text(conversation.firstMessagePreview)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
             

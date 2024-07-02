@@ -67,7 +67,8 @@ class ConversationRepositoryImpl: ConversationRepository {
     }
     
     func get() async throws -> [Conversation] {
-        let conversations = try await conversationPersistenceService.get()
+        var conversations = try await conversationPersistenceService.get()
+        conversations.reverse()
         return conversations
     }
     

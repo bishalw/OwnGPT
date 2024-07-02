@@ -18,16 +18,17 @@ struct Conversation: Identifiable {
     }
 }
 extension Conversation {
-    var lastMessagePreview: String {
-        guard let lastMessage = messages.last?.content.text else {
+    var firstMessagePreview: String {
+        guard let firstMessage = messages.first?.content.text else {
             return "New Conversation"
         }
-        if lastMessage.isEmpty {
+        if firstMessage.isEmpty {
             return "Empty message"
         }
-        return String(lastMessage.prefix(26))
+        return String(firstMessage.prefix(26))
     }
 }
+
 extension Conversation {
     func toConversationEntity(context: NSManagedObjectContext) -> ConversationEntity {
         let conversationEntity: ConversationEntity

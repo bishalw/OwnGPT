@@ -14,21 +14,15 @@ final class ConversationViewModel: ObservableObject {
     @Published var isSendButtonDisabled = true
     @Published private(set) var showPlaceholder = true
     @Published var conversation: Conversation?
-    var messages: [Message]{
-        conversation?.messages ?? []
-    }
-    @Published var inputMessage = ""
-    {
-        didSet { updateSendButtonState() }
-    }
+    @Published var inputMessage = "" { didSet { updateSendButtonState() } }
+    
+    var messages: [Message] { conversation?.messages ?? [] }
+    var messageIsStreaming: Bool { messages.contains { $0.isStreaming } }
+    var createNewConversation: () -> Void
     
     private let store: ConversationStoreProtocol
     private var cancellables = Set<AnyCancellable>()
-    
-    var messageIsStreaming: Bool {
-        messages.contains { $0.isStreaming }
-    }
-    var createNewConversation: () -> Void
+
     
     init(store: ConversationStoreProtocol,
          createNewConversation: @escaping () -> Void) {
@@ -39,6 +33,19 @@ final class ConversationViewModel: ObservableObject {
         updatePlaceholderVisibility()
     }
     
+    //MARK: Public
+    
+    func sendTapped() {
+        guard !inputMessage.isBlank else { return }
+        isSendButtonDisabled.toggle()
+        send(text: inputMessage)
+        inputMessage = ""
+    }
+    func createNewConversationButtonPressed() {
+        self.createNewConversation()
+    }
+    
+    //MARK: Private
     private func setupBindings() {
         store.conversationPublisher
             .receive(on: RunLoop.main)
@@ -48,21 +55,9 @@ final class ConversationViewModel: ObservableObject {
                 self.updatePlaceholderVisibility()
             }
             .store(in: &cancellables)
-        
     }
-    
-    func sendTapped() {
-        guard !inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
-        isSendButtonDisabled.toggle()
-        send(text: inputMessage)
-        inputMessage = ""
-    }
-    
-    func createNewConversationButtonPressed() {
-        self.createNewConversation()
-    }
-    
-    func send(text: String) {
+
+    private func send(text: String) {
         store.sendMessage(string: text)
     }
     
@@ -71,6 +66,8 @@ final class ConversationViewModel: ObservableObject {
     }
     
     private func updateSendButtonState() {
-        isSendButtonDisabled = inputMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        isSendButtonDisabled = inputMessage.isBlank
     }
 }
+
+

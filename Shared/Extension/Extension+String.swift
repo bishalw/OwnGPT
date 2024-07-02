@@ -11,4 +11,7 @@ extension String {
     var trimmed: String {
         self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    var isBlank: Bool {
+        self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
 }

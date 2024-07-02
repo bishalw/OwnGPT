@@ -19,7 +19,7 @@ struct SidebarView: View {
     @FocusState private var isSearchFieldFocused: Bool
     @State private var isSettingsPresented = false
     @State var apiKey: String = Constants.apiKey
-    @State private var selectedConversationId: UUID?
+
     
     var body: some View {
         GeometryReader { geometry in
@@ -53,19 +53,16 @@ extension SidebarView {
         )
         .padding(.top, -10)
     }
-    
     private var conversationsView: some View {
         ConversationsView(
             conversationsViewModel: ConversationsViewModel(
                 conversationsStore: core.conversationsStore,
                 conversationsViewModelSharedProvider: vm
             ),
-            selectedConversationId: $selectedConversationId  // Add this line
-        ).onAppear(perform: {
-            Log.shared.logger.info("Conversations View appearing")
-        })
+            selectedConversation: $vm.selectedConversation
+        )
     }
-    
+
     private var settingsButton: some View {
         SiderBarBottomView()
             .onTapGesture {
@@ -75,6 +72,7 @@ extension SidebarView {
                 SettingsView(apiKey: $apiKey)
             }
     }
+
 
 }
 
@@ -116,13 +114,15 @@ struct SearchableView: View {
 }
 
 struct SiderBarBottomView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         HStack {
             Button(action: {
                 
             }, label: {
-                Image(systemName: "person")
+                Image(systemName: "person.crop.square.fill")
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .background(colorScheme == .dark ? .black : .white)
             })
             .font(.title)
             Text("Bishal")
@@ -130,7 +130,7 @@ struct SiderBarBottomView: View {
             Button(action: {
                 
             }, label: {
-                Image(systemName: "gear")
+                Image(systemName: "gearshape").foregroundColor(colorScheme == .dark ? .white : .black)
             })
             .font(.title)
         }.padding(.bottom,16)
