@@ -20,14 +20,14 @@ enum AuthError: Error {
 }
 
 protocol AuthUser {
-    var id: UUID { get }
+    var id: String { get }
     var name: String? { get }
     var email: String? { get }
     var authProvider: AuthProvider { get }
 }
 
+
 protocol AuthService {
-    
     var currentUser: AuthUser? { get }
     var isAuthenticated: Bool { get }
     var authStatePublisher: AnyPublisher<Bool , Never> { get }
