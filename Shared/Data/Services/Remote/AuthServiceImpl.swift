@@ -36,6 +36,3 @@ class AuthServiceImpl: AuthService {
     
     
 }
-class FireBaseAuthService: AuthService {
-    
-}
