@@ -379,7 +379,7 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		584231482B1AC8E4009F1C46 /* Views */ = {
+		584231482B1AC8E4009F1C46 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				5887267D2C339CA600CAFA3E /* SignInView.swift */,
@@ -389,7 +389,7 @@
 				585609CF2C2A5604004A8791 /* SideBar */,
 				58450A932A67CED9005BD1E4 /* Helpers */,
 			);
-			path = Views;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		5842314C2B1AC97C009F1C46 /* Models */ = {
@@ -487,7 +487,7 @@
 		5872876F2C24322000667018 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				584231482B1AC8E4009F1C46 /* Views */,
+				584231482B1AC8E4009F1C46 /* Screens */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
