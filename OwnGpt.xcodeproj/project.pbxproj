@@ -75,6 +75,8 @@
 		58D16DA32C35036100A78C3A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 58D16DA22C35036100A78C3A /* FirebaseAuth */; };
 		58D16DA52C35058400A78C3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DA42C35058400A78C3A /* User.swift */; };
 		58D16DA72C35179000A78C3A /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */; };
+		58D16DBA2C3CC81000A78C3A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */; };
+		58D16DBC2C3CD33400A78C3A /* AppleAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */; };
 		58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
 		58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
 		58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */; };
@@ -179,6 +181,8 @@
 		58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceImpl.swift; sourceTree = "<group>"; };
 		58D16DA42C35058400A78C3A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthProvider.swift; sourceTree = "<group>"; };
 		58FE3CB22A9D6DE800CAE55E /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				5887267D2C339CA600CAFA3E /* SignInView.swift */,
+				58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */,
 				58D16D9C2C33C51200A78C3A /* Main */,
 				580F364D2B289925005E337F /* Conversation */,
 				585609CF2C2A5604004A8791 /* SideBar */,
@@ -424,6 +429,7 @@
 				58D16D9D2C33C54700A78C3A /* AuthService.swift */,
 				58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */,
 				58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */,
+				58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */,
 				589077CA2B4A3FF9009C9AEB /* APIService */,
 			);
 			path = Remote;
@@ -846,6 +852,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58464FF82B2343B200C1BA7F /* Constants.swift in Sources */,
+				58D16DBC2C3CD33400A78C3A /* AppleAuthProvider.swift in Sources */,
 				588170092C2BEE0E00D34BFF /* MainView.swift in Sources */,
 				58FE3CCF2AA11E4900CAE55E /* ConversationStore.swift in Sources */,
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
@@ -854,6 +861,7 @@
 				581B65832C24C76A008E76DD /* SideBarView.swift in Sources */,
 				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
 				585609D12C2B5E58004A8791 /* Log.swift in Sources */,
+				58D16DBA2C3CC81000A78C3A /* SignInViewModel.swift in Sources */,
 				587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */,
 				58D16D9E2C33C54700A78C3A /* AuthService.swift in Sources */,
 				581B65812C24C711008E76DD /* ConversationList.swift in Sources */,

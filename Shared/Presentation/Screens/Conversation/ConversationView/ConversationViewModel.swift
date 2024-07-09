@@ -25,7 +25,8 @@ final class ConversationViewModel: ObservableObject {
 
     
     init(store: ConversationStoreProtocol,
-         createNewConversation: @escaping () -> Void) {
+         createNewConversation: @escaping () -> Void) 
+    {
         self.createNewConversation = createNewConversation
         self.store = store
         self.conversation = store.conversation

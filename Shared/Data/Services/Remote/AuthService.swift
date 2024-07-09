@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-enum AuthProvider {
-    case apple
-    case google
-}
 
 enum AuthError: Error {
     case signInFailed(String)

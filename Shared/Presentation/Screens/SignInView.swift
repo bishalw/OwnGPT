@@ -7,10 +7,15 @@
 
 import Foundation
 import SwiftUI
+import _AuthenticationServices_SwiftUI
 
+extension SignInWithAppleButton {
+    
+}
 struct SignInView: View {
     let ownGPT = "OwnGPT"
     @State private var visibleCharacters = 0
+//    @StateObject var vm: AppleAuth = AppleAuth()
     
     var body: some View {
         GeometryReader { geometry in
