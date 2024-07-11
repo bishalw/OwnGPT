@@ -11,44 +11,20 @@ import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 
-class AuthServiceImpl {
-    
-    var currentUser: AuthUser?
-    
-    var isAuthenticated: Bool = false
-    
-    private var authStateSubject = CurrentValueSubject<Bool, Never>(false)
-
-    
-    var authStatePublisher: AnyPublisher<Bool, Never> {
-        authStateSubject.eraseToAnyPublisher()
-    }
-    
-    init(currentUser: AuthUser?) {
-        self.currentUser = currentUser
-    }
-    
-    
+class AuthServiceImpl: AuthService {
     func signIn(with provider: AuthProvider) async throws -> AuthResult {
+        let strategy: AuthStrategy
         switch provider {
+        case .email(let email, let password):
+            strategy = EmailAuthStrategy(email: email, password: password)
         case .apple:
-            // MARK: TODO- Apple Auth
-            let user = User.init(id: "", name: "", email: "")
-            return AuthResult.init(user: user , provider: .apple )
+            strategy = AppleAuthStrategy()
         case .google:
-            // MARK: TODO- Google Auth
-            let user = User.init(id: "", name: "", email: "")
-            return AuthResult.init(user: user , provider: .google )
-        case .emailPassword:
-            return AuthResult(user: .init(id: "", name: "", email: ""), provider: .emailPassword)
+            strategy = GoogleAuthStrategy()
         }
-        
+        return try await strategy.authenticate()
     }
-    
-    
 }
-
-
 enum SignInError: Error {
     case credentialNotFound
     case invalidIdToken

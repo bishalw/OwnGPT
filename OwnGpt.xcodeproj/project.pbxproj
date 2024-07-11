@@ -74,9 +74,10 @@
 		58D16DA02C34FF9000A78C3A /* AuthServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */; };
 		58D16DA32C35036100A78C3A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 58D16DA22C35036100A78C3A /* FirebaseAuth */; };
 		58D16DA52C35058400A78C3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DA42C35058400A78C3A /* User.swift */; };
-		58D16DA72C35179000A78C3A /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */; };
+		58D16DA72C35179000A78C3A /* EmailAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DA62C35179000A78C3A /* EmailAuthStrategy.swift */; };
 		58D16DBA2C3CC81000A78C3A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */; };
-		58D16DBC2C3CD33400A78C3A /* AppleAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */; };
+		58D16DBC2C3CD33400A78C3A /* AppleAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */; };
+		58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */; };
 		58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
 		58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
 		58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */; };
@@ -180,9 +181,10 @@
 		58D16D9D2C33C54700A78C3A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceImpl.swift; sourceTree = "<group>"; };
 		58D16DA42C35058400A78C3A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		58D16DA62C35179000A78C3A /* EmailAuthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthStrategy.swift; sourceTree = "<group>"; };
 		58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthProvider.swift; sourceTree = "<group>"; };
+		58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthStrategy.swift; sourceTree = "<group>"; };
+		58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthStrategy.swift; sourceTree = "<group>"; };
 		58FE3CB22A9D6DE800CAE55E /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		58FE3CC22A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -426,10 +428,7 @@
 		5842314E2B1AC9E2009F1C46 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				58D16D9D2C33C54700A78C3A /* AuthService.swift */,
-				58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */,
-				58D16DA62C35179000A78C3A /* FirebaseAuthService.swift */,
-				58D16DBB2C3CD33400A78C3A /* AppleAuthProvider.swift */,
+				58D16DBF2C3F589700A78C3A /* Auth */,
 				589077CA2B4A3FF9009C9AEB /* APIService */,
 			);
 			path = Remote;
@@ -610,6 +609,18 @@
 				587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		58D16DBF2C3F589700A78C3A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				58D16D9D2C33C54700A78C3A /* AuthService.swift */,
+				58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */,
+				58D16DA62C35179000A78C3A /* EmailAuthStrategy.swift */,
+				58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */,
+				58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		58FE3CCD2A9EB0FF00CAE55E /* CoreDataProperties */ = {
@@ -852,7 +863,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58464FF82B2343B200C1BA7F /* Constants.swift in Sources */,
-				58D16DBC2C3CD33400A78C3A /* AppleAuthProvider.swift in Sources */,
+				58D16DBC2C3CD33400A78C3A /* AppleAuthStrategy.swift in Sources */,
 				588170092C2BEE0E00D34BFF /* MainView.swift in Sources */,
 				58FE3CCF2AA11E4900CAE55E /* ConversationStore.swift in Sources */,
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
@@ -876,6 +887,7 @@
 				5879312B2B294D89002E8DB9 /* Core.swift in Sources */,
 				584231532B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				58FE3CC52A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
+				58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */,
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
@@ -883,7 +895,7 @@
 				585609CE2C2A5569004A8791 /* SideBarViewModel.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
-				58D16DA72C35179000A78C3A /* FirebaseAuthService.swift in Sources */,
+				58D16DA72C35179000A78C3A /* EmailAuthStrategy.swift in Sources */,
 				58D16DA02C34FF9000A78C3A /* AuthServiceImpl.swift in Sources */,
 				5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */,
 				588726802C33A65A00CAFA3E /* CircularLogoView.swift in Sources */,
