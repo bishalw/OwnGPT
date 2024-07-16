@@ -20,7 +20,10 @@ final class ConversationsViewModel: ObservableObject {
     private var conversationsStore: ConversationsStore
     private var cancellables = Set<AnyCancellable>()
     
-    init(conversationsStore: ConversationsStore, conversationsViewModelSharedProvider: ConversationsViewModelSharedStateProvider) {
+    init(
+        conversationsStore: ConversationsStore,
+        conversationsViewModelSharedProvider: ConversationsViewModelSharedStateProvider
+    ) {
         self.conversationsStore = conversationsStore
         self._selectedConversation = conversationsViewModelSharedProvider.selectedConversationPublisher
         setUpBindings()

@@ -7,19 +7,21 @@
 
 import Foundation
 import Combine
-protocol SiderBarViewModelSharedStateProvider {
+protocol SiderBarViewModelSharedStateProvider: ConversationsViewModelSharedStateProvider {
     var selectedConversationPublisher: Published<Conversation?> { get }
 }
 
 
 class SideBarViewModel: ObservableObject {
-    let mainViewSharedStateManager: MainViewSharedStateManager
+    let sharedStateProvider: SiderBarViewModelSharedStateProvider
     
     @Published var selectedConversation: Conversation?
     
-    init(mainViewSharedStateManager: MainViewSharedStateManager) {
-        self._selectedConversation = mainViewSharedStateManager.selectedConversationPublisher
-        self.mainViewSharedStateManager = mainViewSharedStateManager
+    init(
+        sharedStateProvider: SiderBarViewModelSharedStateProvider
+    ) {
+        self._selectedConversation = sharedStateProvider.selectedConversationPublisher
+        self.sharedStateProvider = sharedStateProvider
     }
     
     
