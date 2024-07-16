@@ -2,7 +2,6 @@
 //  SignInViewModel.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 7/8/24.
 //
 
 import Foundation
@@ -38,18 +37,18 @@ class SignInViewModel: ObservableObject {
     }
     
     private func signIn(with provider: AuthProvider) async {
-           state = .authenticating(provider)
-           
-           do {
-               let result = try await authService.signIn(with: provider)
-               state = .success(result)
-               if case .email = provider {
-                   password = "" 
-               }
-           } catch {
-               state = .failure(error)
-           }
-       }
+        state = .authenticating(provider)
+        
+        do {
+            let result = try await authService.signIn(with: provider)
+            state = .success(result)
+            if case .email = provider {
+                password = ""
+            }
+        } catch {
+            state = .failure(error)
+        }
+    }
 }
 
 

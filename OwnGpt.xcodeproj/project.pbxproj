@@ -58,6 +58,8 @@
 		588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20322A70AADE002FEC2B /* WatchOSView.swift */; };
 		5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
 		5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
+		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
+		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -169,6 +171,8 @@
 		588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		588F20322A70AADE002FEC2B /* WatchOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSView.swift; sourceTree = "<group>"; };
 		5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTServiceRequest.swift; sourceTree = "<group>"; };
+		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			files = (
 				5887267C2C33699500CAFA3E /* Bkit in Frameworks */,
 				58D16DA32C35036100A78C3A /* FirebaseAuth in Frameworks */,
+				58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */,
+				58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,8 +308,8 @@
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
-				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
 				588F20272A6F4DF4002FEC2B /* Shared */,
+				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
 				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */,
 				580F364B2B289850005E337F /* Tests */,
 				58102EEA2A44FC1F00C52BD4 /* Products */,
@@ -327,6 +333,8 @@
 		58102EEB2A44FC1F00C52BD4 /* OwnGpt */ = {
 			isa = PBXGroup;
 			children = (
+				58AF5A3F2C42050600558626 /* OwnGpt.entitlements */,
+				58AF5A3E2C42006900558626 /* Info.plist */,
 				58102EF22A44FC2000C52BD4 /* Preview Content */,
 				58102EEC2A44FC1F00C52BD4 /* OwnGptApp.swift */,
 				5879312A2B294D89002E8DB9 /* Core.swift */,
@@ -653,6 +661,8 @@
 			packageProductDependencies = (
 				5887267B2C33699500CAFA3E /* Bkit */,
 				58D16DA22C35036100A78C3A /* FirebaseAuth */,
+				58AF5A3A2C41FFED00558626 /* GoogleSignIn */,
+				58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */,
 			);
 			productName = OwnGpt;
 			productReference = 58102EE92A44FC1F00C52BD4 /* OwnGpt.app */;
@@ -793,6 +803,7 @@
 			packageReferences = (
 				5887267A2C33697500CAFA3E /* XCRemoteSwiftPackageReference "Bkit" */,
 				58D16DA12C35036100A78C3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				58AF5A392C41FFED00558626 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 58102EEA2A44FC1F00C52BD4 /* Products */;
 			projectDirPath = "";
@@ -1129,12 +1140,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OwnGpt/OwnGpt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OwnGpt/Preview Content\"";
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OwnGpt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1145,7 +1158,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGpt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bishalw.OwnGpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1158,12 +1171,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OwnGpt/OwnGpt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OwnGpt/Preview Content\"";
 				DEVELOPMENT_TEAM = EGCAKP6VK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OwnGpt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1174,7 +1189,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = bishalw.OwnGpt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bishalw.OwnGpt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1477,6 +1492,14 @@
 				kind = branch;
 			};
 		};
+		58AF5A392C41FFED00558626 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
 		58D16DA12C35036100A78C3A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1492,6 +1515,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5887267A2C33697500CAFA3E /* XCRemoteSwiftPackageReference "Bkit" */;
 			productName = Bkit;
+		};
+		58AF5A3A2C41FFED00558626 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58AF5A392C41FFED00558626 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58AF5A392C41FFED00558626 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 		58D16DA22C35036100A78C3A /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

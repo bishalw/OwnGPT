@@ -39,7 +39,6 @@ struct SidebarView: View {
             }
         }
     }
-    
 }
 
 // MARK: Subviews
@@ -55,9 +54,9 @@ extension SidebarView {
     }
     private var conversationsView: some View {
         ConversationsView(
-            conversationsViewModel: ConversationsViewModel(
+            vm: ConversationsViewModel(
                 conversationsStore: core.conversationsStore,
-                conversationsViewModelSharedProvider: vm
+                conversationsViewModelSharedProvider: vm.mainViewSharedStateManager
             ),
             selectedConversation: $vm.selectedConversation
         )

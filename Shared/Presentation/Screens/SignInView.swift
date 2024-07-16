@@ -15,7 +15,6 @@ extension SignInWithAppleButton {
 struct SignInView: View {
     let ownGPT = "OwnGPT"
     @State private var visibleCharacters = 0
-//    @StateObject var vm: AppleAuth = AppleAuth()
     
     var body: some View {
         GeometryReader { geometry in
@@ -29,6 +28,7 @@ struct SignInView: View {
                     Spacer()
                 }
                 signInButtonsView(geometry: geometry)
+                
             }
         }
         .onAppear(perform: animateText)

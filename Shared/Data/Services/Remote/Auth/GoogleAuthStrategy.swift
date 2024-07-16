@@ -2,7 +2,6 @@
 //  GoogleAuthStrategy.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 7/10/24.
 //
 
 import Foundation

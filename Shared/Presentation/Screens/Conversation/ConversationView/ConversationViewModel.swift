@@ -6,7 +6,7 @@
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 @MainActor
 final class ConversationViewModel: ObservableObject {
@@ -70,5 +70,4 @@ final class ConversationViewModel: ObservableObject {
         isSendButtonDisabled = inputMessage.isBlank
     }
 }
-
 
