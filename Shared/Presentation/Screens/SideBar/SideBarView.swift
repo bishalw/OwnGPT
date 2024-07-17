@@ -121,7 +121,7 @@ struct SiderBarBottomView: View {
                     .background(colorScheme == .dark ? .black : .white)
             })
             .font(.title)
-            Text("Bishal")
+            Text("User")
             Spacer()
             Button(action: {
                 
