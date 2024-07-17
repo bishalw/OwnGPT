@@ -404,8 +404,7 @@
 		584231482B1AC8E4009F1C46 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				5887267D2C339CA600CAFA3E /* SignInView.swift */,
-				58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */,
+				58AB10172C48734600F96841 /* SignIn(WIP) */,
 				58D16D9C2C33C51200A78C3A /* Main */,
 				580F364D2B289925005E337F /* Conversation */,
 				585609CF2C2A5604004A8791 /* SideBar */,
@@ -436,7 +435,7 @@
 		5842314E2B1AC9E2009F1C46 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				58D16DBF2C3F589700A78C3A /* Auth */,
+				58D16DBF2C3F589700A78C3A /* Auth(WIP) */,
 				589077CA2B4A3FF9009C9AEB /* APIService */,
 			);
 			path = Remote;
@@ -601,6 +600,15 @@
 			name = "Helper+Conversation";
 			sourceTree = "<group>";
 		};
+		58AB10172C48734600F96841 /* SignIn(WIP) */ = {
+			isa = PBXGroup;
+			children = (
+				5887267D2C339CA600CAFA3E /* SignInView.swift */,
+				58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */,
+			);
+			path = "SignIn(WIP)";
+			sourceTree = "<group>";
+		};
 		58D16D9B2C33C3CE00A78C3A /* Testing */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,7 +627,7 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		58D16DBF2C3F589700A78C3A /* Auth */ = {
+		58D16DBF2C3F589700A78C3A /* Auth(WIP) */ = {
 			isa = PBXGroup;
 			children = (
 				58D16D9D2C33C54700A78C3A /* AuthService.swift */,
@@ -628,7 +636,7 @@
 				58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */,
 				58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */,
 			);
-			path = Auth;
+			path = "Auth(WIP)";
 			sourceTree = "<group>";
 		};
 		58FE3CCD2A9EB0FF00CAE55E /* CoreDataProperties */ = {

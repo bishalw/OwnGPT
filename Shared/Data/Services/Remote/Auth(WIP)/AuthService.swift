@@ -7,8 +7,6 @@
 import Foundation
 import Combine
 
-
-
 enum AuthError: Error {
     case invalidCredentials
     case networkError
