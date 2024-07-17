@@ -39,7 +39,6 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
     func sendMessageStream(text: String, history: [OpenAiModels.Message]) async throws -> AsyncThrowingStream<String, Error> {
         var serviceRequest = ChatGPTServiceRequest(apiKey: apiKey)
         serviceRequest.body = try jsonBody(text: text, history: history)
-        
         return try await networkService.makeStreamingRequest(
             request: serviceRequest,
             responseModel: OpenAiModels.StreamCompletionResponse.self,

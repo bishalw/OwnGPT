@@ -14,11 +14,12 @@ protocol ConversationStoreProtocol: AnyObject {
     var chatGPTAPI: ChatGPTAPIService { get }
     var repo: ConversationRepository { get }
     func sendMessage(string: String)
-//    func updateWithSelectedConversation(_ conversation: Conversation)
 }
 
 class ConversationStore: ObservableObject, ConversationStoreProtocol {
+    
     private let conversationSubject: CurrentValueSubject<Conversation, Never>
+    
     var conversationPublisher: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
     }
@@ -57,10 +58,10 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
         let newConversation = Conversation(id: UUID(), messages: [])
         Log.shared.logger.debug("Created new conversation with ID: \(newConversation.id)")
         conversationSubject.send(newConversation)
-        // Optionally, save the new conversation to the repository
         repo.save(conversation: newConversation)
         return newConversation
     }
+    
     func sendMessage(string: String) {
         Task {
             initializeConversation(with: string)

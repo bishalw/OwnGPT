@@ -6,7 +6,7 @@
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 @MainActor
 final class ConversationViewModel: ObservableObject {
@@ -25,7 +25,8 @@ final class ConversationViewModel: ObservableObject {
 
     
     init(store: ConversationStoreProtocol,
-         createNewConversation: @escaping () -> Void) {
+         createNewConversation: @escaping () -> Void) 
+    {
         self.createNewConversation = createNewConversation
         self.store = store
         self.conversation = store.conversation
@@ -69,5 +70,4 @@ final class ConversationViewModel: ObservableObject {
         isSendButtonDisabled = inputMessage.isBlank
     }
 }
-
 

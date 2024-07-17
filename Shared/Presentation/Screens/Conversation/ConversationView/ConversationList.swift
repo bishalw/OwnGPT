@@ -2,7 +2,6 @@
 //  ChatListView.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 7/26/23.
 //
 
 import SwiftUI

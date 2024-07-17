@@ -22,19 +22,27 @@ struct ConversationView: View {
             }
             .navigationBarTitle("Own GPT", displayMode: .inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    
-                    Button(action: {
-                        vm.createNewConversation()
-                    }
-                    ) {
-                        Image(systemName: "square.and.pencil")
-                            .font(.headline)
-                            .foregroundColor(colorScheme == .dark ? .darkForeground : .lightForeground)
-                    }.disabled(false)
-                }
-
+                toolBar
             }
+        }
+    }
+}
+//MARK: SubViews
+
+extension ConversationView {
+    
+    @ToolbarContentBuilder
+    fileprivate var  toolBar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            
+            Button(action: {
+                vm.createNewConversation()
+            }
+            ) {
+                Image(systemName: "square.and.pencil")
+                    .font(.headline)
+                    .foregroundColor(colorScheme == .dark ? .darkForeground : .lightForeground)
+            }.disabled(false)
         }
     }
     

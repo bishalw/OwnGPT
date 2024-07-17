@@ -2,14 +2,13 @@
 //  ChatsViewModel.swift
 //  OwnGpt
 //
-//  Created by Bishalw on 8/6/23.
 //
 
 import Foundation
 import SwiftUI
 import Combine
 
-protocol ConversationsViewModelSharedProvider {
+protocol ConversationsViewModelSharedStateProvider {
     var selectedConversationPublisher: Published<Conversation?> { get }
 }
 
@@ -21,7 +20,10 @@ final class ConversationsViewModel: ObservableObject {
     private var conversationsStore: ConversationsStore
     private var cancellables = Set<AnyCancellable>()
     
-    init(conversationsStore: ConversationsStore, conversationsViewModelSharedProvider: ConversationsViewModelSharedProvider) {
+    init(
+        conversationsStore: ConversationsStore,
+        conversationsViewModelSharedProvider: ConversationsViewModelSharedStateProvider
+    ) {
         self.conversationsStore = conversationsStore
         self._selectedConversation = conversationsViewModelSharedProvider.selectedConversationPublisher
         setUpBindings()

@@ -39,7 +39,6 @@ struct SidebarView: View {
             }
         }
     }
-    
 }
 
 // MARK: Subviews
@@ -55,19 +54,16 @@ extension SidebarView {
     }
     private var conversationsView: some View {
         ConversationsView(
-            conversationsViewModel: ConversationsViewModel(
+            vm: ConversationsViewModel(
                 conversationsStore: core.conversationsStore,
-                conversationsViewModelSharedProvider: vm
-            ),
-            selectedConversation: $vm.selectedConversation
+                conversationsViewModelSharedProvider: vm.sharedStateProvider
+            ),selectedConversation: $vm.selectedConversation
         )
     }
 
     private var settingsButton: some View {
         SiderBarBottomView()
-            .onTapGesture {
-                isSettingsPresented.toggle()
-            }
+            .onTapGesture { isSettingsPresented.toggle() }
             .sheet(isPresented: $isSettingsPresented) {
                 SettingsView(apiKey: $apiKey)
             }

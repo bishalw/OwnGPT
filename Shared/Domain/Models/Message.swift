@@ -98,3 +98,10 @@ extension Message {
 
 
 
+struct Pessage: Decodable, Identifiable {
+    let id: Int
+    let from: String
+    let message: String
+}
+
+
