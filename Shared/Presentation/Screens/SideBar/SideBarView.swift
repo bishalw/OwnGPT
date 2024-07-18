@@ -65,7 +65,7 @@ extension SidebarView {
         SiderBarBottomView()
             .onTapGesture { isSettingsPresented.toggle() }
             .sheet(isPresented: $isSettingsPresented) {
-                SettingsView(apiKey: $apiKey)
+                AlphSettingsView(apiKey: $apiKey)
             }
     }
 
@@ -84,12 +84,9 @@ struct SearchableView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
                     .padding(.leading, 8)
-                    .accessibility(hidden: true)
                 
                 TextField(placeholder, text: $searchText)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .accessibilityLabel("Search")
-                    .accessibilityHint("Enter text to search menu items")
                     .focused($isSearchFieldFocused)
                 
             }
@@ -97,8 +94,6 @@ struct SearchableView: View {
             .background(Color(.systemGray6))
             .cornerRadius(10)
             .padding(.horizontal)
-            .accessibilityElement(children: .contain)
-            .accessibilityAddTraits(.isSearchField)
             if isSearchFieldFocused {
                 Button("Cancel") {
                     isSearchFieldFocused = false
@@ -133,7 +128,7 @@ struct SiderBarBottomView: View {
     }
 }
 
-struct SettingsView: View {
+struct AlphSettingsView: View {
     @EnvironmentObject var core: Core
     @Binding var apiKey: String
     
@@ -184,9 +179,6 @@ struct SettingsView: View {
         .padding(.horizontal)
     }
 }
-
-
-
 
 #Preview {
 //    SidebarView(isSearching: .constant(false))

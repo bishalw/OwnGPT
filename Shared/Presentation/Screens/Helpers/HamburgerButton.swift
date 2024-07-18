@@ -47,6 +47,6 @@ struct HamburgerButton: View {
     }
 }
 #Preview {
-//    HamburgerButton()
-    EmptyView()
+    HamburgerButton(showMenu: .constant(true), offset: .constant(0), sidebarWidth: 55)
+
 }

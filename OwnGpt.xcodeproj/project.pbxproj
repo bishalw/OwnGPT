@@ -58,7 +58,9 @@
 		588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20322A70AADE002FEC2B /* WatchOSView.swift */; };
 		5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
 		5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
-		58AB10192C487B3D00F96841 /* SettingsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB10182C487B3D00F96841 /* SettingsView2.swift */; };
+		58AB10192C487B3D00F96841 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB10182C487B3D00F96841 /* SettingsView.swift */; };
+		58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */; };
+		58AB101D2C48E9B700F96841 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101C2C48E9B700F96841 /* SettingsViewModel.swift */; };
 		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
 		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
@@ -172,7 +174,9 @@
 		588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		588F20322A70AADE002FEC2B /* WatchOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSView.swift; sourceTree = "<group>"; };
 		5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTServiceRequest.swift; sourceTree = "<group>"; };
-		58AB10182C487B3D00F96841 /* SettingsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView2.swift; sourceTree = "<group>"; };
+		58AB10182C487B3D00F96841 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
+		58AB101C2C48E9B700F96841 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
@@ -459,6 +463,7 @@
 				5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */,
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
 				584231522B1AD4D0009F1C46 /* DotView.swift */,
+				58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */,
 				58D16D9B2C33C3CE00A78C3A /* Testing */,
 			);
 			path = Helpers;
@@ -470,7 +475,8 @@
 				581B65822C24C76A008E76DD /* SideBarView.swift */,
 				585609CD2C2A5569004A8791 /* SideBarViewModel.swift */,
 				580F364E2B28993E005E337F /* Conversations */,
-				58AB10182C487B3D00F96841 /* SettingsView2.swift */,
+				58AB10182C487B3D00F96841 /* SettingsView.swift */,
+				58AB101C2C48E9B700F96841 /* SettingsViewModel.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -914,7 +920,7 @@
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
-				58AB10192C487B3D00F96841 /* SettingsView2.swift in Sources */,
+				58AB10192C487B3D00F96841 /* SettingsView.swift in Sources */,
 				585609CE2C2A5569004A8791 /* SideBarViewModel.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,
@@ -924,12 +930,14 @@
 				588726802C33A65A00CAFA3E /* CircularLogoView.swift in Sources */,
 				58C61FAD2B2A907D003DF413 /* Router.swift in Sources */,
 				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
+				58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
+				58AB101D2C48E9B700F96841 /* SettingsViewModel.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
 				58D16DA52C35058400A78C3A /* User.swift in Sources */,
