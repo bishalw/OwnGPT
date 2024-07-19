@@ -9,14 +9,22 @@ import Foundation
 
 class SettingsViewModel: ObservableObject {
     
-    @Published var apiKey: String = ""
-    @Published var selectedModel: ChatGPTModel = .gpt3_5
-    @Published var temperature: Double = 0.7
-    @Published var contextWindowSize: Int = 5
     
-    init(){
-        
+    @Published var modelAIConfig: OpenAIModelConfig = .init()
+    var contextWindowSize: Int {
+        get { modelAIConfig.contextWindowSize }
+        set { modelAIConfig.contextWindowSize = newValue }
     }
-    
+    var temperature: Double {
+        get { modelAIConfig.temperature }
+        set { modelAIConfig.temperature = newValue }
+    }
+    var selectedModel: OpenAIModelType {
+        get { modelAIConfig.model }
+        set { modelAIConfig.model = newValue}
+    }
+    @Published var modelProvider: ModelProvider = .openAI
     
 }
+
+

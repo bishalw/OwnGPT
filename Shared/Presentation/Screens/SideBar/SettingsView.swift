@@ -15,17 +15,20 @@ struct SettingsView: View {
         
         Form {
             Section("Model Settings") {
-                Picker("Model", selection: $vm.selectedModel) {
-                    ForEach(ChatGPTModel.allCases) { model in
+                Picker("Model Provider", selection: $vm.modelProvider) {
+                    ForEach(ModelProvider.allCases) { model in
                         Text(model.rawValue).tag(model)
                     }
                 }
-                
+                Picker("Model", selection: $vm.selectedModel) {
+                    ForEach(OpenAIModelType.allCases) { model in
+                        Text(model.rawValue).tag(model)
+                    }
+                }
                 VStack(alignment: .leading) {
                     Text("Temperature: \(vm.temperature, specifier: "%.2f")")
                     Slider(value: $vm.temperature, in: 0...1, step: 0.1)
                 }
-                
                 VStack(alignment: .leading, spacing: 8) {
                     Stepper(value: $vm.contextWindowSize, in: 1...20) {
                         Text("Context Window  \(vm.contextWindowSize)")
@@ -43,8 +46,8 @@ struct SettingsView: View {
                 }
                 
             }
-            SecureFloatingLabelTextField(title: "ApiKey", text: $vm.apiKey)
-                .frame(maxWidth: .infinity)
+            
+//
 
             Section ("Conversations"){
                 Button(action: {
@@ -63,19 +66,12 @@ struct SettingsView: View {
                 
             }
         }
-        
+
     }
 }
 
 
-enum ChatGPTModel: String, CaseIterable, Identifiable {
-    case gpt3_5 = "GPT-3.5"
-    case gpt4 = "GPT-4"
-    case gpt4Turbo = "GPT-4 Turbo"
-    case gpt4o = "GPT-4o"
-    
-    var id: String { self.rawValue }
-}
+
 
 #Preview {
     SettingsView(vm: SettingsViewModel() )
