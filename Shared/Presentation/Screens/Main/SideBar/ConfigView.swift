@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct ConfigView: View {
     
-    @StateObject  var vm: SettingsViewModel
+    @StateObject  var vm: ConfigViewModel
     
     var body: some View {
-        
         Form {
             Section("Model Settings") {
                 Picker("Model Provider", selection: $vm.modelProvider) {
@@ -46,9 +45,6 @@ struct SettingsView: View {
                 }
                 
             }
-            
-//
-
             Section ("Conversations"){
                 Button(action: {
                     Task {
@@ -63,16 +59,13 @@ struct SettingsView: View {
                         .background(Color.red)
                         .cornerRadius(8)
                 }
-                
             }
         }
+        .scrollContentBackground(.hidden)
 
     }
 }
 
-
-
-
 #Preview {
-    SettingsView(vm: SettingsViewModel() )
+    ConfigView(vm: ConfigViewModel() )
 }

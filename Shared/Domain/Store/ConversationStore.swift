@@ -8,29 +8,30 @@
 import Foundation
 import Combine
 
-protocol ConversationStoreProtocol: AnyObject {
+protocol ConversationStoreProtocol: ObservableObject {
     var conversationPublisher: AnyPublisher<Conversation, Never> { get }
     var conversation: Conversation { get }
-    var chatGPTAPI: ChatGPTAPIService { get }
-    var repo: ConversationRepository { get }
     func sendMessage(string: String)
 }
 
-class ConversationStore: ObservableObject, ConversationStoreProtocol {
+class ConversationStore: ConversationStoreProtocol {
     
+    // MARK: Private
     private let conversationSubject: CurrentValueSubject<Conversation, Never>
+    private var subscriptions = Set<AnyCancellable>()
     
+    //MARK: Dependency
+    private var chatGPTAPI: ChatGPTAPIService
+    private var repo: ConversationRepository
+    
+    //MARK: Public
     var conversationPublisher: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
     }
     var conversation: Conversation {
         conversationSubject.value
     }
-    var chatGPTAPI: ChatGPTAPIService
-    var repo: ConversationRepository
-    
-    private var subscriptions = Set<AnyCancellable>()
-    
+   
     init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository, conversation: Conversation?) {
         self.chatGPTAPI = chatGPTAPI
         self.repo = repo
@@ -135,8 +136,3 @@ class ConversationStore: ObservableObject, ConversationStoreProtocol {
     }
 }
 
-fileprivate extension Conversation {
-    func getOpenApiHistory() -> [OpenAiModels.Message] {
-        self.messages.map { $0.toOpenAiMessage }
-    }
-}

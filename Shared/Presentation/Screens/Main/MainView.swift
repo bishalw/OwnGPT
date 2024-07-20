@@ -21,6 +21,8 @@ struct MainView: View {
     @State private var showMenu: Bool = false
     @State private var isSearching: Bool = false
     
+    
+    
     private let sidebarWidth: CGFloat = UIScreen.main.bounds.width - 90
     
     var body: some View {
