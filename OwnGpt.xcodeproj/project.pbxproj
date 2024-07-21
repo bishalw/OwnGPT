@@ -22,6 +22,7 @@
 		581B9AE52C4B20AA00CA0F15 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */; };
 		581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */; };
 		581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */; };
+		581B9AEE2C4CDCAB00CA0F15 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */; };
 		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
@@ -158,6 +159,7 @@
 		581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
+		581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
@@ -398,9 +400,7 @@
 		5817C0972A9445DC005EEDC9 /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */,
-				5817C0932A90474B005EEDC9 /* PersistenceController.swift */,
-				5817C0982A9445EF005EEDC9 /* Entities */,
+				581B9AEC2C4C6E4600CA0F15 /* CoreData */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -412,6 +412,16 @@
 				581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		581B9AEC2C4C6E4600CA0F15 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */,
+				5817C0932A90474B005EEDC9 /* PersistenceController.swift */,
+				5817C0982A9445EF005EEDC9 /* Entities */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		584231402B197971009F1C46 /* Extension */ = {
@@ -473,6 +483,7 @@
 			children = (
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
 				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
+				581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -963,6 +974,7 @@
 				58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */,
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
+				581B9AEE2C4CDCAB00CA0F15 /* ConfigStore.swift in Sources */,
 				581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,

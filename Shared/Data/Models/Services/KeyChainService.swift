@@ -7,6 +7,15 @@
 
 import Foundation
 
+
+enum ServiceKey: String, Codable {
+    case openAiAPIKey = "com.OwnGPT.OpenAiAPIkey"
+}
+struct APIKey: Codable{
+    var value: String
+    let serviceKey: ServiceKey
+    
+}
 enum KeychainError: Error {
     case saveFailed(status: OSStatus)
     case updateFailed(status: OSStatus)
@@ -15,14 +24,6 @@ enum KeychainError: Error {
     case unexpectedItemType
 }
 
-enum ServiceKey: String {
-    case openAiAPIKey = "com.OwnGPT.OpenAiAPIkey"
-}
-struct APIKey{
-    var value: String
-    let serviceKey: ServiceKey
-    
-}
 protocol KeyChainService {
     func save<T: Encodable>(_ item: T, for key: String ) async throws
     func retrieve<T: Decodable>(_ key: String) async throws -> T?
@@ -49,7 +50,7 @@ class KeyChainServiceImpl: KeyChainService  {
             kSecValueData as String: data,
             kSecAttrSynchronizable as String: true
         ]
-        
+        // Add
         let status = SecItemAdd(query as CFDictionary, nil)
         
         if status == errSecDuplicateItem {
@@ -63,7 +64,7 @@ class KeyChainServiceImpl: KeyChainService  {
             let attributes: [String: Any] = [
                 kSecValueData as String: data
             ]
-            
+            // update the data
             let updateStatus = SecItemUpdate(updateQuery as CFDictionary, attributes as CFDictionary)
             guard updateStatus == errSecSuccess else {
                 throw KeychainError.saveFailed(status: updateStatus)
@@ -72,7 +73,6 @@ class KeyChainServiceImpl: KeyChainService  {
             throw KeychainError.saveFailed(status: status)
         }
     }
-    
     func retrieve<T: Decodable>(_ key: String) throws -> T? {
             let query: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
@@ -112,4 +112,6 @@ class KeyChainServiceImpl: KeyChainService  {
         
     }
 }
+
+
 

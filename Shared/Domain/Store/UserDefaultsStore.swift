@@ -25,6 +25,3 @@ class UserDefaultsStore: ObservableObject {
     }
 }
 
-class ConfigStore: ObservableObject {
-    
-}
