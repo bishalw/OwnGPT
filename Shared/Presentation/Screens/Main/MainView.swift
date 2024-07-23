@@ -12,6 +12,7 @@ struct MainView: View {
     @Environment(\.colorScheme) var colorScheme
     // MARK: - Dependency
     @StateObject var mainViewSharedStateManager = MainViewSharedStateManager()
+    @StateObject var mainViewModel: MainViewModel
     @EnvironmentObject var core: Core
     // MARK: - Gesture Handling
     @State private var offset: CGFloat = 0

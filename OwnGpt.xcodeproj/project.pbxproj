@@ -49,6 +49,9 @@
 		588170092C2BEE0E00D34BFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588170082C2BEE0E00D34BFF /* MainView.swift */; };
 		5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */; };
+		588517192C4F273300D77150 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517182C4F273300D77150 /* SettingsView.swift */; };
+		5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171C2C4F2B5E00D77150 /* RootView.swift */; };
+		5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171E2C4F2B7400D77150 /* RootViewModel.swift */; };
 		5887267C2C33699500CAFA3E /* Bkit in Frameworks */ = {isa = PBXBuildFile; productRef = 5887267B2C33699500CAFA3E /* Bkit */; };
 		5887267E2C339CA600CAFA3E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887267D2C339CA600CAFA3E /* SignInView.swift */; };
 		588726802C33A65A00CAFA3E /* CircularLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887267F2C33A65A00CAFA3E /* CircularLogoView.swift */; };
@@ -177,6 +180,9 @@
 		588170082C2BEE0E00D34BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
 		5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderLogo.swift; sourceTree = "<group>"; };
+		588517182C4F273300D77150 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5885171C2C4F2B5E00D77150 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5885171E2C4F2B7400D77150 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		5887267D2C339CA600CAFA3E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		5887267F2C33A65A00CAFA3E /* CircularLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLogoView.swift; sourceTree = "<group>"; };
 		588726812C33AB1800CAFA3E /* TestViewCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewCircle.swift; sourceTree = "<group>"; };
@@ -335,8 +341,8 @@
 		58102EE02A44FC1F00C52BD4 = {
 			isa = PBXGroup;
 			children = (
-				588F20272A6F4DF4002FEC2B /* Shared */,
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
+				588F20272A6F4DF4002FEC2B /* Shared */,
 				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */,
 				580F364B2B289850005E337F /* Tests */,
 				58102EEA2A44FC1F00C52BD4 /* Products */,
@@ -439,10 +445,12 @@
 		584231482B1AC8E4009F1C46 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				58AB10172C48734600F96841 /* SignIn(WIP) */,
+				5885171B2C4F2B5000D77150 /* Root */,
+				5885171A2C4F2B3A00D77150 /* OnBoarding */,
 				58D16D9C2C33C51200A78C3A /* Main */,
+				588517162C4F270A00D77150 /* Settings */,
+				58AB10172C48734600F96841 /* SignIn(WIP) */,
 				58450A932A67CED9005BD1E4 /* Helpers */,
-				581B9AE22C4B19DE00CA0F15 /* OnboardingView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -566,6 +574,31 @@
 			path = ConversationView;
 			sourceTree = "<group>";
 		};
+		588517162C4F270A00D77150 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				588517182C4F273300D77150 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5885171A2C4F2B3A00D77150 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				581B9AE22C4B19DE00CA0F15 /* OnboardingView.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		5885171B2C4F2B5000D77150 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5885171C2C4F2B5E00D77150 /* RootView.swift */,
+				5885171E2C4F2B7400D77150 /* RootViewModel.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		588726762C32527000CAFA3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,11 +695,11 @@
 		58D16D9C2C33C51200A78C3A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				585609CF2C2A5604004A8791 /* SideBar */,
-				580F364D2B289925005E337F /* Conversation */,
 				588170082C2BEE0E00D34BFF /* MainView.swift */,
 				581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */,
 				587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */,
+				585609CF2C2A5604004A8791 /* SideBar */,
+				580F364D2B289925005E337F /* Conversation */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -973,12 +1006,15 @@
 				58F6287C2C49D4CF00E91189 /* BaseModelConfig.swift in Sources */,
 				58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */,
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
+				588517192C4F273300D77150 /* SettingsView.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
 				581B9AEE2C4CDCAB00CA0F15 /* ConfigStore.swift in Sources */,
+				5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */,
 				581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
 				58AB10192C487B3D00F96841 /* ConfigView.swift in Sources */,
+				5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */,
 				585609CE2C2A5569004A8791 /* SideBarViewModel.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				581996742A944D3800CAD76C /* ConversationModel.xcdatamodeld in Sources */,

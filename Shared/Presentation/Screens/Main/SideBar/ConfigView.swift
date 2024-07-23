@@ -10,10 +10,11 @@ import SwiftUI
 struct ConfigView: View {
     
     @StateObject  var vm: ConfigViewModel
-    
+    @State var password: String = ""
     var body: some View {
         Form {
             Section("Model Settings") {
+                SecureFloatingLabelTextField(title: "API Key", text: $password)
                 Picker("Model Provider", selection: $vm.modelProvider) {
                     ForEach(ModelProvider.allCases) { model in
                         Text(model.rawValue).tag(model)
@@ -38,27 +39,12 @@ struct ConfigView: View {
                 }
                 
                 Button(action: {
-                    // MARK: TODO
+                    
                 }) {
                     Text("Save Changes")
                         .frame(maxWidth: .infinity)
                 }
                 
-            }
-            Section ("Conversations"){
-                Button(action: {
-                    Task {
-
-                    }
-                }) {
-                    Text("Delete All")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                        .cornerRadius(8)
-                }
             }
         }
         .scrollContentBackground(.hidden)

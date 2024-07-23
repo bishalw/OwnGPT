@@ -34,7 +34,7 @@ class AppleAuthStrategy: NSObject, AuthStrategy, ASAuthorizationControllerDelega
         let fullName = appleIDCredential.fullName
         let email = appleIDCredential.email ?? ""
         let identityToken = appleIDCredential.identityToken
-        let authCode = appleIDCredential.authorizationCode
+        _ = appleIDCredential.authorizationCode
         
         let authResult = AuthResult(
             user: User(id: userId, name: fullName?.givenName ?? "Apple User", email: email),

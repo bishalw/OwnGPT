@@ -6,22 +6,14 @@
 //
 
 import Foundation
-import Combine
-import SwiftUI
+import Bkit
 
-class UserDefaultsStore: ObservableObject {
+class UserDefaultsStore: ObservableObject{
+    @PublishedAppStorage("hasOnboarded") var hasOnboarded: Bool = false
     
-    @AppStorage("hasOnboarded") private var _hasOnboarded = false
-    var hasOnboarded: Bool {
-        get { self._hasOnboarded }
-        set { self._hasOnboarded = newValue
-            self.hasOnboardedCurrentValueSubject.value = newValue
-        }
-    }
-    private lazy var hasOnboardedCurrentValueSubject = CurrentValueSubject<Bool, Never>(hasOnboarded)
-    
-    var hasOnboardedDidChange: AnyPublisher<Bool, Never> {
-        return hasOnboardedCurrentValueSubject.eraseToAnyPublisher()
+    func clearCache() {
+        UserDefaults.standard.removeObject(forKey: "hasOnboarded")
     }
 }
+
 

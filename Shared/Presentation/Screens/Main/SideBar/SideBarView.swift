@@ -65,7 +65,7 @@ extension SidebarView {
         SiderBarBottomView()
             .onTapGesture { isSettingsPresented.toggle() }
             .sheet(isPresented: $isSettingsPresented) {
-                AlphSettingsView(apiKey: $apiKey)
+               SettingsView()
             }
     }
 

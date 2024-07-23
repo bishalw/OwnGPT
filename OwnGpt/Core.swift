@@ -30,6 +30,9 @@ class Core: ObservableObject {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
 
+    private(set) lazy var userDefaultStore: UserDefaultsStore = {
+        return UserDefaultsStore()
+    }()
     
     private(set) lazy var conversationsStore: ConversationsStore = {
         return ConversationsStore(repo: self.conversationRepository)

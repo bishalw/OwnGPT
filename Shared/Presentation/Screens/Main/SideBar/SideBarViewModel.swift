@@ -11,7 +11,6 @@ protocol SiderBarViewModelSharedStateProvider: ConversationsViewModelSharedState
     var selectedConversationPublisher: Published<Conversation?> { get }
 }
 
-
 class SideBarViewModel: ObservableObject {
     let sharedStateProvider: SiderBarViewModelSharedStateProvider
     

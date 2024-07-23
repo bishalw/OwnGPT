@@ -20,11 +20,11 @@ final class ConversationViewModel: ObservableObject {
     var messageIsStreaming: Bool { messages.contains { $0.isStreaming } }
     var createNewConversation: () -> Void
     
-    private let store: ConversationStoreProtocol
+    private let store: ConversationStore
     private var cancellables = Set<AnyCancellable>()
 
     
-    init(store: ConversationStoreProtocol,
+    init(store: ConversationStore,
          createNewConversation: @escaping () -> Void) 
     {
         self.createNewConversation = createNewConversation

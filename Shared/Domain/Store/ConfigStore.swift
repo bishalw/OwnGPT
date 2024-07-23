@@ -18,7 +18,7 @@ class ConfigStoreImpl: ObservableObject {
     
     private func loadAPIKey() async {
         do {
-            if let apiKey: APIKey = try await keychainService.retrieve(apiKey.value) {
+            if let apiKey: APIKey = try await keychainService.retrieve(apiKey.serviceKey.rawValue) {
                     self.apiKey.value = apiKey.value
             }
         } catch {
@@ -26,10 +26,10 @@ class ConfigStoreImpl: ObservableObject {
         }
     }
     
-    func saveAPIKey(_ key: String) async throws {
-        let apiKey = APIKey(value: key, serviceKey: .openAiAPIKey)
+    func saveAPIKey(_ value: String) async throws {
+        let apiKey = APIKey(value: value, serviceKey: .openAiAPIKey)
         try await keychainService.save(apiKey, for: ServiceKey.openAiAPIKey.rawValue)
-            self.apiKey.value = key
+            self.apiKey.value = value
     }
     
     func clearAPIKey() async throws {

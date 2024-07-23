@@ -19,7 +19,6 @@ struct OnboardingView: View {
                     Spacer()
                 }
                 ConfigView(vm: ConfigViewModel())
-                    .background(.white)
             }
             .navigationTitle("Welcome ")
         }
