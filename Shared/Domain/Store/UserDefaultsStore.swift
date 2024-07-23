@@ -8,9 +8,19 @@
 import Foundation
 import Bkit
 
-class UserDefaultsStore: ObservableObject{
-    @PublishedAppStorage("hasOnboarded") var hasOnboarded: Bool = false
+protocol UserDefaultsStore: ObservableObject {
+    var hasOnboarded: PublishedAppStorage<Bool> { get set }
+    func clearCache()
+}
+class UserDefaultsStoreImpl: UserDefaultsStore {
+
+    @PublishedAppStorage("hasOnboarded") var internalHasOnboarded: Bool = false
     
+    var hasOnboarded: PublishedAppStorage<Bool> {
+        get { self._internalHasOnboarded }
+        set { self._internalHasOnboarded = newValue }
+    }
+     
     func clearCache() {
         UserDefaults.standard.removeObject(forKey: "hasOnboarded")
     }

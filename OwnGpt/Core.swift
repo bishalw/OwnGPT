@@ -22,16 +22,16 @@ class Core: ObservableObject {
         return NetworkServiceImpl()
     }()
     
-    private(set) lazy var chatgptApiService: ChatGPTAPIServiceImpl = {
+    private(set) lazy var chatgptApiService: ChatGPTAPIService = {
         return ChatGPTAPIServiceImpl(networkService: self.networkService, apiKey: Constants.apiKey)
     }()
     
-    private(set) lazy var conversationRepository: ConversationRepositoryImpl = {
+    private(set) lazy var conversationRepository: ConversationRepository = {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
 
-    private(set) lazy var userDefaultStore: UserDefaultsStore = {
-        return UserDefaultsStore()
+    private(set) lazy var userDefaultStore: any UserDefaultsStore = {
+        return UserDefaultsStoreImpl()
     }()
     
     private(set) lazy var conversationsStore: ConversationsStore = {

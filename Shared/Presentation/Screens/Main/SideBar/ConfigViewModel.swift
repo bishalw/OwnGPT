@@ -23,6 +23,15 @@ class ConfigViewModel: ObservableObject {
         get { modelAIConfig.model }
         set { modelAIConfig.model = newValue}
     }
+    var didsave: () -> Void
+    
+    init (didsave: @escaping () -> Void = {}) {
+        self.didsave = didsave
+    }
+    
+    func save() {
+        didsave()
+    }
 }
 
 

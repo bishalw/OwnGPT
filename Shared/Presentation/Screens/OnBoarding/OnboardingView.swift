@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    var didOnBoard: () -> Void
     var body: some View {
         NavigationStack {
             VStack {
@@ -18,7 +19,9 @@ struct OnboardingView: View {
                         .font(.title3)
                     Spacer()
                 }
-                ConfigView(vm: ConfigViewModel())
+                ConfigView(vm: ConfigViewModel {
+                    didOnBoard()
+                })
             }
             .navigationTitle("Welcome ")
         }
@@ -27,5 +30,5 @@ struct OnboardingView: View {
 
 
 #Preview {
-    OnboardingView()
+    OnboardingView{}
 }

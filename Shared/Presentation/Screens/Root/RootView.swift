@@ -15,7 +15,9 @@ struct RootView: View {
         if vm.hasOnboarded {
             MainView(mainViewModel: MainViewModel())
         } else {
-           OnboardingView()
+            OnboardingView {
+                vm.updateOnboarded()
+            }
         }
     }
 }

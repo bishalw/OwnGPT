@@ -39,7 +39,7 @@ struct ConfigView: View {
                 }
                 
                 Button(action: {
-                    
+                    vm.save()
                 }) {
                     Text("Save Changes")
                         .frame(maxWidth: .infinity)
@@ -52,6 +52,6 @@ struct ConfigView: View {
     }
 }
 
-#Preview {
-    ConfigView(vm: ConfigViewModel() )
-}
+//#Preview {
+//    ConfigView(vm: ConfigViewModel() )
+//}
