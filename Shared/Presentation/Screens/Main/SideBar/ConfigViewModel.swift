@@ -7,10 +7,10 @@
 
 import Foundation
 
-class SettingsViewModel: ObservableObject {
-    
-    
+class ConfigViewModel: ObservableObject {
+
     @Published var modelAIConfig: OpenAIModelConfig = .init()
+    @Published var modelProvider: ModelProvider = .openAI
     var contextWindowSize: Int {
         get { modelAIConfig.contextWindowSize }
         set { modelAIConfig.contextWindowSize = newValue }
@@ -23,8 +23,15 @@ class SettingsViewModel: ObservableObject {
         get { modelAIConfig.model }
         set { modelAIConfig.model = newValue}
     }
-    @Published var modelProvider: ModelProvider = .openAI
+    var didsave: () -> Void
     
+    init (didsave: @escaping () -> Void = {}) {
+        self.didsave = didsave
+    }
+    
+    func save() {
+        didsave()
+    }
 }
 
 

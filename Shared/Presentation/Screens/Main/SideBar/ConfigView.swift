@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct ConfigView: View {
     
-    @StateObject  var vm: SettingsViewModel
-    
+    @StateObject  var vm: ConfigViewModel
+    @State var password: String = ""
     var body: some View {
-        
         Form {
             Section("Model Settings") {
+                SecureFloatingLabelTextField(title: "API Key", text: $password)
                 Picker("Model Provider", selection: $vm.modelProvider) {
                     ForEach(ModelProvider.allCases) { model in
                         Text(model.rawValue).tag(model)
@@ -39,40 +39,19 @@ struct SettingsView: View {
                 }
                 
                 Button(action: {
-                    // MARK: TODO
+                    vm.save()
                 }) {
                     Text("Save Changes")
                         .frame(maxWidth: .infinity)
                 }
                 
             }
-            
-//
-
-            Section ("Conversations"){
-                Button(action: {
-                    Task {
-
-                    }
-                }) {
-                    Text("Delete All")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                        .cornerRadius(8)
-                }
-                
-            }
         }
+        .scrollContentBackground(.hidden)
 
     }
 }
 
-
-
-
-#Preview {
-    SettingsView(vm: SettingsViewModel() )
-}
+//#Preview {
+//    ConfigView(vm: ConfigViewModel() )
+//}

@@ -72,4 +72,7 @@ extension Conversation {
         // Set new messages
         conversationEntity.messages = NSSet(array: messageEntities)
     }
+    func getOpenApiHistory() -> [OpenAiModels.Message] {
+        self.messages.map { $0.toOpenAiMessage }
+    }
 }

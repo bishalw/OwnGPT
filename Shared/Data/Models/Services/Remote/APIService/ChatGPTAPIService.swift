@@ -17,7 +17,6 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
     private let temperature: Double
     private let model: String
     private let systemMessage: OpenAiModels.Message
-    private let urlSession = URLSession.shared
     private let networkService: NetworkStreamingService
     private let apiKey: String
     

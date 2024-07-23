@@ -46,7 +46,10 @@ class ConversationPersistenceService: PersistenceService {
         try await manager.backgroundContext.performAsync { context in
             _ = item.toConversationEntity(context: context)
         }
+        
         await save()
+        //        let conversationEntity = item.toConversationEntity(context: manager.backgroundContext)
+        //        await save()
     }
     
     func getCount() async throws -> Int {
@@ -75,6 +78,14 @@ class ConversationPersistenceService: PersistenceService {
             }
             return conversations
         }
+        
+        // Alternative
+//        let result = try await manager.backgroundContext.performFetch(request)
+//        let conversations = result.compactMap {  $0.toConversation()}
+//        if conversations.count != result.count {
+//            Log.shared.logger.info("Some conversations failed to convert: \(result.count - conversations.count) failures")
+//        }
+//        return conversations
     }
     
     func save() async {
@@ -120,5 +131,9 @@ class ConversationPersistenceService: PersistenceService {
             let result = try request.execute()
             return result.first?.toConversation()
         }
+        // Alternative
+//            let result = try await manager.backgroundContext.performFetch(request)
+//            return result.first?.toConversation()
+
     }
 }

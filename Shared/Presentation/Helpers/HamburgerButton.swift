@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct HamburgerButton: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding var showMenu: Bool

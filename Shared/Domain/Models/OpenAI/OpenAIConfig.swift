@@ -9,10 +9,11 @@ import Foundation
 
 struct OpenAIConfig {
     var modelConfig: OpenAIModelConfig
-    var apiKey: String
+    var apiKey: APIKey
     
-    init(modelConfig: OpenAIModelConfig, apiKey: String) {
+    init(modelConfig: OpenAIModelConfig, apiKey: APIKey) {
         self.modelConfig = modelConfig
         self.apiKey = apiKey
     }
 }
+

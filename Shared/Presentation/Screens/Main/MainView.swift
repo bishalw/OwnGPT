@@ -12,6 +12,7 @@ struct MainView: View {
     @Environment(\.colorScheme) var colorScheme
     // MARK: - Dependency
     @StateObject var mainViewSharedStateManager = MainViewSharedStateManager()
+    @StateObject var mainViewModel: MainViewModel
     @EnvironmentObject var core: Core
     // MARK: - Gesture Handling
     @State private var offset: CGFloat = 0
@@ -20,6 +21,8 @@ struct MainView: View {
     // MARK: - UI State
     @State private var showMenu: Bool = false
     @State private var isSearching: Bool = false
+    
+    
     
     private let sidebarWidth: CGFloat = UIScreen.main.bounds.width - 90
     
@@ -52,7 +55,7 @@ extension MainView {
     
     private func sidebarView(geometry: GeometryProxy) -> some View {
         
-        SidebarView(vm: SideBarViewModel(sharedStateProvider: mainViewSharedStateManager), isSearching: $isSearching)
+        SidebarView(vm: SideBarViewModelImpl(sharedStateProvider: mainViewSharedStateManager), isSearching: $isSearching)
             .frame(width: isSearching ? geometry.size.width : sidebarWidth)
             .offset(x: isSearching ? 0 : -sidebarWidth + offset)
             .animation(.linear, value: isSearching)

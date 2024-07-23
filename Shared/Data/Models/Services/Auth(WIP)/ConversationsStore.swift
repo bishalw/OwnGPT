@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+
 class ConversationsStore {
     private var subscriptions = Set<AnyCancellable>()
     @Published var conversations: [Conversation] = []
