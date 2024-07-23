@@ -450,7 +450,6 @@
 				58D16D9C2C33C51200A78C3A /* Main */,
 				588517162C4F270A00D77150 /* Settings */,
 				58AB10172C48734600F96841 /* SignIn(WIP) */,
-				58450A932A67CED9005BD1E4 /* Helpers */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -560,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				584231482B1AC8E4009F1C46 /* Screens */,
+				58450A932A67CED9005BD1E4 /* Helpers */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

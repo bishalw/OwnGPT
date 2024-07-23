@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SidebarView: View {
+struct SidebarView<VM: SideBarViewModel>: View {
     
     //MARK: Envrionment
-    @StateObject var vm: SideBarViewModel
+    @StateObject var vm: VM
     @EnvironmentObject var core: Core
     
     //MARK: UI State

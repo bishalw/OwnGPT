@@ -9,7 +9,11 @@ import Foundation
 import Bkit
 import Combine
 
-class RootViewModel: ObservableObject {
+protocol RootViewModel: ObservableObject {
+    var hasOnboarded: Bool { get }
+    func updateOnBoarded()
+}
+class RootViewModelImpl: RootViewModel {
     
     private var cancellables = Set<AnyCancellable>()
     private let userDefaultsStore: any UserDefaultsStore
@@ -21,14 +25,14 @@ class RootViewModel: ObservableObject {
         self.setupObservers()
     }
     
-    func setupObservers() {
+    private func setupObservers() {
         userDefaultsStore.hasOnboarded.projectedValue.sink { value in
             self.hasOnboarded = value
         }
         .store(in: &cancellables)
     }
     
-    func updateOnboarded() {
+    func updateOnBoarded() {
         userDefaultsStore.hasOnboarded.wrappedValue = true
     }
 }

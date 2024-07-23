@@ -55,7 +55,7 @@ extension MainView {
     
     private func sidebarView(geometry: GeometryProxy) -> some View {
         
-        SidebarView(vm: SideBarViewModel(sharedStateProvider: mainViewSharedStateManager), isSearching: $isSearching)
+        SidebarView(vm: SideBarViewModelImpl(sharedStateProvider: mainViewSharedStateManager), isSearching: $isSearching)
             .frame(width: isSearching ? geometry.size.width : sidebarWidth)
             .offset(x: isSearching ? 0 : -sidebarWidth + offset)
             .animation(.linear, value: isSearching)

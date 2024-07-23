@@ -11,9 +11,14 @@ protocol SiderBarViewModelSharedStateProvider: ConversationsViewModelSharedState
     var selectedConversationPublisher: Published<Conversation?> { get }
 }
 
-class SideBarViewModel: ObservableObject {
-    let sharedStateProvider: SiderBarViewModelSharedStateProvider
+protocol SideBarViewModel: ObservableObject {
+    var selectedConversation: Conversation? { get set }
+    var sharedStateProvider: SiderBarViewModelSharedStateProvider { get }
+}
+
+class SideBarViewModelImpl: SideBarViewModel {
     
+    let sharedStateProvider: SiderBarViewModelSharedStateProvider
     @Published var selectedConversation: Conversation?
     
     init(
@@ -22,6 +27,4 @@ class SideBarViewModel: ObservableObject {
         self._selectedConversation = sharedStateProvider.selectedConversationPublisher
         self.sharedStateProvider = sharedStateProvider
     }
-    
-    
 }

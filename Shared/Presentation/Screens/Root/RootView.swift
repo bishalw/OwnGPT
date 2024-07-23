@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct RootView: View {
+struct RootView<VM: RootViewModel>: View {
     @EnvironmentObject var core: Core
-    @StateObject var vm: RootViewModel
+    @StateObject var vm: VM
     
     var body: some View {
         if vm.hasOnboarded {
             MainView(mainViewModel: MainViewModel())
         } else {
             OnboardingView {
-                vm.updateOnboarded()
+                vm.updateOnBoarded()
             }
         }
     }
