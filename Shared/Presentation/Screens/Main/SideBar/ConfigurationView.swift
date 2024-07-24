@@ -74,6 +74,41 @@ struct ConfigurationView<VM: ConfigurationViewModel>: View {
         Button("Save Changes", action: vm.save)
     }
 }
+struct ServiceProviderConfigView: View {
+    @State private var provider: ServiceKey = .openAIAPIKey
+    let configStore: any ConfigurationStore
+    
+    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl() )
+    @StateObject var anthropicViewModel = AnthropicConfigurationViewModelImpl(configStore: ConfigurationStoreImpl())
+    
+    var body: some View {
+        VStack {
+            serviceSelectorPicker
+            selectedView
+        }
+    }
+    
+    @ViewBuilder
+    private var serviceSelectorPicker: some View {
+        Picker("Service", selection: $provider) {
+            ForEach(ServiceKey.allCases, id: \.self) { key in
+                Text(key.displayName).tag(key)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
+        .padding()
+    }
+    
+    @ViewBuilder
+    private var selectedView: some View {
+        switch provider {
+        case .openAIAPIKey:
+            ConfigurationView(vm: openAIViewModel)
+        case .anthropicAPIKey:
+            ConfigurationView(vm: anthropicViewModel)
+        }
+    }
+}
 
 
 
@@ -88,8 +123,8 @@ enum ServiceKey: String, CaseIterable, Codable{
         }
     }
 }
-//#Preview {
-////   ConfigurationView(vm: ConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
-//    ServiceProviderConfig(configStore: ConfigurationStoreImpl())
-//   
-//}
+#Preview {
+//   ConfigurationView(vm: ConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
+    ServiceProviderConfigView(configStore: ConfigurationStoreImpl())
+   
+}
