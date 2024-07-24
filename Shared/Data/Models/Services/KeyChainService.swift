@@ -7,10 +7,13 @@
 
 import Foundation
 
-
-enum ServiceKey: String, Codable {
-    case openAiAPIKey = "com.OwnGPT.OpenAiAPIkey"
-}
+//
+//enum ServiceKey: String, Codable, CaseIterable {
+//    case openAIAPIKey = "com.OwnGPT.OpenAiAPIkey"
+//    case anthropicAPIKey = "com.OWnGPT.ClaudeAPIKey"
+//    
+//    var name: String { self.rawValue }
+//}
 struct APIKey: Codable{
     var value: String
     let serviceKey: ServiceKey

@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol BaseModelConfig {
+protocol BaseModelConfig: Codable{
     associatedtype ModelType
-    
-    var model: ModelType { get }
+    var model: ModelType { get set }
     var maxTokens: Int { get }
-    var temperature: Double { get }
+    var temperature: Double { get set }
     var topP: Double { get }
+    var contextWindowSize: Int { get set }
 }

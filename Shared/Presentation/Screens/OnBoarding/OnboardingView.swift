@@ -19,7 +19,7 @@ struct OnboardingView: View {
                         .font(.title3)
                     Spacer()
                 }
-                ConfigView(vm: ConfigViewModel {
+                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
                     didOnBoard()
                 })
             }

@@ -10,7 +10,7 @@ import Combine
 
 protocol ConversationStoreProtocol: ObservableObject {
     var conversationPublisher: AnyPublisher<Conversation, Never> { get }
-    var conversation: Conversation { get }
+//    var conversation: Conversation { get }
     func sendMessage(string: String)
 }
 
@@ -28,9 +28,9 @@ class ConversationStore: ConversationStoreProtocol {
     var conversationPublisher: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
     }
-    var conversation: Conversation {
-        conversationSubject.value
-    }
+//    var conversation: Conversation {
+//        conversationSubject.value
+//    }
    
     init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository, conversation: Conversation?) {
         self.chatGPTAPI = chatGPTAPI

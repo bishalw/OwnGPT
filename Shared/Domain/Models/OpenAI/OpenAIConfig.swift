@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct OpenAIConfig {
-    var modelConfig: OpenAIModelConfig
+struct OpenAIConfig: ServiceProvider, Codable {
+    var modelConfig: OpenAILMConfig
     var apiKey: APIKey
     
-    init(modelConfig: OpenAIModelConfig, apiKey: APIKey) {
+    init(modelConfig: OpenAILMConfig, apiKey: APIKey) {
         self.modelConfig = modelConfig
         self.apiKey = apiKey
     }
 }
+
+
 

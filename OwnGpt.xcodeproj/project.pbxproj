@@ -22,7 +22,7 @@
 		581B9AE52C4B20AA00CA0F15 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */; };
 		581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */; };
 		581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */; };
-		581B9AEE2C4CDCAB00CA0F15 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */; };
+		581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */; };
 		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
@@ -52,6 +52,9 @@
 		588517192C4F273300D77150 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517182C4F273300D77150 /* SettingsView.swift */; };
 		5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171C2C4F2B5E00D77150 /* RootView.swift */; };
 		5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171E2C4F2B7400D77150 /* RootViewModel.swift */; };
+		588517222C4F92D900D77150 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517212C4F92D900D77150 /* ContentView.swift */; };
+		588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517282C4FA3CC00D77150 /* AnthropicConfig.swift */; };
+		5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885172A2C4FA3DB00D77150 /* AnthropicLMConfig.swift */; };
 		5887267C2C33699500CAFA3E /* Bkit in Frameworks */ = {isa = PBXBuildFile; productRef = 5887267B2C33699500CAFA3E /* Bkit */; };
 		5887267E2C339CA600CAFA3E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887267D2C339CA600CAFA3E /* SignInView.swift */; };
 		588726802C33A65A00CAFA3E /* CircularLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5887267F2C33A65A00CAFA3E /* CircularLogoView.swift */; };
@@ -65,9 +68,9 @@
 		588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588F20322A70AADE002FEC2B /* WatchOSView.swift */; };
 		5898EFE82B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
 		5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
-		58AB10192C487B3D00F96841 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB10182C487B3D00F96841 /* ConfigView.swift */; };
+		58AB10192C487B3D00F96841 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB10182C487B3D00F96841 /* ConfigurationView.swift */; };
 		58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */; };
-		58AB101D2C48E9B700F96841 /* ConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101C2C48E9B700F96841 /* ConfigViewModel.swift */; };
+		58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */; };
 		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
 		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
@@ -92,10 +95,10 @@
 		58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */; };
 		58F6287C2C49D4CF00E91189 /* BaseModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */; };
 		58F6287D2C49D4CF00E91189 /* BaseModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */; };
-		58F628802C49D55D00E91189 /* OpenAIModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287F2C49D55D00E91189 /* OpenAIModelConfig.swift */; };
-		58F628812C49D55D00E91189 /* OpenAIModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287F2C49D55D00E91189 /* OpenAIModelConfig.swift */; };
-		58F628832C49D57D00E91189 /* ModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628822C49D57D00E91189 /* ModelConfig.swift */; };
-		58F628842C49D57D00E91189 /* ModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628822C49D57D00E91189 /* ModelConfig.swift */; };
+		58F628802C49D55D00E91189 /* OpenAILMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */; };
+		58F628812C49D55D00E91189 /* OpenAILMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */; };
+		58F628832C49D57D00E91189 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628822C49D57D00E91189 /* ServiceProvider.swift */; };
+		58F628842C49D57D00E91189 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628822C49D57D00E91189 /* ServiceProvider.swift */; };
 		58F628862C49D63C00E91189 /* OpenAIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628852C49D63C00E91189 /* OpenAIConfig.swift */; };
 		58F628872C49D63C00E91189 /* OpenAIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F628852C49D63C00E91189 /* OpenAIConfig.swift */; };
 		58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FE3CB22A9D6DE800CAE55E /* Conversation.swift */; };
@@ -162,7 +165,7 @@
 		581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
-		581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
+		581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStoreImpl.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
@@ -183,6 +186,9 @@
 		588517182C4F273300D77150 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5885171C2C4F2B5E00D77150 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5885171E2C4F2B7400D77150 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		588517212C4F92D900D77150 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		588517282C4FA3CC00D77150 /* AnthropicConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfig.swift; sourceTree = "<group>"; };
+		5885172A2C4FA3DB00D77150 /* AnthropicLMConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicLMConfig.swift; sourceTree = "<group>"; };
 		5887267D2C339CA600CAFA3E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		5887267F2C33A65A00CAFA3E /* CircularLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLogoView.swift; sourceTree = "<group>"; };
 		588726812C33AB1800CAFA3E /* TestViewCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewCircle.swift; sourceTree = "<group>"; };
@@ -197,9 +203,9 @@
 		588F20182A6F4D7F002FEC2B /* OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnGptWatchApp_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		588F20322A70AADE002FEC2B /* WatchOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSView.swift; sourceTree = "<group>"; };
 		5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTServiceRequest.swift; sourceTree = "<group>"; };
-		58AB10182C487B3D00F96841 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		58AB10182C487B3D00F96841 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
-		58AB101C2C48E9B700F96841 /* ConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewModel.swift; sourceTree = "<group>"; };
+		58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
@@ -219,8 +225,8 @@
 		58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthStrategy.swift; sourceTree = "<group>"; };
 		58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthStrategy.swift; sourceTree = "<group>"; };
 		58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModelConfig.swift; sourceTree = "<group>"; };
-		58F6287F2C49D55D00E91189 /* OpenAIModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIModelConfig.swift; sourceTree = "<group>"; };
-		58F628822C49D57D00E91189 /* ModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConfig.swift; sourceTree = "<group>"; };
+		58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAILMConfig.swift; sourceTree = "<group>"; };
+		58F628822C49D57D00E91189 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		58F628852C49D63C00E91189 /* OpenAIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConfig.swift; sourceTree = "<group>"; };
 		58FE3CB22A9D6DE800CAE55E /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		58FE3CC12A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -459,6 +465,7 @@
 			children = (
 				58F6287E2C49D51F00E91189 /* Protcols */,
 				58F628892C49D75800E91189 /* OpenAI */,
+				588517272C4FA35D00D77150 /* Anthropic */,
 				58FE3CB22A9D6DE800CAE55E /* Conversation.swift */,
 				58CFE4F42A7233C300A43822 /* Message.swift */,
 				58D16DA42C35058400A78C3A /* User.swift */,
@@ -488,9 +495,10 @@
 		5842314F2B1ACA06009F1C46 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */,
+				5880C3002B2612C5006020E7 /* ConversationsStore.swift */,
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
 				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
-				581B9AED2C4CDCAB00CA0F15 /* ConfigStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -514,8 +522,8 @@
 				581B65822C24C76A008E76DD /* SideBarView.swift */,
 				585609CD2C2A5569004A8791 /* SideBarViewModel.swift */,
 				580F364E2B28993E005E337F /* Conversations */,
-				58AB10182C487B3D00F96841 /* ConfigView.swift */,
-				58AB101C2C48E9B700F96841 /* ConfigViewModel.swift */,
+				58AB10182C487B3D00F96841 /* ConfigurationView.swift */,
+				58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -597,6 +605,15 @@
 				5885171E2C4F2B7400D77150 /* RootViewModel.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		588517272C4FA35D00D77150 /* Anthropic */ = {
+			isa = PBXGroup;
+			children = (
+				588517282C4FA3CC00D77150 /* AnthropicConfig.swift */,
+				5885172A2C4FA3DB00D77150 /* AnthropicLMConfig.swift */,
+			);
+			path = Anthropic;
 			sourceTree = "<group>";
 		};
 		588726762C32527000CAFA3E /* Frameworks */ = {
@@ -696,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				588170082C2BEE0E00D34BFF /* MainView.swift */,
+				588517212C4F92D900D77150 /* ContentView.swift */,
 				581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */,
 				587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */,
 				585609CF2C2A5604004A8791 /* SideBar */,
@@ -708,7 +726,6 @@
 			isa = PBXGroup;
 			children = (
 				58D16D9D2C33C54700A78C3A /* AuthService.swift */,
-				5880C3002B2612C5006020E7 /* ConversationsStore.swift */,
 				58D16D9F2C34FF9000A78C3A /* AuthServiceImpl.swift */,
 				58D16DA62C35179000A78C3A /* EmailAuthStrategy.swift */,
 				58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */,
@@ -720,8 +737,8 @@
 		58F6287E2C49D51F00E91189 /* Protcols */ = {
 			isa = PBXGroup;
 			children = (
+				58F628822C49D57D00E91189 /* ServiceProvider.swift */,
 				58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */,
-				58F628822C49D57D00E91189 /* ModelConfig.swift */,
 			);
 			path = Protcols;
 			sourceTree = "<group>";
@@ -730,7 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				58F628852C49D63C00E91189 /* OpenAIConfig.swift */,
-				58F6287F2C49D55D00E91189 /* OpenAIModelConfig.swift */,
+				58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */,
 			);
 			path = OpenAI;
 			sourceTree = "<group>";
@@ -1008,12 +1025,13 @@
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				588517192C4F273300D77150 /* SettingsView.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
-				581B9AEE2C4CDCAB00CA0F15 /* ConfigStore.swift in Sources */,
+				581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift in Sources */,
 				5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */,
 				581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
-				58AB10192C487B3D00F96841 /* ConfigView.swift in Sources */,
+				588517222C4F92D900D77150 /* ContentView.swift in Sources */,
+				58AB10192C487B3D00F96841 /* ConfigurationView.swift in Sources */,
 				5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */,
 				585609CE2C2A5569004A8791 /* SideBarViewModel.swift in Sources */,
 				58FE3CCB2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
@@ -1026,18 +1044,20 @@
 				58C61FAD2B2A907D003DF413 /* Router.swift in Sources */,
 				5880C3042B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */,
-				58F628832C49D57D00E91189 /* ModelConfig.swift in Sources */,
+				58F628832C49D57D00E91189 /* ServiceProvider.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */,
-				58F628802C49D55D00E91189 /* OpenAIModelConfig.swift in Sources */,
+				58F628802C49D55D00E91189 /* OpenAILMConfig.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
-				58AB101D2C48E9B700F96841 /* ConfigViewModel.swift in Sources */,
+				58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */,
+				5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */,
 				581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
+				588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */,
 				581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */,
 				58D16DA52C35058400A78C3A /* User.swift in Sources */,
 				5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
@@ -1070,7 +1090,7 @@
 				5846500B2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				58FE3CCC2A9EA7AE00CAE55E /* MessageEntity+CoreDataProperties.swift in Sources */,
 				58CFE5012A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
-				58F628812C49D55D00E91189 /* OpenAIModelConfig.swift in Sources */,
+				58F628812C49D55D00E91189 /* OpenAILMConfig.swift in Sources */,
 				58FE3CB42A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
 				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */,
@@ -1081,7 +1101,7 @@
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
 				585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */,
-				58F628842C49D57D00E91189 /* ModelConfig.swift in Sources */,
+				58F628842C49D57D00E91189 /* ServiceProvider.swift in Sources */,
 				5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584231542B1AD4D0009F1C46 /* DotView.swift in Sources */,
 				588F20332A70AADE002FEC2B /* WatchOSView.swift in Sources */,

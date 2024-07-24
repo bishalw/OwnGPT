@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var core: Core
     var body: some View {
-        ConfigView(vm: ConfigViewModel())
+        ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
         Form(content: {
             Section ("Conversations"){
                 Button(action: {
