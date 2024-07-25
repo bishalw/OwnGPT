@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var core: Core
     var body: some View {
-        ServiceSelectorView(configStore: ConfigurationStoreImpl())
+        ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
         Form(content: {
             Section ("Conversations"){
                 Button(action: {

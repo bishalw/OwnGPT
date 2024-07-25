@@ -30,6 +30,12 @@ extension Conversation {
 }
 
 extension Conversation {
+    func getOpenApiHistory() -> [OpenAiModels.Message] {
+        self.messages.map { $0.toOpenAiMessage }
+    }
+}
+
+extension Conversation {
     func toConversationEntity(context: NSManagedObjectContext) -> ConversationEntity {
         let conversationEntity: ConversationEntity
         do {
@@ -72,7 +78,5 @@ extension Conversation {
         // Set new messages
         conversationEntity.messages = NSSet(array: messageEntities)
     }
-    func getOpenApiHistory() -> [OpenAiModels.Message] {
-        self.messages.map { $0.toOpenAiMessage }
-    }
+    
 }

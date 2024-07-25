@@ -41,6 +41,10 @@
 		585609D12C2B5E58004A8791 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585609D02C2B5E58004A8791 /* Log.swift */; };
 		585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
+		585C26F32C524D7300F35353 /* Extension+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26F22C524D7300F35353 /* Extension+RawRepresentable.swift */; };
+		585C26F42C524D7300F35353 /* Extension+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26F22C524D7300F35353 /* Extension+RawRepresentable.swift */; };
+		585C26F62C524DB200F35353 /* Extension+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26F52C524DB200F35353 /* Extension+Encodable.swift */; };
+		585C26F72C524DB200F35353 /* Extension+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26F52C524DB200F35353 /* Extension+Encodable.swift */; };
 		5879312B2B294D89002E8DB9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5879312A2B294D89002E8DB9 /* Core.swift */; };
 		587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */; };
 		5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
@@ -176,6 +180,8 @@
 		585609CD2C2A5569004A8791 /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
 		585609D02C2B5E58004A8791 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
+		585C26F22C524D7300F35353 /* Extension+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+RawRepresentable.swift"; sourceTree = "<group>"; };
+		585C26F52C524DB200F35353 /* Extension+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Encodable.swift"; sourceTree = "<group>"; };
 		5879312A2B294D89002E8DB9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSharedStateManager.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
@@ -436,16 +442,17 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		584231402B197971009F1C46 /* Extension */ = {
+		584231402B197971009F1C46 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				58464FF72B2343B200C1BA7F /* Constants.swift */,
 				5880C3032B26C04F006020E7 /* Extension+NSManagedObjectContext.swift */,
 				5846500C2B24A0E100C1BA7F /* Extension+String.swift */,
 				584650092B24A0BB00C1BA7F /* Extension+Color.swift */,
-				58464FF72B2343B200C1BA7F /* Constants.swift */,
-				5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */,
+				585C26F22C524D7300F35353 /* Extension+RawRepresentable.swift */,
+				585C26F52C524DB200F35353 /* Extension+Encodable.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		584231482B1AC8E4009F1C46 /* Screens */ = {
@@ -511,6 +518,7 @@
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
 				584231522B1AD4D0009F1C46 /* DotView.swift */,
 				58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */,
+				5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */,
 				58D16D9B2C33C3CE00A78C3A /* Testing */,
 			);
 			path = Helpers;
@@ -666,7 +674,7 @@
 				5872876F2C24322000667018 /* Presentation */,
 				5872876E2C24321A00667018 /* Domain */,
 				5872876D2C24320D00667018 /* Data */,
-				584231402B197971009F1C46 /* Extension */,
+				584231402B197971009F1C46 /* Extensions */,
 				580F36482B289776005E337F /* Resources */,
 			);
 			path = Shared;
@@ -1048,10 +1056,12 @@
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
+				585C26F32C524D7300F35353 /* Extension+RawRepresentable.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */,
 				58F628802C49D55D00E91189 /* OpenAILMConfig.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
+				585C26F62C524DB200F35353 /* Extension+Encodable.swift in Sources */,
 				58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */,
 				5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */,
 				581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */,
@@ -1095,12 +1105,14 @@
 				58FE3CC62A9EA78300CAE55E /* ConversationEntity+CoreDataProperties.swift in Sources */,
 				588F1FFC2A6F4D7C002FEC2B /* OwnGptWatchApp.swift in Sources */,
 				5846500E2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
+				585C26F42C524D7300F35353 /* Extension+RawRepresentable.swift in Sources */,
 				583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */,
 				5880C3052B26C04F006020E7 /* Extension+NSManagedObjectContext.swift in Sources */,
 				58CFE4FF2A7233C300A43822 /* Message.swift in Sources */,
 				58CFE5062A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
 				585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */,
+				585C26F72C524DB200F35353 /* Extension+Encodable.swift in Sources */,
 				58F628842C49D57D00E91189 /* ServiceProvider.swift in Sources */,
 				5842313F2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				584231542B1AD4D0009F1C46 /* DotView.swift in Sources */,

@@ -82,8 +82,8 @@ struct ServiceSelectorView: View {
     let configStore: any ConfigurationStore
     var didOnboard: () -> Void = {}
     
-    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl())
-    @StateObject var anthropicViewModel = AnthropicConfigurationViewModelImpl(configStore: ConfigurationStoreImpl())
+    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
+    @StateObject var anthropicViewModel = AnthropicConfigurationViewModelImpl(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
     
     var body: some View {
         VStack {
@@ -141,6 +141,6 @@ enum ServiceKey: String, CaseIterable, Codable{
 }
 #Preview {
 //   ConfigurationView(vm: ConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
-    ServiceSelectorView(configStore: ConfigurationStoreImpl()) {}
+    ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl())) {}
    
 }

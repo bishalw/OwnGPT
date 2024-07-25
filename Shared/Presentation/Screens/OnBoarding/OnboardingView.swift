@@ -22,7 +22,7 @@ struct OnboardingView: View {
 //                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
 //                    didOnBoard()
 //                })
-                ServiceSelectorView(configStore: ConfigurationStoreImpl()) {
+                ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl())) {
                     didOnBoard()
                 }
             }

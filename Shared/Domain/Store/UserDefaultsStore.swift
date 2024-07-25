@@ -15,7 +15,7 @@ protocol UserDefaultsStore: ObservableObject {
 class UserDefaultsStoreImpl: UserDefaultsStore {
 
     @PublishedAppStorage("hasOnboarded") var internalHasOnboarded: Bool = false
-    @PublishedAppStorage("openAIConfig") var openAIConfig: OpenAILMConfig = .init()
+    @PublishedAppStorage( "openAIConfig", store: UserDefaults.standard) var openAIConfig : OpenAILMConfig = .init()
     
     var hasOnboarded: PublishedAppStorage<Bool> {
         get { self._internalHasOnboarded }
