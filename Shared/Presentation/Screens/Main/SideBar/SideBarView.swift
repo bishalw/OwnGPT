@@ -68,8 +68,6 @@ extension SidebarView {
                SettingsView()
             }
     }
-
-
 }
 
 struct SearchableView: View {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OpenAIModelConfig: BaseModelConfig {
+struct OpenAILMConfig: BaseModelConfig, Codable, RawRepresentable{
     var model: OpenAIModelType
     let maxTokens: Int
     var temperature: Double
@@ -27,13 +27,16 @@ struct OpenAIModelConfig: BaseModelConfig {
     }
 }
 
-enum OpenAIModelType: String, CaseIterable, Identifiable, Hashable{
+protocol ModelType: Hashable, CaseIterable, Codable {
+    var name: String { get }
+}
+enum OpenAIModelType: String, ModelType{
     case gpt3_5 = "GPT-3.5"
     case gpt4 = "GPT-4"
     case gpt4Turbo = "GPT-4 Turbo"
     case gpt4Vision = "GPT-4 Vision"
     
-    var id: String { self.rawValue }
+    var name: String { self.rawValue }
 }
 
 

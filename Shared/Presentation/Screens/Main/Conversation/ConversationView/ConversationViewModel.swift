@@ -29,7 +29,7 @@ final class ConversationViewModel: ObservableObject {
     {
         self.createNewConversation = createNewConversation
         self.store = store
-        self.conversation = store.conversation
+//        self.conversation = store.conversation
         setupBindings()
         updatePlaceholderVisibility()
     }
