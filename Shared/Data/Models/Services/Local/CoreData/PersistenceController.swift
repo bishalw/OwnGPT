@@ -37,6 +37,7 @@ struct PersistenceController {
     var backgroundContext: NSManagedObjectContext {
         let context = container.newBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }
     
@@ -54,6 +55,17 @@ struct PersistenceController {
         } catch {
             Log.shared.logger.error("Error saving BackgroundContext: \(error)")
             context.rollback()
+        }
+    }
+    func saveChanges2() async throws {
+        guard viewContext.hasChanges else { return }
+        
+        let context = backgroundContext
+        
+        try await context.performAsync { context in
+            try context.save()
+            self.mergeChangesFromBackgroundContext(context)
+            Log.shared.logger.info("BackgroundContext saved successfully.")
         }
     }
     

@@ -19,9 +19,12 @@ struct OnboardingView: View {
                         .font(.title3)
                     Spacer()
                 }
-                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
+//                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
+//                    didOnBoard()
+//                })
+                ServiceSelectorView(configStore: ConfigurationStoreImpl()) {
                     didOnBoard()
-                })
+                }
             }
             .navigationTitle("Welcome ")
         }

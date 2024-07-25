@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var core: Core
     var body: some View {
-        ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
+        ServiceSelectorView(configStore: ConfigurationStoreImpl())
         Form(content: {
             Section ("Conversations"){
                 Button(action: {
@@ -31,7 +31,7 @@ struct SettingsView: View {
                         core.userDefaultStore.clearCache
                     }
                 }) {
-                    Text("Delete AppSotrageCache")
+                    Text("Delete AppStorageCache")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -43,8 +43,6 @@ struct SettingsView: View {
             }
         })
         .scrollContentBackground(.hidden)
-   
-        
     }
 }
 

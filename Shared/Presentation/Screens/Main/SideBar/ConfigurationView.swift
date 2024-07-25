@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ConfigurationView<VM: ConfigurationViewModel>: View {
+    
     @ObservedObject var vm: VM
     var body: some View {
         Form {
@@ -23,7 +24,7 @@ struct ConfigurationView<VM: ConfigurationViewModel>: View {
     }
     
     private var secureTextField: some View {
-        SecureField("API Key", text: $vm.apiKey)
+        SecureFloatingLabelTextField(title: "Api Key", text: $vm.apiKey)
     }
     
     @ViewBuilder
@@ -71,14 +72,17 @@ struct ConfigurationView<VM: ConfigurationViewModel>: View {
     }
     
     private var saveButton: some View {
-        Button("Save Changes", action: vm.save)
+        Button("Save Changes") {
+            vm.save()
+        }
     }
 }
-struct ServiceProviderConfigView: View {
+struct ServiceSelectorView: View {
     @State private var provider: ServiceKey = .openAIAPIKey
     let configStore: any ConfigurationStore
+    var didOnboard: () -> Void = {}
     
-    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl() )
+    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl())
     @StateObject var anthropicViewModel = AnthropicConfigurationViewModelImpl(configStore: ConfigurationStoreImpl())
     
     var body: some View {
@@ -118,13 +122,25 @@ enum ServiceKey: String, CaseIterable, Codable{
     
     var displayName: String {
         switch self {
-        case .openAIAPIKey: return "OpenAI"
-        case .anthropicAPIKey: return "Anthropic"
+            
+        case .openAIAPIKey: 
+            return "OpenAI"
+        case .anthropicAPIKey:
+            return "Anthropic"
+        }
+    }
+    var keyName: String {
+        switch self {
+            
+        case .openAIAPIKey:
+            return "com.OwnGPT.ServiceKey.OpenAI"
+        case .anthropicAPIKey:
+            return "com.OwnGPT.ServiceKey.Anthropic"
         }
     }
 }
 #Preview {
 //   ConfigurationView(vm: ConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
-    ServiceProviderConfigView(configStore: ConfigurationStoreImpl())
+    ServiceSelectorView(configStore: ConfigurationStoreImpl()) {}
    
 }

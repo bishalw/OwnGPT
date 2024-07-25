@@ -7,8 +7,8 @@
 
 import Foundation
 import Combine
+
 protocol ConfigurationStore: ObservableObject {
-    
     var apiKeyPublisher: AnyPublisher<APIKey?, Never> { get }
 }
 enum ConfigurationStoreError: Error {
@@ -26,9 +26,14 @@ class ConfigurationStoreImpl: ObservableObject, ConfigurationStore {
     }
     
     private let keychainService: KeyChainService
+    private let userDefaultStore: any UserDefaultsStore
     
-    init(keychainService: KeyChainService = KeyChainServiceImpl()) {
+    init(
+        keychainService: KeyChainService = KeyChainServiceImpl(),
+        userDefaultStore: any UserDefaultsStore
+    ) {
         self.keychainService = keychainService
+        self.userDefaultStore = userDefaultStore
         self.apiKeySubject = CurrentValueSubject<APIKey?, Never>(nil)
     }
     
