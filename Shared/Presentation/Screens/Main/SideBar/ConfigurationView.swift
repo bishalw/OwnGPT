@@ -7,88 +7,16 @@
 
 import SwiftUI
 
-struct ConfigurationView<VM: ConfigurationViewModel>: View {
-    
-    @ObservedObject var vm: VM
-    var body: some View {
-        Form {
-            Section("Model Settings") {
-                secureTextField
-                modelTypePicker
-                temperatureSlider
-                contextWindowStepper
-                saveButton
-            }
-        }
-        .scrollContentBackground(.hidden)
-    }
-    
-    private var secureTextField: some View {
-        SecureFloatingLabelTextField(title: "Api Key", text: $vm.apiKey)
-    }
-    
-    @ViewBuilder
-    private var modelTypePicker: some View {
-        Group {
-            if let openAIVM = vm as? (any OpenAIConfigurationViewModel) {
-                openAIModelPicker(openAIVM)
-            } else if let anthropicVM = vm as? (any AnthropicConfigurationViewModel) {
-                anthropicModelPicker(anthropicVM)
-            }
-        }
-    }
-    
-    private func openAIModelPicker(_ vm: any OpenAIConfigurationViewModel) -> some View {
-        Picker("Model", selection: Binding(
-            get: { vm.selectedModel },
-            set: { vm.selectedModel = $0 }
-        )) {
-            ForEach(OpenAIModelType.allCases, id: \.self) { model in
-                Text(model.rawValue).tag(model)
-            }
-        }
-    }
-    
-    private func anthropicModelPicker(_ vm: any AnthropicConfigurationViewModel) -> some View {
-        Picker("Model", selection: Binding(
-            get: { vm.selectedModel },
-            set: { vm.selectedModel = $0 }
-        )) {
-            ForEach(AnthropicModelType.allCases, id: \.self) { model in
-                Text(model.rawValue).tag(model)
-            }
-        }
-    }
-    
-    private var temperatureSlider: some View {
-        VStack(alignment: .leading) {
-            Text("Temperature: \(vm.temperature, specifier: "%.2f")")
-            Slider(value: $vm.temperature, in: 0...1, step: 0.1)
-        }
-    }
-    
-    private var contextWindowStepper: some View {
-        Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
-    }
-    
-    private var saveButton: some View {
-        Button("Save Changes") {
-            vm.save()
-        }
-    }
-}
 struct ServiceSelectorView: View {
+    @EnvironmentObject var core: Core
     @State private var provider: ServiceKey = .openAIAPIKey
-    let configStore: any ConfigurationStore
     var didOnboard: () -> Void = {}
     
-    @StateObject var openAIViewModel = OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
-    @StateObject var anthropicViewModel = AnthropicConfigurationViewModelImpl(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
-    
+
     var body: some View {
         VStack {
             serviceSelectorPicker
-            selectedView
+            ConfigurationView(openAIVM: OpenAIConfigViewModelImpl(configStore: core.configStore), anthropicVM: AnthropicConfigurationViewModelImpl(configStore: core.configStore), selectedProvider: $provider)
         }
     }
     
@@ -102,19 +30,88 @@ struct ServiceSelectorView: View {
         .pickerStyle(SegmentedPickerStyle())
         .padding()
     }
+
+}
+
+struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfigurationViewModel>: View {
+    @StateObject var openAIVM: VM1
+    @StateObject var anthropicVM: VM2
+    @Binding var selectedProvider: ServiceKey
     
-    @ViewBuilder
-    private var selectedView: some View {
-        switch provider {
-        case .openAIAPIKey:
-            ConfigurationView(vm: openAIViewModel)
-        case .anthropicAPIKey:
-            ConfigurationView(vm: anthropicViewModel)
+    var body: some View {
+        Group {
+            switch selectedProvider {
+            case .openAIAPIKey:
+                OpenAIConfigurationView(vm: openAIVM)
+            case .anthropicAPIKey:
+                AnthropicConfigurationView(vm: anthropicVM)
+            }
         }
     }
 }
 
+struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
+    
+    @ObservedObject var vm: VM
+    
+    var body: some View {
+        Form {
+            Section("OpenAI Model Settings") {
+                SecureField("API Key", text: $vm.apiKey)
+                    .textContentType(.password)
+                
+                Picker("Model", selection: $vm.selectedModel) {
+                    ForEach(OpenAIModelType.allCases, id: \.self) { model in
+                        Text(model.rawValue).tag(model)
+                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Temperature: \(vm.temperature, specifier: "%.2f")")
+                    Slider(value: $vm.temperature, in: 0...1, step: 0.1)
+                }
+                
+                Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
+                
+                Button("Save Changes") {
+                    vm.save()
+                }
+            }
+        }
+        .scrollContentBackground(.hidden)
+    }
+}
 
+struct AnthropicConfigurationView<VM: AnthropicConfigurationViewModel>: View {
+    @ObservedObject var vm: VM
+    
+    var body: some View {
+        Form {
+            Section("Anthropic Model Settings") {
+                SecureField("API Key", text: $vm.apiKey)
+                    .textContentType(.password)
+                
+                Picker("Model", selection: $vm.selectedModel) {
+                    ForEach(AnthropicModelType.allCases, id: \.self) { model in
+                        Text(model.rawValue).tag(model)
+                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Temperature: \(vm.temperature, specifier: "%.2f")")
+                    Slider(value: $vm.temperature, in: 0...1, step: 0.1)
+                }
+                
+                Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
+                
+                Button("Save Changes") {
+                    vm.save()
+                }
+            }
+        }
+        .scrollContentBackground(.hidden)
+    }
+}
 
 enum ServiceKey: String, CaseIterable, Codable{
     case openAIAPIKey
@@ -139,8 +136,7 @@ enum ServiceKey: String, CaseIterable, Codable{
         }
     }
 }
+
 #Preview {
-//   ConfigurationView(vm: ConfigViewModelImpl(configStore: ConfigurationStoreImpl()))
-    ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl())) {}
-   
+    ServiceSelectorView()
 }

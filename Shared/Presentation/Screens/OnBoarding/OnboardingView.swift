@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @EnvironmentObject var core: Core
     var didOnBoard: () -> Void
     var body: some View {
         NavigationStack {
@@ -22,7 +23,7 @@ struct OnboardingView: View {
 //                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
 //                    didOnBoard()
 //                })
-                ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl())) {
+                ServiceSelectorView() {
                     didOnBoard()
                 }
             }

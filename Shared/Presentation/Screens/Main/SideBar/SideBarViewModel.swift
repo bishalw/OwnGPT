@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+
 protocol SiderBarViewModelSharedStateProvider: ConversationsViewModelSharedStateProvider {
     var selectedConversationPublisher: Published<Conversation?> { get }
 }
@@ -28,3 +29,4 @@ class SideBarViewModelImpl: SideBarViewModel {
         self.sharedStateProvider = sharedStateProvider
     }
 }
+

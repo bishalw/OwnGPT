@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var core: Core
     var body: some View {
-        ServiceSelectorView(configStore: ConfigurationStoreImpl( userDefaultStore: UserDefaultsStoreImpl()))
+        ServiceSelectorView()
         Form(content: {
             Section ("Conversations"){
                 Button(action: {
@@ -28,6 +28,7 @@ struct SettingsView: View {
                 }
                 Button(action: {
                     Task {
+                        // TODO: remove this later
                         core.userDefaultStore.clearCache
                     }
                 }) {

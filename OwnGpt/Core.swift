@@ -9,7 +9,7 @@ import os
 import Bkit
 
 class Core: ObservableObject {
-    
+    // Data
     private(set) lazy var persistenceController: PersistenceController = {
         return PersistenceController()
     }()
@@ -29,7 +29,8 @@ class Core: ObservableObject {
     private(set) lazy var conversationRepository: ConversationRepository = {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
-
+    
+    // Domain
     private(set) lazy var userDefaultStore: any UserDefaultsStore = {
         return UserDefaultsStoreImpl()
     }()
@@ -38,6 +39,13 @@ class Core: ObservableObject {
         return ConversationsStore(repo: self.conversationRepository)
     }()
     
+    private(set) lazy var keychainService: KeyChainService = {
+        return KeyChainServiceImpl()
+    }()
+    
+    private(set) lazy var configStore: any ConfigurationStore = {
+        return ConfigurationStoreImpl(keychainService: self.keychainService, userDefaultStore: self.userDefaultStore)
+    }()
 }
 
 

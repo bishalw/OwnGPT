@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OpenAILMConfig: BaseModelConfig, Codable, RawRepresentable{
+struct OpenAILMConfig: BaseModelConfig, Codable{
     var model: OpenAIModelType
     let maxTokens: Int
     var temperature: Double
