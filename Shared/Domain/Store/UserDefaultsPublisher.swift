@@ -8,31 +8,48 @@
 import Foundation
 import Combine
 
-protocol UserDefaultsPublisher {
-    
+protocol PublishingUserDefaultsService{
+    func observer(forKey key: String) -> AnyPublisher<Any?, Error>
+    func set(value: Any?, forKey: String)
+    func get(forKey: String) -> Any?
 }
 
 
-class UserDefaultsPublisherImpl: ObservableObject {
+class PublishginUserDefaultsServiceImpl: ObservableObject {
     
     private let userDefaults: UserDefaults
-    private let identifier: String?
     private var observers: [String: CurrentValueSubject<Any?, Error>] = [:]
     
     
-    init?(identifier: String?) {
-        guard let object = UserDefaults.init(suiteName: identifier) else { return nil}
-        self.identifier = identifier
-        self.userDefaults = object
+    init?(userDefaults: UserDefaults = UserDefaults.standard) {
+        self.userDefaults = userDefaults
     }
 
     func observer(forKey key: String) -> AnyPublisher<Any?, Error> {
-        if let existingObserver = observers[key] {
-            return existingObserver.eraseToAnyPublisher()
+        // returns the publisher if it exists
+        if let observerForKey = observers[key] {
+            return observerForKey.eraseToAnyPublisher()
         }
         
         let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
+        // [name: Obj]
         observers[key] = subject
+        return subject.eraseToAnyPublisher()
         
     }
+    
+    func set(value: Any?, forKey: String) {
+        self.userDefaults.set(value, forKey: forKey)
+        observers[forKey]?.send(value)
+    }
+    
+    func get(forKey: String) -> Any? {
+        self.userDefaults.object(forKey: forKey)
+    }
+    
+    func removeAllKeyvalue() {
+        
+    }
+    
+    
 }
