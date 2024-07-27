@@ -10,46 +10,80 @@ import Combine
 
 protocol PublishingUserDefaultsService{
     func observer(forKey key: String) -> AnyPublisher<Any?, Error>
-    func set(value: Any?, forKey: String)
-    func get(forKey: String) -> Any?
+    func set<T: Encodable>(value: T, forKey: String)
+    func get<T: Decodable>(forKey: String) -> T?
 }
 
 
-class PublishginUserDefaultsServiceImpl: ObservableObject {
+class PublishingUserDefaultsServiceImpl: PublishingUserDefaultsService {
     
     private let userDefaults: UserDefaults
     private var observers: [String: CurrentValueSubject<Any?, Error>] = [:]
+    private let queue = DispatchQueue(label: "com.OwnGPT.userDefaults\(UUID())", attributes: .concurrent)
     
     
-    init?(userDefaults: UserDefaults = UserDefaults.standard) {
+    init?(
+        userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }
 
     func observer(forKey key: String) -> AnyPublisher<Any?, Error> {
-        // returns the publisher if it exists
-        if let observerForKey = observers[key] {
-            return observerForKey.eraseToAnyPublisher()
+        queue.sync {
+            // returns the publisher if it exists
+            if let observerForKey = observers[key] {
+                return observerForKey.eraseToAnyPublisher()
+            }
+            
+            let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
+            // [name: Obj]
+            observers[key] = subject
+            return subject.eraseToAnyPublisher()
+        }
+    }
+    
+    func set<T: Encodable>(value: T, forKey key: String) {
+        queue.async(flags: .barrier) { [weak self] in
+            guard let self = self else { return }
+            // value for obj
+            if let codableValue = value as? Codable {
+                do {
+                    let data = try JSONEncoder().encode(codableValue)
+                    self.userDefaults.set(data, forKey: key)
+                    observers[key]?.send(value)
+                } catch {
+                    Log.shared.logger.error("Error encoding value: \(error)")
+                }
+            } else {
+                // default
+                self.userDefaults.set(value, forKey: key)
+                observers[key]?.send(value)
+            }
         }
         
-        let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
-        // [name: Obj]
-        observers[key] = subject
-        return subject.eraseToAnyPublisher()
-        
     }
     
-    func set(value: Any?, forKey: String) {
-        self.userDefaults.set(value, forKey: forKey)
-        observers[forKey]?.send(value)
-    }
-    
-    func get(forKey: String) -> Any? {
-        self.userDefaults.object(forKey: forKey)
+    func get<T: Decodable>(forKey key : String) -> T? {
+        queue.sync {
+            if let value = self.userDefaults.object(forKey: key) as? T {
+                return value
+            } else if let data = self.userDefaults.data(forKey: key) {
+                do {
+                    return try JSONDecoder().decode(T.self, from: data)
+                } catch {
+                    Log.shared.logger.error("Error deocing value: \(error)")
+                }
+            }
+            return nil
+        }
     }
     
     func removeAllKeyvalue() {
-        
+        queue.async(flags: .barrier) { [weak self] in
+            guard let self = self else { return }
+            for key in userDefaults.dictionaryRepresentation().keys {
+                self.userDefaults.removeObject(forKey: key)
+            }
+            self.observers.removeAll()
+        }
     }
-    
-    
 }
