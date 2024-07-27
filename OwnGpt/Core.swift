@@ -31,9 +31,9 @@ class Core: ObservableObject {
     }()
     
     // Domain
-    private(set) lazy var userDefaultStore: any UserDefaultsStore = {
-        return UserDefaultsStoreImpl()
-    }()
+//    private(set) lazy var userDefaultStore: any UserDefaultsStore = {
+//        return UserDefaultsStoreImpl()
+//    }()
     
     private(set) lazy var conversationsStore: ConversationsStore = {
         return ConversationsStore(repo: self.conversationRepository)
@@ -43,9 +43,9 @@ class Core: ObservableObject {
         return KeyChainServiceImpl()
     }()
     
-    private(set) lazy var configStore: any ConfigurationStore = {
-        return ConfigurationStoreImpl(keychainService: self.keychainService, userDefaultStore: self.userDefaultStore)
-    }()
+//    private(set) lazy var configStore: any ConfigurationStore = {
+//        return ConfigurationStoreImpl(keychainService: self.keychainService, userDefaultStore: self.userDefaultStore)
+//    }()
 }
 
 

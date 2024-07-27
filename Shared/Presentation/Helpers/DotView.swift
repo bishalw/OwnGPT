@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct DotView: View {
     var body: some View {
         Circle()

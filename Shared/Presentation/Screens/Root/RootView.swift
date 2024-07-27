@@ -6,18 +6,27 @@
 //
 
 import SwiftUI
-
+enum Envrionment {
+    case showOnboarding
+    case showMain
+}
 struct RootView<VM: RootViewModel>: View {
     @EnvironmentObject var core: Core
     @StateObject var vm: VM
+    @State var environment: Envrionment = .showMain
     
     var body: some View {
-        if vm.hasOnboarded {
-            MainView(mainViewModel: MainViewModel())
-        } else {
-            OnboardingView {
-                vm.updateOnBoarded()
+        switch environment {
+        case .showOnboarding:
+            if vm.hasOnboarded {
+                MainView(mainViewModel: MainViewModel())
+            } else {
+                OnboardingView {
+                    vm.updateOnBoarded()
+                }
             }
+        case .showMain:
+            MainView( mainViewModel : MainViewModel())
         }
     }
 }

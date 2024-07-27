@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 
-
 struct DotLoadingView: View {
     @State private var scales: [CGFloat] = [1, 1, 1]
 

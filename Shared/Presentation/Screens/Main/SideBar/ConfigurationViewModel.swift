@@ -46,23 +46,23 @@ class AnthropicConfigurationViewModelImpl: AnthropicConfigurationViewModel {
     }
         
     
-    private let configStore: any ConfigurationStore
+//    private let configStore: any ConfigurationStore
     private var cancellables = Set<AnyCancellable>()
     var didsave: () -> Void
     init (
-        configStore: any ConfigurationStore,
+//        configStore: any ConfigurationStore,
         didsave: @escaping () -> Void = {}
     ) {
-        self.configStore = configStore
+//        self.configStore = configStore
         self.didsave = didsave
-        setupBindings()
+//        setupBindings()
     }
     private func setupBindings() {
         
-        configStore.apiKeyPublisher
-            .map { $0?.value ?? "" }
-            .assign(to: \.apiKey, on: self)
-            .store(in: &cancellables)
+//        configStore.apiKeyPublisher
+//            .map { $0?.value ?? "" }
+//            .assign(to: \.apiKey, on: self)
+//            .store(in: &cancellables)
     }
     func save() {
         
@@ -91,25 +91,25 @@ class OpenAIConfigViewModelImpl: OpenAIConfigurationViewModel {
     }
     var didsave: () -> Void
     
-    private let configStore: any ConfigurationStore
+//    private let configStore: any ConfigurationStore
     private var cancellables = Set<AnyCancellable>()
     
     init (
-        configStore: any ConfigurationStore,
+//        configStore: any ConfigurationStore,
         didsave: @escaping () -> Void = {}
     ) {
-        self.configStore = configStore
+//        self.configStore = configStore
         self.didsave = didsave
-        setupBindings()
+//        setupBindings()
     }
     
-    private func setupBindings() {
-        
-        configStore.apiKeyPublisher
-            .map { $0?.value ?? "" }
-            .assign(to: \.apiKey, on: self)
-            .store(in: &cancellables)
-    }
+//    private func setupBindings() {
+//        
+//        configStore.apiKeyPublisher
+//            .map { $0?.value ?? "" }
+//            .assign(to: \.apiKey, on: self)
+//            .store(in: &cancellables)
+//    }
     
     func save() {
         didsave()

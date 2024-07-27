@@ -127,13 +127,13 @@ extension MainView {
         
         withAnimation(.easeOut(duration: 0.3)) {
             if translationX > 0 {
-                if translationX > (sidebarWidth / 2) {
+                if translationX > (sidebarWidth / 4) {
                     openSidebar()
                 } else {
                     closeSidebar()
                 }
             } else {
-                if -translationX > (sidebarWidth / 2) {
+                if -translationX > (sidebarWidth / 4) {
                     closeSidebar()
                 } else {
                     openSidebar()

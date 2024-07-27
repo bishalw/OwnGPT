@@ -74,6 +74,7 @@
 		58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */; };
 		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
 		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
+		58B4B5DA2C5579AB00FEDEAC /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -210,6 +211,7 @@
 		58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
+		58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */,
 				5881700D2C2CE61300D34BFF /* PlaceHolderLogo.swift */,
 				58D16D9B2C33C3CE00A78C3A /* Testing */,
+				58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				5846500D2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
 				5887267E2C339CA600CAFA3E /* SignInView.swift in Sources */,
 				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
+				58B4B5DA2C5579AB00FEDEAC /* ToolBarView.swift in Sources */,
 				588726822C33AB1800CAFA3E /* TestViewCircle.swift in Sources */,
 				5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				5811FDFF2A727840003AB0C0 /* BottomBarView.swift in Sources */,

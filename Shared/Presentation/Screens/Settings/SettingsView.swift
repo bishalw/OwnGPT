@@ -29,7 +29,7 @@ struct SettingsView: View {
                 Button(action: {
                     Task {
                         // TODO: remove this later
-                        core.userDefaultStore.clearCache
+//                        core.userDefaultStore.clearCache
                     }
                 }) {
                     Text("Delete AppStorageCache")
