@@ -22,7 +22,7 @@
 		581B9AE52C4B20AA00CA0F15 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */; };
 		581B9AE72C4B20C500CA0F15 /* VMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* VMTest.swift */; };
 		581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */; };
-		581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */; };
+		581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */; };
 		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
@@ -166,7 +166,7 @@
 		581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		581B9AE62C4B20C500CA0F15 /* VMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMTest.swift; sourceTree = "<group>"; };
 		581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
-		581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStoreImpl.swift; sourceTree = "<group>"; };
+		581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStore.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 		5842314F2B1ACA06009F1C46 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				581B9AED2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift */,
+				581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */,
 				5880C3002B2612C5006020E7 /* ConversationsStore.swift */,
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
 				581B9AE62C4B20C500CA0F15 /* VMTest.swift */,
@@ -1029,7 +1029,7 @@
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				588517192C4F273300D77150 /* SettingsView.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
-				581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStoreImpl.swift in Sources */,
+				581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStore.swift in Sources */,
 				5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */,
 				581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
