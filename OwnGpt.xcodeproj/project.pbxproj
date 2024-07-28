@@ -20,7 +20,7 @@
 		581B65832C24C76A008E76DD /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B65822C24C76A008E76DD /* SideBarView.swift */; };
 		581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE22C4B19DE00CA0F15 /* OnboardingView.swift */; };
 		581B9AE52C4B20AA00CA0F15 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */; };
-		581B9AE72C4B20C500CA0F15 /* VMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* VMTest.swift */; };
+		581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */; };
 		581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */; };
 		581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */; };
 		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
@@ -165,7 +165,7 @@
 		581B65822C24C76A008E76DD /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
 		581B9AE22C4B19DE00CA0F15 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		581B9AE62C4B20C500CA0F15 /* VMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMTest.swift; sourceTree = "<group>"; };
+		581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStore.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -501,7 +501,7 @@
 				581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */,
 				5880C3002B2612C5006020E7 /* ConversationsStore.swift */,
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
-				581B9AE62C4B20C500CA0F15 /* VMTest.swift */,
+				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
 				585C26FD2C53569600F35353 /* UserDefaultsPublisher.swift */,
 			);
 			path = Store;
@@ -1062,7 +1062,7 @@
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
 				58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */,
 				5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */,
-				581B9AE72C4B20C500CA0F15 /* VMTest.swift in Sources */,
+				581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
 				588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */,

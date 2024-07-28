@@ -10,8 +10,8 @@ import Combine
 
 protocol PublishingUserDefaultsService{
     func observer(forKey key: String) -> AnyPublisher<Any?, Error>
-    func set<T: Encodable>(value: T, forKey: String)
-    func get<T: Decodable>(forKey: String) -> T?
+    func set<T>(value: T, forKey: String)
+    func get<T:Decodable>(forKey: String) -> T?
 }
 
 class PublishingUserDefaultsServiceImpl: PublishingUserDefaultsService {
@@ -40,7 +40,7 @@ class PublishingUserDefaultsServiceImpl: PublishingUserDefaultsService {
         }
     }
     
-    func set<T: Encodable>(value: T, forKey key: String) {
+    func set<T>(value: T, forKey key: String) {
         queue.async(flags: .barrier) { [weak self] in
             guard let self = self else { return }
             // value for obj
@@ -61,7 +61,7 @@ class PublishingUserDefaultsServiceImpl: PublishingUserDefaultsService {
         
     }
     
-    func get<T: Decodable>(forKey key : String) -> T? {
+    func get<T:Decodable>(forKey key : String) -> T? {
         queue.sync {
             if let value = self.userDefaults.object(forKey: key) as? T {
                 return value
