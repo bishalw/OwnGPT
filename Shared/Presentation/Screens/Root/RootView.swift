@@ -13,7 +13,7 @@ enum Envrionment {
 struct RootView<VM: RootViewModel>: View {
     @EnvironmentObject var core: Core
     @StateObject var vm: VM
-    @State var environment: Envrionment = .showMain
+    @State var environment: Envrionment = .showOnboarding
     
     var body: some View {
         switch environment {

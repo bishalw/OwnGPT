@@ -15,7 +15,7 @@ struct OwnGptApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView(vm: RootViewModelImpl())
+            RootView(vm: RootViewModelImpl(userDefaultsStore: core.userDefaultStore))
                 .environmentObject(core)
         }
     }

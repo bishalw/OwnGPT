@@ -9,47 +9,60 @@ import Foundation
 import Bkit
 import Combine
 
-protocol UserDefaultsStore: ObservableObject {
+protocol UserDefaultsStore {
+    var openAIConfigPublisher: AnyPublisher<OpenAILMConfig, Never> { get }
+    var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> { get }
     
-    func clearCache()
-    
+    func updateOpenAIConfig(_ config: OpenAILMConfig)
+    func updateHasUserOnboarded(_ value: Bool)
 }
+
 class UserDefaultsStoreImpl: UserDefaultsStore {
-    private var userdefaultsPublisher: any PublishingUserDefaultsService
+
+    // MARK: Dependency
+    private let observableUserDefaultStore: ObservableUserDefaultStore
     
-    private var openAIConfigSubject = CurrentValueSubject<OpenAILMConfig, Never>(.init())
+    // MARK: Private Publishers
+    private let openAIConfigSubject = CurrentValueSubject<OpenAILMConfig, Never>(.init())
+    private let hasUserOnboardedSubject = CurrentValueSubject<Bool, Never>(false)
     private var cancellables = Set<AnyCancellable>()
-
-    var openAIConfigPublisher: AnyPublisher<OpenAILMConfig, Never> {
-        openAIConfigSubject.eraseToAnyPublisher()
-    }
-
-    init(userdefaultsPublisher: PublishingUserDefaultsService) {
-        self.userdefaultsPublisher = userdefaultsPublisher
-        setupObserver()
+    
+    //MARK: Exposed Publishers
+    var openAIConfigPublisher: AnyPublisher<OpenAILMConfig, Never> { openAIConfigSubject.eraseToAnyPublisher() }
+    
+    var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> { hasUserOnboardedSubject.eraseToAnyPublisher() }
+    
+    init(observableUserDefaultStore: ObservableUserDefaultStore) {
+        self.observableUserDefaultStore = observableUserDefaultStore
+        setupObservers()
     }
     
-    private func setupObserver() {
+    // MARK: Private functions
+    private func setupObservers() {
+        setupObserver(subject: openAIConfigSubject, key: "openAIConfig")
+        setupObserver(subject: hasUserOnboardedSubject, key: "hasOnboarded")
+    }
+    
+    private func setupObserver<T: Codable>(subject: CurrentValueSubject<T, Never>, key: String) {
         // Load initial value
-        if let savedConfig: OpenAILMConfig = userdefaultsPublisher.get(forKey: "openAIConfig") {
-            openAIConfigSubject.send(savedConfig)
+        if let savedValue: T = observableUserDefaultStore.get(forKey: key) {
+            subject.send(savedValue)
         }
-
+        
         // Observe changes and save
-        openAIConfigSubject
+        subject
             .dropFirst() // Skip initial value
-            .sink { [weak self] newConfig in
-                self?.userdefaultsPublisher.set(value: newConfig, forKey: "openAIConfig")
+            .sink { [weak self] newValue in
+                self?.observableUserDefaultStore.set(value: newValue, forKey: key)
             }
             .store(in: &cancellables)
     }
-    
-    func clearCache() {
-        
+    // MARK: Public functions
+    func updateOpenAIConfig(_ config: OpenAILMConfig) {
+        openAIConfigSubject.send(config)
     }
-
-    // Public method to update the config
-    func updateOpenAIConfig(_ newConfig: OpenAILMConfig) {
-        openAIConfigSubject.send(newConfig)
+    
+    func updateHasUserOnboarded(_ value: Bool) {
+        hasUserOnboardedSubject.send(value)
     }
 }

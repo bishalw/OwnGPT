@@ -8,20 +8,20 @@
 import Foundation
 import Combine
 
-protocol PublishingUserDefaultsService{
+protocol ObservableUserDefaultStore{
     func observer(forKey key: String) -> AnyPublisher<Any?, Error>
     func set<T>(value: T, forKey: String)
     func get<T:Decodable>(forKey: String) -> T?
 }
 
-class PublishingUserDefaultsServiceImpl: PublishingUserDefaultsService {
+class ObservableUserDefaultStoreImpl: ObservableUserDefaultStore {
     
     private let userDefaults: UserDefaults
     private var observers: [String: CurrentValueSubject<Any?, Error>] = [:]
     private let queue = DispatchQueue(label: "com.OwnGPT.userDefaults\(UUID())", attributes: .concurrent)
     
     
-    init?(
+    init(
         userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }

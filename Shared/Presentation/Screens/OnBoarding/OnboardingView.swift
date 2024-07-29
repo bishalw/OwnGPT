@@ -20,9 +20,6 @@ struct OnboardingView: View {
                         .font(.title3)
                     Spacer()
                 }
-//                ConfigurationView(vm: OpenAIConfigViewModelImpl(configStore: ConfigurationStoreImpl()) {
-//                    didOnBoard()
-//                })
                 ServiceSelectorView() {
                     didOnBoard()
                 }

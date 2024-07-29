@@ -16,27 +16,28 @@ protocol RootViewModel: ObservableObject {
 class RootViewModelImpl: RootViewModel {
     
     private var cancellables = Set<AnyCancellable>()
-//    private let userDefaultsStore: any UserDefaultsStore
+    private let userDefaultsStore: UserDefaultsStore
     
     @Published  var hasOnboarded: Bool = false
     
-//    init(userDefaultsStore: any UserDefaultsStore) {
-//        self.userDefaultsStore = userDefaultsStore
-//        self.setupObservers()
-//    }
-    init(cancellables: Set<AnyCancellable> = Set<AnyCancellable>()) {
+    init(userDefaultsStore: UserDefaultsStore) {
+        self.userDefaultsStore = userDefaultsStore
+        self.setupObservers()
+    }
+    init(
+        userDefaultsStore:  UserDefaultsStore,
+        cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
+    ) {
+        self.userDefaultsStore = userDefaultsStore
         self.cancellables = cancellables
-        self.hasOnboarded = hasOnboarded
+        
     }
     
     private func setupObservers() {
-//        userDefaultsStore.hasOnboarded.projectedValue.sink { value in
-//            self.hasOnboarded = value
-//        }
-//        .store(in: &cancellables)
+ 
     }
     
     func updateOnBoarded() {
-//        userDefaultsStore.hasOnboarded.wrappedValue = true
+
     }
 }
