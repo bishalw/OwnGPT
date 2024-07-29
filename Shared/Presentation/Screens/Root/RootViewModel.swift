@@ -10,34 +10,33 @@ import Bkit
 import Combine
 
 protocol RootViewModel: ObservableObject {
-    var hasOnboarded: Bool { get }
+    var hasUserOnboarded: Bool { get }
     func updateOnBoarded()
 }
 class RootViewModelImpl: RootViewModel {
     
     private var cancellables = Set<AnyCancellable>()
-    private let userDefaultsStore: UserDefaultsStore
+    private var userDefaultsStore: UserDefaultsStore
     
-    @Published  var hasOnboarded: Bool = false
+    @Published  var hasUserOnboarded: Bool = false
     
     init(userDefaultsStore: UserDefaultsStore) {
         self.userDefaultsStore = userDefaultsStore
+        self.hasUserOnboarded = userDefaultsStore.hasOnboarded
         self.setupObservers()
     }
-    init(
-        userDefaultsStore:  UserDefaultsStore,
-        cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
-    ) {
-        self.userDefaultsStore = userDefaultsStore
-        self.cancellables = cancellables
-        
-    }
+   
     
     private func setupObservers() {
- 
+        userDefaultsStore.hasUserOnboardedPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newValue in
+                self?.hasUserOnboarded = newValue
+            }
+            .store(in: &cancellables)
     }
-    
-    func updateOnBoarded() {
 
+    func updateOnBoarded() {
+        userDefaultsStore.hasOnboarded = true
     }
 }

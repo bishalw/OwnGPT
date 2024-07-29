@@ -9,6 +9,7 @@ import SwiftUI
 enum Envrionment {
     case showOnboarding
     case showMain
+    case onlyShowOnboarding
 }
 struct RootView<VM: RootViewModel>: View {
     @EnvironmentObject var core: Core
@@ -18,7 +19,7 @@ struct RootView<VM: RootViewModel>: View {
     var body: some View {
         switch environment {
         case .showOnboarding:
-            if vm.hasOnboarded {
+            if vm.hasUserOnboarded {
                 MainView(mainViewModel: MainViewModel())
             } else {
                 OnboardingView {
@@ -27,7 +28,12 @@ struct RootView<VM: RootViewModel>: View {
             }
         case .showMain:
             MainView( mainViewModel : MainViewModel())
+        case .onlyShowOnboarding:
+            OnboardingView {
+                vm.updateOnBoarded()
+            }
         }
+        
     }
 }
 

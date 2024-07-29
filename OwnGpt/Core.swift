@@ -31,13 +31,10 @@ class Core: ObservableObject {
     }()
     
     // Observing DefaultUserService
-    private (set) lazy var observableUserDefaultStore: any ObservableUserDefaultStore = {
-        return ObservableUserDefaultStoreImpl()
-    }()
+    private (set)  var observableUserDefaultService: any ObservableUserDefaultService
     // UserDefault Store
-    private(set) lazy var userDefaultStore: any UserDefaultsStore = {
-        return UserDefaultsStoreImpl(observableUserDefaultStore: observableUserDefaultStore)
-    }()
+    private(set)  var userDefaultStore: any UserDefaultsStore
+ 
     // Conversation Store
     private(set) lazy var conversationsStore: ConversationsStore = {
         return ConversationsStore(repo: self.conversationRepository)
@@ -50,6 +47,11 @@ class Core: ObservableObject {
     private(set) lazy var configStore: any ConfigurationStore = {
         return ConfigurationStoreImpl(keychainService: self.keychainService, userDefaultStore: self.userDefaultStore)
     }()
+    
+    init() {
+        self.observableUserDefaultService = ObservableUserDefaultServiceImpl()
+        self.userDefaultStore = UserDefaultsStoreImpl(observableUserDefaultService: self.observableUserDefaultService)
+    }
 }
 
 

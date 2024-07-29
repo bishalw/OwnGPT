@@ -20,13 +20,17 @@ protocol SideBarViewModel: ObservableObject {
 class SideBarViewModelImpl: SideBarViewModel {
     
     let sharedStateProvider: SiderBarViewModelSharedStateProvider
+    let userdefaultStore: UserDefaultsStore
     @Published var selectedConversation: Conversation?
     
     init(
-        sharedStateProvider: SiderBarViewModelSharedStateProvider
+        sharedStateProvider: SiderBarViewModelSharedStateProvider,
+        userdefaultStore: UserDefaultsStore
     ) {
         self._selectedConversation = sharedStateProvider.selectedConversationPublisher
         self.sharedStateProvider = sharedStateProvider
+        self.userdefaultStore = userdefaultStore
     }
+    
 }
 

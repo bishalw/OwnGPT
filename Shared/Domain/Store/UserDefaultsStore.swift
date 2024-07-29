@@ -10,59 +10,29 @@ import Bkit
 import Combine
 
 protocol UserDefaultsStore {
-    var openAIConfigPublisher: AnyPublisher<OpenAILMConfig, Never> { get }
     var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> { get }
-    
-    func updateOpenAIConfig(_ config: OpenAILMConfig)
-    func updateHasUserOnboarded(_ value: Bool)
+    var hasOnboarded: Bool { get set }
 }
 
 class UserDefaultsStoreImpl: UserDefaultsStore {
-
-    // MARK: Dependency
-    private let observableUserDefaultStore: ObservableUserDefaultStore
-    
-    // MARK: Private Publishers
-    private let openAIConfigSubject = CurrentValueSubject<OpenAILMConfig, Never>(.init())
-    private let hasUserOnboardedSubject = CurrentValueSubject<Bool, Never>(false)
-    private var cancellables = Set<AnyCancellable>()
-    
-    //MARK: Exposed Publishers
-    var openAIConfigPublisher: AnyPublisher<OpenAILMConfig, Never> { openAIConfigSubject.eraseToAnyPublisher() }
-    
-    var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> { hasUserOnboardedSubject.eraseToAnyPublisher() }
-    
-    init(observableUserDefaultStore: ObservableUserDefaultStore) {
-        self.observableUserDefaultStore = observableUserDefaultStore
-        setupObservers()
+    enum Key: String {
+        case hasOnboarded
     }
-    
-    // MARK: Private functions
-    private func setupObservers() {
-        setupObserver(subject: openAIConfigSubject, key: "openAIConfig")
-        setupObserver(subject: hasUserOnboardedSubject, key: "hasOnboarded")
-    }
-    
-    private func setupObserver<T: Codable>(subject: CurrentValueSubject<T, Never>, key: String) {
-        // Load initial value
-        if let savedValue: T = observableUserDefaultStore.get(forKey: key) {
-            subject.send(savedValue)
+    var hasOnboarded: Bool {
+        get {
+            self.observableUserDefaultService.get(forKey: Key.hasOnboarded.rawValue) ?? false
         }
-        
-        // Observe changes and save
-        subject
-            .dropFirst() // Skip initial value
-            .sink { [weak self] newValue in
-                self?.observableUserDefaultStore.set(value: newValue, forKey: key)
-            }
-            .store(in: &cancellables)
+        set {
+            self.observableUserDefaultService.set(value: newValue, forKey: Key.hasOnboarded.rawValue)
+        }
     }
-    // MARK: Public functions
-    func updateOpenAIConfig(_ config: OpenAILMConfig) {
-        openAIConfigSubject.send(config)
+    var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> {
+        return self.observableUserDefaultService.observer(forKey: Key.hasOnboarded.rawValue, defaultValue: false)
     }
+    // MARK: Dependency
+    private let observableUserDefaultService: ObservableUserDefaultService
     
-    func updateHasUserOnboarded(_ value: Bool) {
-        hasUserOnboardedSubject.send(value)
+    init(observableUserDefaultService: ObservableUserDefaultService) {
+        self.observableUserDefaultService = observableUserDefaultService
     }
 }

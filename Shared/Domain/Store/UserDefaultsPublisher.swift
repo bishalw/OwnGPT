@@ -8,13 +8,14 @@
 import Foundation
 import Combine
 
-protocol ObservableUserDefaultStore{
-    func observer(forKey key: String) -> AnyPublisher<Any?, Error>
+protocol ObservableUserDefaultService{
+    func observer<T>(forKey key: String) -> AnyPublisher<T?, Error>
     func set<T>(value: T, forKey: String)
     func get<T:Decodable>(forKey: String) -> T?
+    func observer<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
 }
 
-class ObservableUserDefaultStoreImpl: ObservableUserDefaultStore {
+class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
     
     private let userDefaults: UserDefaults
     private var observers: [String: CurrentValueSubject<Any?, Error>] = [:]
@@ -25,18 +26,42 @@ class ObservableUserDefaultStoreImpl: ObservableUserDefaultStore {
         userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }
-
-    func observer(forKey key: String) -> AnyPublisher<Any?, Error> {
+    func observer<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
         queue.sync {
             // returns the publisher if it exists
             if let observerForKey = observers[key] {
-                return observerForKey.eraseToAnyPublisher()
+                return observerForKey.eraseToAnyPublisher().map { item in
+                    return item as? T ?? defaultValue
+                }
+                .replaceError(with: defaultValue)
+                .eraseToAnyPublisher()
             }
             
             let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
             // [name: Obj]
             observers[key] = subject
-            return subject.eraseToAnyPublisher()
+            return subject.eraseToAnyPublisher().map { item in
+                return item as? T ?? defaultValue
+            }
+            .replaceError(with: defaultValue)
+            .eraseToAnyPublisher()
+        }
+    }
+    func observer<T>(forKey key: String) -> AnyPublisher<T?, Error> {
+        queue.sync {
+            // returns the publisher if it exists
+            if let observerForKey = observers[key] {
+                return observerForKey.eraseToAnyPublisher().map { item in
+                    return item as? T
+                }.eraseToAnyPublisher()
+            }
+            
+            let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
+            // [name: Obj]
+            observers[key] = subject
+            return subject.eraseToAnyPublisher().map { item in
+                return item as? T
+            }.eraseToAnyPublisher()
         }
     }
     
