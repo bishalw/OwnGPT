@@ -75,6 +75,7 @@
 		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
 		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
 		58B4B5DA2C5579AB00FEDEAC /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */; };
+		58B4B5DF2C58AAA400FEDEAC /* ConfigView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -212,6 +213,7 @@
 		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
 		58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView2.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 		58450A932A67CED9005BD1E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				58B4B5DD2C58AA9200FEDEAC /* Testing ConfigView */,
 				5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */,
 				5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */,
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
@@ -704,6 +707,14 @@
 				58D16DB92C3CC81000A78C3A /* SignInViewModel.swift */,
 			);
 			path = "SignIn(WIP)";
+			sourceTree = "<group>";
+		};
+		58B4B5DD2C58AA9200FEDEAC /* Testing ConfigView */ = {
+			isa = PBXGroup;
+			children = (
+				58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */,
+			);
+			path = "Testing ConfigView";
 			sourceTree = "<group>";
 		};
 		58D16D9B2C33C3CE00A78C3A /* Testing */ = {
@@ -1066,6 +1077,7 @@
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
 				588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */,
+				58B4B5DF2C58AAA400FEDEAC /* ConfigView2.swift in Sources */,
 				581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */,
 				58D16DA52C35058400A78C3A /* User.swift in Sources */,
 				5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,
