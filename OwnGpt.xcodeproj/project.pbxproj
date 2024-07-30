@@ -79,6 +79,7 @@
 		58B4B5EB2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EA2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift */; };
 		58B4B5ED2C598F5E00FEDEAC /* AnthropicConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */; };
 		58B4B5F02C59900800FEDEAC /* AnthropicConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */; };
+		58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -220,6 +221,7 @@
 		58B4B5EA2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationView.swift; sourceTree = "<group>"; };
 		58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationViewModel.swift; sourceTree = "<group>"; };
+		58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigStore.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
 				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
 				58B4B5E22C598D0800FEDEAC /* OpenAIConfigStore.swift */,
+				58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */,
 				581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */,
 				58B4B5E92C598DDC00FEDEAC /* OpenAIConfigurationView.swift in Sources */,
+				58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
 				58B4B5EB2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
