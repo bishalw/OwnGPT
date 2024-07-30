@@ -15,8 +15,8 @@ import Foundation
 //    var name: String { self.rawValue }
 //}
 struct APIKey: Codable{
-    var value: String
     let serviceKey: ServiceKey
+    var value: String
     
 }
 enum KeychainError: Error {

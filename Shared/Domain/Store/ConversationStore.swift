@@ -28,9 +28,7 @@ class ConversationStore: ConversationStoreProtocol {
     var conversationPublisher: AnyPublisher<Conversation, Never> {
         conversationSubject.eraseToAnyPublisher()
     }
-//    var conversation: Conversation {
-//        conversationSubject.value
-//    }
+
    
     init(chatGPTAPI: ChatGPTAPIService, repo: ConversationRepository, conversation: Conversation?) {
         self.chatGPTAPI = chatGPTAPI

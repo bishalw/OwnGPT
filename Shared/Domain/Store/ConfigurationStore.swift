@@ -11,12 +11,7 @@ import Combine
 protocol ConfigurationStore: ObservableObject {
     var apiKeyPublisher: AnyPublisher<APIKey?, Never> { get }
 }
-enum ConfigurationStoreError: Error {
-    case failedToLoadAPIKey
-    case failedToSaveAPIKey
-    case failedToClearAPIKey
-    case invalidServiceKey
-}
+
 
 class ConfigurationStoreImpl: ObservableObject, ConfigurationStore {
     private var apiKeySubject: CurrentValueSubject<APIKey?, Never>
