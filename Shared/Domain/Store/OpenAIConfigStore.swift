@@ -79,3 +79,32 @@ enum ConfigurationStoreError: Error {
     case invalidServiceKey
     case failedToFetchOnInitialization
 }
+struct APIKey: Codable{
+    let serviceKey: ServiceKey
+    var value: String
+    
+    
+}
+enum ServiceKey: String, CaseIterable, Codable{
+    case openAIAPIKey
+    case anthropicAPIKey
+    
+    var displayName: String {
+        switch self {
+            
+        case .openAIAPIKey:
+            return "OpenAI"
+        case .anthropicAPIKey:
+            return "Anthropic"
+        }
+    }
+    var keyName: String {
+        switch self {
+            
+        case .openAIAPIKey:
+            return "com.OwnGPT.ServiceKey.OpenAI"
+        case .anthropicAPIKey:
+            return "com.OwnGPT.ServiceKey.Anthropic"
+        }
+    }
+}

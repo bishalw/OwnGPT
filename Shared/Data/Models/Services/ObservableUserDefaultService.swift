@@ -8,17 +8,17 @@
 import Foundation
 import Combine
 
-protocol ObservableUserDefaultService{
+protocol ObservableUserDefaultService {
     func observer<T>(forKey key: String) -> AnyPublisher<T?, Error>
     func set<T>(value: T, forKey: String)
     func get<T:Decodable>(forKey: String) -> T?
-    func observer<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
+    func userDefaultsPublisher<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
 }
 
 class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
     
     private let userDefaults: UserDefaults
-    private var observers: [String: CurrentValueSubject<Any?, Error>] = [:]
+    private var userDefaultsPublisherMap: [String: CurrentValueSubject<Any?, Error>] = [:]
     private let queue = DispatchQueue(label: "com.OwnGPT.userDefaults\(UUID())", attributes: .concurrent)
     
     
@@ -26,11 +26,11 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
         userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }
-    func observer<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
+    func userDefaultsPublisher<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
         queue.sync {
             // returns the publisher if it exists
-            if let observerForKey = observers[key] {
-                return observerForKey.eraseToAnyPublisher().map { item in
+            if let publisherForKey = userDefaultsPublisherMap[key] {
+                return publisherForKey.eraseToAnyPublisher().map { item in
                     return item as? T ?? defaultValue
                 }
                 .replaceError(with: defaultValue)
@@ -39,7 +39,7 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
             
             let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
             // [name: Obj]
-            observers[key] = subject
+            userDefaultsPublisherMap[key] = subject
             return subject.eraseToAnyPublisher().map { item in
                 return item as? T ?? defaultValue
             }
@@ -50,7 +50,7 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
     func observer<T>(forKey key: String) -> AnyPublisher<T?, Error> {
         queue.sync {
             // returns the publisher if it exists
-            if let observerForKey = observers[key] {
+            if let observerForKey = userDefaultsPublisherMap[key] {
                 return observerForKey.eraseToAnyPublisher().map { item in
                     return item as? T
                 }.eraseToAnyPublisher()
@@ -58,7 +58,7 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
             
             let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
             // [name: Obj]
-            observers[key] = subject
+            userDefaultsPublisherMap[key] = subject
             return subject.eraseToAnyPublisher().map { item in
                 return item as? T
             }.eraseToAnyPublisher()
@@ -73,14 +73,14 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
                 do {
                     let data = try JSONEncoder().encode(codableValue)
                     self.userDefaults.set(data, forKey: key)
-                    observers[key]?.send(value)
+                    userDefaultsPublisherMap[key]?.send(value)
                 } catch {
                     Log.shared.logger.error("Error encoding value: \(error)")
                 }
             } else {
                 // default
                 self.userDefaults.set(value, forKey: key)
-                observers[key]?.send(value)
+                userDefaultsPublisherMap[key]?.send(value)
             }
         }
         
@@ -107,7 +107,7 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
             for key in userDefaults.dictionaryRepresentation().keys {
                 self.userDefaults.removeObject(forKey: key)
             }
-            self.observers.removeAll()
+            self.userDefaultsPublisherMap.removeAll()
         }
     }
 }

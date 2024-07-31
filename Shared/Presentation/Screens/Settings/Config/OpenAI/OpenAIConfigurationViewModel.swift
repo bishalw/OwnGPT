@@ -40,14 +40,14 @@ class OpenAIConfigurationViewModelImpl: OpenAIConfigurationViewModel {
     }
     var didsave: () -> Void
     
-    private let configStore: any ConfigurationStore
+    private let openAIConfigStore: OpenAiConfigStore
     private var cancellables = Set<AnyCancellable>()
     
     init (
-        configStore: any ConfigurationStore,
+        openAIConfigStore: OpenAiConfigStore,
         didsave: @escaping () -> Void = {}
     ) {
-        self.configStore = configStore
+        self.openAIConfigStore = openAIConfigStore
         self.didsave = didsave
         setupBindings()
     }

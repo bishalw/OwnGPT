@@ -14,20 +14,20 @@ enum Envrionment {
 struct RootView<VM: RootViewModel>: View {
     @EnvironmentObject var core: Core
     @StateObject var vm: VM
-    @State var environment: Envrionment = .showOnboarding
+    @State var environment: Envrionment = .showMain
     
     var body: some View {
         switch environment {
         case .showOnboarding:
             if vm.hasUserOnboarded {
-                MainView(mainViewModel: MainViewModel())
+                MainView()
             } else {
                 OnboardingView {
                     vm.updateOnBoarded()
                 }
             }
         case .showMain:
-            MainView( mainViewModel : MainViewModel())
+            MainView()
         case .onlyShowOnboarding:
             OnboardingView {
                 vm.updateOnBoarded()

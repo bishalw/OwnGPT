@@ -27,7 +27,7 @@ class UserDefaultsStoreImpl: UserDefaultsStore {
         }
     }
     var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> {
-        return self.observableUserDefaultService.observer(forKey: Key.hasOnboarded.rawValue, defaultValue: false)
+        return self.observableUserDefaultService.userDefaultsPublisher(forKey: Key.hasOnboarded.rawValue, defaultValue: false)
     }
     // MARK: Dependency
     private let observableUserDefaultService: ObservableUserDefaultService

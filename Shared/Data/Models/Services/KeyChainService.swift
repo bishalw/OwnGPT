@@ -6,19 +6,7 @@
 //
 
 import Foundation
-
-//
-//enum ServiceKey: String, Codable, CaseIterable {
-//    case openAIAPIKey = "com.OwnGPT.OpenAiAPIkey"
-//    case anthropicAPIKey = "com.OWnGPT.ClaudeAPIKey"
-//    
-//    var name: String { self.rawValue }
-//}
-struct APIKey: Codable{
-    let serviceKey: ServiceKey
-    var value: String
-    
-}
+import Combine
 enum KeychainError: Error {
     case saveFailed(status: OSStatus)
     case updateFailed(status: OSStatus)
@@ -38,12 +26,17 @@ class KeyChainServiceImpl: KeyChainService  {
 
     private let dataEncoder: JSONEncoder
     private let dataDecoder: JSONDecoder
+
     
-    init(dataEncoder: JSONEncoder = JSONEncoder(), dataDecoder: JSONDecoder = JSONDecoder()){
+    init(
+        dataEncoder: JSONEncoder = JSONEncoder(),
+        dataDecoder: JSONDecoder = JSONDecoder()
+    ){
         self.dataEncoder = dataEncoder
         self.dataDecoder = dataDecoder
     }
    
+    
     func save<T: Encodable>(_ item: T, for key: String) throws {
         let data = try dataEncoder.encode(item)
         

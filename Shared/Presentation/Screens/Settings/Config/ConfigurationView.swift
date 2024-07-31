@@ -16,7 +16,7 @@ struct ServiceSelectorView: View {
     var body: some View {
         VStack {
             serviceSelectorPicker
-            ConfigurationView(openAIVM: OpenAIConfigurationViewModelImpl(configStore: core.configStore), anthropicVM: AnthropicConfigurationViewModelImpl(), selectedProvider: $provider)
+            ConfigurationView(openAIVM: OpenAIConfigurationViewModelImpl(openAIConfigStore: core.openAIConfigStore), anthropicVM: AnthropicConfigurationViewModelImpl(anthropicConfigStore: core.anthropicConfigStore), selectedProvider: $provider)
         }
     }
     
@@ -53,29 +53,7 @@ struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfig
 
 
 
-enum ServiceKey: String, CaseIterable, Codable{
-    case openAIAPIKey
-    case anthropicAPIKey
-    
-    var displayName: String {
-        switch self {
-            
-        case .openAIAPIKey: 
-            return "OpenAI"
-        case .anthropicAPIKey:
-            return "Anthropic"
-        }
-    }
-    var keyName: String {
-        switch self {
-            
-        case .openAIAPIKey:
-            return "com.OwnGPT.ServiceKey.OpenAI"
-        case .anthropicAPIKey:
-            return "com.OwnGPT.ServiceKey.Anthropic"
-        }
-    }
-}
+
 
 #Preview {
     ServiceSelectorView()

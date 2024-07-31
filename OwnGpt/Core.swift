@@ -13,6 +13,7 @@ class Core: ObservableObject {
     private(set) lazy var persistenceController: PersistenceController = {
         return PersistenceController()
     }()
+    //MARK: Service
     // ConversationPersistance Service (Core Data)
     private(set) lazy var conversationPersistenceService: ConversationPersistenceService = {
         return ConversationPersistenceService(manager: self.persistenceController)
@@ -29,28 +30,43 @@ class Core: ObservableObject {
     private(set) lazy var conversationRepository: ConversationRepository = {
         return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
     }()
-    
-    // Observing DefaultUserService
-    private (set)  var observableUserDefaultService: any ObservableUserDefaultService
-    // UserDefault Store
-    private(set)  var userDefaultStore: any UserDefaultsStore
- 
-    // Conversation Store
-    private(set) lazy var conversationsStore: ConversationsStore = {
-        return ConversationsStore(repo: self.conversationRepository)
-    }()
     // Keychain Service
     private(set) lazy var keychainService: KeyChainService = {
         return KeyChainServiceImpl()
     }()
-    // Config Store
-    private(set) lazy var configStore: any ConfigurationStore = {
-        return ConfigurationStoreImpl(keychainService: self.keychainService, userDefaultStore: self.userDefaultStore)
+    
+    // Observing DefaultUserService
+    private(set) lazy var observableUserDefaultService: ObservableUserDefaultService = {
+        return ObservableUserDefaultServiceImpl()
     }()
     
+    private(set) lazy var observableKeyChainService: ObservableKeyChainService = {
+        return ObservableKeyChainServiceImpl()
+    }()
+    // UserDefault Store
+    private(set) lazy var userDefaultStore: UserDefaultsStore = {
+        return UserDefaultsStoreImpl(observableUserDefaultService: self.observableUserDefaultService)
+    }()
+    // MARK: STORE
+    // Conversation Store
+    private(set) lazy var conversationsStore: ConversationsStore = {
+        return ConversationsStore(repo: self.conversationRepository)
+    }()
+  
+    // Open AI
+    private(set) lazy var openAIConfigStore: OpenAiConfigStore = {
+        return OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, keychainService: keychainService)
+    }()
+    
+    // Anthropic Store
+    private(set) lazy var anthropicConfigStore: AnthropicConfigStore = {
+        return AnthropicConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, keychainService: keychainService)
+    }()
+    
+    
+    
     init() {
-        self.observableUserDefaultService = ObservableUserDefaultServiceImpl()
-        self.userDefaultStore = UserDefaultsStoreImpl(observableUserDefaultService: self.observableUserDefaultService)
+        
     }
 }
 

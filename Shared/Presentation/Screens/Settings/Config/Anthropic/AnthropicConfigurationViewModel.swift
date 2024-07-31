@@ -33,25 +33,19 @@ class AnthropicConfigurationViewModelImpl: AnthropicConfigurationViewModel {
         get { modelAIConfig.temperature }
         set { modelAIConfig.temperature = newValue }
     }
-        
-    
-//    private let configStore: any ConfigurationStore
+
     private var cancellables = Set<AnyCancellable>()
+    private let anthropicConfigStore: AnthropicConfigStore
     var didsave: () -> Void
     init (
-//        configStore: any ConfigurationStore,
+        anthropicConfigStore: AnthropicConfigStore,
         didsave: @escaping () -> Void = {}
     ) {
-//        self.configStore = configStore
         self.didsave = didsave
-//        setupBindings()
+        self.anthropicConfigStore = anthropicConfigStore
     }
     private func setupBindings() {
         
-//        configStore.apiKeyPublisher
-//            .map { $0?.value ?? "" }
-//            .assign(to: \.apiKey, on: self)
-//            .store(in: &cancellables)
     }
     func save() {
         
