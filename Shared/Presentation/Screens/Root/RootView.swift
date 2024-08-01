@@ -33,7 +33,6 @@ struct RootView<VM: RootViewModel>: View {
                 vm.updateOnBoarded()
             }
         }
-        
     }
 }
 

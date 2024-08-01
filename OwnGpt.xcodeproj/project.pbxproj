@@ -78,7 +78,7 @@
 		58B4B5ED2C598F5E00FEDEAC /* AnthropicConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */; };
 		58B4B5F02C59900800FEDEAC /* AnthropicConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */; };
 		58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */; };
-		58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainServiceImpl.swift */; };
+		58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -219,7 +219,7 @@
 		58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationView.swift; sourceTree = "<group>"; };
 		58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigStore.swift; sourceTree = "<group>"; };
-		58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableKeyChainServiceImpl.swift; sourceTree = "<group>"; };
+		58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableKeyChainService.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -488,7 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */,
-				58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainServiceImpl.swift */,
+				58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */,
 				585C26FD2C53569600F35353 /* ObservableUserDefaultService.swift */,
 				5842314E2B1AC9E2009F1C46 /* Remote */,
 				5817C0972A9445DC005EEDC9 /* Local */,
@@ -1091,7 +1091,7 @@
 				58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */,
 				58F628832C49D57D00E91189 /* ServiceProvider.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
-				58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainServiceImpl.swift in Sources */,
+				58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainService.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,

@@ -41,7 +41,7 @@ class Core: ObservableObject {
     }()
     
     private(set) lazy var observableKeyChainService: ObservableKeyChainService = {
-        return ObservableKeyChainServiceImpl()
+        return ObservableKeyChainServiceImpl(keychainService: keychainService)
     }()
     // UserDefault Store
     private(set) lazy var userDefaultStore: UserDefaultsStore = {
@@ -55,7 +55,7 @@ class Core: ObservableObject {
   
     // Open AI
     private(set) lazy var openAIConfigStore: OpenAiConfigStore = {
-        return OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, keychainService: keychainService)
+        return OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, observableKeyChainService: self.observableKeyChainService)
     }()
     
     // Anthropic Store

@@ -15,19 +15,17 @@ protocol UserDefaultsStore {
 }
 
 class UserDefaultsStoreImpl: UserDefaultsStore {
-    enum Key: String {
-        case hasOnboarded
-    }
+
     var hasOnboarded: Bool {
         get {
-            self.observableUserDefaultService.get(forKey: Key.hasOnboarded.rawValue) ?? false
+            self.observableUserDefaultService.get(forKey: userDefaultsKey.hasOnboarded.rawValue) ?? false
         }
         set {
-            self.observableUserDefaultService.set(value: newValue, forKey: Key.hasOnboarded.rawValue)
+            self.observableUserDefaultService.set(value: newValue, forKey: userDefaultsKey.hasOnboarded.rawValue)
         }
     }
     var hasUserOnboardedPublisher: AnyPublisher<Bool, Never> {
-        return self.observableUserDefaultService.userDefaultsPublisher(forKey: Key.hasOnboarded.rawValue, defaultValue: false)
+        return self.observableUserDefaultService.userDefaultsPublisher(forKey: userDefaultsKey.hasOnboarded.rawValue, defaultValue: false)
     }
     // MARK: Dependency
     private let observableUserDefaultService: ObservableUserDefaultService
@@ -35,4 +33,8 @@ class UserDefaultsStoreImpl: UserDefaultsStore {
     init(observableUserDefaultService: ObservableUserDefaultService) {
         self.observableUserDefaultService = observableUserDefaultService
     }
+}
+
+enum userDefaultsKey: String {
+    case hasOnboarded
 }

@@ -9,66 +9,37 @@ import Foundation
 import Combine
 
 protocol OpenAiConfigStore {
-    var openAIApiKeyPublisher: AnyPublisher<APIKey?, Never> { get }
+    var openAIKeyPublisher: AnyPublisher<String, Never> { get }
+    func fetchOpenAPIKey() async -> String
+    func setOpenAPIKey(_ key: String) async
+    
 }
 
+
 class OpenAIConfigStoreImpl: OpenAiConfigStore {
-    
-    // MARK: Exposed Properties
-    var openAIApiKeyPublisher: AnyPublisher<APIKey?, Never> {
-        openAIApiKeySubject.eraseToAnyPublisher()
-    }
-    // MARK: Private Properites
-    private var openAIApiKeySubject: CurrentValueSubject<APIKey?, Never>
-    
-    //MARK: Dependency
+    private let observableKeyChainService: ObservableKeyChainService
+
     private let observableUserDefaults: ObservableUserDefaultService
-    private let keychainService: KeyChainService
     
-    init(observableUserDefaults: ObservableUserDefaultService, keychainService: KeyChainService) {
+    init(observableUserDefaults: ObservableUserDefaultService,
+        observableKeyChainService: ObservableKeyChainService) {
         self.observableUserDefaults = observableUserDefaults
-        self.keychainService = keychainService
-        self.openAIApiKeySubject = CurrentValueSubject.init(nil)
-        setupInitialFetch()
+        self.observableKeyChainService = observableKeyChainService
     }
-    private func setupInitialFetch() {
-        Task {
-            do {
-                try await fetchAPIKey()
-            } catch {
-                throw ConfigurationStoreError.failedToFetchOnInitialization
-            }
-        }
+
+    var openAIKeyPublisher: AnyPublisher<String, Never> {
+        observableKeyChainService.keyChainPublisher(forKey: keyChainKey.openAIAPIKey.rawValue, defaultValue: "")
     }
-    
-    func fetchAPIKey() async throws {
-        do {
-            if let apiKey: APIKey = try await keychainService.retrieve(ServiceKey.openAIAPIKey.rawValue) {
-                openAIApiKeySubject.send(apiKey)
-            } else {
-                openAIApiKeySubject.send(nil)
-            }
-        } catch {
-            throw ConfigurationStoreError.failedToLoadAPIKey
-        }
+
+    func fetchOpenAPIKey() async -> String {
+        let key = await observableKeyChainService.get(forKey: keyChainKey.openAIAPIKey.rawValue) ?? ""
+        Log.shared.logger.info("Fetched OpenAI API Key: \(key)")
+        return key
     }
-    
-    func saveAPIKey(_ apiKey: APIKey) async throws {
-        do {
-            try await keychainService.save(apiKey, for: ServiceKey.openAIAPIKey.rawValue)
-            openAIApiKeySubject.send(apiKey)
-        } catch {
-            throw ConfigurationStoreError.failedToSaveAPIKey
-        }
-    }
-    
-    func clearAPIKey(for key: ServiceKey) async throws {
-        do {
-            try await keychainService.delete(for: key.rawValue)
-            openAIApiKeySubject.send(nil)
-        } catch  {
-            throw ConfigurationStoreError.failedToClearAPIKey
-        }
+
+    func setOpenAPIKey(_ key: String) async {
+        Log.shared.logger.info("Setting OpenAI API Key: \(key)")
+        await observableKeyChainService.set(key, forKey: keyChainKey.openAIAPIKey.rawValue)
     }
 }
 
@@ -79,13 +50,13 @@ enum ConfigurationStoreError: Error {
     case invalidServiceKey
     case failedToFetchOnInitialization
 }
+
 struct APIKey: Codable{
-    let serviceKey: ServiceKey
+    let serviceKey: keyChainKey
     var value: String
-    
-    
 }
-enum ServiceKey: String, CaseIterable, Codable{
+
+enum keyChainKey: String, CaseIterable, Codable{
     case openAIAPIKey
     case anthropicAPIKey
     
