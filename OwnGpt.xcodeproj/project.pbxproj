@@ -22,7 +22,6 @@
 		581B9AE52C4B20AA00CA0F15 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */; };
 		581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */; };
 		581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */; };
-		581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */; };
 		583888A42C2DFC2D00DC5EA6 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */; };
 		5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
 		5842313C2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */; };
@@ -41,7 +40,7 @@
 		585609D12C2B5E58004A8791 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585609D02C2B5E58004A8791 /* Log.swift */; };
 		585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
 		585A04832B255A2B003A1392 /* ConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A04812B255A2B003A1392 /* ConversationRepository.swift */; };
-		585C26FE2C53569600F35353 /* UserDefaultsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26FD2C53569600F35353 /* UserDefaultsPublisher.swift */; };
+		585C26FE2C53569600F35353 /* ObservableUserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585C26FD2C53569600F35353 /* ObservableUserDefaultService.swift */; };
 		5879312B2B294D89002E8DB9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5879312A2B294D89002E8DB9 /* Core.swift */; };
 		587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */; };
 		5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880C3002B2612C5006020E7 /* ConversationsStore.swift */; };
@@ -53,7 +52,6 @@
 		588517192C4F273300D77150 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517182C4F273300D77150 /* SettingsView.swift */; };
 		5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171C2C4F2B5E00D77150 /* RootView.swift */; };
 		5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885171E2C4F2B7400D77150 /* RootViewModel.swift */; };
-		588517222C4F92D900D77150 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517212C4F92D900D77150 /* ContentView.swift */; };
 		588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588517282C4FA3CC00D77150 /* AnthropicConfig.swift */; };
 		5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885172A2C4FA3DB00D77150 /* AnthropicLMConfig.swift */; };
 		5887267C2C33699500CAFA3E /* Bkit in Frameworks */ = {isa = PBXBuildFile; productRef = 5887267B2C33699500CAFA3E /* Bkit */; };
@@ -71,11 +69,16 @@
 		5898EFE92B4AA86100CA8467 /* ChatGPTServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */; };
 		58AB10192C487B3D00F96841 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB10182C487B3D00F96841 /* ConfigurationView.swift */; };
 		58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */; };
-		58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */; };
 		58AF5A3B2C41FFED00558626 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3A2C41FFED00558626 /* GoogleSignIn */; };
 		58AF5A3D2C41FFED00558626 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 58AF5A3C2C41FFED00558626 /* GoogleSignInSwift */; };
 		58B4B5DA2C5579AB00FEDEAC /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */; };
-		58B4B5DF2C58AAA400FEDEAC /* ConfigView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */; };
+		58B4B5E32C598D0800FEDEAC /* OpenAIConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5E22C598D0800FEDEAC /* OpenAIConfigStore.swift */; };
+		58B4B5E92C598DDC00FEDEAC /* OpenAIConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5E82C598DDC00FEDEAC /* OpenAIConfigurationView.swift */; };
+		58B4B5EB2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EA2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift */; };
+		58B4B5ED2C598F5E00FEDEAC /* AnthropicConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */; };
+		58B4B5F02C59900800FEDEAC /* AnthropicConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */; };
+		58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */; };
+		58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -168,7 +171,6 @@
 		581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 		581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
-		581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationStore.swift; sourceTree = "<group>"; };
 		5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalTextFieldStyle.swift; sourceTree = "<group>"; };
 		5842313D2B1971A1009F1C46 /* DotLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotLoadingView.swift; sourceTree = "<group>"; };
 		584231442B1A8B03009F1C46 /* ConversationPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPersistenceService.swift; sourceTree = "<group>"; };
@@ -179,7 +181,7 @@
 		585609CD2C2A5569004A8791 /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
 		585609D02C2B5E58004A8791 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		585A04812B255A2B003A1392 /* ConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRepository.swift; sourceTree = "<group>"; };
-		585C26FD2C53569600F35353 /* UserDefaultsPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsPublisher.swift; sourceTree = "<group>"; };
+		585C26FD2C53569600F35353 /* ObservableUserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableUserDefaultService.swift; sourceTree = "<group>"; };
 		5879312A2B294D89002E8DB9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSharedStateManager.swift; sourceTree = "<group>"; };
 		5880C3002B2612C5006020E7 /* ConversationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsStore.swift; sourceTree = "<group>"; };
@@ -190,7 +192,6 @@
 		588517182C4F273300D77150 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5885171C2C4F2B5E00D77150 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5885171E2C4F2B7400D77150 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
-		588517212C4F92D900D77150 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		588517282C4FA3CC00D77150 /* AnthropicConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfig.swift; sourceTree = "<group>"; };
 		5885172A2C4FA3DB00D77150 /* AnthropicLMConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicLMConfig.swift; sourceTree = "<group>"; };
 		5887267D2C339CA600CAFA3E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -209,11 +210,16 @@
 		5898EFE72B4AA86100CA8467 /* ChatGPTServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTServiceRequest.swift; sourceTree = "<group>"; };
 		58AB10182C487B3D00F96841 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		58AB101A2C48E51700F96841 /* FloatingLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextField.swift; sourceTree = "<group>"; };
-		58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58AF5A3E2C42006900558626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58AF5A3F2C42050600558626 /* OwnGpt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OwnGpt.entitlements; sourceTree = "<group>"; };
 		58B4B5D92C5579AB00FEDEAC /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
-		58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView2.swift; sourceTree = "<group>"; };
+		58B4B5E22C598D0800FEDEAC /* OpenAIConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConfigStore.swift; sourceTree = "<group>"; };
+		58B4B5E82C598DDC00FEDEAC /* OpenAIConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConfigurationView.swift; sourceTree = "<group>"; };
+		58B4B5EA2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIConfigurationViewModel.swift; sourceTree = "<group>"; };
+		58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationView.swift; sourceTree = "<group>"; };
+		58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationViewModel.swift; sourceTree = "<group>"; };
+		58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigStore.swift; sourceTree = "<group>"; };
+		58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableKeyChainService.swift; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -481,10 +487,12 @@
 		5842314D2B1AC9D5009F1C46 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				58D16DBF2C3F589700A78C3A /* Auth(WIP) */,
+				581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */,
+				58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */,
+				585C26FD2C53569600F35353 /* ObservableUserDefaultService.swift */,
 				5842314E2B1AC9E2009F1C46 /* Remote */,
 				5817C0972A9445DC005EEDC9 /* Local */,
-				581B9AEA2C4C39CD00CA0F15 /* KeyChainService.swift */,
+				58D16DBF2C3F589700A78C3A /* Auth(WIP) */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -500,11 +508,11 @@
 		5842314F2B1ACA06009F1C46 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				581B9AED2C4CDCAB00CA0F15 /* ConfigurationStore.swift */,
 				5880C3002B2612C5006020E7 /* ConversationsStore.swift */,
 				58FE3CCE2AA11E4900CAE55E /* ConversationStore.swift */,
 				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
-				585C26FD2C53569600F35353 /* UserDefaultsPublisher.swift */,
+				58B4B5E22C598D0800FEDEAC /* OpenAIConfigStore.swift */,
+				58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -512,7 +520,6 @@
 		58450A932A67CED9005BD1E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				58B4B5DD2C58AA9200FEDEAC /* Testing ConfigView */,
 				5881700A2C2C0F0D00D34BFF /* HamburgerButton.swift */,
 				5842313A2B19713C009F1C46 /* OvalTextFieldStyle.swift */,
 				5842313D2B1971A1009F1C46 /* DotLoadingView.swift */,
@@ -531,8 +538,6 @@
 				581B65822C24C76A008E76DD /* SideBarView.swift */,
 				585609CD2C2A5569004A8791 /* SideBarViewModel.swift */,
 				580F364E2B28993E005E337F /* Conversations */,
-				58AB10182C487B3D00F96841 /* ConfigurationView.swift */,
-				58AB101C2C48E9B700F96841 /* ConfigurationViewModel.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				588517182C4F273300D77150 /* SettingsView.swift */,
+				58B4B5E42C598D6B00FEDEAC /* Config */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -709,12 +715,32 @@
 			path = "SignIn(WIP)";
 			sourceTree = "<group>";
 		};
-		58B4B5DD2C58AA9200FEDEAC /* Testing ConfigView */ = {
+		58B4B5E42C598D6B00FEDEAC /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				58B4B5DE2C58AAA400FEDEAC /* ConfigView2.swift */,
+				58AB10182C487B3D00F96841 /* ConfigurationView.swift */,
+				58B4B5E52C598D7F00FEDEAC /* OpenAI */,
+				58B4B5E72C598D9900FEDEAC /* Anthropic */,
 			);
-			path = "Testing ConfigView";
+			path = Config;
+			sourceTree = "<group>";
+		};
+		58B4B5E52C598D7F00FEDEAC /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				58B4B5E82C598DDC00FEDEAC /* OpenAIConfigurationView.swift */,
+				58B4B5EA2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
+		58B4B5E72C598D9900FEDEAC /* Anthropic */ = {
+			isa = PBXGroup;
+			children = (
+				58B4B5EC2C598F5E00FEDEAC /* AnthropicConfigurationView.swift */,
+				58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */,
+			);
+			path = Anthropic;
 			sourceTree = "<group>";
 		};
 		58D16D9B2C33C3CE00A78C3A /* Testing */ = {
@@ -730,7 +756,6 @@
 			isa = PBXGroup;
 			children = (
 				588170082C2BEE0E00D34BFF /* MainView.swift */,
-				588517212C4F92D900D77150 /* ContentView.swift */,
 				581B9AE42C4B20AA00CA0F15 /* MainViewModel.swift */,
 				587D8FA82C2EBC9600A9A775 /* MainViewSharedStateManager.swift */,
 				585609CF2C2A5604004A8791 /* SideBar */,
@@ -1015,6 +1040,7 @@
 				58D16DBC2C3CD33400A78C3A /* AppleAuthStrategy.swift in Sources */,
 				588170092C2BEE0E00D34BFF /* MainView.swift in Sources */,
 				58FE3CCF2AA11E4900CAE55E /* ConversationStore.swift in Sources */,
+				58B4B5ED2C598F5E00FEDEAC /* AnthropicConfigurationView.swift in Sources */,
 				5817C0942A90474B005EEDC9 /* PersistenceController.swift in Sources */,
 				585A04822B255A2B003A1392 /* ConversationRepository.swift in Sources */,
 				58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */,
@@ -1022,11 +1048,12 @@
 				581B65832C24C76A008E76DD /* SideBarView.swift in Sources */,
 				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
 				585609D12C2B5E58004A8791 /* Log.swift in Sources */,
+				58B4B5E32C598D0800FEDEAC /* OpenAIConfigStore.swift in Sources */,
 				58D16DBA2C3CC81000A78C3A /* SignInViewModel.swift in Sources */,
 				587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */,
 				58D16D9E2C33C54700A78C3A /* AuthService.swift in Sources */,
 				581B65812C24C711008E76DD /* ConversationList.swift in Sources */,
-				585C26FE2C53569600F35353 /* UserDefaultsPublisher.swift in Sources */,
+				585C26FE2C53569600F35353 /* ObservableUserDefaultService.swift in Sources */,
 				5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */,
 				58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */,
 				5846500D2B24A0E100C1BA7F /* Extension+String.swift in Sources */,
@@ -1034,6 +1061,7 @@
 				58FE3CC32A9EA78300CAE55E /* ConversationEntity+CoreDataClass.swift in Sources */,
 				58B4B5DA2C5579AB00FEDEAC /* ToolBarView.swift in Sources */,
 				588726822C33AB1800CAFA3E /* TestViewCircle.swift in Sources */,
+				58B4B5F02C59900800FEDEAC /* AnthropicConfigurationViewModel.swift in Sources */,
 				5842313E2B1971A1009F1C46 /* DotLoadingView.swift in Sources */,
 				5811FDFF2A727840003AB0C0 /* BottomBarView.swift in Sources */,
 				5879312B2B294D89002E8DB9 /* Core.swift in Sources */,
@@ -1044,12 +1072,10 @@
 				5881700E2C2CE61300D34BFF /* PlaceHolderLogo.swift in Sources */,
 				588517192C4F273300D77150 /* SettingsView.swift in Sources */,
 				58CFE5022A7233C300A43822 /* ChatGPTAPIService.swift in Sources */,
-				581B9AEE2C4CDCAB00CA0F15 /* ConfigurationStore.swift in Sources */,
 				5885171D2C4F2B5E00D77150 /* RootView.swift in Sources */,
 				581B9AE32C4B19DE00CA0F15 /* OnboardingView.swift in Sources */,
 				58CFE5002A7233C300A43822 /* Message.swift in Sources */,
 				58FE3CC92A9EA7AE00CAE55E /* MessageEntity+CoreDataClass.swift in Sources */,
-				588517222C4F92D900D77150 /* ContentView.swift in Sources */,
 				58AB10192C487B3D00F96841 /* ConfigurationView.swift in Sources */,
 				5885171F2C4F2B7400D77150 /* RootViewModel.swift in Sources */,
 				585609CE2C2A5569004A8791 /* SideBarViewModel.swift in Sources */,
@@ -1065,19 +1091,21 @@
 				58AB101B2C48E51700F96841 /* FloatingLabelTextField.swift in Sources */,
 				58F628832C49D57D00E91189 /* ServiceProvider.swift in Sources */,
 				58CFE4FE2A7233C300A43822 /* ConversationViewModel.swift in Sources */,
+				58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainService.swift in Sources */,
 				58CFE5072A7233EC00A43822 /* OpenAiModels.swift in Sources */,
 				58FE3CB32A9D6DE800CAE55E /* Conversation.swift in Sources */,
 				5846500A2B24A0BB00C1BA7F /* Extension+Color.swift in Sources */,
 				5881700B2C2C0F0D00D34BFF /* HamburgerButton.swift in Sources */,
 				58F628802C49D55D00E91189 /* OpenAILMConfig.swift in Sources */,
 				58102EED2A44FC1F00C52BD4 /* OwnGptApp.swift in Sources */,
-				58AB101D2C48E9B700F96841 /* ConfigurationViewModel.swift in Sources */,
 				5885172B2C4FA3DB00D77150 /* AnthropicLMConfig.swift in Sources */,
 				581B9AE72C4B20C500CA0F15 /* UserDefaultsStore.swift in Sources */,
+				58B4B5E92C598DDC00FEDEAC /* OpenAIConfigurationView.swift in Sources */,
+				58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */,
 				58CFE5042A7233C300A43822 /* ConversationView.swift in Sources */,
+				58B4B5EB2C598F3400FEDEAC /* OpenAIConfigurationViewModel.swift in Sources */,
 				58CFE4FA2A7233C300A43822 /* MessageView.swift in Sources */,
 				588517292C4FA3CC00D77150 /* AnthropicConfig.swift in Sources */,
-				58B4B5DF2C58AAA400FEDEAC /* ConfigView2.swift in Sources */,
 				581B9AEB2C4C39CD00CA0F15 /* KeyChainService.swift in Sources */,
 				58D16DA52C35058400A78C3A /* User.swift in Sources */,
 				5842313B2B19713C009F1C46 /* OvalTextFieldStyle.swift in Sources */,

@@ -6,19 +6,7 @@
 //
 
 import Foundation
-
-//
-//enum ServiceKey: String, Codable, CaseIterable {
-//    case openAIAPIKey = "com.OwnGPT.OpenAiAPIkey"
-//    case anthropicAPIKey = "com.OWnGPT.ClaudeAPIKey"
-//    
-//    var name: String { self.rawValue }
-//}
-struct APIKey: Codable{
-    var value: String
-    let serviceKey: ServiceKey
-    
-}
+import Combine
 enum KeychainError: Error {
     case saveFailed(status: OSStatus)
     case updateFailed(status: OSStatus)
@@ -38,20 +26,31 @@ class KeyChainServiceImpl: KeyChainService  {
 
     private let dataEncoder: JSONEncoder
     private let dataDecoder: JSONDecoder
+    private let service: String
+
     
-    init(dataEncoder: JSONEncoder = JSONEncoder(), dataDecoder: JSONDecoder = JSONDecoder()){
+    init(
+        dataEncoder: JSONEncoder = JSONEncoder(),
+        dataDecoder: JSONDecoder = JSONDecoder(),
+        service: String = Bundle.main.bundleIdentifier ?? "com.OwnGPT.identifier"
+
+    ){
         self.dataEncoder = dataEncoder
         self.dataDecoder = dataDecoder
+        self.service = service
     }
    
+    
     func save<T: Encodable>(_ item: T, for key: String) throws {
         let data = try dataEncoder.encode(item)
-        
+        Log.shared.logger.info("Attempting item for key \(key): \(item)")
+
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecValueData as String: data,
-            kSecAttrSynchronizable as String: true
+            kSecAttrService as String: service,
+            kSecAttrSynchronizable as String: kSecAttrSynchronizableAny
         ]
         // Add
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -60,49 +59,57 @@ class KeyChainServiceImpl: KeyChainService  {
             // Item already exists, so update it
             let updateQuery: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
+                kSecAttrService as String: service,
                 kSecAttrAccount as String: key,
-                kSecAttrSynchronizable as String: true
+                kSecAttrSynchronizable as String: kSecAttrSynchronizableAny
             ]
             
-            let attributes: [String: Any] = [
-                kSecValueData as String: data
-            ]
+            let attributes: [String: Any] = [kSecValueData as String: data]
             // update the data
             let updateStatus = SecItemUpdate(updateQuery as CFDictionary, attributes as CFDictionary)
             guard updateStatus == errSecSuccess else {
                 throw KeychainError.saveFailed(status: updateStatus)
             }
+            Log.shared.logger.info("Item updated successfully for key \(key)")
         } else if status != errSecSuccess {
             throw KeychainError.saveFailed(status: status)
         }
+        Log.shared.logger.info("Item saved successfully for key \(key)")
+
+        
     }
     func retrieve<T: Decodable>(_ key: String) throws -> T? {
             let query: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
                 kSecAttrAccount as String: key,
                 kSecReturnData as String: true,
-                kSecMatchLimit as String: kSecMatchLimitOne
+                kSecMatchLimit as String: kSecMatchLimitOne,
+                kSecAttrService as String: service,
+                kSecAttrSynchronizable as String: kSecAttrSynchronizableAny
             ]
-            
             var item: CFTypeRef?
             let status = SecItemCopyMatching(query as CFDictionary, &item)
             
-            switch status {
-            case errSecSuccess:
-                guard let data = item as? Data else {
-                    throw KeychainError.unexpectedItemType
-                }
-                return try dataDecoder.decode(T.self, from: data)
-            case errSecItemNotFound:
-                return nil
-            default:
-                throw KeychainError.retrieveFailed(status: status)
-            }
+        switch status {
+               case errSecSuccess:
+                   guard let data = item as? Data else {
+                       throw KeychainError.unexpectedItemType
+                   }
+                   let decodedItem = try dataDecoder.decode(T.self, from: data)
+                   Log.shared.logger.info("Retrieved item for key \(key): \(decodedItem)")
+                   return decodedItem
+               case errSecItemNotFound:
+                   Log.shared.logger.info("No item found for key \(key)")
+                   return nil
+               default:
+                   throw KeychainError.retrieveFailed(status: status)
+               }
         }
     func delete(for key: String) async throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecAttrAccount as String: key,
+            kSecAttrService as String: service
         ]
         
         let status = SecItemDelete(query as CFDictionary)
