@@ -31,10 +31,36 @@ protocol ModelType: Hashable, CaseIterable, Codable {
     var name: String { get }
 }
 enum OpenAIModelType: String, ModelType{
-    case gpt3_5 = "GPT-3.5"
-    case gpt4 = "GPT-4"
-    case gpt4Turbo = "GPT-4 Turbo"
-    case gpt4Vision = "GPT-4 Vision"
+    case gpt3_5
+    case gpt4
+    case gpt4Turbo
+    case gpt4Vision
+    
+    var displayName: String {
+        switch self {
+        case .gpt3_5:
+            "GPT-3.5"
+        case .gpt4:
+            "GPT-4"
+        case .gpt4Turbo:
+            "GPT-4"
+        case .gpt4Vision:
+            "GPT-4 Vision"
+        }
+    }
+    
+    var modelName: String {
+        switch self {
+        case .gpt3_5:
+            "gpt-3.5-turbo"
+        case .gpt4:
+            "gpt-3.5-turbo"
+        case .gpt4Turbo:
+            "gpt-4-turbo"
+        case .gpt4Vision:
+            "gpt-3.5-turbo"
+        }
+    }
     
     var name: String { self.rawValue }
 }

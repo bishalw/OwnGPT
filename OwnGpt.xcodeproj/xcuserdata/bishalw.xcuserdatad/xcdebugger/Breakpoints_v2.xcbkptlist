@@ -114,6 +114,38 @@
             endingLineNumber = "108"
             landmarkName = "get(forKey:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0399ABBE-2888-4136-8B9F-F3ACF348C96E - 7aee1293081f1c68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "0399ABBE-2888-4136-8B9F-F3ACF348C96E - 7aee1293081f1e1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -130,6 +162,38 @@
             endingLineNumber = "111"
             landmarkName = "get(forKey:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3469CF40-7888-4B43-BAB9-6490DEECDC4C - dbad65cb4ce39424"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "3469CF40-7888-4B43-BAB9-6490DEECDC4C - dbad65cb4ce3979b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "928">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -146,6 +210,38 @@
             endingLineNumber = "114"
             landmarkName = "get(forKey:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9CA121C7-5B22-4194-9912-D99F0D39EE85 - dbad65cb4ce3958b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "1308">
+               </Location>
+               <Location
+                  uuid = "9CA121C7-5B22-4194-9912-D99F0D39EE85 - dbad65cb4ce3977e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in OwnGpt.ObservableUserDefaultServiceImpl.get&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(forKey: Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "1308">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

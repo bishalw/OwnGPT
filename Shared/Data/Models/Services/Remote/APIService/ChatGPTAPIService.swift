@@ -19,20 +19,20 @@ class ChatGPTAPIServiceImpl: ChatGPTAPIService {
     private let systemMessage: OpenAiModels.Message
     private let networkService: NetworkStreamingService
     private let apiKey: String
+    private let openAIConfigStore: OpenAIConfigStore
     
     init(
-        model: String = "gpt-3.5-turbo",
-        temperature: Double = 0.7,
         systemPrompt: String = "You are a helpful assistant",
         networkService: NetworkStreamingService,
-        apiKey: String
+        apiKey: String,
+        openAIConfigStore: OpenAIConfigStore
     ) {
         self.apiKey = apiKey
-        self.model = model
-        self.temperature = temperature
+        self.openAIConfigStore = openAIConfigStore
+        self.model = openAIConfigStore.openAILMConfig.model.modelName
+        self.temperature = openAIConfigStore.openAILMConfig.temperature.rounded()
         self.systemMessage = .init(role: "system", content: systemPrompt)
         self.networkService = networkService
-        
     }
     
     func sendMessageStream(text: String, history: [OpenAiModels.Message]) async throws -> AsyncThrowingStream<String, Error> {

@@ -11,7 +11,7 @@ import Combine
 protocol ConversationStoreProtocol: ObservableObject {
     var conversationPublisher: AnyPublisher<Conversation, Never> { get }
 //    var conversation: Conversation { get }
-    func sendMessage(string: String)
+    func sendMessage(input: String)
 }
 
 class ConversationStore: ConversationStoreProtocol {
@@ -53,6 +53,8 @@ class ConversationStore: ConversationStoreProtocol {
             .store(in: &subscriptions)
     }
     
+    /// This function creates, saves, and returns a new Conversation object while updating an observable subject.
+    /// - Returns: Conversation
     func createNewConversation() -> Conversation {
         let newConversation = Conversation(id: UUID(), messages: [])
         Log.shared.logger.debug("Created new conversation with ID: \(newConversation.id)")
@@ -61,14 +63,16 @@ class ConversationStore: ConversationStoreProtocol {
         return newConversation
     }
     
-    func sendMessage(string: String) {
+    /// This function sends a message string to a ChatGPT API, processes the response stream asynchronously, and handles any errors within a task.
+    /// - Parameter string: takes in input from user
+    func sendMessage(input: String) {
         Task {
-            initializeConversation(with: string)
+            initializeConversation(with: input)
             do {
                 let history = conversationSubject.value.getOpenApiHistory()
                 
-                Log.shared.logger.info("Sending request with text: \(string) and history: \(history)")
-                let responseStream = try await chatGPTAPI.sendMessageStream(text: string, history: history)
+                Log.shared.logger.info("Sending request with text: \(input) and history: \(history)")
+                let responseStream = try await chatGPTAPI.sendMessageStream(text: input, history: history)
                 Log.shared.logger.info("Response stream received")
                 try await processResponseStream(responseStream)
             } catch {
@@ -97,6 +101,7 @@ class ConversationStore: ConversationStoreProtocol {
                 let systemMessage = Message(id: UUID(), type: .system, content: .message(string: fullResponse), isStreaming: true)
                 updateConversationLastMessage(message: systemMessage)
             }
+
             Log.shared.logger.info("Final response: \(fullResponse)")
             finalizeConversation(with: fullResponse)
         } catch {

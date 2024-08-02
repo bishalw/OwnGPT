@@ -24,7 +24,7 @@ class Core: ObservableObject {
     }()
     // API Service for ChatGPT
     private(set) lazy var chatgptApiService: ChatGPTAPIService = {
-        return ChatGPTAPIServiceImpl(networkService: self.networkService, apiKey: Constants.apiKey)
+        return ChatGPTAPIServiceImpl(networkService: self.networkService, apiKey: Constants.apiKey, openAIConfigStore: openAIConfigStore)
     }()
     // Conversation Repository
     private(set) lazy var conversationRepository: ConversationRepository = {
