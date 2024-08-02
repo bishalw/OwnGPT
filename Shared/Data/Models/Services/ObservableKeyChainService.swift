@@ -34,7 +34,7 @@ class ObservableKeyChainServiceImpl: ObservableKeyChainService {
                     return publisher.eraseToAnyPublisher()
                 }
 
-                print("Creating new publisher for key: \(key)")
+                Log.shared.logger.info("Creating new publisher for key: \(key)")
                 let subject = CurrentValueSubject<T, Never>(defaultValue)
                 keyChainPublishersMap[key] = subject
 
@@ -60,7 +60,7 @@ class ObservableKeyChainServiceImpl: ObservableKeyChainService {
         Log.shared.logger.info("Attempting to retrieve value for key \(key)")
 
         do {
-            let value: T? = try await keychainService.retrieve(key)
+            let value: T? = try await keychainService.get(key)
             Log.shared.logger.info("Retrieved value for key \(key): \(String(describing: value))")
             return value
         } catch {
@@ -71,7 +71,7 @@ class ObservableKeyChainServiceImpl: ObservableKeyChainService {
     
     func set<T: Codable>(_ value: T, forKey key: String) async {
         do {
-            try await keychainService.save(value, for: key)
+            try await keychainService.set(value, for: key)
             print("Saved value for key \(key): \(value)")
             queue.async {
                 if let subject = self.keyChainPublishersMap[key] as? CurrentValueSubject<T, Never> {

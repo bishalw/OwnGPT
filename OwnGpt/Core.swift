@@ -54,7 +54,7 @@ class Core: ObservableObject {
     }()
   
     // Open AI
-    private(set) lazy var openAIConfigStore: OpenAiConfigStore = {
+    private(set) lazy var openAIConfigStore: OpenAIConfigStore = {
         return OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, observableKeyChainService: self.observableKeyChainService)
     }()
     

@@ -16,8 +16,8 @@ enum KeychainError: Error {
 }
 
 protocol KeyChainService {
-    func save<T: Encodable>(_ item: T, for key: String ) async throws
-    func retrieve<T: Decodable>(_ key: String) async throws -> T?
+    func set<T: Encodable>(_ item: T, for key: String ) async throws
+    func get<T: Decodable>(_ key: String) async throws -> T?
     func delete(for key: String) async throws
     
 }
@@ -41,7 +41,7 @@ class KeyChainServiceImpl: KeyChainService  {
     }
    
     
-    func save<T: Encodable>(_ item: T, for key: String) throws {
+    func set<T: Encodable>(_ item: T, for key: String) throws {
         let data = try dataEncoder.encode(item)
         Log.shared.logger.info("Attempting item for key \(key): \(item)")
 
@@ -78,7 +78,7 @@ class KeyChainServiceImpl: KeyChainService  {
 
         
     }
-    func retrieve<T: Decodable>(_ key: String) throws -> T? {
+    func get<T: Decodable>(_ key: String) throws -> T? {
             let query: [String: Any] = [
                 kSecClass as String: kSecClassGenericPassword,
                 kSecAttrAccount as String: key,

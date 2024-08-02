@@ -33,20 +33,22 @@ struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
                 Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
                 
                 Button("Save Changes") {
+                    vm.save()
                     Task {
                         await vm.setOpenAPIKey()
-                            Log.shared.logger.info("API key saved successfully")
+
                     }
-                    vm.save()
                 }
             }
         }
-//        .onAppear {
-//                   Log.shared.logger.info("OpenAIConfigurationView appeared")
-//                   Task {
-//                       await vm.fetchOpenAPIKey()
-//                   }
-//               }
+
         .scrollContentBackground(.hidden)
+        .onDisappear {
+            vm.save()
+            Task {
+                await vm.setOpenAPIKey()
+            }
+        }
+        
     }
 }

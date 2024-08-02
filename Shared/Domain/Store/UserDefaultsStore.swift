@@ -35,6 +35,4 @@ class UserDefaultsStoreImpl: UserDefaultsStore {
     }
 }
 
-enum userDefaultsKey: String {
-    case hasOnboarded
-}
+

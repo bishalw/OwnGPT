@@ -3,4 +3,277 @@
    uuid = "48D0B882-0760-40F6-A094-4FA26BAC067A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5D3A4F6-5D51-4C7A-9ECB-F651E98E605C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Domain/Store/OpenAIConfigStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "openAILMConfig"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B5D3A4F6-5D51-4C7A-9ECB-F651E98E605C - a270ec70a93e36fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfig.getter : OwnGpt.OpenAILMConfig"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "B5D3A4F6-5D51-4C7A-9ECB-F651E98E605C - a270ec70a93e36fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfig.getter : OwnGpt.OpenAILMConfig"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6A7D499-EBCA-4911-95B5-7C5CC489A592"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Domain/Store/OpenAIConfigStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "openAILMConfig"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A6A7D499-EBCA-4911-95B5-7C5CC489A592 - 5eb3315c29b7aa05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfig.setter : OwnGpt.OpenAILMConfig"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "A6A7D499-EBCA-4911-95B5-7C5CC489A592 - 5eb3315c29b7ada6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfig.setter : OwnGpt.OpenAILMConfig"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0399ABBE-2888-4136-8B9F-F3ACF348C96E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "get(forKey:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3469CF40-7888-4B43-BAB9-6490DEECDC4C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "get(forKey:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9CA121C7-5B22-4194-9912-D99F0D39EE85"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Data/Models/Services/ObservableUserDefaultService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "get(forKey:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEE79350-D6AF-49A4-A674-A4DF8E10DC07"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Domain/Store/OpenAIConfigStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "OpenAIConfigStoreImpl"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "CEE79350-D6AF-49A4-A674-A4DF8E10DC07 - 77b04c45b3a3ac90"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfigPublisher.getter : Combine.AnyPublisher&lt;OwnGpt.OpenAILMConfig, Swift.Never&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "CEE79350-D6AF-49A4-A674-A4DF8E10DC07 - 77b04c45b3a3ac2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfigPublisher.getter : Combine.AnyPublisher&lt;OwnGpt.OpenAILMConfig, Swift.Never&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "CEE79350-D6AF-49A4-A674-A4DF8E10DC07 - 77b04c45b3a3adcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OwnGpt.OpenAIConfigStoreImpl.openAILMConfigPublisher.getter : Combine.AnyPublisher&lt;OwnGpt.OpenAILMConfig, Swift.Never&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Domain/Store/OpenAIConfigStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8F8AA28-EF14-4310-B11D-0CC6A64B44F1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Domain/Store/OpenAIConfigStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "openAILMConfig"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC74C2EC-467A-46AD-89E6-979F248B1A11"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Presentation/Screens/Settings/Config/OpenAI/OpenAIConfigurationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "init(openAIConfigStore:didsave:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D6023ED-C5B6-4766-B11B-21D02FF58EE6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Presentation/Screens/Root/RootViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(userDefaultsStore:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9875EB98-C432-4D73-9434-5810137D33E3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/Presentation/Screens/Settings/Config/OpenAI/OpenAIConfigurationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "init(openAIConfigStore:didsave:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

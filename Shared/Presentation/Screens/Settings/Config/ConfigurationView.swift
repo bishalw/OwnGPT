@@ -16,7 +16,7 @@ struct ServiceSelectorView: View {
     var body: some View {
         VStack {
             serviceSelectorPicker
-            ConfigurationView(openAIVM: OpenAIConfigurationViewModelImpl(openAIConfigStore: core.openAIConfigStore), anthropicVM: AnthropicConfigurationViewModelImpl(anthropicConfigStore: core.anthropicConfigStore), selectedProvider: $provider)
+            ConfigurationView(openAIVM: OpenAIConfigurationViewModelImpl(openAIConfigStore: OpenAIConfigStoreImpl(observableUserDefaults: ObservableUserDefaultServiceImpl(), observableKeyChainService: core.observableKeyChainService)), anthropicVM: AnthropicConfigurationViewModelImpl(anthropicConfigStore: core.anthropicConfigStore), selectedProvider: $provider)
         }
     }
     
@@ -49,11 +49,6 @@ struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfig
         }
     }
 }
-
-
-
-
-
 
 #Preview {
     ServiceSelectorView()

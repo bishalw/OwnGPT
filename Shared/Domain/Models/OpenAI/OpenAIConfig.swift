@@ -11,9 +11,11 @@ struct OpenAIConfig: ServiceProvider, Codable {
     var modelConfig: OpenAILMConfig
     var apiKey: APIKey
     
-    init(modelConfig: OpenAILMConfig, apiKey: APIKey) {
-        self.modelConfig = modelConfig
-        self.apiKey = apiKey
+    init(modelConfig: OpenAILMConfig = OpenAILMConfig(),
+         apiKey: APIKey = APIKey(serviceKey: .openAIAPIKey, value: "")
+    ) {
+            self.modelConfig = modelConfig
+            self.apiKey = apiKey
     }
 }
 
