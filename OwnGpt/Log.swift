@@ -18,3 +18,5 @@ public class Log {
         self.logger = LoggerManager(subsystem: "OwngGPT", category: "AppLogs")
     }
 }
+
+

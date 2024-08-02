@@ -12,7 +12,7 @@ protocol ObservableUserDefaultService {
     func observer<T>(forKey key: String) -> AnyPublisher<T?, Error>
     func set<T>(value: T, forKey: String)
     func get<T:Decodable>(forKey: String) -> T?
-    func userDefaultsPublisher<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
+    func userDefaultsPublisher<T:Decodable>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
 }
 
 class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
@@ -26,27 +26,46 @@ class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
         userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }
-    func userDefaultsPublisher<T>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
+    func userDefaultsPublisher<T: Decodable>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
+        var publisher: AnyPublisher<T, Never>!
+        
         queue.sync {
-            // returns the publisher if it exists
-            if let publisherForKey = userDefaultsPublisherMap[key] {
-                return publisherForKey.eraseToAnyPublisher().map { item in
-                    return item as? T ?? defaultValue
-                }
-                .replaceError(with: defaultValue)
-                .eraseToAnyPublisher()
-            }
+            // Get the current value first
+            let currentValue: T = self.get(forKey: key) ?? defaultValue
             
-            let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
-            // [name: Obj]
-            userDefaultsPublisherMap[key] = subject
-            return subject.eraseToAnyPublisher().map { item in
-                return item as? T ?? defaultValue
+            // If a publisher already exists, use it
+            if let publisherForKey = userDefaultsPublisherMap[key] {
+                publisher = publisherForKey.eraseToAnyPublisher()
+                    .map { item -> T in
+                        if let value = item as? T {
+                            return value
+                        } else {
+                            return currentValue
+                        }
+                    }
+                    .replaceError(with: currentValue)
+                    .eraseToAnyPublisher()
+            } else {
+                // Create a new publisher with the current value
+                let subject = CurrentValueSubject<Any?, Error>(currentValue)
+                userDefaultsPublisherMap[key] = subject
+                
+                publisher = subject.eraseToAnyPublisher()
+                    .map { item -> T in
+                        if let value = item as? T {
+                            return value
+                        } else {
+                            
+                            return currentValue
+                        }
+                    }
+                    .replaceError(with: currentValue)
+                    .eraseToAnyPublisher()
             }
-            .replaceError(with: defaultValue)
-            .eraseToAnyPublisher()
         }
-    }
+        
+        return publisher
+    }    
     func observer<T>(forKey key: String) -> AnyPublisher<T?, Error> {
         queue.sync {
             // returns the publisher if it exists

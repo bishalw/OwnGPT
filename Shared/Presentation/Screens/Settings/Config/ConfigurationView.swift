@@ -50,11 +50,6 @@ struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfig
     }
 }
 
-
-
-
-
-
 #Preview {
     ServiceSelectorView()
 }

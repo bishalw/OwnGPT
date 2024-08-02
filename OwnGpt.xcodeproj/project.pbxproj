@@ -79,6 +79,7 @@
 		58B4B5F02C59900800FEDEAC /* AnthropicConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */; };
 		58B4B5F42C5998B300FEDEAC /* AnthropicConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */; };
 		58B4B5F62C59C6C400FEDEAC /* ObservableKeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */; };
+		58B4B5F82C5C369300FEDEAC /* enums+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4B5F72C5C369300FEDEAC /* enums+Key.swift */; };
 		58B6A20A2A74F7DD00F5D309 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */; };
 		58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */; };
 		58C61FAD2B2A907D003DF413 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C61FAC2B2A907D003DF413 /* Router.swift */; };
@@ -220,6 +221,7 @@
 		58B4B5EF2C59900800FEDEAC /* AnthropicConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigurationViewModel.swift; sourceTree = "<group>"; };
 		58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigStore.swift; sourceTree = "<group>"; };
 		58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableKeyChainService.swift; sourceTree = "<group>"; };
+		58B4B5F72C5C369300FEDEAC /* enums+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "enums+Key.swift"; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				581B9AE62C4B20C500CA0F15 /* UserDefaultsStore.swift */,
 				58B4B5E22C598D0800FEDEAC /* OpenAIConfigStore.swift */,
 				58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */,
+				58B4B5F72C5C369300FEDEAC /* enums+Key.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -571,8 +574,8 @@
 		5872876E2C24321A00667018 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				5842314C2B1AC97C009F1C46 /* Models */,
 				5842314F2B1ACA06009F1C46 /* Store */,
+				5842314C2B1AC97C009F1C46 /* Models */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1046,6 +1049,7 @@
 				58B9A5E12A8F04BE008BCF7C /* ConversationsViewModel.swift in Sources */,
 				58F628862C49D63C00E91189 /* OpenAIConfig.swift in Sources */,
 				581B65832C24C76A008E76DD /* SideBarView.swift in Sources */,
+				58B4B5F82C5C369300FEDEAC /* enums+Key.swift in Sources */,
 				584231452B1A8B03009F1C46 /* ConversationPersistenceService.swift in Sources */,
 				585609D12C2B5E58004A8791 /* Log.swift in Sources */,
 				58B4B5E32C598D0800FEDEAC /* OpenAIConfigStore.swift in Sources */,

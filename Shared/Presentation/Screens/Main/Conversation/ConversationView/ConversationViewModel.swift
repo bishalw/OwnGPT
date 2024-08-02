@@ -59,7 +59,7 @@ final class ConversationViewModel: ObservableObject {
     }
 
     private func send(text: String) {
-        store.sendMessage(string: text)
+        store.sendMessage(input: text)
     }
     
     private func updatePlaceholderVisibility() {
