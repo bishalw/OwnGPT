@@ -21,7 +21,7 @@ struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
                 
                 Picker("Model", selection: $vm.selectedModel) {
                     ForEach(OpenAIModelType.allCases, id: \.self) { model in
-                        Text(model.rawValue).tag(model)
+                        Text(model.displayName).tag(model)
                     }
                 }
                 

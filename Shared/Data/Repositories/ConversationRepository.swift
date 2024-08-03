@@ -25,18 +25,23 @@ protocol ConversationRepository {
 
 class ConversationRepositoryImpl: ConversationRepository {
     
-    private let conversationPersistenceService: ConversationPersistenceService
     
+    //MARK: Private property
     private let _didUpdatePassthrough = PassthroughSubject<ConversationRepoUpdate, Never>()
+    
+    
+    //MARK: Dependency
+    private let conversationPersistenceService: ConversationPersistenceService
     
     init (conversationPersistenceService: ConversationPersistenceService) {
         self.conversationPersistenceService = conversationPersistenceService
     }
-    
+    //MARK: Public property
     var didUpdateRepo: AnyPublisher<ConversationRepoUpdate, Never> {
         return _didUpdatePassthrough.eraseToAnyPublisher()
     }
     
+    // MARK: Public functions
     func getFirstConversation() async throws -> Conversation? {
         return try await conversationPersistenceService.getFirst()
     }

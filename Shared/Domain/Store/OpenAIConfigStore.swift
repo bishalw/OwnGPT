@@ -60,7 +60,7 @@ class OpenAIConfigStoreImpl: OpenAIConfigStore{
     
     func getValueForKey() async -> String {
         let key = await observableKeyChainService.get(forKey: keyChainKey.openAIAPIKey.rawValue) ?? ""
-        Log.shared.logger.info("Fetched OpenAI API Key: \(key)")
+//        Log.shared.logger.info("Fetched OpenAI API Key: \(key)")
         return key
     }
 

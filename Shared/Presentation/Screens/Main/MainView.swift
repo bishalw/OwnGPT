@@ -42,10 +42,17 @@ struct MainView: View {
 extension MainView {
     
     private func conversationView(geometry: GeometryProxy) -> some View {
-        ConversationView(vm: ConversationViewModel(store: ConversationStore(chatGPTAPI: core.chatgptApiService, repo: core.conversationRepository, conversation: mainViewSharedStateManager.selectedConversation), createNewConversation: {
+        ConversationView(
+            vm: ConversationViewModel(
+                store: ConversationStore(
+                    chatGPTAPI: core.chatgptApiService,
+                    repo: core.conversationRepository,
+                    conversation: mainViewSharedStateManager.selectedConversation),
+            createNewConversation: {
             let conversation = Conversation()
             mainViewSharedStateManager.selectedConversation = conversation
-        }))
+            })
+        )
             .frame(width: geometry.size.width, height: geometry.size.height)
             .overlay(overlayColor.opacity(overlayOpacity))
             .offset(x: isSearching ? geometry.size.width : offset)
@@ -54,7 +61,10 @@ extension MainView {
     
     private func sidebarView(geometry: GeometryProxy) -> some View {
         
-        SidebarView(vm: SideBarViewModelImpl(sharedStateProvider: mainViewSharedStateManager, userdefaultStore: core.userDefaultStore), isSearching: $isSearching)
+        SidebarView(
+            vm: SideBarViewModelImpl(sharedStateProvider: mainViewSharedStateManager,
+                                     userdefaultStore: core.userDefaultStore),
+            isSearching: $isSearching)
             .frame(width: isSearching ? geometry.size.width : sidebarWidth)
             .offset(x: isSearching ? 0 : -sidebarWidth + offset)
             .animation(.linear, value: isSearching)
@@ -63,7 +73,11 @@ extension MainView {
     private func hamburgerButton(geometry: GeometryProxy) -> some View {
         Group {
             if !isSearching {
-                HamburgerButton(showMenu: $showMenu, offset: $offset, sidebarWidth: sidebarWidth)
+                HamburgerButton(
+                    showMenu: $showMenu,
+                    offset: $offset,
+                    sidebarWidth: sidebarWidth
+                )
                     .padding(.leading, 20)
                     .padding(.top, 12)
                     .offset(x: offset + (isSearching ? geometry.size.width - 60 : 0))

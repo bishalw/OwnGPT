@@ -9,65 +9,66 @@ import os
 import Bkit
 
 class Core: ObservableObject {
-    //Persistance Controller
+    // MARK: - Initialization
+    
+    init() {}
+    
+    // MARK: - Persistence
+    
     private(set) lazy var persistenceController: PersistenceController = {
-        return PersistenceController()
-    }()
-    //MARK: Service
-    // ConversationPersistance Service (Core Data)
-    private(set) lazy var conversationPersistenceService: ConversationPersistenceService = {
-        return ConversationPersistenceService(manager: self.persistenceController)
-    }()
-    // NetworkService
-    private(set) lazy var networkService: CombinedNetworkService = {
-        return NetworkServiceImpl()
-    }()
-    // API Service for ChatGPT
-    private(set) lazy var chatgptApiService: ChatGPTAPIService = {
-        return ChatGPTAPIServiceImpl(networkService: self.networkService, apiKey: Constants.apiKey, openAIConfigStore: openAIConfigStore)
-    }()
-    // Conversation Repository
-    private(set) lazy var conversationRepository: ConversationRepository = {
-        return ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
-    }()
-    // Keychain Service
-    private(set) lazy var keychainService: KeyChainService = {
-        return KeyChainServiceImpl()
+        PersistenceController()
     }()
     
-    // Observing DefaultUserService
+    // MARK: - Services
+    
+    private(set) lazy var conversationPersistenceService: ConversationPersistenceService = {
+        ConversationPersistenceService(manager: self.persistenceController)
+    }()
+    
+    private(set) lazy var networkService: CombinedNetworkService = {
+        NetworkServiceImpl()
+    }()
+    
+    private(set) lazy var chatgptApiService: ChatGPTAPIService = {
+        ChatGPTAPIServiceImpl(networkService: self.networkService, openAIConfigStore: openAIConfigStore)
+    }()
+    
+    private(set) lazy var keychainService: KeyChainService = {
+        KeyChainServiceImpl()
+    }()
+    
+    // MARK: - Observable Services
+    
     private(set) lazy var observableUserDefaultService: ObservableUserDefaultService = {
-        return ObservableUserDefaultServiceImpl()
+        ObservableUserDefaultServiceImpl()
     }()
     
     private(set) lazy var observableKeyChainService: ObservableKeyChainService = {
-        return ObservableKeyChainServiceImpl(keychainService: keychainService)
+        ObservableKeyChainServiceImpl(keychainService: keychainService)
     }()
-    // UserDefault Store
+    
+    // MARK: - Repositories
+    
+    private(set) lazy var conversationRepository: ConversationRepository = {
+        ConversationRepositoryImpl(conversationPersistenceService: self.conversationPersistenceService)
+    }()
+    
+    // MARK: - Stores
+    
     private(set) lazy var userDefaultStore: UserDefaultsStore = {
-        return UserDefaultsStoreImpl(observableUserDefaultService: self.observableUserDefaultService)
+        UserDefaultsStoreImpl(observableUserDefaultService: self.observableUserDefaultService)
     }()
-    // MARK: STORE
-    // Conversation Store
+    
     private(set) lazy var conversationsStore: ConversationsStore = {
-        return ConversationsStore(repo: self.conversationRepository)
+        ConversationsStore(repo: self.conversationRepository)
     }()
-  
-    // Open AI
+    
     private(set) lazy var openAIConfigStore: OpenAIConfigStore = {
-        return OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, observableKeyChainService: self.observableKeyChainService)
+        OpenAIConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, observableKeyChainService: self.observableKeyChainService)
     }()
     
-    // Anthropic Store
     private(set) lazy var anthropicConfigStore: AnthropicConfigStore = {
-        return AnthropicConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, keychainService: keychainService)
+        AnthropicConfigStoreImpl(observableUserDefaults: self.observableUserDefaultService, keychainService: keychainService)
     }()
-    
-    
-    
-    init() {
-        
-    }
 }
-
 

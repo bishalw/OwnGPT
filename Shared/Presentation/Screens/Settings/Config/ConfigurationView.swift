@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct ServiceSelectorView: View {
+    
     @EnvironmentObject var core: Core
     @State private var provider: keyChainKey = .openAIAPIKey
+    
     var didOnboard: () -> Void = {}
     
 
     var body: some View {
         VStack {
             serviceSelectorPicker
-            ConfigurationView(openAIVM: OpenAIConfigurationViewModelImpl(openAIConfigStore: core.openAIConfigStore), anthropicVM: AnthropicConfigurationViewModelImpl(anthropicConfigStore: core.anthropicConfigStore), selectedProvider: $provider)
+            ConfigurationView(openAIVM: openAIVMFactory,
+                              anthropicVM: anthropicVMFactory,
+                              selectedProvider: $provider)
         }
     }
+    
+    private var openAIVMFactory: OpenAIConfigurationViewModelImpl {
+        return OpenAIConfigurationViewModelImpl(openAIConfigStore: core.openAIConfigStore)
+    }
+    
+    private var anthropicVMFactory:AnthropicConfigurationViewModelImpl {
+        return AnthropicConfigurationViewModelImpl(anthropicConfigStore: core.anthropicConfigStore)
+    }
+    
     
     @ViewBuilder
     private var serviceSelectorPicker: some View {

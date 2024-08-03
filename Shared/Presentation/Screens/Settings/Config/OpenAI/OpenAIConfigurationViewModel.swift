@@ -71,7 +71,7 @@ class OpenAIConfigurationViewModelImpl: OpenAIConfigurationViewModel {
         openAIConfigStore.openAIKeyPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newValue in
-                Log.shared.logger.info("Received new API key value: \(newValue)")
+//                Log.shared.logger.info("Received new API key value: \(newValue)")
                 self?.apiKey = newValue
                 self?.objectWillChange.send()
             }
@@ -86,12 +86,12 @@ class OpenAIConfigurationViewModelImpl: OpenAIConfigurationViewModel {
     @MainActor
     func fetchOpenAPIKey() async {
         apiKey = await openAIConfigStore.getValueForKey()
-        Log.shared.logger.info("Fetched API key: \(apiKey)")
+//        Log.shared.logger.info("Fetched API key: \(apiKey)")
     }
 
     @MainActor
     func setOpenAPIKey() async {
-        Log.shared.logger.info("Setting API key: \(apiKey)")
+//        Log.shared.logger.info("Setting API key: \(apiKey)")
         await openAIConfigStore.setKey(apiKey)
     }
 }

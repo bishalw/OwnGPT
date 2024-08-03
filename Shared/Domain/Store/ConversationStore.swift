@@ -71,7 +71,6 @@ class ConversationStore: ConversationStoreProtocol {
             do {
                 let history = conversationSubject.value.getOpenApiHistory()
                 
-                Log.shared.logger.info("Sending request with text: \(input) and history: \(history)")
                 let responseStream = try await chatGPTAPI.sendMessageStream(text: input, history: history)
                 Log.shared.logger.info("Response stream received")
                 try await processResponseStream(responseStream)
