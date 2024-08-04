@@ -385,6 +385,38 @@
             endingLineNumber = "53"
             landmarkName = "sendMessageStream(text:history:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9FF1C4F4-C30C-4B21-A953-BAC7489EB09E - 1bd0d74a6b5253fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for OwnGpt.ChatGPTAPIServiceImpl.sendMessageStream(text: Swift.String, history: Swift.Array&lt;OwnGpt.OpenAiModels.Message&gt;) async throws -&gt; Swift.AsyncThrowingStream&lt;Swift.String, Swift.Error&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/Remote/APIService/ChatGPTAPIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "620">
+               </Location>
+               <Location
+                  uuid = "9FF1C4F4-C30C-4B21-A953-BAC7489EB09E - 6533b840b77ccdf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for OwnGpt.ChatGPTAPIServiceImpl.sendMessageStream(text: Swift.String, history: Swift.Array&lt;OwnGpt.OpenAiModels.Message&gt;) async throws -&gt; Swift.AsyncThrowingStream&lt;Swift.String, Swift.Error&gt;"
+                  moduleName = "OwnGpt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bishalw/Documents/iOS%20Dev/iOS%20Projects/OwnGpt/Shared/Data/Models/Services/Remote/APIService/ChatGPTAPIService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
