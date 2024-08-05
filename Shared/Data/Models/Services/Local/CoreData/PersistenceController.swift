@@ -43,9 +43,7 @@ struct PersistenceController {
     
     func saveChanges() async {
         guard viewContext.hasChanges else { return }
-        
         let context = backgroundContext
-
         do {
             try await context.performAsync { context in
                 try context.save()

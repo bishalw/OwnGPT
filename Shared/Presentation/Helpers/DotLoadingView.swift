@@ -16,12 +16,6 @@ struct DotLoadingView: View {
             ForEach(0..<3) { index in
                 DotView()
                     .scaleEffect(scales[index])
-                    .animation(
-                        .easeInOut(duration: 0.5)
-                            .repeatForever(autoreverses: true)
-                            .delay(0.2 * Double(index)),
-                        value: scales[index] // Animate based on individual scale
-                    )
             }
         }
         .onAppear {
@@ -41,3 +35,4 @@ struct DotLoadingView: View {
 #Preview {
     DotLoadingView()
 }
+

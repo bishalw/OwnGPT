@@ -20,52 +20,103 @@ struct ConversationView: View {
     @State private var selectedOption: Models = .GPT4
     @State private var isServiceSelectorPresented = false
     var tapped = {}
-
+    
     var body: some View {
         NavigationView {
             VStack {
                 contentView
                 bottomBar
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("OwnGPT")
+            .navigationBarTitleDisplayMode(.inline) // WIP
+            
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    CustomNavBarPicker(selectedOption: $selectedOption, showServiceSelector: $isServiceSelectorPresented)
-                }
-                
-                ToolBarView(placement: .topBarTrailing, systemName: "square.and.pencil") {
-                    vm.createNewConversation()
-                }
-                ToolbarItem(placement: .topBarLeading) {
-                    HStack {
-                        Button(action: {
-                            tapped()
-                        }) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Rectangle()
-                                    .fill(colorScheme == .dark ? Color.white : Color.black)
-                                    .frame(width: 18, height: 2.5)
-                                    .padding(.bottom, 1)
-                                    .cornerRadius(1)
-
-                                Rectangle()
-                                    .fill(colorScheme == .dark ? Color.white : Color.black)
-                                    .frame(width: 12, height: 2.5)
-                                    .cornerRadius(1)
-                            }
-                            .background(Color.clear)  // Ensure the background is not interfering
-                        }
-                        Spacer()
-                    }
-                    Spacer()
-                }
-                }
+                toolbarContent
             }
-            .sheet(isPresented: $isServiceSelectorPresented) {
-                ServiceSelectorView()
+        }
+        .sheet(isPresented: $isServiceSelectorPresented) {
+            ServiceSelectorView()
+        }
+    }
+}
+
+//MARK: SubViews
+extension ConversationView {
+    
+    
+    @ViewBuilder
+    private var contentView: some View {
+        if vm.showPlaceholder {
+            PlaceHolderLogo()
+        } else {
+            messageList
+        }
+    }
+    
+    private var messageList: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                ConversationList(messages: vm.messages)
+                    .onChange(of: vm.messages.count) { _, _ in
+                        scrollToBottom(proxy)
+                    }
+                
             }
         }
     }
+    private var bottomBar: some View {
+        BottomBarView(
+            isSendButtonDisabled: $vm.isSendButtonDisabled,
+            inputMessage: $vm.inputMessage,
+            isTextFieldFocused: $isTextFieldFocused,
+            sendTapped: vm.sendTapped
+        )
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        // left
+        ToolbarItem(placement: .topBarLeading) {
+            HamburgerMenuButton(action: tapped)
+        }
+//         middle
+//        ToolbarItem(placement: .principal) {
+//            CustomNavBarPicker(selectedOption: $selectedOption, showServiceSelector: $isServiceSelectorPresented)
+//        }
+        
+        // right
+        ToolBarView(placement: .topBarTrailing, systemName: "square.and.pencil") {
+            vm.createNewConversation()
+        }
+    }
+    
+    private func scrollToBottom(_ proxy: ScrollViewProxy) {
+        guard let id = vm.messages.last?.id else { return }
+        proxy.scrollTo(id, anchor: .bottomTrailing)
+    }
+}
+struct HamburgerMenuButton: View {
+    @Environment(\.colorScheme) var colorScheme
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 4) {
+                Rectangle()
+                    .fill(colorScheme == .dark ? Color.white : Color.black)
+                    .frame(width: 18, height: 3.5)
+                    .padding(.bottom, 1)
+                    .cornerRadius(1)
+
+                Rectangle()
+                    .fill(colorScheme == .dark ? Color.white : Color.black)
+                    .frame(width: 12, height: 3.5)
+                    .cornerRadius(1)
+            }
+            .background(Color.clear)
+        }
+    }
+}
 
 
 struct CustomNavBarPicker: View {
@@ -93,48 +144,6 @@ struct CustomNavBarPicker: View {
         }
     }
 }
-
-//MARK: SubViews
-
-
-extension ConversationView {
-    
-    @ViewBuilder
-    private var contentView: some View {
-        if vm.showPlaceholder {
-            PlaceHolderLogo()
-        } else {
-            messageList
-        }
-    }
-    
-    private var messageList: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                ConversationList(messages: vm.messages)
-                    .onChange(of: vm.messages.count) { _, _ in
-                        scrollToBottom(proxy)
-                    }
-
-            }
-        }
-    }
-    
-    private var bottomBar: some View {
-        BottomBarView(
-            isSendButtonDisabled: $vm.isSendButtonDisabled,
-            inputMessage: $vm.inputMessage,
-            isTextFieldFocused: $isTextFieldFocused,
-            sendTapped: vm.sendTapped
-        )
-    }
-    
-    private func scrollToBottom(_ proxy: ScrollViewProxy) {
-        guard let id = vm.messages.last?.id else { return }
-        proxy.scrollTo(id, anchor: .bottomTrailing)
-    }
-}
-
 
 
 
