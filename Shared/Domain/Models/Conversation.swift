@@ -36,7 +36,6 @@ extension Conversation {
        }
 }
 
-
 extension Conversation {
     func getOpenApiHistory() -> [OpenAiModels.Message] {
         self.messages.map { $0.toOpenAiMessage }
@@ -70,10 +69,13 @@ extension Conversation {
 
     private func updateConversationEntity(_ conversationEntity: ConversationEntity, context: NSManagedObjectContext) {
         // Remove old messages
-        if let oldMessages = conversationEntity.messages as? Set<MessageEntity> {
+        if let oldMessages = conversationEntity.messages {
             oldMessages.forEach { oldMessage in
                 context.delete(oldMessage)
             }
+            conversationEntity.messages = []
+        } else {
+            Log.shared.logger.warn("No existing messages found in ConversationEntity")
         }
         
         // Create new message entities
@@ -84,7 +86,9 @@ extension Conversation {
         }
         
         // Set new messages
-        conversationEntity.messages = NSSet(array: messageEntities)
+        conversationEntity.messages = Set(messageEntities)
+        
+        Log.shared.logger.info("Updated ConversationEntity with \(messageEntities.count) messages")
     }
     
 }

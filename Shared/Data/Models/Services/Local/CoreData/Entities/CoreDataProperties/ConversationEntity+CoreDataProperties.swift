@@ -17,7 +17,7 @@ extension ConversationEntity {
     }
     @NSManaged public var createdAt: Date
     @NSManaged public var id: UUID?
-    @NSManaged public var messages: NSSet?
+    @NSManaged public var messages: Set<MessageEntity>?
     @NSManaged public var updatedAt: Date?
     
 
@@ -27,9 +27,10 @@ extension ConversationEntity  {
     public var wrappedId: UUID {
         id ?? UUID()
     }
-//    public var wrappedUpdatedAt: Date {
-//        updatedAt ?? Date()
-//    }
+    
+    public var wrappedMessages: Set<MessageEntity> {
+        messages ?? []
+    }
     
 }
 class AttributeChcker {
@@ -40,33 +41,15 @@ class AttributeChcker {
     }
 }
 // MARK: Generated accessors for messages
+
+    
+    
 extension ConversationEntity {
     func toConversation() -> Conversation? {
-        
-        guard let id = self.id else {
-            Log.shared.logger.error("ConversationEntity conversion failed: missing id")
-            return nil
-        }
-        
-        let messageList: [Message]
-        
-        if let messageSet = self.messages as? Set<MessageEntity> {
-            
-            messageSet.forEach { _ = $0.contentString }
-            
-            messageList = messageSet.compactMap { messageEntity -> Message? in
-                return messageEntity.toDomainModel()
-            }
-            if messageList.count != messageSet.count {
-                Log.shared.logger.warn("Some messages failed to convert: \(messageSet.count - messageList.count) failures")
-            }
-        } else {
-            Log.shared.logger.warn("Messages set is nil or not a Set<MessageEntity>")
-            messageList = []
-        }
-        
-        let conversation = Conversation(id: id, messages: messageList)
-        return conversation
+        let id = self.wrappedId
+        let messageList = self.wrappedMessages.compactMap { $0.toDomainModel() }
+        return Conversation(id: id, messages: messageList)
     }
 }
+
 
