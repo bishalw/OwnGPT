@@ -8,16 +8,10 @@ import SwiftUI
 
 import SwiftUI
 
-enum Models: String, CaseIterable {
-    case GTP3
-    case GPT4
-    case GPT4o
-}
 struct ConversationView: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var vm: ConversationViewModel
     @FocusState private var isTextFieldFocused: Bool
-    @State private var selectedOption: Models = .GPT4
     @State private var isServiceSelectorPresented = false
     var tapped = {}
     
@@ -119,15 +113,17 @@ struct HamburgerMenuButton: View {
 }
 
 
-struct CustomNavBarPicker: View {
-    @Binding var selectedOption: Models
+
+struct CustomNavBarPicker<T: CaseIterable & Identifiable & Hashable>: View where T: RawRepresentable, T.RawValue == String, T.AllCases: RandomAccessCollection {
+    @Binding var selectedOption: T
     @Binding var showServiceSelector: Bool
+    let title: String
     
     var body: some View {
         Menu {
-            Picker("Model", selection: $selectedOption) {
-                ForEach(Models.allCases, id: \.self) { model in
-                    Text(model.rawValue).tag(model)
+            Picker(title, selection: $selectedOption) {
+                ForEach(T.allCases) { option in
+                    Text(option.rawValue).tag(option)
                 }
             }
             Button("Service Selector") {
@@ -144,7 +140,6 @@ struct CustomNavBarPicker: View {
         }
     }
 }
-
 
 
 

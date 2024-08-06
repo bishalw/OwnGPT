@@ -14,7 +14,7 @@ protocol PersistenceService {
     func get (id: UUID) async throws -> T
     func add (_ item: T ) async throws
     func deleteAll () async throws
-    func delete(_ item: T) async throws
+
     
 }
 
@@ -46,26 +46,11 @@ class ConversationPersistenceService: PersistenceService {
         try await manager.backgroundContext.performAsync { context in
             _ = item.toConversationEntity(context: context)
         }
-        
         await save()
-        //        let conversationEntity = item.toConversationEntity(context: manager.backgroundContext)
-        //        await set()
+
     }
     
-    func getCount() async throws -> Int {
-        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
-        request.resultType = .countResultType
-        
-        do {
-            let count = try await manager.backgroundContext.performAsync { context in
-                try context.count(for: request)
-            }
-            return count
-        } catch {
-            Log.shared.logger.error("Error fetching conversation count: \(error)")
-            throw error
-        }
-    }
+
     
     func get() async throws -> [Conversation] {
         let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
@@ -78,34 +63,10 @@ class ConversationPersistenceService: PersistenceService {
             }
             return conversations
         }
-        
-        // Alternative
-//        let result = try await manager.backgroundContext.performFetch(request)
-//        let conversations = result.compactMap {  $0.toConversation()}
-//        if conversations.count != result.count {
-//            Log.shared.logger.info("Some conversations failed to convert: \(result.count - conversations.count) failures")
-//        }
-//        return conversations
     }
     
     func save() async {
         await manager.saveChanges()
-    }
-    
-    func delete(_ conversation: Conversation) async throws {
-        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", conversation.id as CVarArg)
-        
-        do {
-            let result = try await manager.viewContext.performFetch(request)
-            if let entity = result.first {
-                try await manager.backgroundContext.performDelete(entity)
-                await save()
-            }
-        } catch {
-            Log.shared.logger.error("Error deleting conversation: \(error)")
-            throw error
-        }
     }
     
     func deleteAll() async throws {
@@ -122,18 +83,4 @@ class ConversationPersistenceService: PersistenceService {
         }
     }
     
-    func getFirst() async throws -> Conversation? {
-        let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
-        request.fetchLimit = 1
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        
-        return try await manager.backgroundContext.perform {
-            let result = try request.execute()
-            return result.first?.toConversation()
-        }
-        // Alternative
-//            let result = try await manager.backgroundContext.performFetch(request)
-//            return result.first?.toConversation()
-
-    }
 }

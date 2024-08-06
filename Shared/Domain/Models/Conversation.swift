@@ -27,7 +27,15 @@ extension Conversation {
         }
         return String(firstMessage.prefix(26))
     }
+    
+    var lastMessagePreview: String {
+           guard let lastMessage = messages.last else {
+               return "No messages"
+           }
+           return lastMessage.content.text.trimmingCharacters(in: .whitespacesAndNewlines)
+       }
 }
+
 
 extension Conversation {
     func getOpenApiHistory() -> [OpenAiModels.Message] {

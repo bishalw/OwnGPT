@@ -57,7 +57,7 @@ struct ConversationItemView: View {
                 .frame(width: 30, height: 30)
                 .foregroundColor(colorScheme == .dark ? .white : .black)
             
-            Text(conversation.firstMessagePreview)
+            Text(conversation.lastMessagePreview)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
             

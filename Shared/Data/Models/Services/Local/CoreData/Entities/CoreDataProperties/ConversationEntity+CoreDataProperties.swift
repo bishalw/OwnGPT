@@ -15,9 +15,11 @@ extension ConversationEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ConversationEntity> {
         return NSFetchRequest<ConversationEntity>(entityName: "ConversationEntity")
     }
-
+    @NSManaged public var createdAt: Date
     @NSManaged public var id: UUID?
     @NSManaged public var messages: NSSet?
+    @NSManaged public var updatedAt: Date?
+    
 
 }
 // MARK: computed properties for NSManaged
@@ -25,29 +27,34 @@ extension ConversationEntity  {
     public var wrappedId: UUID {
         id ?? UUID()
     }
+//    public var wrappedUpdatedAt: Date {
+//        updatedAt ?? Date()
+//    }
     
+}
+class AttributeChcker {
+    let context: NSManagedObjectContext
+    
+    init(context: NSManagedObjectContext) {
+        self.context = context
+    }
 }
 // MARK: Generated accessors for messages
 extension ConversationEntity {
     func toConversation() -> Conversation? {
-//        Log.shared.info("Starting toConversation() conversion for ConversationEntity: \(self)")
         
         guard let id = self.id else {
             Log.shared.logger.error("ConversationEntity conversion failed: missing id")
             return nil
         }
-//        Log.shared.info("ID: \(id)")
         
         let messageList: [Message]
         
         if let messageSet = self.messages as? Set<MessageEntity> {
-//            Log.shared.info("Number of messages: \(messageSet.count)")
             
-            // Prefetch message data to avoid individual fault firings
             messageSet.forEach { _ = $0.contentString }
             
             messageList = messageSet.compactMap { messageEntity -> Message? in
-//                Log.shared.info("Processing MessageEntity: \(messageEntity)")
                 return messageEntity.toDomainModel()
             }
             if messageList.count != messageSet.count {
@@ -59,7 +66,7 @@ extension ConversationEntity {
         }
         
         let conversation = Conversation(id: id, messages: messageList)
-//        Log.shared.info("Finished toConversation() conversion. Conversation: \(conversation)")
         return conversation
     }
 }
+

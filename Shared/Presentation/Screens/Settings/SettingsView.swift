@@ -14,8 +14,9 @@ struct SettingsView: View {
         Form(content: {
             Section ("Conversations"){
                 Button(action: {
+                    print("delete pressed")
                     Task {
-
+                        try await core.conversationPersistenceService.deleteAll()
                     }
                 }) {
                     Text("Delete All")

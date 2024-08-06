@@ -14,6 +14,7 @@ struct Message: Identifiable {
     var type: MessageType
     var content: ContentType
     var isStreaming: Bool
+    var createdAt: Date = Date(timeIntervalSinceReferenceDate: floor(Date().timeIntervalSinceReferenceDate * 1_000_000) / 1_000_000)
 
     enum MessageType: String, Equatable {
         case system, user

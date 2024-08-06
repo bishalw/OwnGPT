@@ -220,6 +220,7 @@
 		58B4B5F32C5998B300FEDEAC /* AnthropicConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicConfigStore.swift; sourceTree = "<group>"; };
 		58B4B5F52C59C6C400FEDEAC /* ObservableKeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableKeyChainService.swift; sourceTree = "<group>"; };
 		58B4B5F72C5C369300FEDEAC /* enums+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "enums+Key.swift"; sourceTree = "<group>"; };
+		58B4B7AA2C6191D700FEDEAC /* ConversationModel V2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ConversationModel V2.xcdatamodel"; sourceTree = "<group>"; };
 		58B6A2092A74F7DD00F5D309 /* ConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		58B9A5E02A8F04BE008BCF7C /* ConversationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		58C61FAC2B2A907D003DF413 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -1731,9 +1732,10 @@
 		581996722A944D3800CAD76C /* ConversationModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				58B4B7AA2C6191D700FEDEAC /* ConversationModel V2.xcdatamodel */,
 				581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */,
 			);
-			currentVersion = 581996732A944D3800CAD76C /* ConversationModel.xcdatamodel */;
+			currentVersion = 58B4B7AA2C6191D700FEDEAC /* ConversationModel V2.xcdatamodel */;
 			path = ConversationModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

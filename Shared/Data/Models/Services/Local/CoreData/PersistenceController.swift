@@ -55,17 +55,7 @@ struct PersistenceController {
             context.rollback()
         }
     }
-    func saveChanges2() async throws {
-        guard viewContext.hasChanges else { return }
-        
-        let context = backgroundContext
-        
-        try await context.performAsync { context in
-            try context.save()
-            self.mergeChangesFromBackgroundContext(context)
-            Log.shared.logger.info("BackgroundContext saved successfully.")
-        }
-    }
+
     
     private func mergeChangesFromBackgroundContext(_ context: NSManagedObjectContext) {
         viewContext.perform {
@@ -81,3 +71,15 @@ struct PersistenceController {
         }
     }
 }
+//
+//func saveChanges2() async throws {
+//    guard viewContext.hasChanges else { return }
+//    
+//    let context = backgroundContext
+//    
+//    try await context.performAsync { context in
+//        try context.save()
+//        self.mergeChangesFromBackgroundContext(context)
+//        Log.shared.logger.info("BackgroundContext saved successfully.")
+//    }
+//}

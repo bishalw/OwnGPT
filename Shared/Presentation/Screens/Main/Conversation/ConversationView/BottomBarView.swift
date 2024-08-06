@@ -157,13 +157,23 @@ struct SendButtonView: View {
                 .resizable()
                 .frame(width: 30, height: 30)
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
-              
+                .foregroundColor(buttonColor)
         }
         .disabled(isSendButtonDisabled)
     }
+    
+    private var buttonColor: Color {
+        if isSendButtonDisabled {
+            return .gray // Or any color you prefer for the disabled state
+        } else {
+            return colorScheme == .dark ? .white : .black
+        }
+    }
 }
 
+#Preview {
+ EmptyView()
+}
 
 
 

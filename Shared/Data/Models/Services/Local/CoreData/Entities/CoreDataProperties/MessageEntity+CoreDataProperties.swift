@@ -16,6 +16,7 @@ extension MessageEntity {
     }
 
     @NSManaged public var contentString: String?
+    @NSManaged public var createdAt: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var type: String?
     @NSManaged public var conversation: ConversationEntity?
