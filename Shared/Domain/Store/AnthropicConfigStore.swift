@@ -41,7 +41,7 @@ class AnthropicConfigStoreImpl: AnthropicConfigStore {
     }
     func fetchAPIKey() async throws {
         do {
-            if let apiKey: APIKey = try await keychainService.get(keyChainKey.anthropicAPIKey.rawValue) {
+            if let apiKey: APIKey = try await keychainService.get(serviceProvider.anthropic.rawValue) {
                 anthropicAPIKeySubject.send(apiKey)
             } else {
                 anthropicAPIKeySubject.send(nil)
@@ -53,14 +53,14 @@ class AnthropicConfigStoreImpl: AnthropicConfigStore {
     
     func saveAPIKey(_ apiKey: APIKey) async throws {
         do {
-            try await keychainService.set(apiKey, for: keyChainKey.anthropicAPIKey.rawValue)
+            try await keychainService.set(apiKey, for: serviceProvider.anthropic.rawValue)
             anthropicAPIKeySubject.send(apiKey)
         } catch {
             throw ConfigurationStoreError.failedToSaveAPIKey
         }
     }
     
-    func clearAPIKey(for key: keyChainKey) async throws {
+    func clearAPIKey(for key: serviceProvider) async throws {
         do {
             try await keychainService.delete(for: key.rawValue)
             anthropicAPIKeySubject.send(nil)

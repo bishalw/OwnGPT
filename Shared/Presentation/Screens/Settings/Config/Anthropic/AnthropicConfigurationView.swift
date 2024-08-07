@@ -12,6 +12,8 @@ struct AnthropicConfigurationView<VM: AnthropicConfigurationViewModel>: View {
     
     var body: some View {
         Form {
+            WIPMessageView()
+            #if DEBUG
             Section("Anthropic Model Settings") {
                 SecureField("API Key", text: $vm.apiKey)
                     .textContentType(.password)
@@ -33,10 +35,48 @@ struct AnthropicConfigurationView<VM: AnthropicConfigurationViewModel>: View {
                     vm.save()
                 }
             }
+            #endif
         }
         .scrollContentBackground(.hidden)
     }
 }
+struct WIPMessageView: View {
+    let message: String
+    
+    init(_ message: String = "Currently not supported") {
+        self.message = message
+    }
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 50))
+                .foregroundColor(.white)
+            
+            Text("Work in Progress")
+                .font(.headline)
+                .foregroundColor(.white)
+            
+            Text(message)
+                .font(.subheadline)
+                .foregroundColor(.white.opacity(0.9))
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.red.opacity(0.8))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.2), lineWidth: 2)
+        )
+        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .padding()
+    }
+}
+
 
 #Preview {
   EmptyView()

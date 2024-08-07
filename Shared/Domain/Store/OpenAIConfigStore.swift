@@ -55,18 +55,18 @@ class OpenAIConfigStoreImpl: OpenAIConfigStore{
     }
     
     var openAIKeyPublisher: AnyPublisher<String, Never> {
-        observableKeyChainService.keyChainPublisher(forKey: keyChainKey.openAIAPIKey.rawValue, defaultValue: "")
+        observableKeyChainService.keyChainPublisher(forKey: serviceProvider.openAI.rawValue, defaultValue: "")
     }
     
     func getValueForKey() async -> String {
-        let key = await observableKeyChainService.get(forKey: keyChainKey.openAIAPIKey.rawValue) ?? ""
+        let key = await observableKeyChainService.get(forKey: serviceProvider.openAI.rawValue) ?? ""
 //        Log.shared.logger.info("Fetched OpenAI API Key: \(key)")
         return key
     }
 
     func setKey(_ key: String) async {
         Log.shared.logger.info("Setting OpenAI API Key: \(key)")
-        await observableKeyChainService.set(key, forKey: keyChainKey.openAIAPIKey.rawValue)
+        await observableKeyChainService.set(key, forKey: serviceProvider.openAI.rawValue)
     }
 }
 
@@ -79,7 +79,7 @@ enum ConfigurationStoreError: Error {
 }
 
 struct APIKey: Codable{
-    let serviceKey: keyChainKey
+    let serviceKey: serviceProvider
     var value: String
 }
 

@@ -11,24 +11,24 @@ enum userDefaultsKey: String {
     case hasOnboarded
     case openAIConfig
 }
-enum keyChainKey: String, CaseIterable, Codable{
-    case openAIAPIKey
-    case anthropicAPIKey
+enum serviceProvider: String, CaseIterable, Codable{
+    case openAI
+    case anthropic
     
     var displayName: String {
         switch self {
-        case .openAIAPIKey:
+        case .openAI:
             return "OpenAI"
-        case .anthropicAPIKey:
+        case .anthropic:
             return "Anthropic"
         }
     }
     var keyName: String {
         switch self {
             
-        case .openAIAPIKey:
+        case .openAI:
             return "com.OwnGPT.ServiceKey.OpenAI"
-        case .anthropicAPIKey:
+        case .anthropic:
             return "com.OwnGPT.ServiceKey.Anthropic"
         }
     }

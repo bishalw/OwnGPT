@@ -27,6 +27,8 @@ struct SettingsView: View {
                         .background(Color.red)
                         .cornerRadius(8)
                 }
+                //MARK: If needed for cache delete
+                #if DEBUG
                 Button(action: {
                     Task {
                         // TODO: remove this later
@@ -41,6 +43,7 @@ struct SettingsView: View {
                         .background(Color.red)
                         .cornerRadius(8)
                 }
+                #endif
                 
             }
         })

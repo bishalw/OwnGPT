@@ -10,7 +10,7 @@ import SwiftUI
 struct ServiceSelectorView: View {
     
     @EnvironmentObject var core: Core
-    @State private var provider: keyChainKey = .openAIAPIKey
+    @State private var provider: serviceProvider = .openAI
     
     var didOnboard: () -> Void = {}
     
@@ -36,7 +36,7 @@ struct ServiceSelectorView: View {
     @ViewBuilder
     private var serviceSelectorPicker: some View {
         Picker("Service", selection: $provider) {
-            ForEach(keyChainKey.allCases, id: \.self) { key in
+            ForEach(serviceProvider.allCases, id: \.self) { key in
                 Text(key.displayName).tag(key)
             }
         }
@@ -49,14 +49,15 @@ struct ServiceSelectorView: View {
 struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfigurationViewModel>: View {
     @StateObject var openAIVM: VM1
     @StateObject var anthropicVM: VM2
-    @Binding var selectedProvider: keyChainKey
+    @Binding var selectedProvider: serviceProvider
     
     var body: some View {
         Group {
             switch selectedProvider {
-            case .openAIAPIKey:
+            case .openAI:
                 OpenAIConfigurationView(vm: openAIVM)
-            case .anthropicAPIKey:
+                
+            case .anthropic:
                 AnthropicConfigurationView(vm: anthropicVM)
             }
         }
