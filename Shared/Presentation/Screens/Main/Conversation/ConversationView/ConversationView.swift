@@ -19,7 +19,9 @@ struct ConversationView: View {
         NavigationView {
             VStack {
                 contentView
-                bottomBar
+                bottomBar.onAppear {
+                    isTextFieldFocused = true
+                }
             }
             .navigationTitle("OwnGPT")
             .navigationBarTitleDisplayMode(.inline) // WIP

@@ -41,10 +41,7 @@ class ConversationRepositoryImpl: ConversationRepository {
     }
     
     // MARK: Public functions
-    //MARK: Not being used
-    func get(conversationId: UUID) async throws -> Conversation {
-        return Conversation()
-    }
+  
     
     func save(conversation: Conversation) {
         Task {
@@ -57,7 +54,16 @@ class ConversationRepositoryImpl: ConversationRepository {
             }
         }
     }
+    func get() async throws -> [Conversation] {
+        let conversations = try await conversationPersistenceService.get()
+        return conversations
+    }
     
+    
+    //MARK: Not being used
+    func get(conversationId: UUID) async throws -> Conversation {
+        return Conversation()
+    }
     func save(conversations: [Conversation]) {
         Task {
             do {
@@ -71,11 +77,6 @@ class ConversationRepositoryImpl: ConversationRepository {
         }
     }
     
-
     
-    func get() async throws -> [Conversation] {
-        let conversations = try await conversationPersistenceService.get()
-        return conversations
-    }
     
 }

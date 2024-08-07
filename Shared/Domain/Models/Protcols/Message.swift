@@ -14,8 +14,7 @@ struct Message: Identifiable {
     var type: MessageType
     var content: ContentType
     var isStreaming: Bool
-    var createdAt: Date = Date(timeIntervalSinceReferenceDate: floor(Date().timeIntervalSinceReferenceDate * 1_000_000) / 1_000_000)
-
+    var createdAt: Date = Date()
     enum MessageType: String, Equatable {
         case system, user
     }
@@ -86,23 +85,14 @@ extension Message {
         let messageEntity = MessageEntity(context: context)
         messageEntity.id = self.id
         messageEntity.type = self.type.rawValue
+        messageEntity.createdAt = self.createdAt
         switch self.content {
         case .message(let string):
             messageEntity.contentString = string
         case .error(let error):
             messageEntity.contentString = error.localizedDescription
         }
+        // Note: isStreaming is not stored in CoreData as it's a transient property
         return messageEntity
     }
 }
-
-
-
-
-struct Pessage: Decodable, Identifiable {
-    let id: Int
-    let from: String
-    let message: String
-}
-
-

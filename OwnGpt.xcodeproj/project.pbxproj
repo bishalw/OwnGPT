@@ -478,9 +478,6 @@
 				58F6287E2C49D51F00E91189 /* Protcols */,
 				58F628892C49D75800E91189 /* OpenAI */,
 				588517272C4FA35D00D77150 /* Anthropic */,
-				58FE3CB22A9D6DE800CAE55E /* Conversation.swift */,
-				58CFE4F42A7233C300A43822 /* Message.swift */,
-				58D16DA42C35058400A78C3A /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -564,8 +561,8 @@
 		5872876D2C24320D00667018 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				585A047F2B2558F2003A1392 /* Models */,
 				585A04802B255A11003A1392 /* Repositories */,
+				585A047F2B2558F2003A1392 /* Models */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -780,6 +777,9 @@
 		58F6287E2C49D51F00E91189 /* Protcols */ = {
 			isa = PBXGroup;
 			children = (
+				58FE3CB22A9D6DE800CAE55E /* Conversation.swift */,
+				58CFE4F42A7233C300A43822 /* Message.swift */,
+				58D16DA42C35058400A78C3A /* User.swift */,
 				58F628822C49D57D00E91189 /* ServiceProvider.swift */,
 				58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */,
 			);

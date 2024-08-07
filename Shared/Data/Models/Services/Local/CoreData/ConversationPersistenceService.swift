@@ -43,17 +43,29 @@ class ConversationPersistenceService: PersistenceService {
     }
     
     func add(_ item: Conversation) async throws {
-        try await manager.backgroundContext.performAsync { context in
-            _ = item.toConversationEntity(context: context)
-        }
-        await save()
-
-    }
+          try await manager.backgroundContext.performAsync { context in
+              let fetchRequest: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+              fetchRequest.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
+              
+              let existingConversation = try context.fetch(fetchRequest).first
+              
+              if let existingConversation = existingConversation {
+                  // Update existing conversation
+                  existingConversation.update(with: item, in: context)
+              } else {
+                  // Add new conversation
+                  _ = item.toConversationEntity(context: context)
+              }
+          }
+          
+          await save()
+      }
     
 
     
     func get() async throws -> [Conversation] {
         let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \ConversationEntity.updatedAt, ascending: false)]
         
         return try await manager.backgroundContext.perform {
             let result = try request.execute()
