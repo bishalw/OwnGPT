@@ -31,7 +31,7 @@ struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
                     Slider(value: $vm.temperature, in: 0...1, step: 0.1)
                 }
                 
-                Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
+//                Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
                 
                 Button("Save Changes") {
                     didSave()
