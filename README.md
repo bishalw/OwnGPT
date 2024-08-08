@@ -2,21 +2,20 @@
 
 OwnGPT app for Apple Platforms. Lets you Talk to ChatGPT using API Key
 
+# Video
+
+https://github.com/user-attachments/assets/cdc6d649-00ea-419c-974c-0f62e2d7e3ba
+
+
+# Dependency Graph
+<img width="1782" alt="SCR-20240808-ngvd" src="https://github.com/user-attachments/assets/ab5c00c8-ccc7-4bc5-b1f3-6b3c1adc22aa">
+
 ## Installation
 
 Download Project 
 
- Create a `Constants.swift` file 
-
-Add the following code and put the api key
-
-```swift
-    enum Constants {
-    static let apiKey = "API_KEY"
-}
-```
 ## Package Dependency
 https://github.com/bishalw/Bkit
 
-Build & Run
+
 
