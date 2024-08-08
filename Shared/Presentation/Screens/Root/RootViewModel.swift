@@ -32,6 +32,7 @@ class RootViewModelImpl: RootViewModel {
             .receive(on: RunLoop.main)
             .sink { [weak self] newValue in
                 self?.hasUserOnboarded = newValue
+                Log.shared.logger.info("\(String(describing: self?.hasUserOnboarded))")
             }
             .store(in: &cancellables)
     }

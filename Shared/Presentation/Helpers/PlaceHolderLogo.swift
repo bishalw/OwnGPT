@@ -13,8 +13,9 @@ struct PlaceHolderLogo: View {
     var body: some View {
         VStack {
             Spacer()
-            Image(systemName: "circle.hexagonpath")
-                .font(.system(size: 50))
+            Image("owngpticon")
+                .resizable()
+                .scaledToFit()
                 .foregroundColor(colorScheme == .light ? .black : .white )
                 .offset(y: 0)
             Text("Start a new conversation")

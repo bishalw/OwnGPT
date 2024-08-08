@@ -56,6 +56,7 @@ extension MainView {
         
     }
     
+    
     private func sidebarView(geometry: GeometryProxy) -> some View {
         
         SidebarView(vm: SideBarViewModelImpl(sharedStateProvider: mainViewSharedStateManager, userdefaultStore: core.userDefaultStore), isSearching: $isSearching)

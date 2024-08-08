@@ -12,6 +12,7 @@ struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
     
     @ObservedObject var vm: VM
     
+    let didSave: () -> Void
     var body: some View {
         Form {
             Section("OpenAI Model Settings") {
@@ -33,6 +34,7 @@ struct OpenAIConfigurationView<VM: OpenAIConfigurationViewModel>: View {
                 Stepper("Context Window: \(vm.contextWindowSize)", value: $vm.contextWindowSize, in: 1...20)
                 
                 Button("Save Changes") {
+                    didSave()
                     vm.save()
                     Task {
                         await vm.setOpenAPIKey()

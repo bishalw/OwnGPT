@@ -96,6 +96,7 @@ class KeyChainServiceImpl: KeyChainService  {
                        throw KeychainError.unexpectedItemType
                    }
                    let decodedItem = try dataDecoder.decode(T.self, from: data)
+                
                    Log.shared.logger.info("Retrieved item for key \(key): \(decodedItem)")
                    return decodedItem
                case errSecItemNotFound:

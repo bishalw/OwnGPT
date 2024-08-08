@@ -8,27 +8,37 @@ import Foundation
 import CoreData
 
 
-struct PersistenceController {
+final class PersistenceController {
     
     private let container: NSPersistentContainer
-    private let containerName: String = "ConversationModel"
+    private let containerName: String
     
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: containerName)
+    init(containerName: String = "ConversationModel", inMemory: Bool = false) {
+        self.containerName = containerName
+        self.container = NSPersistentContainer(name: containerName)
+        
+        configurePersistentStore(inMemory: inMemory)
+    }
+    
+    private func configurePersistentStore(inMemory: Bool) {
         if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            guard let description = container.persistentStoreDescriptions.first else {
+                assertionFailure("Persistent Store Description is missing")
+                return
+            }
+            description.url = URL(fileURLWithPath: "/dev/null")
         }
+        
         loadPersistentStore()
     }
     
     private func loadPersistentStore() {
-        container.loadPersistentStores { (_, error) in
+        container.loadPersistentStores {  (_, error) in
             if let error = error {
-                fatalError("Error Loading Core Data \(error)")
+                print("Error loading Core Data: \(error.localizedDescription)")
             }
         }
     }
-    
     var viewContext: NSManagedObjectContext {
         return container.viewContext
     }

@@ -20,7 +20,7 @@ struct ServiceSelectorView: View {
             serviceSelectorPicker
             ConfigurationView(openAIVM: openAIVMFactory,
                               anthropicVM: anthropicVMFactory,
-                              selectedProvider: $provider)
+                              selectedProvider: $provider, didonBoard: didOnboard)
         }
     }
     
@@ -50,12 +50,13 @@ struct ConfigurationView<VM1: OpenAIConfigurationViewModel, VM2: AnthropicConfig
     @StateObject var openAIVM: VM1
     @StateObject var anthropicVM: VM2
     @Binding var selectedProvider: serviceProvider
+    let didonBoard: () -> Void
     
     var body: some View {
         Group {
             switch selectedProvider {
             case .openAI:
-                OpenAIConfigurationView(vm: openAIVM)
+                OpenAIConfigurationView(vm: openAIVM,  didSave: didonBoard)
                 
             case .anthropic:
                 AnthropicConfigurationView(vm: anthropicVM)

@@ -14,8 +14,6 @@ protocol PersistenceService {
     func get (id: UUID) async throws -> T
     func add (_ item: T ) async throws
     func deleteAll () async throws
-
-    
 }
 
 class ConversationPersistenceService: PersistenceService {
@@ -65,6 +63,7 @@ class ConversationPersistenceService: PersistenceService {
     
     func get() async throws -> [Conversation] {
         let request: NSFetchRequest<ConversationEntity> = ConversationEntity.fetchRequest()
+        
         request.sortDescriptors = [NSSortDescriptor(keyPath: \ConversationEntity.updatedAt, ascending: false)]
         
         return try await manager.backgroundContext.perform {

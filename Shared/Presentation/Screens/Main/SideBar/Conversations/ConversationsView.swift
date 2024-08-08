@@ -13,7 +13,7 @@ struct ConversationsView: View {
     //MARK: Dependency
     @StateObject var vm: ConversationsViewModel
     //MARK: UI State
-    @Binding var selectedConversation: Conversation?
+//    @Binding var selectedConversation: Conversation?
     
     var body: some View {
         ScrollView {
@@ -21,16 +21,16 @@ struct ConversationsView: View {
                 ForEach(vm.conversations, id: \.id) { conversation in
                     ConversationItemView(
                         conversation: conversation,
-                        isSelected: selectedConversation?.id == conversation.id
+                        isSelected: vm.selectedConversation?.id == conversation.id
                     )
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(selectedConversation?.id == conversation.id ? selectionColor : Color.clear)
+                            .fill(vm.selectedConversation?.id == conversation.id ? selectionColor : Color.clear)
                     )
                     .contentShape(Rectangle()) // This makes the entire area tappable
                     .onTapGesture {
                         vm.selectConversation(conversation)
-                        selectedConversation = conversation
+                        
                     }
                     .padding(.horizontal, 8)
                     .onAppear(perform: {

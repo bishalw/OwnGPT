@@ -57,7 +57,7 @@ extension SidebarView {
             vm: ConversationsViewModel(
                 conversationsStore: core.conversationsStore,
                 conversationsViewModelSharedProvider: vm.sharedStateProvider
-            ),selectedConversation: $vm.selectedConversation
+            )
         )
     }
 
