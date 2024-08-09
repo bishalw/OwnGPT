@@ -15,7 +15,7 @@ protocol ObservableUserDefaultService {
     func userDefaultsPublisher<T:Decodable>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
 }
 
-class ObservableUserDefaultServiceImpl: ObservableUserDefaultService {
+class ObservableUserDefaultsServiceImpl: ObservableUserDefaultService {
     
     private let userDefaults: UserDefaults
     private var userDefaultsPublisherMap: [String: CurrentValueSubject<Any?, Error>] = [:]

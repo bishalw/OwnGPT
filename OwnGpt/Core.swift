@@ -40,7 +40,7 @@ class Core: ObservableObject {
     // MARK: - Observable Services
     
     private(set) lazy var observableUserDefaultService: ObservableUserDefaultService = {
-        ObservableUserDefaultServiceImpl()
+        ObservableUserDefaultsServiceImpl()
     }()
     
     private(set) lazy var observableKeyChainService: ObservableKeyChainService = {
