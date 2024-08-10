@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 protocol ObservableUserDefaultService {
-    func observer<T>(forKey key: String) -> AnyPublisher<T?, Error>
     func set<T>(value: T, forKey: String)
     func get<T:Decodable>(forKey: String) -> T?
     func userDefaultsPublisher<T:Decodable>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never>
@@ -24,8 +23,8 @@ class ObservableUserDefaultsServiceImpl: ObservableUserDefaultService {
     
     init(
         userDefaults: UserDefaults = UserDefaults.standard) {
-        self.userDefaults = userDefaults
-    }
+            self.userDefaults = userDefaults
+        }
     func userDefaultsPublisher<T: Decodable>(forKey key: String, defaultValue: T) -> AnyPublisher<T, Never> {
         var publisher: AnyPublisher<T, Never>!
         
@@ -65,24 +64,8 @@ class ObservableUserDefaultsServiceImpl: ObservableUserDefaultService {
         }
         
         return publisher
-    }    
-    func observer<T>(forKey key: String) -> AnyPublisher<T?, Error> {
-        queue.sync {
-            // returns the publisher if it exists
-            if let observerForKey = userDefaultsPublisherMap[key] {
-                return observerForKey.eraseToAnyPublisher().map { item in
-                    return item as? T
-                }.eraseToAnyPublisher()
-            }
-            
-            let subject = CurrentValueSubject<Any?, Error>(userDefaults.object(forKey: key))
-            // [name: Obj]
-            userDefaultsPublisherMap[key] = subject
-            return subject.eraseToAnyPublisher().map { item in
-                return item as? T
-            }.eraseToAnyPublisher()
-        }
     }
+
     
     func set<T>(value: T, forKey key: String) {
         queue.async(flags: .barrier) { [weak self] in
@@ -119,14 +102,15 @@ class ObservableUserDefaultsServiceImpl: ObservableUserDefaultService {
             return nil
         }
     }
-    
-    func removeAllKeyvalue() {
-        queue.async(flags: .barrier) { [weak self] in
-            guard let self = self else { return }
-            for key in userDefaults.dictionaryRepresentation().keys {
-                self.userDefaults.removeObject(forKey: key)
-            }
-            self.userDefaultsPublisherMap.removeAll()
-        }
-    }
 }
+    
+//    func removeAllKeyvalue() {
+//        queue.async(flags: .barrier) { [weak self] in
+//            guard let self = self else { return }
+//            for key in userDefaults.dictionaryRepresentation().keys {
+//                self.userDefaults.removeObject(forKey: key)
+//            }
+//            self.userDefaultsPublisherMap.removeAll()
+//        }
+//    }
+

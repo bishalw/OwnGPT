@@ -100,8 +100,9 @@
 		58D16DBC2C3CD33400A78C3A /* AppleAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBB2C3CD33400A78C3A /* AppleAuthStrategy.swift */; };
 		58D16DBE2C3F588100A78C3A /* GoogleAuthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D16DBD2C3F588100A78C3A /* GoogleAuthStrategy.swift */; };
 		58D2769E2C65C5FC00A02FBF /* MockUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D2769D2C65C5FC00A02FBF /* MockUserDefaultsStore.swift */; };
-		58D276A12C65C72100A02FBF /* UserDefaultsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D276A02C65C72100A02FBF /* UserDefaultsStoreTests.swift */; };
-		58D276A42C65C8F300A02FBF /* MockObservableUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D276A32C65C8F300A02FBF /* MockObservableUserDefaultsService.swift */; };
+		58D276A72C65C9B300A02FBF /* ObservableUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D276A62C65C9B300A02FBF /* ObservableUserDefaultsTests.swift */; };
+		58D276AA2C65CB8F00A02FBF /* MockObservableUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D276A32C65C8F300A02FBF /* MockObservableUserDefaultsService.swift */; };
+		58D276AD2C65CFCF00A02FBF /* UserDefaultsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D276A02C65C72100A02FBF /* UserDefaultsStoreTests.swift */; };
 		58F6287C2C49D4CF00E91189 /* BaseModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */; };
 		58F6287D2C49D4CF00E91189 /* BaseModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */; };
 		58F628802C49D55D00E91189 /* OpenAILMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */; };
@@ -243,6 +244,7 @@
 		58D2769D2C65C5FC00A02FBF /* MockUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsStore.swift; sourceTree = "<group>"; };
 		58D276A02C65C72100A02FBF /* UserDefaultsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStoreTests.swift; sourceTree = "<group>"; };
 		58D276A32C65C8F300A02FBF /* MockObservableUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockObservableUserDefaultsService.swift; sourceTree = "<group>"; };
+		58D276A62C65C9B300A02FBF /* ObservableUserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableUserDefaultsTests.swift; sourceTree = "<group>"; };
 		58F6287B2C49D4CF00E91189 /* BaseModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModelConfig.swift; sourceTree = "<group>"; };
 		58F6287F2C49D55D00E91189 /* OpenAILMConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAILMConfig.swift; sourceTree = "<group>"; };
 		58F628822C49D57D00E91189 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
@@ -367,9 +369,9 @@
 			isa = PBXGroup;
 			children = (
 				58102EEB2A44FC1F00C52BD4 /* OwnGpt */,
+				580F364B2B289850005E337F /* Tests */,
 				588F20272A6F4DF4002FEC2B /* Shared */,
 				588F1FFA2A6F4D7C002FEC2B /* OwnGptWatchApp */,
-				580F364B2B289850005E337F /* Tests */,
 				58102EEA2A44FC1F00C52BD4 /* Products */,
 				588726762C32527000CAFA3E /* Frameworks */,
 			);
@@ -413,6 +415,8 @@
 		58102EFC2A44FC2000C52BD4 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				58D276A22C65C8CF00A02FBF /* MockServices */,
+				58D276A52C65C97D00A02FBF /* ServiceTests */,
 				58D2769F2C65C67700A02FBF /* StoreTests */,
 				58102F062A44FC2000C52BD4 /* OwnGptUITests */,
 				58102EFD2A44FC2000C52BD4 /* OwnGptTests.swift */,
@@ -569,7 +573,6 @@
 		5872876D2C24320D00667018 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				58D276A22C65C8CF00A02FBF /* MockServices */,
 				5842314D2B1AC9D5009F1C46 /* Services */,
 				585A04802B255A11003A1392 /* Repositories */,
 				585A047F2B2558F2003A1392 /* Models */,
@@ -806,6 +809,14 @@
 				58D276A32C65C8F300A02FBF /* MockObservableUserDefaultsService.swift */,
 			);
 			path = MockServices;
+			sourceTree = "<group>";
+		};
+		58D276A52C65C97D00A02FBF /* ServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				58D276A62C65C9B300A02FBF /* ObservableUserDefaultsTests.swift */,
+			);
+			path = ServiceTests;
 			sourceTree = "<group>";
 		};
 		58F6287E2C49D51F00E91189 /* Protcols */ = {
@@ -1088,7 +1099,6 @@
 				58D16DBA2C3CC81000A78C3A /* SignInViewModel.swift in Sources */,
 				587D8FA92C2EBC9600A9A775 /* MainViewSharedStateManager.swift in Sources */,
 				58D16D9E2C33C54700A78C3A /* AuthService.swift in Sources */,
-				58D276A42C65C8F300A02FBF /* MockObservableUserDefaultsService.swift in Sources */,
 				581B65812C24C711008E76DD /* ConversationList.swift in Sources */,
 				585C26FE2C53569600F35353 /* ObservableUserDefaultsService.swift in Sources */,
 				5880C3012B2612C5006020E7 /* ConversationsStore.swift in Sources */,
@@ -1153,8 +1163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D276A12C65C72100A02FBF /* UserDefaultsStoreTests.swift in Sources */,
+				58D276AA2C65CB8F00A02FBF /* MockObservableUserDefaultsService.swift in Sources */,
 				58102EFE2A44FC2000C52BD4 /* OwnGptTests.swift in Sources */,
+				58D276AD2C65CFCF00A02FBF /* UserDefaultsStoreTests.swift in Sources */,
+				58D276A72C65C9B300A02FBF /* ObservableUserDefaultsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

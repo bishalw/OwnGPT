@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import OwnGpt
+import Combine
 
 final class OwnGptTests: XCTestCase {
 
@@ -34,3 +35,4 @@ final class OwnGptTests: XCTestCase {
     }
 
 }
+

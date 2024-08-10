@@ -4,84 +4,102 @@
 //
 //  Created by Bishalw on 8/8/24.
 //
-
-import XCTest
-
 import XCTest
 import Combine
+@testable import OwnGpt
 
-
-class ObservableUserDefaultServiceTests: XCTestCase {
-    
-    var mockService: MockObservableUserDefaultsService!
+class ObservableUserDefaultsServiceTests: XCTestCase {
+    var userDefaultsService: ObservableUserDefaultsServiceImpl!
+    var mockUserDefaults: UserDefaults!
     var cancellables: Set<AnyCancellable>!
-    
+    let suiteName = "com.test.userDefaults"
+
     override func setUp() {
         super.setUp()
-        mockService = MockObservableUserDefaultsService()
+        // Create a mock UserDefaults instance with a specific suite name
+        mockUserDefaults = UserDefaults(suiteName: suiteName)
+        mockUserDefaults.removePersistentDomain(forName: suiteName)
+        
+        userDefaultsService = ObservableUserDefaultsServiceImpl(userDefaults: mockUserDefaults)
         cancellables = []
     }
-    
+
     override func tearDown() {
-        mockService.reset()
+        // Clean up the mock UserDefaults
+        mockUserDefaults.removePersistentDomain(forName: suiteName)
+        mockUserDefaults = nil
+        userDefaultsService = nil
         cancellables = nil
         super.tearDown()
     }
-    
-    func testObserver() {
-        var receivedValues: [String?] = []
-        let expectation = self.expectation(description: "Received all expected values")
-        
-        let subscription = mockService.observer(forKey: "testKey")
-            .sink(
-                receiveCompletion: { completion in
-                    print("Received completion: \(completion)")
-                },
-                receiveValue: { (value: String?) in
-                    print("Received value: \(String(describing: value))")
-                    receivedValues.append(value)
-                    if receivedValues.count >= 3 {
-                        expectation.fulfill()
-                    }
-                }
-            )
-        
-        // Set initial value
-        mockService.set(value: "testValue1", forKey: "testKey")
-        
-        // Set another value to trigger another emission
-        mockService.set(value: "testValue2", forKey: "testKey")
-        
-        // Wait with a longer timeout
-        waitForExpectations(timeout: 5) { error in
-            if let error = error {
-                XCTFail("Waitng for expectation failed: \(error)")
-            }
-        }
-        
-        subscription.cancel()  // Cancel the subscription after we're done
 
-        print("Final received values: \(receivedValues)")
-        
-        XCTAssertEqual(receivedValues, [nil, "testValue1", "testValue2"])
-        XCTAssertEqual(mockService.observerCalls.count, 1)
-        XCTAssertEqual(mockService.observerCalls[0].key, "testKey")
-        XCTAssertTrue(mockService.observerCalls[0].type == String.self)
+    // Your test cases go here
+
+    func testSetAndGetStringValue() {
+        let key = "testStringKey"
+        let value = "TestString"
+
+        userDefaultsService.set(value: value, forKey: key)
+        let retrievedValue: String? = userDefaultsService.get(forKey: key)
+
+        XCTAssertEqual(retrievedValue, value, "The retrieved value should match the set value.")
     }
-    
-    func testSet() {
-        mockService.set(value: 42, forKey: "intKey")
-        XCTAssertEqual(mockService.setCalls.count, 1)
-        XCTAssertEqual(mockService.setCalls[0].key, "intKey")
-        XCTAssertEqual(mockService.setCalls[0].value as? Int, 42)
+
+    func testSetAndGetCodableValue() {
+        struct TestCodable: Codable, Equatable {
+            let id: Int
+            let name: String
+        }
+
+        let key = "testCodableKey"
+        let value = TestCodable(id: 1, name: "TestName")
+
+        userDefaultsService.set(value: value, forKey: key)
+        let retrievedValue: TestCodable? = userDefaultsService.get(forKey: key)
+
+        XCTAssertEqual(retrievedValue, value, "The retrieved Codable value should match the set value.")
     }
-    
-    func testGet() {
-        mockService.set(value: "testValue", forKey: "testKey")
-        let value: String? = mockService.get(forKey: "testKey")
-        XCTAssertEqual(value, "testValue")
-        XCTAssertEqual(mockService.getCalls.count, 1)
-        XCTAssertEqual(mockService.getCalls[0].key, "testKey")
-        XCTAssertTrue(mockService.getCalls[0].type == String.self)
+
+
+
+    func testUserDefaultsPublisherWithDefaultValue() {
+        let key = "testPublisherKey"
+        let defaultValue = "DefaultValue"
+        let updatedValue = "UpdatedValue"
+        var receivedValues: [String] = []
+
+        // Subscribe to the publisher
+        let expectation = XCTestExpectation(description: "Publisher should emit the default value and then the updated value.")
+        userDefaultsService.userDefaultsPublisher(forKey: key, defaultValue: defaultValue)
+            .sink { value in
+                receivedValues.append(value)
+                if receivedValues.count == 2 {
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+
+        // Update the value
+        userDefaultsService.set(value: updatedValue, forKey: key)
+
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(receivedValues, [defaultValue, updatedValue], "Publisher should emit the default value and then the updated value.")
+    }
+
+    func testGetNonExistentKeyReturnsNil() {
+        let key = "nonExistentKey"
+        let retrievedValue: String? = userDefaultsService.get(forKey: key)
+
+        XCTAssertNil(retrievedValue, "Retrieving a non-existent key should return nil.")
+    }
+
+    func testSetAndGetNonCodableValue() {
+        let key = "testNonCodableKey"
+        let value = 42
+
+        userDefaultsService.set(value: value, forKey: key)
+        let retrievedValue: Int? = userDefaultsService.get(forKey: key)
+
+        XCTAssertEqual(retrievedValue, value, "The retrieved non-Codable value should match the set value.")
     }
 }
